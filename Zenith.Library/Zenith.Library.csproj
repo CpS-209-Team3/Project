@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Game Object Model\" />
     <Folder Include="Highscores\" />
     <Folder Include="Serialization\" />
   </ItemGroup>
