@@ -8,7 +8,7 @@ namespace Zenith.Library.Highscores
     {
         string name;
         int score;
-
+        
         public HiScore(string nme, int scr)
         {
             name = nme;
