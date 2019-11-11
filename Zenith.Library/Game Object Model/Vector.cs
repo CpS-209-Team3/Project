@@ -2,30 +2,35 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zenith.Library.Game_Object_Model
+namespace Zenith.Library
 {
     class Vector
     {
         double x, y;
         double angle, magnitude;
 
-        double X
+        public double X
         {
             get { return x; }
             set { x = value; }
         }
-        double Y
+        public double Y
         {
             get { return y; }
             set { y = value; }
         }
 
+        // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading
         public static Vector operator +(Vector v1, Vector v2) {
             return new Vector(v1.x + v2.x, v1.y + v2.y);
         }
         public static Vector operator -(Vector v1, Vector v2)
         {
             return new Vector(v1.x - v2.x, v1.y - v2.y);
+        }
+        public static Vector operator *(Vector v1, double x)
+        {
+            return new Vector(v1.x - x, v1.y * x);
         }
 
         public Vector(double arg1, double arg2, bool isPolar = false)
