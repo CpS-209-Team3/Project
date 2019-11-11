@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Zenith.Library
+{
+    class Enemy : Ship
+    {
+        private Ship player;
+        private int pointValue;
+        private int damage;
+
+        public override void Loop() { }
+
+        public Enemy(Vector position)
+            : base(position)
+        {
+
+        }
+     }
+}
