@@ -6,14 +6,14 @@ namespace Zenith.Library
 {
     class Asteroid : GameObject
     {
-        double size;
-
         public override void Loop() { }
 
         public Asteroid(Vector position, double size)
             : base(position)
         {
-            this.size = size;
+            this.size = new Vector(size, size);
+            velocity.X = World.Random.NextDouble() * 2 - 1;
+            velocity.Y = World.Random.NextDouble() * 2 - 1;
         }
     }
 }

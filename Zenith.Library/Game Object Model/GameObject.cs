@@ -20,15 +20,23 @@ namespace Zenith.Library
         protected GameObjectType type;
         protected bool dynamic;
 
+        // Properties
+
         public Vector Position { get { return position; } }
 
         public Vector Size { get { return size; } }
 
         public bool Dynamic { get { return dynamic; } }
 
+        public bool Destroy { get; set; }
+
+        // Methods
+
+        public virtual void OnCollision(GameObject gameOjbect) { }
+
         public abstract void Loop();
 
-        public void update()
+        public void Update()
         {
             position += velocity;
 

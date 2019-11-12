@@ -12,10 +12,10 @@ namespace Zenith.Library
 
         public override void Loop() { }
 
-        public Enemy(Vector position)
+        public Enemy(Vector position, Ship player)
             : base(position)
         {
-
+            this.player = player;
         }
      }
 }

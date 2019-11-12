@@ -9,9 +9,19 @@ namespace Zenith.Library
         protected int health;
         protected int reloadTime;
         protected int bodyDamage;
+
         protected int laserDamage;
+        protected double accuracy;
+        protected double laserSpeed;
 
         protected double accerlation;
+
+        public virtual void Shoot(double angle)
+        {
+            var vel = new Vector(angle, laserSpeed, true);
+            var laser = new Laser(position, vel, laserDamage);
+            World.AddObject(laser);
+        }
 
         public override void Loop() { }
 
