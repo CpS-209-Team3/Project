@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    enum GameObjectType
+    public enum GameObjectType
     {
         Generic,
         Ship,

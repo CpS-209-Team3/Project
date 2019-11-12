@@ -144,13 +144,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9"/>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zenith.Mobile\Zenith.Mobile.csproj">
-      <Project>{4CA4CA02-DA13-4395-8460-6C490E91213F}</Project>
-      <Name>Zenith.Mobile</Name>
+    <ProjectReference Include="..\Zenith.Mobile\Zenith.View.csproj">
+      <Project>{F225858A-DA12-47D5-8786-CFC2BE00A9D0}</Project>
+      <Name>Zenith.View</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

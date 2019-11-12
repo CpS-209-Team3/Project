@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zenith.Library", "Zenith.Library\Zenith.Library.csproj", "{88028ED8-1D8D-4540-9695-18F411C15A1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Mobile.UWP", "Zenith.Mobile\Zenith.Mobile.UWP\Zenith.Mobile.UWP.csproj", "{F9D32C0E-870F-45C6-8855-82AF6DEBDCC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.View.UWP", "Zenith.Mobile\Zenith.Mobile.UWP\Zenith.View.UWP.csproj", "{F9D32C0E-870F-45C6-8855-82AF6DEBDCC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Mobile.Android", "Zenith.Mobile\Zenith.Mobile.Android\Zenith.Mobile.Android.csproj", "{6D724712-B1E4-4E22-A21D-F169FD3A806E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.View.Android", "Zenith.Mobile\Zenith.Mobile.Android\Zenith.View.Android.csproj", "{6D724712-B1E4-4E22-A21D-F169FD3A806E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith.Mobile", "Zenith.Mobile\Zenith.Mobile\Zenith.Mobile.csproj", "{F225858A-DA12-47D5-8786-CFC2BE00A9D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zenith.View", "Zenith.Mobile\Zenith.Mobile\Zenith.View.csproj", "{F225858A-DA12-47D5-8786-CFC2BE00A9D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

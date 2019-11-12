@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class Enemy1 : Ship
+    class Enemy3 : Ship
     {
         public override void Loop() { }
 
-        public Enemy1(Vector position)
+        public Enemy3(Vector position)
             : base(position)
         {
 

@@ -4,6 +4,13 @@ using System.Text;
 
 namespace Zenith.Library
 {
+    public enum EnemyState
+    {
+        Sway,
+        Ram,
+        Flee
+    }
+
     class Enemy : Ship
     {
         private Ship player;
