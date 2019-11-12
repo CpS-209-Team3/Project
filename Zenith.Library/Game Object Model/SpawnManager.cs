@@ -16,9 +16,9 @@ namespace Zenith.Library.Game_Object_Model
             if (r < 9)
             {
                 r = World.Random.Next(0, 10);
-                if (r < 3) World.AddObject(new Enemy1(new Vector(0, 0)));
-                else if (r < 7) World.AddObject(new Enemy1(new Vector(0, 0)));
-                else World.AddObject(new Enemy1(new Vector(0, 0)));
+                if (r < 3) World.AddObject(new Enemy1(new Vector(0, 0), World.Player));
+                else if (r < 7) World.AddObject(new Enemy1(new Vector(0, 0), World.Player));
+                else World.AddObject(new Enemy1(new Vector(0, 0), World.Player));
             }
             else
             {

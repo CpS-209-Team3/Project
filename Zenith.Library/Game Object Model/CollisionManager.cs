@@ -37,6 +37,7 @@ namespace Zenith.Library
         public CollisionManager(List<GameObject> objects)
         {
             this.objects = objects;
+            didSplit = false;
         }
     }
 }

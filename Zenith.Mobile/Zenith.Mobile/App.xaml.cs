@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Zenith.Mobile
+namespace Zenith.View
 {
     public partial class App : Application
     {

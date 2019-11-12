@@ -19,16 +19,17 @@ namespace Zenith.Library
         private static double width;
         private static double height;
 
+        private static Ship player;
+
         // Properties
 
-        public double Width { get { return width; } }
+        public static double Width { get { return width; } }
 
-        public double Height { get { return height; } }
+        public static double Height { get { return height; } }
 
-        public static Random Random
-        {
-            get { return Random; }
-        }
+        public static Random Random { get { return random; } }
+
+        public static Ship Player { get { return player; } }
 
         // Methods
 

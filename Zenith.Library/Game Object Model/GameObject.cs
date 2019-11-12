@@ -14,7 +14,7 @@ namespace Zenith.Library
         Background
     }
 
-    abstract class GameObject
+    public abstract class GameObject
     {
         protected Vector position, velocity, size;
         protected GameObjectType type;

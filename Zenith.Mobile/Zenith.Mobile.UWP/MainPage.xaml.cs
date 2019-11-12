@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Zenith.Mobile.UWP
+namespace Zenith.View.UWP
 {
     public sealed partial class MainPage
     {
@@ -21,7 +21,7 @@ namespace Zenith.Mobile.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new Zenith.Mobile.App());
+            LoadApplication(new Zenith.View.App());
         }
     }
 }

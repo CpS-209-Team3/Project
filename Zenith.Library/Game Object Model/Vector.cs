@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class Vector
+    public class Vector
     {
         double x, y;
         double angle, magnitude;
