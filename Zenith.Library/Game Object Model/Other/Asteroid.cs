@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class Asteroid : GameObject
+    class Asteroid : Enemy
     {
         public override void Loop() { }
 
         public Asteroid(Vector position, double size)
-            : base(position)
+            : base(position, null)
         {
             this.size = new Vector(size, size);
             velocity.X = World.Random.NextDouble() * 2 - 1;

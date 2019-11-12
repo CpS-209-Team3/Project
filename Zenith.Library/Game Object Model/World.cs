@@ -4,6 +4,13 @@ using System.Text;
 
 namespace Zenith.Library
 {
+    interface ViewManager
+    {
+        void AddSprite();
+
+        void RemoveSprite();
+    }
+
     class World
     {
         private static List<GameObject> objects;

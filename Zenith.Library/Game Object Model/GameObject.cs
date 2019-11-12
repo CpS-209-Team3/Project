@@ -6,8 +6,8 @@ namespace Zenith.Library
 {
     enum GameObjectType
     {
-        Player,
-        Enemy,
+        Generic,
+        Ship,
         Item,
         Asteroid,
         Laser,
@@ -26,13 +26,15 @@ namespace Zenith.Library
 
         public Vector Size { get { return size; } }
 
+        public GameObjectType Type { get { return type; } }
+
         public bool Dynamic { get { return dynamic; } }
 
         public bool Destroy { get; set; }
 
         // Methods
 
-        public virtual void OnCollision(GameObject gameOjbect) { }
+        public virtual void OnCollision(GameObject gameObject) { }
 
         public abstract void Loop();
 
@@ -49,6 +51,7 @@ namespace Zenith.Library
             this.position = position;
             velocity = new Vector(0, 0);
             size = new Vector(0, 0);
+            type = GameObjectType.Generic;
         }
     }
 }
