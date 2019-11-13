@@ -37,21 +37,23 @@ namespace Zenith.Library
         }
         public void Load(string filename)
         {
-            string serializedGameObjects = System.IO.File.ReadAllText(string.Format(@"../../SaveFiles/{0}.txt", filename));
-            List<string> gameObjectStrings = serializedGameObjects.Split(',').ToList();
-            foreach (string obj in gameObjects)
+            if (File.Exists(filename)) 
             {
-                gameObjects.Add(obj.Deserialize());
+                 using (StreamReader reader = new StreamReader(filename, true))
+                 {
+                     
+                 }
             }
+            
         }
 
         // This function saves the game as a text file named [filename].txt
         // It does this by first deleting any text files under the same name,
-        // then creating a new file under the name [filename], and writing to
-        // it per the Serialization Design wiki page.
+        // creating a new file under the name [filename], and then writing 
+        // the serialized version of all the game objects to the file and 
+        // closing it.
         public void Save(string filename)
         {
-            
             if (File.Exists(filename)) 
             {
                 File.Delete(filename);
@@ -59,15 +61,12 @@ namespace Zenith.Library
 
             using (StreamWriter writer = new StreamWriter(filename, true))
             {
+                foreach (object x in this.gameObjects) 
+                {
+                    writer.WriteLine(x.Serialize());
+                }
                 
             }
-            // serialize all necessary objects
-            foreach (object x in this.gameObjects) 
-            {
-                string serializedObject = x.Serialize();
-                this.gameObjectStrings.Add(serializedObject);
-            }
-            System.IO.File.WriteAllLines(@"../../SaveFiles/", gameObjectStrings);
         }
 
     }
