@@ -33,21 +33,21 @@ namespace Zenith.Library
             return new Vector(v1.x - x, v1.y * x);
         }
 
-        public Vector(double arg1, double arg2, bool isPolar = false)
+        public Vector(double x, double y, bool isPolar = false)
         {
             if (isPolar)
             {
-                this.x = Math.Cos(arg1) * arg2;
-                this.y = Math.Sin(arg1) * arg2;
-                this.magnitude = arg2;
-                this.angle = arg1;
+                this.x = Math.Cos(x) * y;
+                this.y = Math.Sin(x) * y;
+                this.magnitude = y;
+                this.angle = x;
             }
             else
             {
-                this.x = arg1;
-                this.y = arg2;
-                this.angle = Math.Atan2(arg2, arg1);
-                this.magnitude = Math.Sqrt(arg1 * arg1 + arg2 * arg2);
+                this.x = x;
+                this.y = y;
+                this.angle = Math.Atan2(y, x);
+                this.magnitude = Math.Sqrt(x * x + y * y);
             }
         }
     }
