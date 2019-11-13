@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.IO;
 
 namespace Zenith.Library
 {
@@ -43,11 +44,24 @@ namespace Zenith.Library
             }
         }
 
+        // This function saves the game as a text file named [filename].txt
+        // It does this by first deleting any text files under the same name,
+        // then creating a new file under the name [filename], and writing to
+        // it per the Serialization Design wiki page.
         public void Save(string filename)
         {
             
+            if (File.Exists(filename)) 
+            {
+                File.Delete(filename);
+            }
+
+            using (StreamWriter writer = new StreamWriter(filename, true))
+            {
+                
+            }
             // serialize all necessary objects
-            foreach(object x in this.gameObjects) 
+            foreach (object x in this.gameObjects) 
             {
                 string serializedObject = x.Serialize();
                 this.gameObjectStrings.Add(serializedObject);
