@@ -7,12 +7,13 @@ using NUnit.Framework;
 namespace Zenith.Library
 {
     [TestFixture]
-    public class SerializationUnitTests
+    public class SerializationTests
     {
         [Test]
         public void Test_Save()
         {
             GameModel g = new GameModel("george");
+            g.
             g.Save(g.GameName);
             g.Load(g.GameName);
             Assert.IsTrue(g.GameObjects[0].ToString() == g.GameName);
