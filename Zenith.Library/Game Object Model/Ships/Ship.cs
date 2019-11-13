@@ -44,7 +44,7 @@ namespace Zenith.Library
         {
             var vel = new Vector(angle, laserSpeed, true);
             var laser = new Laser(this, position, vel, laserDamage);
-            World.AddObject(laser);
+            World.Instance.AddObject(laser);
         }
 
         public override void Loop() { }

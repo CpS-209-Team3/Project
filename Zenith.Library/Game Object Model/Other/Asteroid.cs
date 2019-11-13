@@ -12,8 +12,8 @@ namespace Zenith.Library
             : base(position, null)
         {
             this.size = new Vector(size, size);
-            velocity.X = World.Random.NextDouble() * 2 - 1;
-            velocity.Y = World.Random.NextDouble() * 2 - 1;
+            velocity.X = World.Instance.Random.NextDouble() * 2 - 1;
+            velocity.Y = World.Instance.Random.NextDouble() * 2 - 1;
         }
     }
 }

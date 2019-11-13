@@ -13,32 +13,65 @@ namespace Zenith.Library
 
     class World
     {
-        private static List<GameObject> objects;
-        public static Random random;
+        // Singleton Code
+        private static World instance = new World();
+        public static World Instance { get { return instance; } }
 
-        private static double width;
-        private static double height;
+        private World()
+        {
+            gameTick = 0;
+            collisionManager = new CollisionManager(objects);
+        }
 
-        private static Ship player;
+        // End of Singleton Code
+
+        private List<GameObject> objects;
+        public Random random;
+
+        private double width;
+        private double height;
+
+        private Ship player;
+
+        private int gameTick;
+        private CollisionManager collisionManager;
 
         // Properties
 
-        public static double Width { get { return width; } }
+        public double Width { get { return width; } }
 
-        public static double Height { get { return height; } }
+        public double Height { get { return height; } }
 
-        public static Random Random { get { return random; } }
+        public Random Random { get { return random; } }
 
-        public static Ship Player { get { return player; } }
+        public Ship Player { get { return player; } }
 
         // Methods
 
-        public static void AddObject(GameObject gameObject)
+        public void Update()
+        {
+            for (int i = 0; i < objects.Count; ++i)
+            {
+                objects[i].Update();
+                if (objects[i].Destroy)
+                {
+                    objects.RemoveAt(i);
+                    // fixe index after removal
+                    --i;
+                }
+            }
+
+            collisionManager.CheckForCollisions();
+
+            ++gameTick;
+        }
+
+        public void AddObject(GameObject gameObject)
         {
             objects.Add(gameObject);
         }
 
-        public static void RemoveObject(GameObject gameObject)
+        public void RemoveObject(GameObject gameObject)
         {
             objects.Add(gameObject);
         }
