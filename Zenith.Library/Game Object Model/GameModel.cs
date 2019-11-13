@@ -12,6 +12,7 @@ namespace Zenith.Library
 
         void Deserialize();
     }
+
     class GameModel
     {
         private GameModel[] savedGames = new GameModel[5];
