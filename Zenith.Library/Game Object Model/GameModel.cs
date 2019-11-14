@@ -35,12 +35,40 @@ namespace Zenith.Library
         {
             get { return this.gameObjects; }
         }
+        
+        // Reads a list of strings from the file specifed by filename and puts them into the list
+        // of game object strings, then depending on the type of the string given by the first comma
+        // seperated value, it will create a different object, deserialize the rest of the information
+        // and add it to game objects.
         public void Load(string filename)
         {
             if (File.Exists(filename)) 
             {
                  using (StreamReader reader = new StreamReader(filename, true))
                  {
+                     while (reader.peek() != null) 
+                     {
+                        this.gameObjectStrings.Add(x);
+                     }
+                     foreach (string x in gameObjectStrings)
+                     {
+                         string type = x.Substring(0, x.IndexOf(","))
+                         switch (type)
+                         {
+                             case "enemy1":
+                                // create new object
+                                 Enemy1 enemy1 = new Enemy1():
+                                 enemy1.Deserialize(x);
+                                 GameObjects.Add(x);
+                             case "starship:
+                                 // create
+                                 Starship s = new Starship();
+                                 s.Deserialize(x);
+                                 GameObjects.Add(x);
+                             ...
+                         }
+                     }
+                     
                      
                  }
             }
