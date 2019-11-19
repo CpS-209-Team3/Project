@@ -21,7 +21,8 @@ namespace Zenith.Library
         }
 
         // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading
-        public static Vector operator +(Vector v1, Vector v2) {
+        public static Vector operator +(Vector v1, Vector v2)
+        {
             return new Vector(v1.x + v2.x, v1.y + v2.y);
         }
         public static Vector operator -(Vector v1, Vector v2)
@@ -50,5 +51,11 @@ namespace Zenith.Library
                 this.magnitude = Math.Sqrt(x * x + y * y);
             }
         }
+
+        public override string ToString()
+        {
+            return x.ToString() + ":" + y.ToString();
+        }
+
     }
 }
