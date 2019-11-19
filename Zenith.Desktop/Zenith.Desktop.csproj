@@ -95,5 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zenith.Library2\Zenith.Library.csproj">
+      <Project>{4cc2cc77-a403-4199-b099-dad193bb1de4}</Project>
+      <Name>Zenith.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

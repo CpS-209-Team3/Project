@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zenith.Library;
 
 namespace Zenith.Desktop
 {
@@ -23,6 +24,18 @@ namespace Zenith.Desktop
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public void GameLoop()
+        {
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    World.Instance.Update();
+                    Task.Delay(1000/60);
+                }
+            });
         }
     }
 }
