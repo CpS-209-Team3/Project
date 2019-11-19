@@ -19,6 +19,7 @@ namespace Zenith.Library
         protected Vector position, velocity, size;
         protected GameObjectType type;
         protected bool dynamic;
+        protected string imageSource;
 
         // Properties
 
@@ -31,6 +32,8 @@ namespace Zenith.Library
         public bool Dynamic { get { return dynamic; } }
 
         public bool Destroy { get; set; }
+
+        public string ImageSource { get { return imageSource; } }
 
         // Methods
 

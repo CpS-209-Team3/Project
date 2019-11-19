@@ -19,11 +19,35 @@ namespace Zenith.Desktop
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, ViewManager
     {
         public MainWindow()
         {
             InitializeComponent();
+            sprites = new List<Sprite>();
+            World.Instance.ViewManager = this;
+        }
+
+        List<Sprite> sprites;
+
+        public void AddSprite(GameObject obj)
+        {
+            var s = new Sprite(obj);
+            sprites.Add(s);
+            canView.Children.Add(s);
+        }
+
+        public void RemoveSprite(GameObject obj)
+        {
+            foreach (var s in sprites)
+            {
+                if (s.GameObject == obj)
+                {
+                    sprites.Remove(s);
+                    canView.Children.Remove(s);
+                    break;
+                }
+            }
         }
 
         public void GameLoop()
@@ -33,7 +57,7 @@ namespace Zenith.Desktop
                 while (true)
                 {
                     World.Instance.Update();
-                    Task.Delay(1000/60);
+                    Task.Delay(1000 / 60);
                 }
             });
         }

@@ -5,22 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using Zenith.Library;
 
 namespace Zenith.Desktop
 {
     class Sprite : Image
     {
-        Library.Vector position;
+        GameObject gameObject;
+        
+        public GameObject GameObject { get { return gameObject; } }
 
         public void Update()
         {
-            Margin = new Thickness(position.X, position.Y, 0, 0);
+            Margin = new Thickness(gameObject.Position.X, gameObject.Position.Y, 0, 0);
         }
 
-        public Sprite(Library.Vector pos)
+        public Sprite(GameObject gameObject)
         {
-            position = pos;
+            this.gameObject = gameObject;
+            Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Relative));
         }
     }
 }

@@ -6,9 +6,9 @@ namespace Zenith.Library
 {
     public interface ViewManager
     {
-        void AddSprite();
+        void AddSprite(GameObject obj);
 
-        void RemoveSprite();
+        void RemoveSprite(GameObject obj);
     }
 
     public class World
@@ -27,24 +27,20 @@ namespace Zenith.Library
 
         private List<GameObject> objects;
         public Random random;
-
-        private double width;
-        private double height;
-
-        private Ship player;
-
         private int gameTick;
         private CollisionManager collisionManager;
 
         // Properties
 
-        public double Width { get { return width; } }
+        public double Width { get; set; }
 
-        public double Height { get { return height; } }
+        public double Height { get; set; }
 
         public Random Random { get { return random; } }
 
-        public Ship Player { get { return player; } }
+        public Ship Player { get; set; }
+
+        public ViewManager ViewManager { get; set; }
 
         // Methods
 
@@ -69,11 +65,13 @@ namespace Zenith.Library
         public void AddObject(GameObject gameObject)
         {
             objects.Add(gameObject);
+            ViewManager.AddSprite(gameObject);
         }
 
         public void RemoveObject(GameObject gameObject)
         {
             objects.Add(gameObject);
+            ViewManager.RemoveSprite(gameObject);
         }
     }
 }
