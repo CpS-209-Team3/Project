@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Zenith.Library2\Zenith.Library2.csproj" />
     <ProjectReference Include="..\..\Zenith.Library\Zenith.Library.csproj" />
   </ItemGroup>
 </Project>

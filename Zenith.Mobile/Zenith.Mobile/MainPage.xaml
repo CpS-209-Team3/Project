@@ -6,11 +6,11 @@
              mc:Ignorable="d"
              x:Class="Zenith.View.MainPage">
 
-    <Canvas>
+    <StackLayout>
         <!-- Place new controls here -->
         <Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
-    </Canvas>
+    </StackLayout>
 
 </ContentPage>
