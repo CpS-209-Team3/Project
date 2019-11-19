@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 using NUnit.Framework;
 
 namespace Zenith.Library.Highscores
@@ -60,15 +61,18 @@ namespace Zenith.Library.Highscores
             LeaderBoard.AddHighScore(new HiScore("Schaub", 2000));
             LeaderBoard.AddHighScore(new HiScore("Data", 10000));
 
-            string saveFile = LeaderBoard.Save();
-            Assert.IsTrue(saveFile == "Gobbledeegook");
+            LeaderBoard.Save("saveFile.txt");
+            using (StreamReader reader = new StreamReader("saveFile.txt"))
+            {
+                string log = reader.ReadToEnd();
+                Assert.IsTrue(log == "");
+            }
         }
 
         [Test]
         public void Load_LoadObjectFromSave_ReturnObject()
         {
-            string saveFile = "Gobbledeegook";
-            HighScores savedGame = HighScores.Load(saveFile);
+            HighScores savedGame = HighScores.Load("saveFile.txt");
 
             HighScores LeaderBoard = new HighScores();
             LeaderBoard.AddHighScore(new HiScore("Splatt", 1));
