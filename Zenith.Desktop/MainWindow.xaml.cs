@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,12 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
+
+        Enemy1 e;
+
         public MainWindow()
         {
             InitializeComponent();
-            sprites = new List<Sprite>();
-            World.Instance.ViewManager = this;
         }
 
         List<Sprite> sprites;
@@ -57,9 +59,30 @@ namespace Zenith.Desktop
                 while (true)
                 {
                     World.Instance.Update();
+                    e.Update();
                     Task.Delay(1000 / 60);
                 }
             });
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs ev)
+        {
+            sprites = new List<Sprite>();
+            World.Instance.ViewManager = this;
+
+            /*var i = new BitmapImage(new Uri(Util.GetImagePath("blue_01.png"), UriKind.Absolute));
+            
+            var img = new Image();
+            img.Source = i;
+            canView.Children.Add(img);
+            */
+            var txt = new TextBox();
+            txt.Text = Util.GetImagePath("blue_01.png");
+            canView.Children.Add(txt);
+
+            e = new Enemy1(new Library.Vector(70, 70));
+            AddSprite(e);
+            GameLoop();
         }
     }
 }

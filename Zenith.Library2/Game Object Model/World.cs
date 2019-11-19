@@ -20,6 +20,7 @@ namespace Zenith.Library
         private World()
         {
             gameTick = 0;
+            objects = new List<GameObject>();
             collisionManager = new CollisionManager(objects);
         }
 

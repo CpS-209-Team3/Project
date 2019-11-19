@@ -9,4 +9,10 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4\blue_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

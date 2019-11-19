@@ -24,7 +24,7 @@ namespace Zenith.Desktop
         public Sprite(GameObject gameObject)
         {
             this.gameObject = gameObject;
-            Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Relative));
+            Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Absolute));
         }
     }
 }
