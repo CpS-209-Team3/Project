@@ -26,5 +26,25 @@ namespace Zenith.View
             InitializeComponent();
             sprites = new List<Sprite>();
         }
+
+        private void BtnStart_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new GamePage();
+        }
+
+        private void BtnScores_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnHelp_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnCredits_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
