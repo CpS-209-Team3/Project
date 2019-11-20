@@ -82,6 +82,7 @@ namespace Zenith.Desktop
 
             e = new Enemy1(new Library.Vector(70, 70));
             AddSprite(e);
+            e.Update();
             GameLoop();
         }
     }
