@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Zenith.Library
@@ -45,8 +46,19 @@ namespace Zenith.Library
 
         public override void Deserialize(string saveInfo)
         {
-            base.Deserialize(saveInfo);
-            
+            int i = 0;
+            int index = IndexOfNthOccurance(saveInfo, ",", 5);
+
+            string gameObjectSaveInfo = saveInfo.Substring(0, index);
+            string[] laserSaveInfo = saveInfo.Substring(index, saveInfo.Length - index).Split(',');
+
+            base.Deserialize(gameObjectSaveInfo);
+
+            foreach (PropertyInfo property in typeof(Ship).GetProperties())
+            {
+                property.SetValue(this, laserSaveInfo[i]);
+                i++;
+            }
         }
     }
 }

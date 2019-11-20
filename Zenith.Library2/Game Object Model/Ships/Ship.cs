@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    abstract class Ship : GameObject
+    public abstract class Ship : GameObject
     {
         // instance variables
         protected bool isPlayer;
@@ -92,18 +92,6 @@ namespace Zenith.Library
 
         // Got this method from here: https://stackoverflow.com/questions/186653/get-the-index-of-the-nth-occurrence-of-a-string
         // Returns the index of the nth occurance of a match within a string.
-        private int IndexOfNthOccurance(string s, string match, int n)
-        {
-            int i = 1;
-            int index = 0;
-
-            while (i <= n && (index = s.IndexOf(match, index + 1)) != -1)
-            {
-                if (i == n)
-                    return index;
-                i++;
-            }
-            return -1;
-        }
+        
     }
 }

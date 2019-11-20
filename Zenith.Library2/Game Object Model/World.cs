@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    interface ViewManager
+    public interface ViewManager
     {
-        void AddSprite();
-        void RemoveSprite();
+        void AddSprite(GameObject gameObject);
+        void RemoveSprite(GameObject gameObject);
     }
 
     interface ISerialize
@@ -18,7 +18,8 @@ namespace Zenith.Library
         void Deserialize(string saveInfo);
     }
 
-    class World
+    public class World
+
     {
         // Singleton Code
         private static World instance = new World();
@@ -27,6 +28,7 @@ namespace Zenith.Library
         private World()
         {
             gameTick = 0;
+            objects = new List<GameObject>();
             collisionManager = new CollisionManager(objects);
         }
 
@@ -34,24 +36,20 @@ namespace Zenith.Library
 
         private List<GameObject> objects;
         public Random random;
-
-        private double width;
-        private double height;
-
-        private Ship player;
-
         private int gameTick;
         private CollisionManager collisionManager;
 
         // Properties
 
-        public double Width { get { return width; } }
+        public double Width { get; set; }
 
-        public double Height { get { return height; } }
+        public double Height { get; set; }
 
         public Random Random { get { return random; } }
 
-        public Ship Player { get { return player; } }
+        public Ship Player { get; set; }
+
+        public ViewManager ViewManager { get; set; }
 
         // Methods
 
@@ -76,11 +74,13 @@ namespace Zenith.Library
         public void AddObject(GameObject gameObject)
         {
             objects.Add(gameObject);
+            ViewManager.AddSprite(gameObject);
         }
 
         public void RemoveObject(GameObject gameObject)
         {
             objects.Add(gameObject);
+            ViewManager.RemoveSprite(gameObject);
         }
         // Reads a list of strings from the file specifed by filename and puts them into the list
         // of game object strings, then depending on the type of the string given by the first comma

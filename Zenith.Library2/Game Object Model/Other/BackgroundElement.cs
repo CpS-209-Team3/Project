@@ -11,6 +11,7 @@ namespace Zenith.Library.Game_Object_Model
         public BackgroundElement(Vector position, double speed)
             : base(position)
         {
+            collidable = false;
             velocity.X = 0;
         }
     }

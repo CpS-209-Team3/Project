@@ -18,8 +18,10 @@ namespace Zenith.Library
     {
         protected Vector position, velocity, size;
         protected GameObjectType type;
+
         protected bool collidable;
-        
+        protected string imageSource;
+
 
         // Properties
 
@@ -32,6 +34,8 @@ namespace Zenith.Library
         public bool Collidable { get { return collidable; } }
 
         public bool Destroy { get; set; }
+
+        public string ImageSource { get { return imageSource; } }
 
         // Methods
 
@@ -72,6 +76,20 @@ namespace Zenith.Library
             string[] xNy3 = savedValues[3].Split(':');
             size = new Vector(Convert.ToDouble(xNy3[0]), Convert.ToDouble(xNy3[1]), false);
             Destroy = Convert.ToBoolean(savedValues[4]);
+        }
+
+        public int IndexOfNthOccurance(string s, string match, int n)
+        {
+            int i = 1;
+            int index = 0;
+
+            while (i <= n && (index = s.IndexOf(match, index + 1)) != -1)
+            {
+                if (i == n)
+                    return index;
+                i++;
+            }
+            return -1;
         }
     }
 }

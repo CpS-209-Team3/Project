@@ -11,20 +11,24 @@ namespace Zenith.Library
         Flee
     }
 
-    class Enemy : Ship
+    public class Enemy : Ship
     {
-        private Ship player;
-        private int pointValue;
-        private int damage;
-
         public override void Loop() { }
 
-        public Enemy(Vector position, Ship player)
+        public Enemy(Vector position)
             : base(position)
         {
-            this.player = player;
+            this.isPlayer = false;
         }
 
-        
+        public override string Serialize()
+        {
+            return base.Serialize();
+        }
+
+        public override void Deserialize(string saveInfo)
+        {
+            base.Deserialize(saveInfo);
+        }
     }
 }
