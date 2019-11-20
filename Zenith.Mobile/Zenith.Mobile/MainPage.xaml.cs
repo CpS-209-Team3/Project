@@ -13,18 +13,10 @@ namespace Zenith.View
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        List<Sprite> sprites;
-
-        public void AddSprite(Sprite sprite)
-        {
-            sprites.Add(sprite);
-            //this.Children.Add(sprite.Image);
-        }
 
         public MainPage()
         {
             InitializeComponent();
-            sprites = new List<Sprite>();
         }
 
         private void BtnStart_Clicked(object sender, EventArgs e)
