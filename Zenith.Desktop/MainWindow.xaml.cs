@@ -60,6 +60,14 @@ namespace Zenith.Desktop
                 {
                     World.Instance.Update();
                     e.Update();
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        for (int i = 0; i < sprites.Count; ++i)
+                        {
+                            sprites[i].Update();
+                        }
+                    });
                     Task.Delay(1000 / 60);
                 }
             });
