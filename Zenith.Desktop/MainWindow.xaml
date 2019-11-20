@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zenith.Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Canvas x:Name="canView">
         
-    </Grid>
+        <!--
+        <Image Source="C:\Users\Caedmon\Desktop\Zenith\Zenith.Desktop\bin\Debug\Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4/blue_01.png"></Image>
+        -->
+    </Canvas>
 </Window>
