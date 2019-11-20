@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zenith.Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Zenith" Height="600" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="background.png"/>
+    </Window.Background>
+    <StackPanel>
+        <Image Source="TitleZenith.png" Margin="64.6,40,64.6,45" Height="125"/>
+        <Button x:Name="btn_Play" Content="Play Game" FontSize="15" Height="40" Width="150" HorizontalAlignment="Center" Click="btn_Play_Click" Margin="5"/>
+        <Button x:Name="btn_Load" Content="Load Game" FontSize="15" Height="40" Width="125" HorizontalAlignment="Center" Click="btn_Load_Click" Margin="5"/>
+        <Button x:Name="btn_Setting" Content="Setting" FontSize="15" Height="40" Width="75" HorizontalAlignment="Center" Click="btn_Setting_Click" Margin="5"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btn_Help" Content="Help" FontSize="15" Height="40" Width="75" HorizontalAlignment="Center" Click="btn_Help_Click" Margin="5"/>
+            <Button x:Name="btn_About" Content="About" FontSize="15" Height="40" Width="75" HorizontalAlignment="Center" Click="btn_About_Click" Margin="5"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

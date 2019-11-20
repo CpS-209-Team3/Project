@@ -55,7 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelpScreen.xaml.cs">
+      <DependentUpon>HelpScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sprite.cs" />
+    <Page Include="HelpScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +101,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TitleZenith.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GameScreen.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="parallax-space-backgound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="arrowKeys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="darkgrey_01.png" />
+    <Resource Include="purple_06.png" />
+    <Resource Include="tankbase_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="asteroid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="projectile-blue.png" />
+    <Resource Include="projectile-green.png" />
+    <Resource Include="projectile-orange.png" />
+    <Resource Include="projectile-red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

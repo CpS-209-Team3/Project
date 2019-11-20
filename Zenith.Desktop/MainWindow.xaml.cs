@@ -24,5 +24,39 @@ namespace Zenith.Desktop
         {
             InitializeComponent();
         }
+
+        //~~~~~~~~~~~~~~~~~~~~ Event Handling Zone ~~~~~~~~~~~~~~~~~~~~
+
+        //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Play_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Load_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Setting Page ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Setting_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpScreen help = new HelpScreen();
+            this.Content = help;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ About Screen ~~~~~~~~~~~~~~~~~~~~
+        private void btn_About_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        //~~~~~~~~~~~~~~~~~~~~ End Event Handling Zone ~~~~~~~~~~~~~~~~~~~~
     }
 }
