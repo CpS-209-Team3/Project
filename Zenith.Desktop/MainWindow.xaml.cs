@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zenith.Library;
+using System.Windows.Input;
 
 namespace Zenith.Desktop
 {
@@ -22,9 +23,6 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
-
-        Enemy1 e;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -59,7 +57,6 @@ namespace Zenith.Desktop
                 while (true)
                 {
                     World.Instance.Update();
-                    e.Update();
 
                     Dispatcher.Invoke(() =>
                     {
@@ -77,20 +74,6 @@ namespace Zenith.Desktop
         {
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-
-            /*var i = new BitmapImage(new Uri(Util.GetImagePath("blue_01.png"), UriKind.Absolute));
-            
-            var img = new Image();
-            img.Source = i;
-            canView.Children.Add(img);
-            */
-            var txt = new TextBox();
-            txt.Text = Util.GetImagePath("blue_01.png");
-            canView.Children.Add(txt);
-
-            e = new Enemy1(new Library.Vector(70, 70));
-            AddSprite(e);
-            e.Update();
             GameLoop();
         }
     }
