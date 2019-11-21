@@ -12,12 +12,12 @@ namespace Zenith.Library
 
         protected int health = 100;
         protected int reloadTime = 0;
-        protected int fireRate = 500;
+        protected int fireRate = 5;
         protected int bodyDamage = 100;
 
-        protected int laserDamage = 100;
-        protected double accuracy = 100;
-        protected double laserSpeed = 100;
+        protected int laserDamage = 4000;
+        protected double accuracy = 4;
+        protected double laserSpeed = 400;
 
         // Properties
 
@@ -51,17 +51,17 @@ namespace Zenith.Library
 
         public void Shoot(double angle)
         {
-            if (reloadTime == 0)
+            if (reloadTime <= 0)
             {
                 var vel = new Vector(angle, laserSpeed, true);
-                var laser = new Laser(isPlayer, position, vel, laserDamage);
+                var laser = new Laser(position, vel, laserDamage, isPlayer);
                 World.Instance.AddObject(laser);
                 reloadTime += fireRate;
             }
         }
 
         public override void Loop() {
-            if (reloadTime > 0) --reloadTime;
+            if (reloadTime > 0) reloadTime -= 1;
             ShipLoop();
         }
 

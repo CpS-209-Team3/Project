@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     public class Player : Ship
     {
-        private double acceleration = 0.02;
+        private double acceleration = 0.2;
 
         public override void ShipLoop()
         {
@@ -31,7 +31,7 @@ namespace Zenith.Library
                 AddForce(new Vector(acceleration, 0));
                 isAccerlating = true;
             }
-            if (!isAccerlating) velocity *= 0.9999;
+            if (!isAccerlating) velocity *= 0.97;
 
             if (World.Instance.PlayerController.Fire) Shoot(Math.PI / 2);
         }

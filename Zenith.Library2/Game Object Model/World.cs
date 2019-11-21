@@ -85,17 +85,18 @@ namespace Zenith.Library
             for (int i = 0; i < objects.Count; ++i)
             {
                 objects[i].Update();
+
                 if (objects[i].Destroy)
                 {
                     RemoveObject(objects[i]);
-                    // fixe index after removal
+                    // fix index after removal
                     --i;
                 }
             }
 
             collisionManager.CheckForCollisions();
 
-            ++gameTick;
+            gameTick += 1;
         }
 
         public void AddObject(GameObject gameObject)
@@ -187,7 +188,7 @@ namespace Zenith.Library
                 case "BackgroundElement":
                     return new BackgroundElement(null, 0);
                 case "Laser":
-                    return new Laser(false, null, null, 0);
+                    return new Laser(null, null, 0, false);
                 case "Asteroid":
                     return new Asteroid(null, 0);
                 /*case "Player":

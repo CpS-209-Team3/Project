@@ -13,8 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Zenith.Library;
-using System.Windows.Input;
 
 namespace Zenith.Desktop
 {
@@ -23,6 +23,9 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
+        private bool isRunning = false;
+        DispatcherTimer timer;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,8 +37,6 @@ namespace Zenith.Desktop
         {
             Dispatcher.Invoke(() =>
             {
-                //MessageBox.Show(obj.ImageSource);
-                //txtTest.Text = obj.ImageSource;
                 var s = new Sprite(obj);
                 sprites.Add(s);
                 canView.Children.Add(s);
@@ -58,33 +59,25 @@ namespace Zenith.Desktop
             });
         }
 
-        public void GameLoop()
+        public void GameLoop(object sender, EventArgs e)
         {
-            Task.Run(() =>
+            World.Instance.Update();
+
+            Dispatcher.Invoke(() =>
             {
-                Task.Delay(500);
-                while (true)
+                for (int i = 0; i < sprites.Count; ++i)
                 {
-                    World.Instance.Update();
-
-                    Dispatcher.Invoke(() =>
-                    {
-                        for (int i = 0; i < sprites.Count; ++i)
-                        {
-                            sprites[i].Update();
-                        }
-
-                        // Input handling
-                        World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
-                        World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
-                        World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
-                        World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
-                        World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
-                    });
-
-                    // Delay the loop for 1/60 of a second
-                    Task.Delay(1000 / 60);
+                    sprites[i].Update();
                 }
+
+                // Input handling
+                World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
+                World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
+                World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
+                World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
+                World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+
+                txtTest.Text = World.Instance.Player.Velocity.X.ToString();
             });
         }
 
@@ -97,7 +90,11 @@ namespace Zenith.Desktop
             World.Instance.AddObject(p);
             World.Instance.Player = p;
             p.Velocity.Cap(0);
-            GameLoop();
+
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+            timer.Tick += GameLoop;
+            timer.Start();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Zenith.Library
                 position.Y > World.Instance.Height) Destroy = true;
         }
 
-        public Laser(bool isFromPlayer, Vector position, Vector velocity, int damage)
+        public Laser(Vector position, Vector velocity, int damage, bool isFromPlayer)
             : base(position)
         {
             this.isFromPlayer = isFromPlayer;
