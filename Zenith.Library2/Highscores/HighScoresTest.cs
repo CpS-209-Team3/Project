@@ -44,6 +44,11 @@ namespace Zenith.Library.Highscores
 
             Assert.IsTrue(LeaderBoard.LeaderList[0].Name == "Zales");
             Assert.IsTrue(LeaderBoard.LeaderList[0].Score == 400000);
+
+            LeaderBoard.AddHighScore(new HiScore("Dave", 232));
+
+            Assert.IsTrue(LeaderBoard.LeaderList[9].Name == "Gon");
+            Assert.IsTrue(LeaderBoard.LeaderList[9].Score == 2);
         }
 
         [Test]
@@ -64,8 +69,8 @@ namespace Zenith.Library.Highscores
             LeaderBoard.Save("saveFile.txt");
             using (StreamReader reader = new StreamReader("saveFile.txt"))
             {
-                string log = reader.ReadToEnd();
-                Assert.IsTrue(log == "");
+                string log = reader.ReadLine();
+                Assert.IsTrue(log == "Zales,400000;Bao,22020;Cade,10000;Data,10000;Schaub,2000;James,100;Evans,50;Mon,30;Gon,2;Splatt,1");
             }
         }
 

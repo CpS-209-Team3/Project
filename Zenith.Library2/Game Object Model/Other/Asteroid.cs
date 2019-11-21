@@ -15,15 +15,5 @@ namespace Zenith.Library
             velocity.X = World.Instance.Random.NextDouble() * 2 - 1;
             velocity.Y = World.Instance.Random.NextDouble() * 2 - 1;
         }
-
-        public override string Serialize()
-        {
-            return base.Serialize();
-        }
-
-        public override void Deserialize(string saveInfo)
-        {
-            base.Deserialize(saveInfo);
-        }
     }
 }
