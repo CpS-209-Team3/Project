@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     class Boss4 : Enemy
     {
-        public override void Loop() { }
+        public override void ShipLoop() { }
 
         public Boss4(Vector position)
             : base(position) { }

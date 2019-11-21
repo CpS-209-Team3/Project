@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     public class Enemy1 : Enemy
     {
-        public override void Loop() {
+        public override void ShipLoop() {
             this.velocity.X = 0.01;
         }
 

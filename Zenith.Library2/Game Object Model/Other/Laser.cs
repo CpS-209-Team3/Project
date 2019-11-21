@@ -29,7 +29,13 @@ namespace Zenith.Library
             }
         }
 
-        public override void Loop() { }
+        public override void Loop()
+        {
+            if (position.X < 0 ||
+                position.Y < 0 ||
+                position.X > World.Instance.Width ||
+                position.Y > World.Instance.Height) Destroy = true;
+        }
 
         public Laser(bool isFromPlayer, Vector position, Vector velocity, int damage)
             : base(position)

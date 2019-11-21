@@ -32,6 +32,8 @@ namespace Zenith.Library
             objects = new List<GameObject>();
             collisionManager = new CollisionManager(objects);
             PlayerController = new GameController();
+            Width = 500;
+            Height = 500;
         }
 
         // End of Singleton Code
@@ -86,7 +88,6 @@ namespace Zenith.Library
                 if (objects[i].Destroy)
                 {
                     RemoveObject(objects[i]);
-                    objects.RemoveAt(i);
                     // fixe index after removal
                     --i;
                 }
@@ -105,7 +106,7 @@ namespace Zenith.Library
 
         public void RemoveObject(GameObject gameObject)
         {
-            objects.Add(gameObject);
+            objects.Remove(gameObject);
             ViewManager.RemoveSprite(gameObject);
         }
 

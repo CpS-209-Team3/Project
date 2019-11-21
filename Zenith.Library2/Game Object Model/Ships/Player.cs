@@ -8,7 +8,7 @@ namespace Zenith.Library
     {
         private double acceleration = 0.02;
 
-        public override void Loop()
+        public override void ShipLoop()
         {
             bool isAccerlating = false;
             if (World.Instance.PlayerController.Up)

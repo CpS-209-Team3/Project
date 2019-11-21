@@ -11,7 +11,8 @@ namespace Zenith.Library
         protected bool isPlayer = false;
 
         protected int health = 100;
-        protected int reloadTime = 100;
+        protected int reloadTime = 0;
+        protected int fireRate = 500;
         protected int bodyDamage = 100;
 
         protected int laserDamage = 100;
@@ -50,12 +51,21 @@ namespace Zenith.Library
 
         public void Shoot(double angle)
         {
-            var vel = new Vector(angle, laserSpeed, true);
-            var laser = new Laser(isPlayer, position, vel, laserDamage);
-            World.Instance.AddObject(laser);
+            if (reloadTime == 0)
+            {
+                var vel = new Vector(angle, laserSpeed, true);
+                var laser = new Laser(isPlayer, position, vel, laserDamage);
+                World.Instance.AddObject(laser);
+                reloadTime += fireRate;
+            }
         }
 
-        public override void Loop() { }
+        public override void Loop() {
+            if (reloadTime > 0) --reloadTime;
+            ShipLoop();
+        }
+
+        public abstract void ShipLoop();
 
         public Ship(Vector position)
             : base(position)

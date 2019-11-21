@@ -23,6 +23,7 @@ namespace Zenith.Library
 
         protected bool collidable;
         protected string imageSource;
+        protected bool destroy = false;
 
 
         // Properties
@@ -37,7 +38,7 @@ namespace Zenith.Library
 
         public bool Collidable { get { return collidable; } }
 
-        public bool Destroy { get; set; }
+        public bool Destroy { get { return destroy;} set { destroy = value; } }
 
         public string ImageSource { get { return imageSource; } }
 
