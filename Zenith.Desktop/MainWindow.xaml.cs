@@ -64,7 +64,14 @@ namespace Zenith.Desktop
                         {
                             sprites[i].Update();
                         }
+                        // Input handling
+                        World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
+                        World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
+                        World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
+                        World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                     });
+                    
+                    // Delay the loop for 1/60 of a second
                     Task.Delay(1000 / 60);
                 }
             });
