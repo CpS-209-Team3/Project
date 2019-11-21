@@ -6,19 +6,40 @@ namespace Zenith.Library
 {
     public class Player : Ship
     {
-        private double acceleration = 0.0001;
+        private double acceleration = 0.02;
 
         public override void Loop()
         {
-            if (World.Instance.PlayerController.Up) this.velocity += new Vector(0, -acceleration);
-            if (World.Instance.PlayerController.Down) this.velocity += new Vector(0, acceleration);
-            if (World.Instance.PlayerController.Left) this.velocity += new Vector(-acceleration, 0);
-            if (World.Instance.PlayerController.Right) this.velocity += new Vector(acceleration, 0);
+            bool isAccerlating = false;
+            if (World.Instance.PlayerController.Up)
+            {
+                AddForce(new Vector(0, -acceleration));
+                isAccerlating = true;
+            }
+            if (World.Instance.PlayerController.Down)
+            {
+                AddForce(new Vector(0, acceleration));
+                isAccerlating = true;
+            }
+            if (World.Instance.PlayerController.Left)
+            {
+                AddForce(new Vector(-acceleration, 0));
+                isAccerlating = true;
+            }
+            if (World.Instance.PlayerController.Right)
+            {
+                AddForce(new Vector(acceleration, 0));
+                isAccerlating = true;
+            }
+            if (!isAccerlating) velocity *= 0.9999;
+
+            if (World.Instance.PlayerController.Fire) Shoot(Math.PI / 2);
         }
 
         public Player(Vector position)
             : base(position)
         {
+            maxSpeed = 5;
             imageSource = Util.GetImagePath("blue_01.png");
         }
     }

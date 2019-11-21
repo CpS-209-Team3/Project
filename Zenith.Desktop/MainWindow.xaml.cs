@@ -32,28 +32,37 @@ namespace Zenith.Desktop
 
         public void AddSprite(GameObject obj)
         {
-            var s = new Sprite(obj);
-            sprites.Add(s);
-            canView.Children.Add(s);
+            Dispatcher.Invoke(() =>
+            {
+                //MessageBox.Show(obj.ImageSource);
+                //txtTest.Text = obj.ImageSource;
+                var s = new Sprite(obj);
+                sprites.Add(s);
+                canView.Children.Add(s);
+            });
         }
 
         public void RemoveSprite(GameObject obj)
         {
-            foreach (var s in sprites)
+            Dispatcher.Invoke(() =>
             {
-                if (s.GameObject == obj)
+                foreach (var s in sprites)
                 {
-                    sprites.Remove(s);
-                    canView.Children.Remove(s);
-                    break;
+                    if (s.GameObject == obj)
+                    {
+                        sprites.Remove(s);
+                        canView.Children.Remove(s);
+                        break;
+                    }
                 }
-            }
+            });
         }
 
         public void GameLoop()
         {
             Task.Run(() =>
             {
+                Task.Delay(500);
                 while (true)
                 {
                     World.Instance.Update();
@@ -64,13 +73,15 @@ namespace Zenith.Desktop
                         {
                             sprites[i].Update();
                         }
+
                         // Input handling
                         World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
                         World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
                         World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
                         World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
+                        World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
                     });
-                    
+
                     // Delay the loop for 1/60 of a second
                     Task.Delay(1000 / 60);
                 }
@@ -79,9 +90,13 @@ namespace Zenith.Desktop
 
         private void Window_Loaded(object sender, RoutedEventArgs ev)
         {
+            World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            World.Instance.AddObject(new Player(new Library.Vector(40, 40)));
+            var p = new Player(new Library.Vector(40, 40));
+            World.Instance.AddObject(p);
+            World.Instance.Player = p;
+            p.Velocity.Cap(0);
             GameLoop();
         }
     }

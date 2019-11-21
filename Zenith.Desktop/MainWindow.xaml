@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800"
         Loaded="Window_Loaded">
     <Canvas x:Name="canView">
-        
+        <TextBox x:Name="txtTest"></TextBox>
         <!--
         <Image Source="C:\Users\Caedmon\Desktop\Zenith\Zenith.Desktop\bin\Debug\Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4/blue_01.png"></Image>
         -->

@@ -45,6 +45,8 @@ namespace Zenith.Library
         private string playerName;
         private int level;
         private int score;
+        private double deltaTime = 1.0 / 60.0;
+        private string directory = null;
 
         // Properties
 
@@ -70,6 +72,10 @@ namespace Zenith.Library
 
         public List<GameObject> Objects { get { return objects; } set { objects = value; } }
 
+        public double DeltaTime { get { return deltaTime; } }
+
+        public string Directory { get { return directory; } set { directory = value; } }
+
         // Methods
 
         public void Update()
@@ -79,6 +85,7 @@ namespace Zenith.Library
                 objects[i].Update();
                 if (objects[i].Destroy)
                 {
+                    RemoveObject(objects[i]);
                     objects.RemoveAt(i);
                     // fixe index after removal
                     --i;

@@ -18,6 +18,8 @@ namespace Zenith.Library
     {
         protected Vector position, velocity, size;
         protected GameObjectType type;
+        protected double maxSpeed = 1;
+        protected double deacceleration = 1;
 
         protected bool collidable;
         protected string imageSource;
@@ -26,6 +28,8 @@ namespace Zenith.Library
         // Properties
 
         public Vector Position { get { return position; } }
+
+        public Vector Velocity { get { return velocity; } }
 
         public Vector Size { get { return size; } }
 
@@ -45,10 +49,18 @@ namespace Zenith.Library
 
         public void Update()
         {
-            position += velocity;
+            if (velocity.Magnitude > maxSpeed)
+            {
+                velocity.Magnitude = maxSpeed;
+            }
+            position += velocity * World.Instance.DeltaTime;
             Loop();
         }
 
+        public void AddForce(Vector f)
+        {
+            this.velocity += f * World.Instance.DeltaTime;
+        }
 
         public GameObject(Vector position)
         {

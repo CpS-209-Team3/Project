@@ -37,6 +37,7 @@ namespace Zenith.Library
             this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
+            imageSource = Util.GetImagePath("Projectiles\\projectile-blue.png");
         }
 
         public override string Serialize()

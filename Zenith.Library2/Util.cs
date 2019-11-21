@@ -9,7 +9,7 @@ namespace Zenith.Library
     {
         public static string GetImagePath(string path)
         {
-            var s = Directory.GetCurrentDirectory();
+            var s = World.Instance.Directory;
             return s + "\\Sprites\\Pixel_Spaceships_for_SHMUP_1.4\\Pixel_Spaceships_for_SHMUP_1.4\\" + path;
         }
     }

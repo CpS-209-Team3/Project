@@ -8,15 +8,15 @@ namespace Zenith.Library
     public abstract class Ship : GameObject
     {
         // instance variables
-        protected bool isPlayer;
+        protected bool isPlayer = false;
 
-        protected int health;
-        protected int reloadTime;
-        protected int bodyDamage;
+        protected int health = 100;
+        protected int reloadTime = 100;
+        protected int bodyDamage = 100;
 
-        protected int laserDamage;
-        protected double accuracy;
-        protected double laserSpeed;
+        protected int laserDamage = 100;
+        protected double accuracy = 100;
+        protected double laserSpeed = 100;
 
         // Properties
 
