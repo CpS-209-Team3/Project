@@ -32,6 +32,7 @@ namespace Zenith.Library
             objects = new List<GameObject>();
             collisionManager = new CollisionManager(objects);
             random = new Random();
+            PlayerController = new GameController();
         }
 
         // End of Singleton Code
@@ -55,6 +56,8 @@ namespace Zenith.Library
         public Random Random { get { return random; } }
 
         public Ship Player { get; set; }
+
+        public GameController PlayerController { get; set; }
 
         public ViewManager ViewManager { get; set; }
 

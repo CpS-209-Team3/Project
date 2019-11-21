@@ -55,7 +55,6 @@ namespace Zenith.Library
         public void Update()
         {
             position += velocity;
-            
             Loop();
         }
 
