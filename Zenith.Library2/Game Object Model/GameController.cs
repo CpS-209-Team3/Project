@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class GameController
+    public class GameController
     {
         bool up, down, left, right, a, b, c, d;
 

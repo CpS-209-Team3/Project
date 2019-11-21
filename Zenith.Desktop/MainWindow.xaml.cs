@@ -74,6 +74,7 @@ namespace Zenith.Desktop
         {
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
+            World.Instance.AddObject(new Player(new Library.Vector(40, 40)));
             GameLoop();
         }
     }
