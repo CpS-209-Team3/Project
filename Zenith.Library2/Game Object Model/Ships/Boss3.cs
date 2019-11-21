@@ -9,6 +9,9 @@ namespace Zenith.Library
         public override void Loop() { }
 
         public Boss3(Vector position)
-            : base(position) { }
+            : base(position) 
+        {
+            type = GameObjectType.Boss3;
+        }
     }
 }

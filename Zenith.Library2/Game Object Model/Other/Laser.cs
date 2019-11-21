@@ -37,6 +37,7 @@ namespace Zenith.Library
             this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
+            type = GameObjectType.Laser;
         }
 
         public override string Serialize()

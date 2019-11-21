@@ -19,6 +19,7 @@ namespace Zenith.Library
             : base(position)
         {
             this.isPlayer = false;
+            type = GameObjectType.Enemy;
         }
 
     }

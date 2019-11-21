@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Zenith.Library.Highscores
 {
-    class HighScores
+    public class HighScores
     {
         public List<HiScore> LeaderList { get; set; }
 

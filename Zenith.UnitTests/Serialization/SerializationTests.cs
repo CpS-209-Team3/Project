@@ -3,8 +3,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Zenith.Library;
 
-namespace Zenith.Library
+namespace Zenith.UnitTests
 {
     [TestFixture]
     public class SerializationTests
@@ -22,15 +23,15 @@ namespace Zenith.Library
 
             Vector v = new Vector(3, 3);
             Asteroid a = new Asteroid(v, 3);
-            w.AddObject(a);
+            w.Objects.Add(a);
 
             Vector v1 = new Vector(4, 4);
             Enemy e = new Enemy(v1);
-            w.AddObject(e);
+            w.Objects.Add(e);
 
             Vector v2 = new Vector(5, 5);
             Enemy1 e1 = new Enemy1(v2);
-            w.AddObject(e1);
+            w.Objects.Add(e1);
 
             // The world should now be populated with instance variables and game objects
             Assert.IsTrue(w.PlayerName == "Georgy");
@@ -44,7 +45,7 @@ namespace Zenith.Library
             // The world's instance variables should be reset to their default values and the game objects list should be empty
             Assert.IsTrue(w.PlayerName == "");
             Assert.IsTrue(w.GameTick == 0);
-            Assert.IsTrue(w.Objects == null);
+            Assert.IsTrue(!w.Objects.Any());
 
             w.Load("Georgy.txt");
 

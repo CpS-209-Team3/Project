@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zenith.Library.Highscores
 {
-    class HiScore
+    public class HiScore
     {
         string name;
         int score;

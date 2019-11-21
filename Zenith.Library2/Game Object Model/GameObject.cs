@@ -11,7 +11,16 @@ namespace Zenith.Library
         Item,
         Asteroid,
         Laser,
-        BackgroundElement
+        BackgroundElement,
+        Enemy,
+        Enemy1,
+        Enemy2,
+        Enemy3,
+        Boss1,
+        Boss2,
+        Boss3,
+        Boss4,
+        Boss5,
     }
 
     public abstract class GameObject : ISerialize
