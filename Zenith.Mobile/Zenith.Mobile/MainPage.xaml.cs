@@ -13,5 +13,30 @@ namespace Zenith.View
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnStart_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new GamePage();
+        }
+
+        private void BtnScores_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnHelp_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnCredits_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

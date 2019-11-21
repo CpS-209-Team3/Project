@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ViewManagement;
 
 namespace Zenith.View.UWP
 {
@@ -70,6 +71,10 @@ namespace Zenith.View.UWP
                 // parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+
+            ApplicationView.PreferredLaunchViewSize = new Size(1440, 900);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
             // Ensure the current window is active
             Window.Current.Activate();
         }
