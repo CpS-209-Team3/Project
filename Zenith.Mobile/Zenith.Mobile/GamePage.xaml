@@ -7,8 +7,8 @@
              x:Class="Zenith.View.GamePage"
              BackgroundImageSource="universe.jpg">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid x:Name="gameGrid">
             
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
