@@ -89,9 +89,6 @@ namespace Zenith.Library
                 i++;
             }
         }
-
-        // Got this method from here: https://stackoverflow.com/questions/186653/get-the-index-of-the-nth-occurrence-of-a-string
-        // Returns the index of the nth occurance of a match within a string.
         
     }
 }

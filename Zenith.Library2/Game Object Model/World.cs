@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Zenith.Library.Game_Object_Model;
 
 namespace Zenith.Library
 {
@@ -34,10 +35,15 @@ namespace Zenith.Library
 
         // End of Singleton Code
 
+        // Instance variables
+
         private List<GameObject> objects;
         public Random random;
         private int gameTick;
         private CollisionManager collisionManager;
+        private string playerName;
+        private int level;
+        private int score;
 
         // Properties
 
@@ -50,6 +56,16 @@ namespace Zenith.Library
         public Ship Player { get; set; }
 
         public ViewManager ViewManager { get; set; }
+
+        public string PlayerName { get { return playerName; } set { playerName = value; } }
+
+        public int Level { get { return level; } set { level = value; } }
+
+        public int Score { get { return score; } set { score = value; } }
+
+        public int GameTick { get { return gameTick; } set { gameTick = value; } }
+
+        public List<GameObject> Objects { get { return objects; } set { objects = value; } }
 
         // Methods
 
@@ -82,6 +98,7 @@ namespace Zenith.Library
             objects.Add(gameObject);
             ViewManager.RemoveSprite(gameObject);
         }
+
         // Reads a list of strings from the file specifed by filename and puts them into the list
         // of game object strings, then depending on the type of the string given by the first comma
         // seperated value, it will create a different object, deserialize the rest of the information
@@ -92,11 +109,19 @@ namespace Zenith.Library
             {
                 using (StreamReader reader = new StreamReader(filename, true))
                 {
-                    while (reader.Peek() != 0)
+                    playerName = reader.ReadLine();
+                    gameTick = Convert.ToInt32(reader.ReadLine());
+                    level = Convert.ToInt32(reader.ReadLine());
+                    score = Convert.ToInt32(reader.ReadLine());
+                    while (reader.Peek() != -1)
                     {
-
+                        string saveInfo = reader.ReadLine();
+                        string objectType = saveInfo.Substring(0, saveInfo.IndexOf(","));
+                        string objectInfo = saveInfo.Substring(saveInfo.IndexOf(","));
+                        GameObject obj = CreateInstanceOf(objectType);
+                        obj.Deserialize(objectInfo);
+                        AddObject(obj);
                     }
-
                 }
             }
 
@@ -113,44 +138,67 @@ namespace Zenith.Library
             {
                 File.Delete(filename);
             }
-
             using (StreamWriter writer = new StreamWriter(filename, true))
             {
-                foreach (object obj in this.objects)
+                writer.WriteLine(playerName);
+                writer.WriteLine(gameTick);
+                writer.WriteLine(level);
+                writer.WriteLine(score);
+                foreach (GameObject obj in this.objects)
                 {
-                    //writer.WriteLine(obj.Serialize());
+                    writer.WriteLine(obj.Serialize());
                 }
             }
         }
 
-        public object CreateInstanceOf(string objectType)
+        // This method resets the instance of world.
+        public void Reset()
+        {
+            playerName = "";
+            level = 1;
+            score = 0;
+            gameTick = 0;
+
+            foreach (GameObject obj in objects)
+            {
+                RemoveObject(obj);
+            }
+        }
+
+        public GameObject CreateInstanceOf(string objectType)
         {
             switch (objectType)
             {
-                case "Generic":
-                    break;
+                /*case "Generic":
+                    return;
                 case "Item":
-                    break;
-                case "Background":
-                    break;
+                    return;*/
+                case "BackgroundElement":
+                    return new BackgroundElement(null, 0);
                 case "Laser":
-                    break;
+                    return new Laser(false, null, null, 0);
                 case "Asteroid":
-                    break;
-                case "Ship":
-                    break;
+                    return new Asteroid(null, 0);
+                /*case "Player":
+                    return;*/
                 case "Enemy1":
-                    break;
+                    return new Enemy1(null);
                 case "Enemy2":
-                    break;
+                    return new Enemy2(null);
                 case "Enemy3":
-                    break;
+                    return new Enemy3(null);
                 case "Boss1":
-                    break;
-
+                    return new Boss1(null);
+                case "Boss2":
+                    return new Boss2(null);
+                case "Boss3":
+                    return new Boss3(null);
+                case "Boss4":
+                    return new Boss4(null);
+                case "Boss5":
+                    return new Boss5(null);
             }
-
-            return "f" as object;
+            return null;
         }
 
     }

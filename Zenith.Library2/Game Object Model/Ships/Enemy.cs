@@ -21,14 +21,5 @@ namespace Zenith.Library
             this.isPlayer = false;
         }
 
-        public override string Serialize()
-        {
-            return base.Serialize();
-        }
-
-        public override void Deserialize(string saveInfo)
-        {
-            base.Deserialize(saveInfo);
-        }
     }
 }

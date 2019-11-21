@@ -11,7 +11,7 @@ namespace Zenith.Library
         Item,
         Asteroid,
         Laser,
-        Background
+        BackgroundElement
     }
 
     public abstract class GameObject : ISerialize
@@ -78,6 +78,8 @@ namespace Zenith.Library
             Destroy = Convert.ToBoolean(savedValues[4]);
         }
 
+        // Got this method from here: https://stackoverflow.com/questions/186653/get-the-index-of-the-nth-occurrence-of-a-string
+        // Returns the index of the nth occurance of a match within a string.
         public int IndexOfNthOccurance(string s, string match, int n)
         {
             int i = 1;

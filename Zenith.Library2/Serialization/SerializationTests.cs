@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,28 +10,49 @@ namespace Zenith.Library
     public class SerializationTests
     {
         [Test]
-        public void Test_Save()
+        public void Test_Save_Load_Reset_Methods()
         {
-            GameModel g = new GameModel("Georgy");
-            Starship s = new Starship();
-            g.GameObjects.Add(s);
-            g.Save("Georgy");
-            g.Quit();
-            g.Load("Georgy");
-            Assert.IsTrue(g.GameObjects[0].Type() == "starship");
-       
+            // refer to the singleton world. Try saving its values into a file named Georgy.txt, and then load them back to see what they are.
+            World w = World.Instance;
+
+            w.PlayerName = "Georgy";
+            w.Level = 2;
+            w.Score = 3;
+            w.GameTick = 112;
+
+            Vector v = new Vector(3, 3);
+            Asteroid a = new Asteroid(v, 3);
+            w.AddObject(a);
+
+            Vector v1 = new Vector(4, 4);
+            Enemy e = new Enemy(v1);
+            w.AddObject(e);
+
+            Vector v2 = new Vector(5, 5);
+            Enemy1 e1 = new Enemy1(v2);
+            w.AddObject(e1);
+
+            // The world should now be populated with instance variables and game objects
+            Assert.IsTrue(w.PlayerName == "Georgy");
+            Assert.IsTrue(w.Objects.Contains(a));
+            Assert.IsTrue(w.Objects.Contains(e) && (e.Position == v1));
+            
+            w.Save("Georgy.txt");
+
+            w.Reset();
+
+            // The world's instance variables should be reset to their default values and the game objects list should be empty
+            Assert.IsTrue(w.PlayerName == "");
+            Assert.IsTrue(w.GameTick == 0);
+            Assert.IsTrue(w.Objects == null);
+
+            w.Load("Georgy.txt");
+
+            // All the information we added before should have repopulated the world
+            Assert.IsTrue(w.PlayerName == "Georgy");
+            Assert.IsTrue(w.Objects.Contains(a));
+            Assert.IsTrue(w.Objects.Contains(e) && (e.Position == v1));
         }
 
-        [Test]
-        public void Test_Load()
-        {
-            GameModel g = new GameModel("Georgy");
-            g.Load(testfile);
-            Assert.IsTrue(g.GameObjects[0].Serialize() == "testfile");
-            Assert.IsTrue(g.GameObjects[3].Serialize() == "3100");
-            Assert.IsTrue(g.GameObjects[1].Serialize() == "LVL2");
-            Assert.IsTrue(g.GameObjects[6].Type() == Laser);
-        }
     }
 }
-*/
