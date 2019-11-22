@@ -13,7 +13,8 @@ namespace Zenith.View
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-
+        int wid;
+        int hi;
         public MainPage()
         {
             InitializeComponent();
