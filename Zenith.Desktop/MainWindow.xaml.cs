@@ -92,7 +92,7 @@ namespace Zenith.Desktop
             p.Velocity.Cap(0);
 
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             timer.Tick += GameLoop;
             timer.Start();
         }

@@ -55,12 +55,12 @@ namespace Zenith.Library
             {
                 velocity.Magnitude = maxSpeed;
             }
-            position += velocity;
+            position += velocity * World.Instance.DeltaTime;
         }
 
         public void AddForce(Vector f)
         {
-            this.velocity += f;
+            this.velocity += f * World.Instance.DeltaTime;
         }
 
         public GameObject(Vector position)

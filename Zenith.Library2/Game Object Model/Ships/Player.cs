@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     public class Player : Ship
     {
-        private double acceleration = 0.2;
+        private double acceleration = 200;
 
         public override void ShipLoop()
         {
@@ -39,7 +39,6 @@ namespace Zenith.Library
         public Player(Vector position)
             : base(position)
         {
-            maxSpeed = 5;
             imageSource = Util.GetImagePath("blue_01.png");
         }
     }

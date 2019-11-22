@@ -12,7 +12,7 @@ namespace Zenith.Library
 
         protected int health = 100;
         protected int reloadTime = 0;
-        protected int fireRate = 5;
+        protected int fireRate = 30;
         protected int bodyDamage = 100;
 
         protected int laserDamage = 4000;
@@ -70,7 +70,7 @@ namespace Zenith.Library
         public Ship(Vector position)
             : base(position)
         {
-
+            maxSpeed = 200;
         }
 
         public override string Serialize()
