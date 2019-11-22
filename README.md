@@ -17,5 +17,5 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
 
 | Team Member | Total hours invested | Total hours Left | Team member's journal |
 | :------------- | :---------- | :----------- | :---------- |
-| James Gonzales | 16 | 44 | |
+| James Gonzales | 16 | 44 | https://github.com/CpS-209-Team3/Zenith/wiki/GonzalesJournal |
 
