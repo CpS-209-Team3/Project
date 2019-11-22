@@ -19,7 +19,8 @@ namespace Zenith.Desktop
 
         public void Update()
         {
-            Margin = new Thickness(gameObject.Position.X, gameObject.Position.Y, 0, 0);
+            var offset = gameObject.Position - gameObject.Size * 0.5;
+            Margin = new Thickness(offset.X, offset.Y, 0, 0);
         }
 
         public Sprite(GameObject gameObject)

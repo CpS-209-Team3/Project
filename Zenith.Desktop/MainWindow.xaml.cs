@@ -86,10 +86,13 @@ namespace Zenith.Desktop
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            var p = new Player(new Library.Vector(40, 40));
+            var p = new Player(new Library.Vector(0, 0));
             World.Instance.AddObject(p);
             World.Instance.Player = p;
             p.Velocity.Cap(0);
+
+            World.Instance.Width = Width;
+            World.Instance.Height = Height;
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);

@@ -33,13 +33,14 @@ namespace Zenith.Library
             }
             if (!isAccerlating) velocity *= 0.97;
 
-            if (World.Instance.PlayerController.Fire) Shoot(Math.PI / 2);
+            if (World.Instance.PlayerController.Fire) Shoot();
         }
 
         public Player(Vector position)
             : base(position)
         {
             imageSource = Util.GetImagePath("blue_01.png");
+            isPlayer = true;
         }
     }
 }

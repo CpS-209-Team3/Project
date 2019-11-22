@@ -12,11 +12,12 @@ namespace Zenith.Library
 
         protected int health = 100;
         protected int reloadTime = 0;
-        protected int fireRate = 30;
+        protected int fireRate = 3;
         protected int bodyDamage = 100;
 
+        protected double direction = 0;
+        protected double accuracy = 0.2;
         protected int laserDamage = 4000;
-        protected double accuracy = 4;
         protected double laserSpeed = 400;
 
         // Properties
@@ -49,11 +50,12 @@ namespace Zenith.Library
             }
         }
 
-        public void Shoot(double angle)
+        public void Shoot()
         {
             if (reloadTime <= 0)
             {
-                var vel = new Vector(angle, laserSpeed, true);
+                double aim = direction + World.Instance.Random.NextDouble() * (accuracy * 2) - accuracy;
+                var vel = new Vector(aim, laserSpeed, true);
                 var laser = new Laser(position, vel, laserDamage, isPlayer);
                 World.Instance.AddObject(laser);
                 reloadTime += fireRate;
@@ -71,6 +73,7 @@ namespace Zenith.Library
             : base(position)
         {
             type = GameObjectType.Ship;
+            size = new Vector(48, 48);
         }
 
         public override string Serialize()
