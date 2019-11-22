@@ -63,7 +63,6 @@ namespace Zenith.Desktop
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
-        public void GameLoop()
         public void GameLoop(object sender, EventArgs e)
         {
             World.Instance.Update();
@@ -135,6 +134,13 @@ namespace Zenith.Desktop
         private void btn_Play_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Credits Page ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Credits_Click(object sender, RoutedEventArgs e)
+        {
+            CreditsPage credits = new CreditsPage();
+            this.Content = credits;
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling ~~~~~~~~~~~~~~~~~~~~~~~~~
     }
