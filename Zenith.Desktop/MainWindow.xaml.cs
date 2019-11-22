@@ -24,6 +24,7 @@ namespace Zenith.Desktop
     public partial class MainWindow : Window, ViewManager
     {
         DispatcherTimer timer;
+        bool isCheating = false;
 
         public MainWindow()
         {
@@ -75,6 +76,8 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+
+                txtTest.Text = World.Instance.GameTick.ToString();
             });
         }
 
@@ -87,9 +90,13 @@ namespace Zenith.Desktop
             World.Instance.AddObject(p);
             World.Instance.Player = p;
             p.Velocity.Cap(0);
+            if (isCheating) p.Health = 0xfffffff;
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
+
+            var e = new Enemy1(new Library.Vector(0, 0));
+            World.Instance.AddObject(e);
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);

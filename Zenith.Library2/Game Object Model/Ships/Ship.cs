@@ -12,7 +12,7 @@ namespace Zenith.Library
 
         protected int health = 100;
         protected int reloadTime = 0;
-        protected int fireRate = 3;
+        protected int fireRate = 15;
         protected int bodyDamage = 100;
 
         protected double direction = 0;
@@ -23,11 +23,9 @@ namespace Zenith.Library
         // Properties
 
         public bool IsPlayer { get { return isPlayer; } set { isPlayer = value; } }
-
         public int Health { get { return health; } set { health = value; } }
         public int ReloadTime { get { return reloadTime; } set { reloadTime = value; } }
         public int BodyDamage { get { return bodyDamage; } set { bodyDamage = value; } }
-        
         public int LaserDamage { get { return laserDamage; } set { laserDamage = value; } }
         public double Accuracy { get { return accuracy; } set { accuracy = value; } }
         public double LaserSpeed { get { return laserSpeed; } set { laserSpeed = value; } }

@@ -7,10 +7,15 @@ namespace Zenith.Library
 {
     public class Util
     {
-        public static string GetImagePath(string path)
+        public static string GetShipSpriteFolderPath(string path)
         {
             var s = World.Instance.Directory;
             return s + "\\Sprites\\Pixel_Spaceships_for_SHMUP_1.4\\Pixel_Spaceships_for_SHMUP_1.4\\" + path;
+        }
+        public static string GetSpriteFolderPath(string path)
+        {
+            var s = World.Instance.Directory;
+            return s + "\\Sprites\\" + path;
         }
     }
 }

@@ -2,36 +2,52 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zenith.Library.Game_Object_Model
+namespace Zenith.Library
 {
-    class SpawnManager
+    public class SpawnManager
     {
         private int difficulty;
+        private int spawnRate;
+        private int timeUntilNextSpawn;
 
         public void Spawn()
         {
-            int r = World.Instance.Random.Next(0, 100);
-            double x = World.Instance.Random.NextDouble() * World.Instance.Width;
+            int r = World.Instance.Random.Next(0, 10);
+
+            double x = World.Instance.Width;
+            double y = World.Instance.Random.NextDouble() * (World.Instance.Height - 32);
+            var pos = new Vector(x, y);
 
             if (r < 9)
             {
-                r = World.Instance.Random.Next(0, 10);
-                if (r < 3) World.Instance.AddObject(new Enemy1(new Vector(0, 0)));
-                else if (r < 7) World.Instance.AddObject(new Enemy1(new Vector(0, 0)));
-                else World.Instance.AddObject(new Enemy1(new Vector(0, 0)));
+                if (r < 3) World.Instance.AddObject(new Enemy1(pos));
+                else if (r < 7) World.Instance.AddObject(new Enemy1(pos));
+                else World.Instance.AddObject(new Enemy1(pos));
             }
             else
             {
                 World.Instance.AddObject(new Asteroid(
-                    new Vector(0, 0),
-                    World.Instance.Random.Next(30, 300))
+                    pos,
+                    World.Instance.Random.Next(30, 50))
                     );
+            }
+        }
+
+        public void Update()
+        {
+            if (timeUntilNextSpawn > 0) --timeUntilNextSpawn;
+            else
+            {
+                Spawn();
+                timeUntilNextSpawn = spawnRate;
             }
         }
 
         public SpawnManager(int difficulty)
         {
             this.difficulty = difficulty;
+            spawnRate = 400 - 30 * difficulty;
+            timeUntilNextSpawn = spawnRate;
         }
     }
 }
