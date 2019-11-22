@@ -16,5 +16,6 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
 # Expenses
 
 | Team Member | Total hours invested | Total hours Left | Team member's journal |
+| :------------- | :---------- | :----------- |
 | James Gonzales | 16 | 44 | |
 
