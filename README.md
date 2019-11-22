@@ -16,9 +16,9 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
 
 # Known Issues
 * Serialization hasn't been updated for the most recent variables in ship.cs (like firerate, direction, and shaketime)
-* Game screen is also the only screen, the startup buttons don't work, you must begin moving your ship to play
+* Game screen is also the gmae screen, the startup buttons don't work, clicking about and back leads to an error, and you must begin       moving your ship to play 
 * High score has been implemented...but not in the view
-* Mobile version is not yet fully functioning
+* Mobile version is still a little bugged
 
 # Recording
 
