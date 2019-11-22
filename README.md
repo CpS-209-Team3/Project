@@ -4,16 +4,25 @@ Zenith is a top-down perspective space shooter set in the 31st century. The play
 This project is in development to fulfill project requirements for Cps 209.
 
 # Instructions
-Begin the game by starting a new game, and choosing a difficulty level (easy, medium, hard). Once the game is started you use the left, right, up, down arrows to move around, and space to shoot. Make it through waves of enemies to victory.
+Begin the game by starting a new game, and choosing a difficulty level (easy, medium, hard). Once the game is started you use the left, right, up, down arrows to move around, and space to shoot. Make it through waves of enemies to victory. (Right now you must begin the game by pressing one of the arrow keys)
 
 # Work Completed
 * Serialization
-* Game title Screen
-* High score implemnation
+* High score implemnation 
+* Title Screen
+* Sprites
+* Mobile Version
+* Game model object (lasers, asteroids, ships, enemies...)
 
 # Known Issues
-* Game screen is also the main screen
+* Serialization hasn't been updated for the most recent variables in ship.cs (like firerate, direction, and shaketime)
+* Game screen is also the only screen, the startup buttons don't work, you must begin moving your ship to play
+* High score has been implemented...but not in the view
+* Mobile version is not yet fully functioning
+
 # Recording
+
+https://bju-my.sharepoint.com/:v:/r/personal/jgonz812_students_bju_edu/Documents/2019-11-22%2012-54-53.mkv?csf=1&e=Up3EfT
 
 # Expenses
 
