@@ -45,6 +45,7 @@ namespace Zenith.Library
             this.damage = damage;
             imageSource = Util.GetImagePath("Projectiles\\projectile-blue.png");
             type = GameObjectType.Laser;
+            imageRotation = 270;
         }
 
         public override string Serialize()

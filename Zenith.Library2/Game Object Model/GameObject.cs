@@ -27,12 +27,14 @@ namespace Zenith.Library
     {
         protected Vector position, velocity, size;
         protected GameObjectType type;
-        protected double maxSpeed = 20;
+        protected double maxSpeed = 2000;
         protected double deacceleration = 1;
 
         protected bool collidable;
-        protected string imageSource;
         protected bool destroy = false;
+
+        protected string imageSource;
+        protected double imageRotation = 0;
 
 
         // Properties
@@ -50,6 +52,8 @@ namespace Zenith.Library
         public bool Destroy { get { return destroy;} set { destroy = value; } }
 
         public string ImageSource { get { return imageSource; } }
+
+        public double ImageRotation { get { return imageRotation; } }
 
         // Methods
 

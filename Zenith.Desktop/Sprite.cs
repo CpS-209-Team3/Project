@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Zenith.Library;
 
@@ -12,7 +13,7 @@ namespace Zenith.Desktop
 {
     class Sprite : Image
     {
-        GameObject gameObject;
+        private GameObject gameObject;
         
         public GameObject GameObject { get { return gameObject; } }
 
@@ -24,6 +25,9 @@ namespace Zenith.Desktop
         public Sprite(GameObject gameObject)
         {
             this.gameObject = gameObject;
+
+            RenderTransform = new RotateTransform(gameObject.ImageRotation);
+
             Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Absolute));
         }
     }
