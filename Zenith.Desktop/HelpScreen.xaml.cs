@@ -20,9 +20,11 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class HelpScreen : Page
     {
-        public HelpScreen()
+        ContentControl control;
+        public HelpScreen(ContentControl ctrl)
         {
             InitializeComponent();
+            control = ctrl;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~
@@ -30,7 +32,7 @@ namespace Zenith.Desktop
         {
             // trying to fix this......
             MainWindow main = new MainWindow();
-            this.Content = main;
+            control.Content = main;
         }
     }
 }

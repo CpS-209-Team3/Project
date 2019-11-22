@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -107,7 +107,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
         private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
-            HelpScreen help = new HelpScreen();
+            HelpScreen help = new HelpScreen(this);
             this.Content = help;
         }
 

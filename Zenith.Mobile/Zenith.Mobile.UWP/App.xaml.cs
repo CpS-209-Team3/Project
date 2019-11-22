@@ -72,10 +72,8 @@ namespace Zenith.View.UWP
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
 
-            ApplicationView.PreferredLaunchViewSize = new Size(1440, 900);
+            ApplicationView.PreferredLaunchViewSize = new Size(600, 400);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            View.App.ScreenWidth = (int)Window.Current.Bounds.Width;
-            View.App.ScreenHeight = (int)Window.Current.Bounds.Height;
 
             // Ensure the current window is active
             Window.Current.Activate();
