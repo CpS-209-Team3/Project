@@ -16,16 +16,16 @@ using System.Windows.Shapes;
 namespace Zenith.Desktop
 {
     /// <summary>
-    /// Interaction logic for HelpScreen.xaml
+    /// Interaction logic for AboutPage.xaml
     /// </summary>
-    public partial class HelpScreen : Page
+    public partial class AboutPage : Page
     {
-        public HelpScreen()
+        public AboutPage()
         {
             InitializeComponent();
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Back Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
             // trying to fix this......
