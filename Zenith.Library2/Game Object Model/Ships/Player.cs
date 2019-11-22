@@ -40,6 +40,7 @@ namespace Zenith.Library
             : base(position)
         {
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
+            imageRotation = 90;
             isPlayer = true;
         }
     }

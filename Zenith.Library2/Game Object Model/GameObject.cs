@@ -53,7 +53,7 @@ namespace Zenith.Library
 
         public string ImageSource { get { return imageSource; } }
 
-        public double ImageRotation { get { return imageRotation; } }
+        public double ImageRotation { get { return imageRotation; } set { imageRotation = value; } }
 
         // Methods
 
