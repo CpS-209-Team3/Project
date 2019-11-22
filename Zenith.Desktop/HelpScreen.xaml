@@ -1,0 +1,45 @@
+﻿<Page x:Class="Zenith.Desktop.HelpScreen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Zenith.Desktop"
+      mc:Ignorable="d" 
+      d:DesignHeight="630" d:DesignWidth="1120"
+      Title="HelpScreen">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="parallax-space-backgound.png"/>
+        </Grid.Background>
+        <StackPanel Margin="0,0,0,535.4">
+            <TextBlock Text="Instruction" Height="69" Width="210" FontSize="35" TextAlignment="Center" Foreground="Orange" Margin="460,10,450,10"/>
+        </StackPanel>
+        <Button x:Name="btn_Back" Height="57" Width="114" Content="Back" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="DemiBold" Foreground="Yellow" Background="Black" Margin="501,430,505,143.4" Click="btn_Back_Click"/>
+        <StackPanel Orientation="Vertical" Margin="0,95,676,225.4">
+            <StackPanel Orientation="Horizontal" Height="151" Margin="0,0,80,0">
+                <Image Source="arrowKeys.png" Height="102" Width="155" Margin="20,25,10,30"/>
+                <TextBlock Text="Move Ship" Height="30" Width="100" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="123" Margin="0,0,80,0">
+                <Image Source="asteroid.png" Margin="20,0,10,0" Height="104" Width="106" />
+                <TextBlock Text="Asteroid" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="678,95,0,225.4">
+            <StackPanel Orientation="Horizontal" Height="176" Margin="10,0,-0.4,0">
+                <Image Source="darkgrey_01.png" Margin="37,30,0,30" Height="60" />
+                <Image Source="purple_06.png" Margin="0,30,0,30" Height="60" />
+                <Image Source="tankbase_01.png" Margin="0,30,0,30" Height="60" />
+                <TextBlock Text="Enemy Ship" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20,30,0,30" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="124">
+                <Image Source="projectile-blue.png" Margin="37,10,0,0" Height="60" />
+                <Image Source="projectile-green.png" Margin="0,10,0,0" Height="60"/>
+                <Image Source="projectile-orange.png" Margin="0,10,0,0" Height="60"/>
+                <Image Source="projectile-red.png" Margin="0,10,0,0" Height="60"/>
+                <TextBlock Text="Lasers" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20,10,0,0" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

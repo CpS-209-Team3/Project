@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,6 +33,8 @@ namespace Zenith.Desktop
 
         List<Sprite> sprites;
 
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Add Sprite ~~~~~~~~~~~~~~~~~~~~
         public void AddSprite(GameObject obj)
         {
             Dispatcher.Invoke(() =>
@@ -43,6 +45,7 @@ namespace Zenith.Desktop
             });
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Remove Sprite ~~~~~~~~~~~~~~~~~~~~
         public void RemoveSprite(GameObject obj)
         {
             Dispatcher.Invoke(() =>
@@ -59,6 +62,7 @@ namespace Zenith.Desktop
             });
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
         public void GameLoop(object sender, EventArgs e)
         {
             World.Instance.Update();
@@ -81,7 +85,10 @@ namespace Zenith.Desktop
                 txtTest.Text = World.Instance.Collisions.ToString();
             });
         }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Window_Loaded(object sender, RoutedEventArgs ev)
         {
             World.Instance.Directory = Directory.GetCurrentDirectory();
@@ -104,5 +111,45 @@ namespace Zenith.Desktop
             timer.Tick += GameLoop;
             timer.Start();
         }
+
+        //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpScreen help = new HelpScreen(this);
+            this.Content = help;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ About Page ~~~~~~~~~~~~~~~~~~~~
+        private void btn_About_Click(object sender, RoutedEventArgs e)
+        {
+            AboutPage about = new AboutPage();
+            this.Content = about;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Setting Page ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Setting_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Load_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Play_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Credits Page ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Credits_Click(object sender, RoutedEventArgs e)
+        {
+            CreditsPage credits = new CreditsPage();
+            this.Content = credits;
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling ~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }
