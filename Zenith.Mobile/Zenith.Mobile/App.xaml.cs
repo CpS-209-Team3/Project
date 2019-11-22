@@ -13,6 +13,9 @@ namespace Zenith.View
             MainPage = new MainPage();
         }
 
+        public static int ScreenHeight { get; set; }
+        public static int ScreenWidth { get; set; }
+
         protected override void OnStart()
         {
             // Handle when your app starts

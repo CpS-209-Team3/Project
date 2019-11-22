@@ -46,7 +46,7 @@ namespace Zenith.View
                 while (true)
                 {
                     World.Instance.Update();
-                    ///////////////////////////////////////////////////////////////////////////e.Update();
+                    //e.Update();
 
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -60,25 +60,24 @@ namespace Zenith.View
             });
         }
 
-        //private void Window_Loaded(object sender, RoutedEventArgs ev)
-        //{
-        //    sprites = new List<Sprite>();
-        //    World.Instance.ViewManager = this;
+        private void Window_Loaded(object sender, EventArgs ev)
+        {
+            sprites = new List<Sprite>();
+            World.Instance.ViewManager = (ViewManager)this;
 
-        //    /*var i = new BitmapImage(new Uri(Util.GetImagePath("blue_01.png"), UriKind.Absolute));
-            
-        //    var img = new Image();
-        //    img.Source = i;
-        //    canView.Children.Add(img);
-        //    */
-        //    var txt = new Entry();
-        //    txt.Text = Util.GetImagePath("blue_01.png");
-        //    gameGrid.Children.Add(txt);
 
-        //    e = new Enemy1(new Library.Vector(70, 70));
-        //    AddSprite(e);
-        //    e.Update();
-        //    GameLoop();
-        //}
+            var img = new Image();
+            img.Source = "blue_01.png";
+            gameGrid.Children.Add(img);
+
+            var txt = new Entry();
+            txt.Text = Util.GetImagePath("blue_01.png");
+            gameGrid.Children.Add(txt);
+
+            var e = new Enemy1(new Library.Vector(70, 70));
+            AddSprite(e);
+            e.Update();
+            GameLoop();
+        }
     }
 }

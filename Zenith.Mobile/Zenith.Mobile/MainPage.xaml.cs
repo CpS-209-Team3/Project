@@ -17,11 +17,14 @@ namespace Zenith.View
         public MainPage()
         {
             InitializeComponent();
+            Application.Current.MainPage = new GamePage();
+            StkBuffer.WidthRequest = App.ScreenWidth / 2;
+            ImgLogo.HeightRequest = App.ScreenHeight * 7 / 36;
         }
 
         private void BtnStart_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new GamePage();
+            App.Current.MainPage = new GamePage();
         }
 
         private void BtnScores_Clicked(object sender, EventArgs e)
@@ -38,5 +41,6 @@ namespace Zenith.View
         {
 
         }
+
     }
 }
