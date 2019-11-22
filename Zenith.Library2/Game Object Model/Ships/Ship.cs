@@ -20,6 +20,10 @@ namespace Zenith.Library
         protected int laserDamage = 4000;
         protected double laserSpeed = 400;
 
+        private Vector shakeOffset;
+        private int shakeTime = 0;
+        private int shakeDuration = 60;
+
         // Properties
 
         public bool IsPlayer { get { return isPlayer; } set { isPlayer = value; } }
@@ -29,7 +33,8 @@ namespace Zenith.Library
         public int LaserDamage { get { return laserDamage; } set { laserDamage = value; } }
         public double Accuracy { get { return accuracy; } set { accuracy = value; } }
         public double LaserSpeed { get { return laserSpeed; } set { laserSpeed = value; } }
-        
+        public Vector ShakeOffSet { get { return shakeOffset; } }
+
         // Methods
 
         public override void OnCollision(GameObject gameObject)
@@ -46,6 +51,10 @@ namespace Zenith.Library
                     this.health -= ship.BodyDamage;
                     break;
             }
+            if (health <= 0)
+            {
+                Destroy = true;
+            }
         }
 
         public void Shoot()
@@ -60,9 +69,16 @@ namespace Zenith.Library
             }
         }
 
-        public override void Loop() {
-            if (reloadTime > 0) reloadTime -= 1;
+        private void Shake()
+        {
+            shakeTime += shakeDuration;
+        }
+
+        public override void Loop()
+        {
             ShipLoop();
+            if (reloadTime > 0) reloadTime -= 1;
+            if (position.X < 0) Destroy = true;
         }
 
         public abstract void ShipLoop();
@@ -72,6 +88,18 @@ namespace Zenith.Library
         {
             type = GameObjectType.Ship;
             size = new Vector(48, 48);
+            shakeOffset = new Vector(0, 0);
+            if (shakeTime > 0)
+            {
+                double x = (World.Instance.Random.NextDouble() * 2 - 1) * 4;
+                double y = (World.Instance.Random.NextDouble() * 2 - 1) * 4;
+                shakeOffset = new Vector(x, y);
+                --shakeTime;
+            }
+            else
+            {
+                shakeOffset.Cap(0);
+            }
         }
 
         public override string Serialize()
@@ -96,6 +124,6 @@ namespace Zenith.Library
             accuracy = Convert.ToDouble(shipSaveInfo[5]);
             laserSpeed = Convert.ToDouble(shipSaveInfo[6]);
         }
-        
+
     }
 }

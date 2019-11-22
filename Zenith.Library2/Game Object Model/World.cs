@@ -62,6 +62,7 @@ namespace Zenith.Library
         private int score;
         private double deltaTime = 1.0 / 60.0;
         private string directory = null;
+        private int collisions = 0;
 
         private int difficulty = 1;
         private SpawnManager spawnManager;
@@ -96,6 +97,8 @@ namespace Zenith.Library
 
         public int Difficulty { get { return difficulty; } set { difficulty = value; } }
 
+        public int Collisions { get { return collisions; } set { collisions = value; } }
+
         // Methods
 
         public void Update()
@@ -112,6 +115,7 @@ namespace Zenith.Library
                 }
             }
 
+            collisions = 0;
             collisionManager.CheckForCollisions();
 
             spawnManager.Update();

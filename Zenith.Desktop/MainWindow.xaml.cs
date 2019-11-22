@@ -77,7 +77,8 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
 
-                txtTest.Text = World.Instance.Player.Position.X.ToString();
+                //txtTest.Text = World.Instance.Player.Position.X.ToString();
+                txtTest.Text = World.Instance.Collisions.ToString();
             });
         }
 

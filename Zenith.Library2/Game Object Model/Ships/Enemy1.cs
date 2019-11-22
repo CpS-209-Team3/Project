@@ -20,7 +20,7 @@ namespace Zenith.Library
         {
             type = GameObjectType.Enemy1;
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
-            imageRotation = 90;
+            imageRotation = 270;
             this.velocity.X = -50;
         }
     }

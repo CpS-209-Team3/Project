@@ -27,6 +27,13 @@ namespace Zenith.Desktop
             }
 
             var offset = gameObject.Position - gameObject.Size * 0.5;
+
+            if (gameObject is Ship)
+            {
+                offset += ((Ship)gameObject).ShakeOffSet;
+            }
+
+            
             //var offset = gameObject.Position;
             Margin = new Thickness(offset.X, offset.Y, 0, 0);
         }
