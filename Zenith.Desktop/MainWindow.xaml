@@ -9,10 +9,10 @@
         Loaded="Window_Loaded">
     <Canvas x:Name="canView">
         <Canvas.Background>
-            <ImageBrush ImageSource="universe.jpg" />
+            <ImageBrush ImageSource="universe.jpg"/>
         </Canvas.Background>
         <StackPanel Orientation="Vertical" Height="476" Canvas.Left="194" Width="720" Canvas.Top="57">
-            <Image Source="zenithLogo.png" Height="151" Width="574" Margin="30,30,0,0"/>
+            <Image Source="zenithLogo.png" Height="151" Width="574" Margin="30,30,0,20"/>
             <Button x:Name="btn_Play" Content="Play Game" FontSize="30" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Play_Click"/>
             <Button x:Name="btn_Load" Content="Load Game" FontSize="30" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Load_Click"/>
             <Button x:Name="btn_Setting" Content="Setting" FontSize="30" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Setting_Click"/>
