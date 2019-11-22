@@ -4,13 +4,15 @@ Zenith is a top-down perspective space shooter set in the 31st century. The play
 This project is in development to fulfill project requirements for Cps 209.
 
 # Instructions
-Begin the game by starting a new game, and choosing a difficulty level (easy, medium, hard). Once the game is started begin 
+Begin the game by starting a new game, and choosing a difficulty level (easy, medium, hard). Once the game is started you use the left, right, up, down arrows to move around, and space to shoot. Make it through waves of enemies to victory.
 
 # Work Completed
-
+* Serialization
+* Game title Screen
+* High score implemnation
 
 # Known Issues
-
+* Game screen is also the main screen
 # Recording
 
 # Expenses
