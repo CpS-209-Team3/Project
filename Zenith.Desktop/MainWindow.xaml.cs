@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Zenith.Library;
 
 namespace Zenith.Desktop
@@ -22,8 +23,8 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
-
-        Enemy1 e;
+        private bool isRunning = false;
+        DispatcherTimer timer;
 
         public MainWindow()
         {
@@ -36,44 +37,52 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Add Sprite ~~~~~~~~~~~~~~~~~~~~
         public void AddSprite(GameObject obj)
         {
-            var s = new Sprite(obj);
-            sprites.Add(s);
-            canView.Children.Add(s);
+            Dispatcher.Invoke(() =>
+            {
+                var s = new Sprite(obj);
+                sprites.Add(s);
+                canView.Children.Add(s);
+            });
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Remove Sprite ~~~~~~~~~~~~~~~~~~~~
         public void RemoveSprite(GameObject obj)
         {
-            foreach (var s in sprites)
+            Dispatcher.Invoke(() =>
             {
-                if (s.GameObject == obj)
+                foreach (var s in sprites)
                 {
-                    sprites.Remove(s);
-                    canView.Children.Remove(s);
-                    break;
+                    if (s.GameObject == obj)
+                    {
+                        sprites.Remove(s);
+                        canView.Children.Remove(s);
+                        break;
+                    }
                 }
-            }
+            });
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
         public void GameLoop()
+        public void GameLoop(object sender, EventArgs e)
         {
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    World.Instance.Update();
-                    e.Update();
+            World.Instance.Update();
 
-                    Dispatcher.Invoke(() =>
-                    {
-                        for (int i = 0; i < sprites.Count; ++i)
-                        {
-                            sprites[i].Update();
-                        }
-                    });
-                    Task.Delay(1000 / 60);
+            Dispatcher.Invoke(() =>
+            {
+                for (int i = 0; i < sprites.Count; ++i)
+                {
+                    sprites[i].Update();
                 }
+
+                // Input handling
+                World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
+                World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
+                World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
+                World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
+                World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+
+                txtTest.Text = World.Instance.Player.Velocity.X.ToString();
             });
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,23 +91,18 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Window_Loaded(object sender, RoutedEventArgs ev)
         {
+            World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
+            var p = new Player(new Library.Vector(40, 40));
+            World.Instance.AddObject(p);
+            World.Instance.Player = p;
+            p.Velocity.Cap(0);
 
-            /*var i = new BitmapImage(new Uri(Util.GetImagePath("blue_01.png"), UriKind.Absolute));
-            
-            var img = new Image();
-            img.Source = i;
-            canView.Children.Add(img);
-            */
-            var txt = new TextBox();
-            txt.Text = Util.GetImagePath("blue_01.png");
-            canView.Children.Add(txt);
-
-            e = new Enemy1(new Library.Vector(70, 70));
-            AddSprite(e);
-            e.Update();
-            GameLoop();
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
+            timer.Tick += GameLoop;
+            timer.Start();
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~

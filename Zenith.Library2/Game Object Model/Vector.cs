@@ -12,12 +12,47 @@ namespace Zenith.Library
         public double X
         {
             get { return x; }
-            set { x = value; }
+            set { x = value; RecalculateAngleAndMagnitude(); }
         }
         public double Y
         {
             get { return y; }
-            set { y = value; }
+            set { y = value; RecalculateAngleAndMagnitude(); }
+        }
+
+        public double Angle
+        {
+            get { return angle; }
+            set { angle = value; RecalculateXAndY(); }
+        }
+        public double Magnitude
+        {
+            get { return magnitude; }
+            set { magnitude = value; RecalculateXAndY(); }
+        }
+
+        // Methods
+
+        private void RecalculateAngleAndMagnitude() {
+            angle = Math.Atan2(y, x);
+            magnitude = Math.Sqrt(x * x + y * y);
+        }
+
+        private void RecalculateXAndY()
+        {
+            x = Math.Cos(angle) * magnitude;
+            y = Math.Sin(angle) * magnitude;
+        }
+
+        public void Cap(double newMagnitude)
+        {
+            if (magnitude > newMagnitude)
+            {
+                //double temp = newMagnitude / magnitude;
+                x *= Math.Cos(angle) * newMagnitude;
+                y *= Math.Sin(angle) * newMagnitude;
+                magnitude = newMagnitude;
+            }
         }
 
         // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading
@@ -31,7 +66,7 @@ namespace Zenith.Library
         }
         public static Vector operator *(Vector v1, double x)
         {
-            return new Vector(v1.x - x, v1.y * x);
+            return new Vector(v1.x * x, v1.y * x);
         }
 
         public Vector(double x, double y, bool isPolar = false)

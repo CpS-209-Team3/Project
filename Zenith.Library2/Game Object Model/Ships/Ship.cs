@@ -8,15 +8,16 @@ namespace Zenith.Library
     public abstract class Ship : GameObject
     {
         // instance variables
-        protected bool isPlayer;
+        protected bool isPlayer = false;
 
-        protected int health;
-        protected int reloadTime;
-        protected int bodyDamage;
+        protected int health = 100;
+        protected int reloadTime = 0;
+        protected int fireRate = 30;
+        protected int bodyDamage = 100;
 
-        protected int laserDamage;
-        protected double accuracy;
-        protected double laserSpeed;
+        protected int laserDamage = 4000;
+        protected double accuracy = 4;
+        protected double laserSpeed = 400;
 
         // Properties
 
@@ -50,27 +51,31 @@ namespace Zenith.Library
 
         public void Shoot(double angle)
         {
-            var vel = new Vector(angle, laserSpeed, true);
-            var laser = new Laser(isPlayer, position, vel, laserDamage);
-            World.Instance.AddObject(laser);
+            if (reloadTime <= 0)
+            {
+                var vel = new Vector(angle, laserSpeed, true);
+                var laser = new Laser(position, vel, laserDamage, isPlayer);
+                World.Instance.AddObject(laser);
+                reloadTime += fireRate;
+            }
         }
 
-        public override void Loop() { }
+        public override void Loop() {
+            if (reloadTime > 0) reloadTime -= 1;
+            ShipLoop();
+        }
+
+        public abstract void ShipLoop();
 
         public Ship(Vector position)
             : base(position)
         {
-
+            type = GameObjectType.Ship;
         }
 
         public override string Serialize()
         {
-            string info = "";
-            foreach (PropertyInfo property in typeof(Ship).GetProperties())
-            {
-                info += ',' + property.ToString();
-            }
-            return base.Serialize() + info;
+            return base.Serialize() + ',' + isPlayer.ToString() + ',' + health.ToString() + ',' + reloadTime.ToString() + ',' + bodyDamage.ToString() + ',' + laserDamage.ToString() + ',' + accuracy.ToString() + ',' + laserSpeed.ToString();
         }
 
         public override void Deserialize(string saveInfo)
@@ -79,19 +84,17 @@ namespace Zenith.Library
             int index = IndexOfNthOccurance(saveInfo, ",", 5);
 
             string gameObjectSaveInfo = saveInfo.Substring(0, index);
-            string[] shipSaveInfo = saveInfo.Substring(index, saveInfo.Length - index).Split(',');
-
+            string[] shipSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
             base.Deserialize(gameObjectSaveInfo);
 
-            foreach (PropertyInfo property in typeof(Ship).GetProperties())
-            {
-                property.SetValue(this, shipSaveInfo[i]);
-                i++;
-            }
+            isPlayer = Convert.ToBoolean(shipSaveInfo[0]);
+            health = Convert.ToInt32(shipSaveInfo[1]);
+            reloadTime = Convert.ToInt32(shipSaveInfo[2]);
+            bodyDamage = Convert.ToInt32(shipSaveInfo[3]);
+            laserDamage = Convert.ToInt32(shipSaveInfo[4]);
+            accuracy = Convert.ToDouble(shipSaveInfo[5]);
+            laserSpeed = Convert.ToDouble(shipSaveInfo[6]);
         }
-
-        // Got this method from here: https://stackoverflow.com/questions/186653/get-the-index-of-the-nth-occurrence-of-a-string
-        // Returns the index of the nth occurance of a match within a string.
         
     }
 }

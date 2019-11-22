@@ -6,9 +6,12 @@ namespace Zenith.Library
 {
     class Boss5 : Enemy
     {
-        public override void Loop() { }
+        public override void ShipLoop() { }
 
         public Boss5(Vector position)
-            : base(position) { }
+            : base(position) 
+        {
+            type = GameObjectType.Boss5;
+        }
     }
 }

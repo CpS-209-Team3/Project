@@ -7,16 +7,20 @@
              x:Class="Zenith.View.MainPage"
              BackgroundImageSource="universe.jpg">
     <StackLayout Orientation="Horizontal">
-        <StackLayout WidthRequest="770">
-        </StackLayout>
+        
         <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-            <Image Source="lightLogo.png" HeightRequest="175" Margin="50"/>
-            <StackLayout WidthRequest="250">
-                <Button x:Name="BtnStart" Text="Start" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnStart_Clicked"/>
-                <Button x:Name="BtnScores" Text="High Scores" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnScores_Clicked"/>
-                <Button x:Name="BtnHelp" Text="Help" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnHelp_Clicked"/>
-                <Button x:Name="BtnCredits" Text="Credits" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnCredits_Clicked"/>
+            <StackLayout x:Name="StkBuffer">
             </StackLayout>
+            <Image x:Name="ImgLogo" Source="lightLogo.png" HeightRequest="175" Margin="50"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <StackLayout HorizontalOptions="Center">
+                    <Button x:Name="BtnStart" Text="Start" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnStart_Clicked"/>
+                    <Button x:Name="BtnScores" Text="High Scores" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnScores_Clicked"/>
+                    <Button x:Name="BtnHelp" Text="Help" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnHelp_Clicked"/>
+                    <Button x:Name="BtnCredits" Text="Credits" FontFamily="Impact" FontSize="40" TextColor="White" Margin="30,0,30,30" Clicked="BtnCredits_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+            
         </StackLayout>
     </StackLayout>
     

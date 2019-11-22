@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Zenith.Library.Game_Object_Model;
 
 namespace Zenith.Library
 {
@@ -30,14 +31,25 @@ namespace Zenith.Library
             gameTick = 0;
             objects = new List<GameObject>();
             collisionManager = new CollisionManager(objects);
+            random = new Random();
+            PlayerController = new GameController();
+            Width = 500;
+            Height = 500;
         }
 
         // End of Singleton Code
+
+        // Instance variables
 
         private List<GameObject> objects;
         public Random random;
         private int gameTick;
         private CollisionManager collisionManager;
+        private string playerName;
+        private int level;
+        private int score;
+        private double deltaTime = 1.0 / 60.0;
+        private string directory = null;
 
         // Properties
 
@@ -49,7 +61,23 @@ namespace Zenith.Library
 
         public Ship Player { get; set; }
 
+        public GameController PlayerController { get; set; }
+
         public ViewManager ViewManager { get; set; }
+
+        public string PlayerName { get { return playerName; } set { playerName = value; } }
+
+        public int Level { get { return level; } set { level = value; } }
+
+        public int Score { get { return score; } set { score = value; } }
+
+        public int GameTick { get { return gameTick; } set { gameTick = value; } }
+
+        public List<GameObject> Objects { get { return objects; } set { objects = value; } }
+
+        public double DeltaTime { get { return deltaTime; } }
+
+        public string Directory { get { return directory; } set { directory = value; } }
 
         // Methods
 
@@ -58,17 +86,18 @@ namespace Zenith.Library
             for (int i = 0; i < objects.Count; ++i)
             {
                 objects[i].Update();
+
                 if (objects[i].Destroy)
                 {
-                    objects.RemoveAt(i);
-                    // fixe index after removal
+                    RemoveObject(objects[i]);
+                    // fix index after removal
                     --i;
                 }
             }
 
             collisionManager.CheckForCollisions();
 
-            ++gameTick;
+            gameTick += 1;
         }
 
         public void AddObject(GameObject gameObject)
@@ -79,9 +108,10 @@ namespace Zenith.Library
 
         public void RemoveObject(GameObject gameObject)
         {
-            objects.Add(gameObject);
+            objects.Remove(gameObject);
             ViewManager.RemoveSprite(gameObject);
         }
+
         // Reads a list of strings from the file specifed by filename and puts them into the list
         // of game object strings, then depending on the type of the string given by the first comma
         // seperated value, it will create a different object, deserialize the rest of the information
@@ -92,11 +122,20 @@ namespace Zenith.Library
             {
                 using (StreamReader reader = new StreamReader(filename, true))
                 {
-                    while (reader.Peek() != 0)
+                    playerName = reader.ReadLine();
+                    gameTick = Convert.ToInt32(reader.ReadLine());
+                    level = Convert.ToInt32(reader.ReadLine());
+                    score = Convert.ToInt32(reader.ReadLine());
+                    while (reader.Peek() != -1)
                     {
-
+                        string saveInfo = reader.ReadLine();
+                        string objectType = saveInfo.Substring(0, saveInfo.IndexOf(","));
+                        string objectInfo = saveInfo.Substring(saveInfo.IndexOf(",") + 1);
+                        GameObject obj = CreateInstanceOf(objectType);
+                        obj.Deserialize(objectInfo);
+                        //AddObject(obj);
+                        objects.Add(obj);
                     }
-
                 }
             }
 
@@ -113,44 +152,71 @@ namespace Zenith.Library
             {
                 File.Delete(filename);
             }
-
             using (StreamWriter writer = new StreamWriter(filename, true))
             {
-                foreach (object obj in this.objects)
+                writer.WriteLine(playerName);
+                writer.WriteLine(gameTick);
+                writer.WriteLine(level);
+                writer.WriteLine(score);
+                foreach (GameObject obj in this.objects)
                 {
-                    //writer.WriteLine(obj.Serialize());
+                    writer.WriteLine(obj.Serialize());
                 }
             }
         }
 
-        public object CreateInstanceOf(string objectType)
+        // This method resets the instance of world.
+        public void Reset()
+        {
+            playerName = "";
+            level = 1;
+            score = 0;
+            gameTick = 0;
+
+            objects.RemoveAll(obj => true);
+
+            /*foreach (GameObject obj in objects)
+            {
+                RemoveObject(obj);
+            }*/
+        }
+
+        public GameObject CreateInstanceOf(string objectType)
         {
             switch (objectType)
             {
-                case "Generic":
-                    break;
+                /*case "Generic":
+                    return;
                 case "Item":
-                    break;
-                case "Background":
-                    break;
+                    return;*/
+                case "BackgroundElement":
+                    return new BackgroundElement(null, 0);
                 case "Laser":
-                    break;
+                    return new Laser(null, null, 0, false);
                 case "Asteroid":
-                    break;
-                case "Ship":
-                    break;
+                    return new Asteroid(null, 0);
+                case "Player":
+                    return new Player(null);
+                case "Enemy":
+                    return new Enemy1(null);
                 case "Enemy1":
-                    break;
+                    return new Enemy1(null);
                 case "Enemy2":
-                    break;
+                    return new Enemy2(null);
                 case "Enemy3":
-                    break;
+                    return new Enemy3(null);
                 case "Boss1":
-                    break;
-
+                    return new Boss1(null);
+                case "Boss2":
+                    return new Boss2(null);
+                case "Boss3":
+                    return new Boss3(null);
+                case "Boss4":
+                    return new Boss4(null);
+                case "Boss5":
+                    return new Boss5(null);
             }
-
-            return "f" as object;
+            return null;
         }
 
     }

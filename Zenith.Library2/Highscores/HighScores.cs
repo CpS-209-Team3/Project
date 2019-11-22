@@ -5,14 +5,13 @@ using System.IO;
 
 namespace Zenith.Library.Highscores
 {
-    class HighScores
+    public class HighScores
     {
         public List<HiScore> LeaderList { get; set; }
 
-
         public HighScores()
         {
-
+            LeaderList = new List<HiScore>();
         }
 
         //Given a HiScore object, check if it is high enough to place in the total high scores.
@@ -40,7 +39,7 @@ namespace Zenith.Library.Highscores
                     LeaderList.RemoveAt(9);
                 }
                 LeaderList.Add(hiScore);
-                LeaderList.Sort((x,y) => Compare(x, y));
+                LeaderList.Sort((x,y) => Compare(y,x));
             }
         }
 
@@ -85,6 +84,7 @@ namespace Zenith.Library.Highscores
             {
                 data += LeaderList[i].Name + "," + LeaderList[i].Score + ";";
             }
+            data = data.Remove(data.Length - 1);
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 writer.WriteLine(data);
