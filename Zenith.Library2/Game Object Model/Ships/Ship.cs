@@ -70,17 +70,12 @@ namespace Zenith.Library
         public Ship(Vector position)
             : base(position)
         {
-            maxSpeed = 200;
+            type = GameObjectType.Ship;
         }
 
         public override string Serialize()
         {
-            string info = "";
-            foreach (PropertyInfo property in typeof(Ship).GetProperties())
-            {
-                info += ',' + property.ToString();
-            }
-            return base.Serialize() + info;
+            return base.Serialize() + ',' + isPlayer.ToString() + ',' + health.ToString() + ',' + reloadTime.ToString() + ',' + bodyDamage.ToString() + ',' + laserDamage.ToString() + ',' + accuracy.ToString() + ',' + laserSpeed.ToString();
         }
 
         public override void Deserialize(string saveInfo)
@@ -89,15 +84,16 @@ namespace Zenith.Library
             int index = IndexOfNthOccurance(saveInfo, ",", 5);
 
             string gameObjectSaveInfo = saveInfo.Substring(0, index);
-            string[] shipSaveInfo = saveInfo.Substring(index, saveInfo.Length - index).Split(',');
-
+            string[] shipSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
             base.Deserialize(gameObjectSaveInfo);
 
-            foreach (PropertyInfo property in typeof(Ship).GetProperties())
-            {
-                property.SetValue(this, shipSaveInfo[i]);
-                i++;
-            }
+            isPlayer = Convert.ToBoolean(shipSaveInfo[0]);
+            health = Convert.ToInt32(shipSaveInfo[1]);
+            reloadTime = Convert.ToInt32(shipSaveInfo[2]);
+            bodyDamage = Convert.ToInt32(shipSaveInfo[3]);
+            laserDamage = Convert.ToInt32(shipSaveInfo[4]);
+            accuracy = Convert.ToDouble(shipSaveInfo[5]);
+            laserSpeed = Convert.ToDouble(shipSaveInfo[6]);
         }
         
     }

@@ -13,6 +13,7 @@ namespace Zenith.Library
         public Enemy1(Vector position)
            : base(position)
         {
+            type = GameObjectType.Enemy1;
             imageSource = Util.GetImagePath("blue_01.png");
         }
     }

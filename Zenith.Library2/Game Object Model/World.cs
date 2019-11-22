@@ -31,6 +31,7 @@ namespace Zenith.Library
             gameTick = 0;
             objects = new List<GameObject>();
             collisionManager = new CollisionManager(objects);
+            random = new Random();
             PlayerController = new GameController();
             Width = 500;
             Height = 500;
@@ -129,10 +130,11 @@ namespace Zenith.Library
                     {
                         string saveInfo = reader.ReadLine();
                         string objectType = saveInfo.Substring(0, saveInfo.IndexOf(","));
-                        string objectInfo = saveInfo.Substring(saveInfo.IndexOf(","));
+                        string objectInfo = saveInfo.Substring(saveInfo.IndexOf(",") + 1);
                         GameObject obj = CreateInstanceOf(objectType);
                         obj.Deserialize(objectInfo);
-                        AddObject(obj);
+                        //AddObject(obj);
+                        objects.Add(obj);
                     }
                 }
             }
@@ -171,10 +173,12 @@ namespace Zenith.Library
             score = 0;
             gameTick = 0;
 
-            foreach (GameObject obj in objects)
+            objects.RemoveAll(obj => true);
+
+            /*foreach (GameObject obj in objects)
             {
                 RemoveObject(obj);
-            }
+            }*/
         }
 
         public GameObject CreateInstanceOf(string objectType)
@@ -191,8 +195,10 @@ namespace Zenith.Library
                     return new Laser(null, null, 0, false);
                 case "Asteroid":
                     return new Asteroid(null, 0);
-                /*case "Player":
-                    return;*/
+                case "Player":
+                    return new Player(null);
+                case "Enemy":
+                    return new Enemy1(null);
                 case "Enemy1":
                     return new Enemy1(null);
                 case "Enemy2":

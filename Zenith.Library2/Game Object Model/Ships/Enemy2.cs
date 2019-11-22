@@ -11,7 +11,7 @@ namespace Zenith.Library
         public Enemy2(Vector position)
            : base(position)
         {
-
+            type = GameObjectType.Enemy2;
         }
     }
 }

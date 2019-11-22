@@ -44,6 +44,7 @@ namespace Zenith.Library
             this.velocity = velocity;
             this.damage = damage;
             imageSource = Util.GetImagePath("Projectiles\\projectile-blue.png");
+            type = GameObjectType.Laser;
         }
 
         public override string Serialize()

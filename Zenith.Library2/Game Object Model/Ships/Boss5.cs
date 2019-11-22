@@ -9,6 +9,9 @@ namespace Zenith.Library
         public override void ShipLoop() { }
 
         public Boss5(Vector position)
-            : base(position) { }
+            : base(position) 
+        {
+            type = GameObjectType.Boss5;
+        }
     }
 }
