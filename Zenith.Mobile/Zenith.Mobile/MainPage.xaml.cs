@@ -27,10 +27,10 @@ namespace Zenith.View
             Application.Current.MainPage = new SetupPage();
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
-        private void btn_Load_Clicked(object sender, EventArgs e)
+        //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~           ///////////////////////////////////////////////////////////Find a way to disable this button if no save file
+        private void BtnLoad_Clicked(object sender, EventArgs e)
         {
-
+            Application.Current.MainPage = new ScorePage();
         }
 
         //~~~~~~~~~~~~~~~~~~~~ High Scores Page ~~~~~~~~~~~~~~~~~~~~
@@ -50,6 +50,7 @@ namespace Zenith.View
         {
             Application.Current.MainPage = new CreditPage();
         }
+
         //~~~~~~~~~~~~~~~~~~~~ Event Handling End ~~~~~~~~~~~~~~~~~~~~
     }
 }
