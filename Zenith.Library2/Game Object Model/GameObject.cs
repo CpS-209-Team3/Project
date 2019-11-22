@@ -11,21 +11,35 @@ namespace Zenith.Library
         Item,
         Asteroid,
         Laser,
-        BackgroundElement
+        BackgroundElement,
+        Enemy,
+        Enemy1,
+        Enemy2,
+        Enemy3,
+        Boss1,
+        Boss2,
+        Boss3,
+        Boss4,
+        Boss5,
     }
 
     public abstract class GameObject : ISerialize
     {
         protected Vector position, velocity, size;
         protected GameObjectType type;
+        protected double maxSpeed = 20;
+        protected double deacceleration = 1;
 
         protected bool collidable;
         protected string imageSource;
+        protected bool destroy = false;
 
 
         // Properties
 
         public Vector Position { get { return position; } }
+
+        public Vector Velocity { get { return velocity; } }
 
         public Vector Size { get { return size; } }
 
@@ -33,7 +47,7 @@ namespace Zenith.Library
 
         public bool Collidable { get { return collidable; } }
 
-        public bool Destroy { get; set; }
+        public bool Destroy { get { return destroy;} set { destroy = value; } }
 
         public string ImageSource { get { return imageSource; } }
 
@@ -45,11 +59,18 @@ namespace Zenith.Library
 
         public void Update()
         {
-            position += velocity;
-            
             Loop();
+            if (velocity.Magnitude > maxSpeed)
+            {
+                velocity.Magnitude = maxSpeed;
+            }
+            position += velocity * World.Instance.DeltaTime;
         }
 
+        public void AddForce(Vector f)
+        {
+            this.velocity += f * World.Instance.DeltaTime;
+        }
 
         public GameObject(Vector position)
         {

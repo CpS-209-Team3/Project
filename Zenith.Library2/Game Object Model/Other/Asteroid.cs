@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class Asteroid : Enemy
+    public class Asteroid : Enemy
     {
         public override void Loop() { }
 
@@ -14,6 +14,7 @@ namespace Zenith.Library
             this.size = new Vector(size, size);
             velocity.X = World.Instance.Random.NextDouble() * 2 - 1;
             velocity.Y = World.Instance.Random.NextDouble() * 2 - 1;
+            type = GameObjectType.Asteroid;
         }
     }
 }

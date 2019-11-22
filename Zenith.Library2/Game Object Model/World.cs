@@ -31,6 +31,10 @@ namespace Zenith.Library
             gameTick = 0;
             objects = new List<GameObject>();
             collisionManager = new CollisionManager(objects);
+            random = new Random();
+            PlayerController = new GameController();
+            Width = 500;
+            Height = 500;
         }
 
         // End of Singleton Code
@@ -44,6 +48,8 @@ namespace Zenith.Library
         private string playerName;
         private int level;
         private int score;
+        private double deltaTime = 1.0 / 60.0;
+        private string directory = null;
 
         // Properties
 
@@ -54,6 +60,8 @@ namespace Zenith.Library
         public Random Random { get { return random; } }
 
         public Ship Player { get; set; }
+
+        public GameController PlayerController { get; set; }
 
         public ViewManager ViewManager { get; set; }
 
@@ -67,6 +75,10 @@ namespace Zenith.Library
 
         public List<GameObject> Objects { get { return objects; } set { objects = value; } }
 
+        public double DeltaTime { get { return deltaTime; } }
+
+        public string Directory { get { return directory; } set { directory = value; } }
+
         // Methods
 
         public void Update()
@@ -74,17 +86,18 @@ namespace Zenith.Library
             for (int i = 0; i < objects.Count; ++i)
             {
                 objects[i].Update();
+
                 if (objects[i].Destroy)
                 {
-                    objects.RemoveAt(i);
-                    // fixe index after removal
+                    RemoveObject(objects[i]);
+                    // fix index after removal
                     --i;
                 }
             }
 
             collisionManager.CheckForCollisions();
 
-            ++gameTick;
+            gameTick += 1;
         }
 
         public void AddObject(GameObject gameObject)
@@ -95,7 +108,7 @@ namespace Zenith.Library
 
         public void RemoveObject(GameObject gameObject)
         {
-            objects.Add(gameObject);
+            objects.Remove(gameObject);
             ViewManager.RemoveSprite(gameObject);
         }
 
@@ -117,10 +130,11 @@ namespace Zenith.Library
                     {
                         string saveInfo = reader.ReadLine();
                         string objectType = saveInfo.Substring(0, saveInfo.IndexOf(","));
-                        string objectInfo = saveInfo.Substring(saveInfo.IndexOf(","));
+                        string objectInfo = saveInfo.Substring(saveInfo.IndexOf(",") + 1);
                         GameObject obj = CreateInstanceOf(objectType);
                         obj.Deserialize(objectInfo);
-                        AddObject(obj);
+                        //AddObject(obj);
+                        objects.Add(obj);
                     }
                 }
             }
@@ -159,10 +173,12 @@ namespace Zenith.Library
             score = 0;
             gameTick = 0;
 
-            foreach (GameObject obj in objects)
+            objects.RemoveAll(obj => true);
+
+            /*foreach (GameObject obj in objects)
             {
                 RemoveObject(obj);
-            }
+            }*/
         }
 
         public GameObject CreateInstanceOf(string objectType)
@@ -176,11 +192,13 @@ namespace Zenith.Library
                 case "BackgroundElement":
                     return new BackgroundElement(null, 0);
                 case "Laser":
-                    return new Laser(false, null, null, 0);
+                    return new Laser(null, null, 0, false);
                 case "Asteroid":
                     return new Asteroid(null, 0);
-                /*case "Player":
-                    return;*/
+                case "Player":
+                    return new Player(null);
+                case "Enemy":
+                    return new Enemy1(null);
                 case "Enemy1":
                     return new Enemy1(null);
                 case "Enemy2":

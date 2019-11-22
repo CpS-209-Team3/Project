@@ -1,0 +1,7 @@
+Georgy
+112
+2
+3
+Asteroid,False,3:3,0.31999204182997:0.556141052188417,3:3,False,False,0,0,0,0,0,0
+Enemy,False,4:4,0:0,0:0,False,False,0,0,0,0,0,0
+Enemy1,False,5:5,0:0,0:0,False,False,0,0,0,0,0,0

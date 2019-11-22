@@ -13,12 +13,13 @@ namespace Zenith.Library
 
     public class Enemy : Ship
     {
-        public override void Loop() { }
+        public override void ShipLoop() { }
 
         public Enemy(Vector position)
             : base(position)
         {
             this.isPlayer = false;
+            type = GameObjectType.Enemy;
         }
 
     }

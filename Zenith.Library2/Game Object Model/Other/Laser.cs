@@ -29,14 +29,22 @@ namespace Zenith.Library
             }
         }
 
-        public override void Loop() { }
+        public override void Loop()
+        {
+            if (position.X < 0 ||
+                position.Y < 0 ||
+                position.X > World.Instance.Width ||
+                position.Y > World.Instance.Height) Destroy = true;
+        }
 
-        public Laser(bool isFromPlayer, Vector position, Vector velocity, int damage)
+        public Laser(Vector position, Vector velocity, int damage, bool isFromPlayer)
             : base(position)
         {
             this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
+            imageSource = Util.GetImagePath("Projectiles\\projectile-blue.png");
+            type = GameObjectType.Laser;
         }
 
         public override string Serialize()
