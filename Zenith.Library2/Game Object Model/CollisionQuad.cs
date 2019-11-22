@@ -85,7 +85,8 @@ namespace Zenith.Library
                             objects[i].Position.X + objects[i].Size.X >= objects[j].Position.X &&
                             objects[i].Position.Y + objects[i].Size.Y >= objects[j].Position.Y)
                         {
-                            World.Instance.Collisions++;
+                            objects[i].OnCollision(objects[j]);
+                            objects[j].OnCollision(objects[i]);
                         }
                     }
                 }

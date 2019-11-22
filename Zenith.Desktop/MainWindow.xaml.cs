@@ -81,8 +81,7 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
 
-                //txtTest.Text = World.Instance.Player.Position.X.ToString();
-                txtTest.Text = World.Instance.Collisions.ToString();
+                txtTest.Text = World.Instance.Player.Position.X.ToString();
             });
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,13 +97,14 @@ namespace Zenith.Desktop
             World.Instance.AddObject(p);
             World.Instance.Player = p;
             p.Velocity.Cap(0);
+            p.Position.X = 90;
+
+            // setting cheat mode on
+            isCheating = true;
             if (isCheating) p.Health = 0xfffffff;
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
-
-            var e = new Enemy1(new Library.Vector(0, 0));
-            World.Instance.AddObject(e);
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);

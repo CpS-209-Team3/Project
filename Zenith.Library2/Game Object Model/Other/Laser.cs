@@ -23,9 +23,12 @@ namespace Zenith.Library
         public override void OnCollision(GameObject gameObject)
         {
             // only does damage to the opponenet
-            if ((isFromPlayer && gameObject is Enemy) || (!isFromPlayer && !(gameObject is Enemy)))
+            if (gameObject is Ship)
             {
-                Destroy = true;
+                if (isFromPlayer != (gameObject is Player))
+                {
+                    Destroy = true;
+                }
             }
         }
 

@@ -120,7 +120,7 @@ namespace Zenith.Library
 
             spawnManager.Update();
 
-            gameTick += 1;
+            ++gameTick;
         }
 
         public void AddObject(GameObject gameObject)

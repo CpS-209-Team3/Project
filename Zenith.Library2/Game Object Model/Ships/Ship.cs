@@ -10,19 +10,19 @@ namespace Zenith.Library
         // instance variables
         protected bool isPlayer = false;
 
-        protected int health = 100;
+        protected int health = 200;
         protected int reloadTime = 0;
         protected int fireRate = 15;
         protected int bodyDamage = 100;
 
         protected double direction = 0;
-        protected double accuracy = 0.2;
-        protected int laserDamage = 4000;
+        protected double accuracy = 0.05;
+        protected int laserDamage = 40;
         protected double laserSpeed = 400;
 
         private Vector shakeOffset;
         private int shakeTime = 0;
-        private int shakeDuration = 60;
+        private int shakeDuration = 30;
 
         // Properties
 
@@ -44,11 +44,15 @@ namespace Zenith.Library
             {
                 case GameObjectType.Laser:
                     var laser = (Laser)gameObject;
-                    this.health -= laser.Damage;
+                    if (laser.IsFromPlayer != isPlayer)
+                    {
+                        health -= laser.Damage;
+                        Shake();
+                    }
                     break;
                 case GameObjectType.Ship:
                     var ship = (Ship)gameObject;
-                    this.health -= ship.BodyDamage;
+                    health -= ship.BodyDamage;
                     break;
             }
             if (health <= 0)
@@ -71,7 +75,7 @@ namespace Zenith.Library
 
         private void Shake()
         {
-            shakeTime += shakeDuration;
+            shakeTime = shakeDuration;
         }
 
         public override void Loop()
@@ -79,6 +83,22 @@ namespace Zenith.Library
             ShipLoop();
             if (reloadTime > 0) reloadTime -= 1;
             if (position.X < 0) Destroy = true;
+            if (shakeTime > 0)
+            {
+                position -= shakeOffset;
+
+                double x = (World.Instance.Random.NextDouble() * 2 - 1) * 4;
+                double y = (World.Instance.Random.NextDouble() * 2 - 1) * 4;
+                shakeOffset = new Vector(x, y);
+                --shakeTime;
+
+                position += shakeOffset;
+            }
+            else
+            {
+
+                shakeOffset.Cap(0);
+            }
         }
 
         public abstract void ShipLoop();
@@ -89,17 +109,6 @@ namespace Zenith.Library
             type = GameObjectType.Ship;
             size = new Vector(48, 48);
             shakeOffset = new Vector(0, 0);
-            if (shakeTime > 0)
-            {
-                double x = (World.Instance.Random.NextDouble() * 2 - 1) * 4;
-                double y = (World.Instance.Random.NextDouble() * 2 - 1) * 4;
-                shakeOffset = new Vector(x, y);
-                --shakeTime;
-            }
-            else
-            {
-                shakeOffset.Cap(0);
-            }
         }
 
         public override string Serialize()
