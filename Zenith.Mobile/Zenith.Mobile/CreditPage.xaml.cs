@@ -16,5 +16,10 @@ namespace Zenith.View
         {
             InitializeComponent();
         }
+
+        private void btn_Back_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new MainPage();
+        }
     }
 }
