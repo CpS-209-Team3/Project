@@ -68,6 +68,10 @@ namespace Zenith.Library
         {
             return new Vector(v1.x * x, v1.y * x);
         }
+        public static Vector operator /(Vector v1, double x)
+        {
+            return new Vector(v1.x / x, v1.y / x);
+        }
 
         public Vector(double x, double y, bool isPolar = false)
         {

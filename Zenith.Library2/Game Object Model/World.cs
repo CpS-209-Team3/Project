@@ -29,12 +29,14 @@ namespace Zenith.Library
         private World()
         {
             gameTick = 0;
-            objects = new List<GameObject>();
-            collisionManager = new CollisionManager(objects);
             random = new Random();
             PlayerController = new GameController();
             Width = 500;
             Height = 500;
+
+            objects = new List<GameObject>();
+            collisionManager = new CollisionQuad(new Vector(0, 0), new Vector(Width, Height), 0);
+            collisionManager.Objects = objects;
         }
 
         // End of Singleton Code
@@ -44,7 +46,7 @@ namespace Zenith.Library
         private List<GameObject> objects;
         public Random random;
         private int gameTick;
-        private CollisionManager collisionManager;
+        private CollisionQuad collisionManager;
         private string playerName;
         private int level;
         private int score;

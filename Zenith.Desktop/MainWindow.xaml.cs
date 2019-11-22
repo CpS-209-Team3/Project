@@ -23,7 +23,6 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
-        private bool isRunning = false;
         DispatcherTimer timer;
 
         public MainWindow()
@@ -76,8 +75,6 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
-
-                //txtTest.Text = World.Instance.Player.Velocity.X.ToString();
             });
         }
 
