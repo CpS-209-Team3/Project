@@ -8,6 +8,8 @@ namespace Zenith.Library
     {
         private double acceleration = 2000;
 
+        int ANGLE = 0;
+
         public override void ShipLoop()
         {
             bool isAccerlating = false;
@@ -33,6 +35,9 @@ namespace Zenith.Library
             }
             if (!isAccerlating) velocity *= 0.97;
 
+            ++ANGLE;
+            if (ANGLE % 30 == 0) imageRotation += 90;
+
             if (World.Instance.PlayerController.Fire) Shoot();
         }
 
@@ -40,7 +45,7 @@ namespace Zenith.Library
             : base(position)
         {
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
-            imageRotation = 90;
+            imageRotation = 270;
             isPlayer = true;
         }
     }
