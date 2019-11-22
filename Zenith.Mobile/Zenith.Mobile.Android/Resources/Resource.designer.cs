@@ -5743,7 +5743,7 @@ namespace Zenith.Mobile.Droid
 			public const int ic_mtrl_chip_checked_circle = 2131165284;
 			
 			// aapt resource value: 0x7F070065
-			public const int ic_mtrl_chip_close_circle = 2131165285;
+			public const int lightLogo = 2131165285;
 			
 			// aapt resource value: 0x7F070066
 			public const int mtrl_snackbar_background = 2131165286;
@@ -5791,13 +5791,7 @@ namespace Zenith.Mobile.Droid
 			public const int notify_panel_notification_icon_bg = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int TitleZenith = 2131165301;
-			
-			// aapt resource value: 0x7F070076
-			public const int tooltip_frame_dark = 2131165302;
-			
-			// aapt resource value: 0x7F070077
-			public const int tooltip_frame_light = 2131165303;
+			public const int tooltip_frame_light = 2131165301;
 			
 			static Drawable()
 			{

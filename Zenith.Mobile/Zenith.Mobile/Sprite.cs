@@ -1,28 +1,37 @@
-﻿using System;
+﻿//This Sprite Class is for the Xamarin Files!!!
+//
+//
+//
+//
+//
+//
+
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using Xamarin.Forms;
 using Zenith.Library;
 
 namespace Zenith.View
 {
-    public class Sprite
+    class Sprite : Image
     {
-        Image image;
-        Vector position;
+        GameObject gameObject;
         
-        public Image Image { get { return image; } }
+        public GameObject GameObject { get { return gameObject; } }
 
         public void Update()
         {
-            image.Margin = new Thickness(position.X, position.Y, 0, 0);
+            Margin = new Thickness(gameObject.Position.X, gameObject.Position.Y, 0, 0);
         }
-        
-        public Sprite(string src, GameObject followObject)
-        {
-            image = new Image { Source = src };
-            position = followObject.Position;
 
+        public Sprite(GameObject gameObject)
+        {
+            this.gameObject = gameObject;
+            Source = gameObject.ImageSource;
         }
     }
 }

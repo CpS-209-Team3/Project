@@ -8,8 +8,8 @@ namespace Zenith.Library
     {
         public override void Loop() { }
 
-        public Enemy3(Vector position, Ship player)
-            : base(position, player)
+        public Enemy3(Vector position)
+            : base(position)
         {
 
         }

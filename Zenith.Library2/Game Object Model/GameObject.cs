@@ -14,11 +14,14 @@ namespace Zenith.Library
         Background
     }
 
-    public abstract class GameObject
+    public abstract class GameObject : ISerialize
     {
         protected Vector position, velocity, size;
         protected GameObjectType type;
-        protected bool dynamic;
+
+        protected bool collidable;
+        protected string imageSource;
+
 
         // Properties
 
@@ -28,9 +31,11 @@ namespace Zenith.Library
 
         public GameObjectType Type { get { return type; } }
 
-        public bool Dynamic { get { return dynamic; } }
+        public bool Collidable { get { return collidable; } }
 
         public bool Destroy { get; set; }
+
+        public string ImageSource { get { return imageSource; } }
 
         // Methods
 
@@ -41,7 +46,7 @@ namespace Zenith.Library
         public void Update()
         {
             position += velocity;
-
+            
             Loop();
         }
 
@@ -52,6 +57,39 @@ namespace Zenith.Library
             velocity = new Vector(0, 0);
             size = new Vector(0, 0);
             type = GameObjectType.Generic;
+        }
+
+        public virtual string Serialize()
+        {
+            return type.ToString() + ',' + collidable.ToString() + ',' + position.ToString() + ',' + velocity.ToString() + ',' + size.ToString() + ',' + Destroy.ToString();
+        }
+
+        public virtual void Deserialize(string saveInfo)
+        {
+            // saveInfo includes everything but the gameObjectType
+            string[] savedValues = saveInfo.Split(',');
+            collidable = Convert.ToBoolean(savedValues[0]);
+            string[] xNy1 = savedValues[1].Split(':');
+            position = new Vector(Convert.ToDouble(xNy1[0]), Convert.ToDouble(xNy1[1]), false);
+            string[] xNy2 = savedValues[2].Split(':');
+            velocity = new Vector(Convert.ToDouble(xNy2[0]), Convert.ToDouble(xNy2[1]), false);
+            string[] xNy3 = savedValues[3].Split(':');
+            size = new Vector(Convert.ToDouble(xNy3[0]), Convert.ToDouble(xNy3[1]), false);
+            Destroy = Convert.ToBoolean(savedValues[4]);
+        }
+
+        public int IndexOfNthOccurance(string s, string match, int n)
+        {
+            int i = 1;
+            int index = 0;
+
+            while (i <= n && (index = s.IndexOf(match, index + 1)) != -1)
+            {
+                if (i == n)
+                    return index;
+                i++;
+            }
+            return -1;
         }
     }
 }

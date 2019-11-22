@@ -4,14 +4,16 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class Enemy1 : Enemy
+    public class Enemy1 : Enemy
     {
-        public override void Loop() { }
+        public override void Loop() {
+            this.velocity.X = 0.01;
+        }
 
-        public Enemy1(Vector position, Ship player)
-           : base(position, player)
+        public Enemy1(Vector position)
+           : base(position)
         {
-
+            imageSource = Util.GetImagePath("blue_01.png");
         }
     }
 }

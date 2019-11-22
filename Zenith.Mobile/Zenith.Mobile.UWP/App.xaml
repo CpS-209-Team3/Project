@@ -5,4 +5,15 @@
     xmlns:local="using:Zenith.View.UWP"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="SystemControlHighlightBaseMediumLowBrush" Color="Gray" />
+                    <SolidColorBrush x:Key="SystemControlHighlightBaseHighBrush" Color="Cyan" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>

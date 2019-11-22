@@ -9,6 +9,6 @@ namespace Zenith.Library
         public override void Loop() { }
 
         public Boss5(Vector position)
-            : base(position, null) { }
+            : base(position) { }
     }
 }

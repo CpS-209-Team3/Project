@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Zenith.Library
@@ -7,11 +8,11 @@ namespace Zenith.Library
     class Laser : GameObject
     {
         private int damage;
-        private Ship owner;
+        private bool isFromPlayer;
 
-        public Ship Owner
+        public bool IsFromPlayer
         {
-            get { return owner; }
+            get { return isFromPlayer; }
         }
 
         public int Damage
@@ -21,7 +22,8 @@ namespace Zenith.Library
 
         public override void OnCollision(GameObject gameObject)
         {
-            if (gameObject != owner)
+            // only does damage to the opponenet
+            if ((isFromPlayer && gameObject is Enemy) || (!isFromPlayer && !(gameObject is Enemy)))
             {
                 Destroy = true;
             }
@@ -29,12 +31,34 @@ namespace Zenith.Library
 
         public override void Loop() { }
 
-        public Laser(Ship owner, Vector position, Vector velocity, int damage)
+        public Laser(bool isFromPlayer, Vector position, Vector velocity, int damage)
             : base(position)
         {
-            this.owner = owner;
+            this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
+        }
+
+        public override string Serialize()
+        {
+            return base.Serialize() + ',' + isFromPlayer.ToString() + ',' + damage.ToString();
+        }
+
+        public override void Deserialize(string saveInfo)
+        {
+            int i = 0;
+            int index = IndexOfNthOccurance(saveInfo, ",", 5);
+
+            string gameObjectSaveInfo = saveInfo.Substring(0, index);
+            string[] laserSaveInfo = saveInfo.Substring(index, saveInfo.Length - index).Split(',');
+
+            base.Deserialize(gameObjectSaveInfo);
+
+            foreach (PropertyInfo property in typeof(Ship).GetProperties())
+            {
+                property.SetValue(this, laserSaveInfo[i]);
+                i++;
+            }
         }
     }
 }
