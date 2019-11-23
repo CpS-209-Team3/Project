@@ -20,17 +20,18 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class HelpScreen : Page
     {
-        public HelpScreen()
+        MainWindow main;
+        public HelpScreen(MainWindow theMainOne)
         {
             InitializeComponent();
+            main = theMainOne;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
-            // trying to fix this......
-            MainWindow main = new MainWindow();
-            this.Content = main;
+            //Make the main window content to the canView(Canvas name in MainWindow)
+            main.Content = main.canView;
         }
     }
 }

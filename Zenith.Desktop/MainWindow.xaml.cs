@@ -107,19 +107,12 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
         private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
-            HelpScreen help = new HelpScreen();
+            HelpScreen help = new HelpScreen(this);
             this.Content = help;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ About Page ~~~~~~~~~~~~~~~~~~~~
-        private void btn_About_Click(object sender, RoutedEventArgs e)
-        {
-            AboutPage about = new AboutPage();
-            this.Content = about;
-        }
-
-        //~~~~~~~~~~~~~~~~~~~~ Setting Page ~~~~~~~~~~~~~~~~~~~~
-        private void btn_Setting_Click(object sender, RoutedEventArgs e)
+        //~~~~~~~~~~~~~~~~~~~~ High Score Page ~~~~~~~~~~~~~~~~~~~~
+        private void btn_HighScore_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -133,13 +126,14 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Play_Click(object sender, RoutedEventArgs e)
         {
-
+            OptionPage option = new OptionPage(this);
+            this.Content = option;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Credits Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_Credits_Click(object sender, RoutedEventArgs e)
         {
-            CreditsPage credits = new CreditsPage();
+            CreditsPage credits = new CreditsPage(this);
             this.Content = credits;
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling ~~~~~~~~~~~~~~~~~~~~~~~~~

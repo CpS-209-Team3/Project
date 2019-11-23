@@ -1,0 +1,29 @@
+﻿<Page x:Class="Zenith.Desktop.OptionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Zenith.Desktop"
+      mc:Ignorable="d" 
+      d:DesignHeight="630" d:DesignWidth="1120"
+      Title="OptionPage">
+    <Canvas x:Name="canView">
+        <Canvas.Background>
+            <ImageBrush ImageSource="universe.jpg"/>
+        </Canvas.Background>
+        <StackPanel Orientation="Vertical" Height="476" Canvas.Left="194" Width="720" Canvas.Top="57">
+            <Image Source="zenithLogo.png" Height="151" Width="574" Margin="30,30,0,20"/>
+            <Button x:Name="btn_Start" Content="Start" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Start_Click"/>
+            <Button x:Name="btn_Difficult" Content="Difficult" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Difficult_Click"/>
+            <StackPanel Orientation="Horizontal" Margin="177,0,167,5" HorizontalAlignment="Center">
+                <Button x:Name="btn_Cheat" Content="Cheat" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="150" Margin="0,0,0,5" Click="btn_Cheat_Click"/>
+                <TextBlock x:Name="lblCheat" Text="ON" HorizontalAlignment="Center" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" Background="Transparent" Height="50" Width="150" Margin="2,0,0,0"/>
+            </StackPanel>
+            <Button x:Name="btn_Back" Content="Back" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="150" Margin="0,0,2,0" Click="btn_Back_Click"/>
+        </StackPanel>
+        <TextBox x:Name="txtTest"/>
+        <!--
+        <Image Source="C:\Users\Caedmon\Desktop\Zenith\Zenith.Desktop\bin\Debug\Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4/blue_01.png"></Image>
+        -->
+    </Canvas>
+</Page>
