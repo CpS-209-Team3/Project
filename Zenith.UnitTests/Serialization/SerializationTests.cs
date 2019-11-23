@@ -51,8 +51,8 @@ namespace Zenith.UnitTests
 
             // All the information we added before should have repopulated the world
             Assert.IsTrue(w.PlayerName == "Georgy");
-            Assert.IsTrue(w.Objects.Contains(a));
-            Assert.IsTrue(w.Objects.Contains(e) && (e.Position == v1));
+            Assert.IsTrue(w.Objects.Count() == 3);
+            Assert.IsTrue(w.Objects.FindIndex(obj => obj.Type == GameObjectType.Asteroid) == 0);
         }
 
     }

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Zenith.View.SetupPage"
+             BackgroundImageSource="universe.jpg">
+    <StackLayout Orientation="Horizontal">
+        <StackLayout x:Name="StkBuffer" WidthRequest="285">
+        </StackLayout>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+            <Image x:Name="ImgLogo" Source="lightLogo.png" HeightRequest="75" Margin="20"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <StackLayout HorizontalOptions="Center">
+                    <Button x:Name="BtnStart" Text="START GAME" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnStart_Clicked"/>
+                    <Picker Title="DIFFICULTY" TitleColor="White" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10">
+                        <Picker.Items>
+                            <x:String>EASY</x:String>
+                            <x:String>MEDIUM</x:String>
+                            <x:String>HARD</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Button x:Name="BtnCheat" Text="CHEAT ON" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnCheat_Clicked"/>
+                    <Button x:Name="BtnBack" Text="BACK" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnBack_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

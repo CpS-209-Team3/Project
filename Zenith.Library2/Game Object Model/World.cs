@@ -6,6 +6,14 @@ using Zenith.Library.Game_Object_Model;
 
 namespace Zenith.Library
 {
+    public enum WorldState
+    {
+        Stage,      // When the player is moving forwards, fighting small enemies and asteroids
+        Boss,       // When the player is fighting a boss
+        Shop,       // When the player is in a shop
+        Pause,      // When the game is paused
+    }
+
     public interface ViewManager
     {
         void AddSprite(GameObject gameObject);
@@ -29,12 +37,16 @@ namespace Zenith.Library
         private World()
         {
             gameTick = 0;
-            objects = new List<GameObject>();
-            collisionManager = new CollisionManager(objects);
             random = new Random();
             PlayerController = new GameController();
             Width = 500;
             Height = 500;
+
+            objects = new List<GameObject>();
+            collisionManager = new CollisionQuad(new Vector(0, 0), new Vector(Width, Height), 0);
+            collisionManager.Objects = objects;
+
+            spawnManager = new SpawnManager(difficulty);
         }
 
         // End of Singleton Code
@@ -44,12 +56,16 @@ namespace Zenith.Library
         private List<GameObject> objects;
         public Random random;
         private int gameTick;
-        private CollisionManager collisionManager;
+        private CollisionQuad collisionManager;
         private string playerName;
         private int level;
         private int score;
         private double deltaTime = 1.0 / 60.0;
         private string directory = null;
+        private int collisions = 0;
+
+        private int difficulty = 1;
+        private SpawnManager spawnManager;
 
         // Properties
 
@@ -79,6 +95,10 @@ namespace Zenith.Library
 
         public string Directory { get { return directory; } set { directory = value; } }
 
+        public int Difficulty { get { return difficulty; } set { difficulty = value; } }
+
+        public int Collisions { get { return collisions; } set { collisions = value; } }
+
         // Methods
 
         public void Update()
@@ -95,9 +115,12 @@ namespace Zenith.Library
                 }
             }
 
+            collisions = 0;
             collisionManager.CheckForCollisions();
 
-            gameTick += 1;
+            spawnManager.Update();
+
+            ++gameTick;
         }
 
         public void AddObject(GameObject gameObject)

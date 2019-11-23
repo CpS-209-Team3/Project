@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,8 +23,8 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
-        private bool isRunning = false;
         DispatcherTimer timer;
+        bool isCheating = false;
 
         public MainWindow()
         {
@@ -81,7 +81,7 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
 
-                txtTest.Text = World.Instance.Player.Velocity.X.ToString();
+                txtTest.Text = World.Instance.Player.Position.X.ToString();
             });
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -93,10 +93,18 @@ namespace Zenith.Desktop
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            var p = new Player(new Library.Vector(40, 40));
+            var p = new Player(new Library.Vector(0, 0));
             World.Instance.AddObject(p);
             World.Instance.Player = p;
             p.Velocity.Cap(0);
+            p.Position.X = 90;
+
+            // setting cheat mode on
+            isCheating = true;
+            if (isCheating) p.Health = 0xfffffff;
+
+            World.Instance.Width = Width;
+            World.Instance.Height = Height;
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);

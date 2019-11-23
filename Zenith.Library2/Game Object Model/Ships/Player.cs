@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     public class Player : Ship
     {
-        private double acceleration = 200;
+        private double acceleration = 2000;
 
         public override void ShipLoop()
         {
@@ -33,13 +33,15 @@ namespace Zenith.Library
             }
             if (!isAccerlating) velocity *= 0.97;
 
-            if (World.Instance.PlayerController.Fire) Shoot(Math.PI / 2);
+            if (World.Instance.PlayerController.Fire) Shoot();
         }
 
         public Player(Vector position)
             : base(position)
         {
-            imageSource = Util.GetImagePath("blue_01.png");
+            imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
+            imageRotation = 90;
+            isPlayer = true;
         }
     }
 }

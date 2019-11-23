@@ -60,9 +60,11 @@ namespace Zenith.View
             });
         }
 
-        private void Window_Loaded(object sender, EventArgs ev)
+        private void ContentPage_Appearing(object sender, EventArgs args)
         {
             sprites = new List<Sprite>();
+
+            /////////////////////////////////////////////////////////////Error thrown here due to wpf/xamarin integration
             World.Instance.ViewManager = (ViewManager)this;
 
 

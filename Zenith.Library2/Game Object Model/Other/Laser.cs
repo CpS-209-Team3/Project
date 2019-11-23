@@ -23,9 +23,12 @@ namespace Zenith.Library
         public override void OnCollision(GameObject gameObject)
         {
             // only does damage to the opponenet
-            if ((isFromPlayer && gameObject is Enemy) || (!isFromPlayer && !(gameObject is Enemy)))
+            if (gameObject is Ship)
             {
-                Destroy = true;
+                if (isFromPlayer != (gameObject is Player))
+                {
+                    Destroy = true;
+                }
             }
         }
 
@@ -43,8 +46,9 @@ namespace Zenith.Library
             this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
-            imageSource = Util.GetImagePath("Projectiles\\projectile-blue.png");
+            imageSource = Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png");
             type = GameObjectType.Laser;
+            size = new Vector(32, 32);
         }
 
         public override string Serialize()

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Zenith.View.CreditPage"
+             BackgroundImageSource="GameScreen.JPG">
+    <Grid>
+        <StackLayout Margin="10,44,559,147.6" Orientation="Vertical">
+            <Label Text="Developers" FontSize="30"  HeightRequest="45" WidthRequest="200" Margin="5"/>
+            <Label Text="Steven Platt" FontSize="25" HeightRequest="40" WidthRequest="200" Margin="5"/>
+            <Label Text="James Gonzales" FontSize="25" HeightRequest="40" WidthRequest="200" Margin="5"/>
+            <Label Text="Bao Le" FontSize="25" HeightRequest="40" WidthRequest="200" Margin="5"/>
+            <Label Text="Caedmon Evans" FontSize="25" HeightRequest="40" WidthRequest="200" Margin="5"/>
+        </StackLayout>
+        <StackLayout Margin="264,44,305,229.6">
+            <Label Text="Graphics" FontSize="30" HeightRequest="45" WidthRequest="200" Margin="5"/>
+            <Label Text="Steven Platt" FontSize="25" HeightRequest="40" WidthRequest="200" Margin="5"/>
+            <Label Text="(...)" FontSize="25" HeightRequest="40" WidthRequest="200" Margin="5"/>
+        </StackLayout>
+        <StackLayout Margin="272,225,313,9.6" HorizontalOptions="Center">
+            <Label Text="Code Design" FontSize="30"  HeightRequest="45" WidthRequest="215" Margin="0"/>
+            <Label Text="James Gonzales" FontAttributes="Italic" FontSize="25" HorizontalTextAlignment="Center" HeightRequest="40" WidthRequest="200" Margin="5"/>
+            <Label Text="Caedmon Evans" FontAttributes="Italic" FontSize="25" HorizontalTextAlignment="Center" HeightRequest="40" WidthRequest="200" Margin="5"/>
+            <Label Text="(...)" FontAttributes="Italic" FontSize="25" HorizontalTextAlignment="Center" HeightRequest="40" WidthRequest="200" Margin="5"/>
+        </StackLayout>
+        <StackLayout Margin="521,49,35,185.6" HorizontalOptions="Center" WidthRequest="244">
+            <Label Text="Special Thanks" FontSize="30"  HeightRequest="45" WidthRequest="215" Margin="0"/>
+            <Label Text="Dr. Stephen Schaub" FontAttributes="Italic" FontSize="25" HorizontalOptions="Center" HeightRequest="40" WidthRequest="250" Margin="0,5,0,0"/>
+            <Label Text="(...)" FontAttributes="Italic" FontSize="25"  HeightRequest="40" WidthRequest="200" Margin="5"/>
+        </StackLayout>
+        <Button x:Name="btn_Back" Text="Back" FontSize="30" HeightRequest="60" WidthRequest="100" Margin="30,380,670,9.6" Clicked="btn_Back_Clicked"/>
+    </Grid>
+</ContentPage>

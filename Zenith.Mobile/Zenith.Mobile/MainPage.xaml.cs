@@ -13,34 +13,45 @@ namespace Zenith.View
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-
+        int wid;
+        int hi;
         public MainPage()
         {
             InitializeComponent();
-            Application.Current.MainPage = new GamePage();
-            StkBuffer.WidthRequest = App.ScreenWidth / 2;
-            ImgLogo.HeightRequest = App.ScreenHeight * 7 / 36;
         }
 
-        private void BtnStart_Clicked(object sender, EventArgs e)
+        //~~~~~~~~~~~~~~~~~~~~ Event Handling Zone ~~~~~~~~~~~~~~~~~~~~
+
+        //~~~~~~~~~~~~~~~~~~~~ Play Button ~~~~~~~~~~~~~~~~~~~~
+        private void BtnNew_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new GamePage();
+            Application.Current.MainPage = new SetupPage();
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~           ///////////////////////////////////////////////////////////Find a way to disable this button if no save file
+        private void BtnLoad_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new ScorePage();
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ High Scores Page ~~~~~~~~~~~~~~~~~~~~
         private void BtnScores_Clicked(object sender, EventArgs e)
         {
-
+            Application.Current.MainPage = new ScorePage();
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Help Page ~~~~~~~~~~~~~~~~~~~~
         private void BtnHelp_Clicked(object sender, EventArgs e)
         {
-
+            Application.Current.MainPage = new HelpPage();
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Credits Page ~~~~~~~~~~~~~~~~~~~~
         private void BtnCredits_Clicked(object sender, EventArgs e)
         {
-
+            Application.Current.MainPage = new CreditPage();
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Event Handling End ~~~~~~~~~~~~~~~~~~~~
     }
 }

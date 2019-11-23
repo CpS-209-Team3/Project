@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Zenith.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HelpScreen : ContentPage
+    public partial class ScorePage : ContentPage
     {
-        public HelpScreen()
+        public ScorePage()
         {
             InitializeComponent();
         }
