@@ -30,5 +30,5 @@ https://bju-my.sharepoint.com/:v:/r/personal/jgonz812_students_bju_edu/Documents
 | :------------- | :---------- | :----------- | :---------- |
 | James Gonzales | 16 hrs | 44 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/GonzalesJournal |
 | Caedmon Evans | 21 hrs | 39 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/EvansJournal |
-| Le Bao | 15 hrs 50 mins | 44 hrs 10 mins | https://github.com/CpS-209-Team3/Zenith/wiki/BaoLeJournal |
-| Stephen Platt | 7 hrs 14 mins | 53 hours 46 mins |  https://github.com/CpS-209-Team3/Zenith/wiki/PlattJournal |
+| Le Bao | 7 hrs 14 mins | 44 hrs 10 mins | https://github.com/CpS-209-Team3/Zenith/wiki/BaoLeJournal |
+| Steven Platt | 15 hrs 50 mins | 53 hours 46 mins |  https://github.com/CpS-209-Team3/Zenith/wiki/PlattJournal |
