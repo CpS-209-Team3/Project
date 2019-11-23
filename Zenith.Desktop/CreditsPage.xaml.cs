@@ -31,6 +31,7 @@ namespace Zenith.Desktop
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
             //Make the main window content to the canView(Canvas name in MainWindow)
+            //Return to canView by make Content = canView
             main.Content = main.canView;
         }
     }
