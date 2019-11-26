@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     public class Player : Ship
     {
-        private double acceleration = 2000;
+        private double acceleration = 1000;
 
         public override void ShipLoop()
         {
