@@ -18,9 +18,6 @@ using Zenith.Library;
 
 namespace Zenith.Desktop
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
         DispatcherTimer timer;
