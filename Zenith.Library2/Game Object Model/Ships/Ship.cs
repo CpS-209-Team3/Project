@@ -44,7 +44,7 @@ namespace Zenith.Library
             {
                 case GameObjectType.Laser:
                     var laser = (Laser)gameObject;
-                    if (laser.IsFromPlayer != isPlayer)
+                    if (laser.SenderType != this.type)
                     {
                         health -= laser.Damage;
                         Shake();
@@ -67,7 +67,7 @@ namespace Zenith.Library
             {
                 double aim = direction + World.Instance.Random.NextDouble() * (accuracy * 2) - accuracy;
                 var vel = new Vector(aim, laserSpeed, true);
-                var laser = new Laser(position, vel, laserDamage, isPlayer);
+                var laser = new Laser(position, vel, laserDamage, type);
                 World.Instance.AddObject(laser);
                 reloadTime += fireRate;
             }

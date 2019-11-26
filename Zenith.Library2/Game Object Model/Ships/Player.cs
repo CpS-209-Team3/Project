@@ -39,6 +39,7 @@ namespace Zenith.Library
         public Player(Vector position)
             : base(position)
         {
+            type = GameObjectType.Player;
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
             imageRotation = 90;
             isPlayer = true;

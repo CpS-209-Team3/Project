@@ -46,7 +46,7 @@ namespace Zenith.Library
         public SpawnManager(int difficulty)
         {
             this.difficulty = difficulty;
-            spawnRate = 400 - 30 * difficulty;
+            spawnRate = 100 - 30 * difficulty;
             timeUntilNextSpawn = spawnRate;
         }
     }
