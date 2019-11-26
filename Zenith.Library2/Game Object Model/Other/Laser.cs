@@ -40,10 +40,17 @@ namespace Zenith.Library
                 position.Y > World.Instance.Height) Destroy = true;
         }
 
-        public Laser(Vector position, Vector velocity, int damage, bool isFromPlayer)
+        public Laser(Vector position, Vector velocity, int damage, GameObjectType type)
             : base(position)
         {
-            this.isFromPlayer = isFromPlayer;
+            if (type == GameObjectType.Player)
+            {
+                this.isFromPlayer = true;
+            }
+            else
+            {
+                this.isFromPlayer = false;
+            }
             this.velocity = velocity;
             this.damage = damage;
             imageSource = Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png");

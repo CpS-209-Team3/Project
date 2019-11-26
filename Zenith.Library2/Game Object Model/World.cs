@@ -37,6 +37,7 @@ namespace Zenith.Library
         private World()
         {
             gameTick = 0;
+            level = 1;
             random = new Random();
             PlayerController = new GameController();
             Width = 500;
@@ -46,7 +47,7 @@ namespace Zenith.Library
             collisionManager = new CollisionQuad(new Vector(0, 0), new Vector(Width, Height), 0);
             collisionManager.Objects = objects;
 
-            spawnManager = new SpawnManager(difficulty);
+            spawnManager = new SpawnManager(difficulty , level);
         }
 
         // End of Singleton Code
@@ -215,15 +216,13 @@ namespace Zenith.Library
                 case "BackgroundElement":
                     return new BackgroundElement(null, 0);
                 case "Laser":
-                    return new Laser(null, null, 0, false);
+                    return new Laser(null, null, 0, GameObjectType.Player);
                 case "Asteroid":
                     return new Asteroid(null, 0);
                 case "Player":
                     return new Player(null);
-                case "Enemy":
-                    return new Enemy1(null);
                 case "Enemy1":
-                    return new Enemy1(null);
+                    return new Enemy1(null, 0);
                 case "Enemy2":
                     return new Enemy2(null);
                 case "Enemy3":

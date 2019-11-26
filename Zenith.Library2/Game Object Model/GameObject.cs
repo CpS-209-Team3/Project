@@ -8,6 +8,7 @@ namespace Zenith.Library
     {
         Generic,
         Ship,
+        Player,
         Item,
         Asteroid,
         Laser,

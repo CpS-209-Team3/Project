@@ -13,14 +13,28 @@ namespace Zenith.Library
 
     public class Enemy : Ship
     {
-        public override void ShipLoop() { }
+        public override void ShipLoop() 
+        {
+            // check hp, check x and y distance 
+        }
 
         public Enemy(Vector position)
             : base(position)
         {
-            this.isPlayer = false;
             type = GameObjectType.Enemy;
         }
 
+       /* public void Do(EnemyState state)
+        {
+            switch(state)
+            {
+                case "Sway":
+                    break;
+                case "Ram":
+
+                case 
+            }
+        }
+*/
     }
 }
