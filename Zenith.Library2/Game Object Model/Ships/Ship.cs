@@ -96,7 +96,6 @@ namespace Zenith.Library
             }
             else
             {
-
                 shakeOffset.Cap(0);
             }
         }

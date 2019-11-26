@@ -33,6 +33,8 @@ namespace Zenith.Library
             }
             if (!isAccerlating) velocity *= 0.97;
 
+            imageRotation += 15;
+
             if (World.Instance.PlayerController.Fire) Shoot();
         }
 

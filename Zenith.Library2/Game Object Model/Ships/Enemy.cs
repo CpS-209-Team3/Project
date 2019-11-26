@@ -13,6 +13,8 @@ namespace Zenith.Library
 
     public class Enemy : Ship
     {
+        protected EnemyState state;
+
         public override void ShipLoop() { }
 
         public Enemy(Vector position)
@@ -20,6 +22,7 @@ namespace Zenith.Library
         {
             this.isPlayer = false;
             type = GameObjectType.Enemy;
+            state = EnemyState.Sway;
         }
 
     }
