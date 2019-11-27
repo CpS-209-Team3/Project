@@ -88,6 +88,7 @@ namespace Zenith.Library
                             objects[i].OnCollision(objects[j]);
                             objects[j].OnCollision(objects[i]);
                         }
+                        ++World.Instance.Collisions;
                     }
                 }
             }
