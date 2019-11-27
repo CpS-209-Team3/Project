@@ -24,6 +24,14 @@ namespace Zenith.Library
         Player
     }
 
+    public enum GameTag
+    {
+        None,
+        Ship,
+        Projectile,
+        Item
+    }
+
     public abstract class GameObject : ISerialize
     {
         protected Vector position, velocity, size;
@@ -36,6 +44,9 @@ namespace Zenith.Library
 
         protected string imageSource;
         protected double imageRotation = 0;
+
+        protected double mass = 1;
+        protected GameTag tag = GameTag.None;
 
 
         // Properties
@@ -55,6 +66,10 @@ namespace Zenith.Library
         public string ImageSource { get { return imageSource; } }
 
         public double ImageRotation { get { return imageRotation; } set { imageRotation = value; } }
+
+        public double Mass { get { return mass; } }
+
+        public GameTag Tag { get { return tag; } }
 
         // Methods
 

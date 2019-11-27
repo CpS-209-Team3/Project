@@ -7,7 +7,7 @@ namespace Zenith.Library
     class CollisionQuad
     {
         // Constants
-        const int maxTier = 2;
+        const int maxTier = 4;
         const int maxObjectCount = 10;
 
         // Instance Variables

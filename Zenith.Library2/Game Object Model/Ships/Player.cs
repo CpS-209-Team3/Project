@@ -31,7 +31,7 @@ namespace Zenith.Library
                 AddForce(new Vector(acceleration, 0));
                 isAccerlating = true;
             }
-            if (!isAccerlating) velocity *= 0.97;
+            //if (!isAccerlating) velocity *= 0.97;
 
             imageRotation += 15;
 

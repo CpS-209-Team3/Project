@@ -50,6 +50,7 @@ namespace Zenith.Library
             type = GameObjectType.Laser;
             size = new Vector(32, 32);
             imageRotation = velocity.Angle * 180 / Math.PI;
+            tag = GameTag.Projectile;
         }
 
         public override string Serialize()

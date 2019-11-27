@@ -13,7 +13,7 @@ namespace Zenith.Library
         protected int health = 200;
         protected int reloadTime = 0;
         protected int fireRate = 15;
-        protected int bodyDamage = 100;
+        protected int bodyDamage = 0;
 
         protected double direction = 0;
         protected double accuracy = 0.05;
@@ -39,26 +39,35 @@ namespace Zenith.Library
 
         public override void OnCollision(GameObject gameObject)
         {
-            var type = gameObject.Type;
-            switch (type)
+            var offset = (position - gameObject.Position);
+            //offset.Magnitude = 5;
+            switch (gameObject.Tag)
             {
-                case GameObjectType.Laser:
+                case GameTag.Projectile:
                     var laser = (Laser)gameObject;
                     if (laser.SenderType != this.type)
                     {
                         health -= laser.Damage;
+                        AddForce(offset * (gameObject.Velocity.Magnitude * gameObject.Mass / mass));
                         Shake();
                     }
                     break;
-                case GameObjectType.Ship:
-                    var ship = (Ship)gameObject;
-                    health -= ship.BodyDamage;
+                case GameTag.Ship:
+                    if (gameObject.Type == GameObjectType.Player)
+                    {
+                        var ship = (Ship)gameObject;
+                        health -= ship.BodyDamage;
+                        Shake();
+                    }
+                    AddForce(offset * (gameObject.Velocity.Magnitude * gameObject.Mass / mass));
+                    
                     break;
             }
             if (health <= 0)
             {
                 Destroy = true;
             }
+            
         }
 
         public void Shoot()
@@ -76,6 +85,11 @@ namespace Zenith.Library
         private void Shake()
         {
             shakeTime = shakeDuration;
+        }
+
+        public void MoveTo(Vector destination)
+        {
+            velocity = ((destination - velocity) - position);
         }
 
         public override void Loop()
@@ -98,6 +112,7 @@ namespace Zenith.Library
             {
                 shakeOffset.Cap(0);
             }
+            velocity *= 0.97;
         }
 
         public abstract void ShipLoop();
@@ -108,6 +123,8 @@ namespace Zenith.Library
             type = GameObjectType.Ship;
             size = new Vector(48, 48);
             shakeOffset = new Vector(0, 0);
+            mass = 50;
+            tag = GameTag.Ship;
         }
 
         public override string Serialize()

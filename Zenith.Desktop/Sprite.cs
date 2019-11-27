@@ -42,6 +42,9 @@ namespace Zenith.Desktop
 
             currentAngle = gameObject.ImageRotation;
 
+            Width = gameObject.Size.X;
+            Height = gameObject.Size.Y;
+
             Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Absolute));
         }
     }

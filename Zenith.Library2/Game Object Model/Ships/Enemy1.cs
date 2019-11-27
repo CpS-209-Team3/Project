@@ -21,8 +21,10 @@ namespace Zenith.Library
             type = GameObjectType.Enemy1;
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
             imageRotation = 270;
-            this.velocity.X = -50;
-            this.position.X = World.Instance.Width - 100;
+            velocity.X = -50;
+            this.position.X = World.Instance.Width;
+            fireRate = 300;
+            swayRadius = 20;
         }
     }
 }

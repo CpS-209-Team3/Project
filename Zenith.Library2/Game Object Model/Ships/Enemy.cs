@@ -14,6 +14,8 @@ namespace Zenith.Library
     public class Enemy : Ship
     {
         protected EnemyState state;
+        protected double swayRadius = 20;
+        protected double swayStatus;
 
         public override void ShipLoop() { }
 
@@ -23,7 +25,7 @@ namespace Zenith.Library
             this.isPlayer = false;
             type = GameObjectType.Enemy;
             state = EnemyState.Sway;
+            swayStatus = 0;
         }
-
     }
 }
