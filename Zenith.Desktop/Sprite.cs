@@ -11,11 +11,12 @@ using Zenith.Library;
 
 namespace Zenith.Desktop
 {
-    class Sprite : Image
+    class Sprite : Label
     {
         private GameObject gameObject;
         private double currentAngle;
-        private Image[] healthBar = { new Image() };
+        private Image[] images;
+        private int lastImageIndex = 0;
 
         public GameObject GameObject { get { return gameObject; } }
 
@@ -35,6 +36,9 @@ namespace Zenith.Desktop
 
         public Sprite(GameObject gameObject)
         {
+            // Load images for sprite
+            images = new Image[gameObject.ImageSources.Length];
+
             this.gameObject = gameObject;
 
             RenderTransform = new RotateTransform(gameObject.Angle * 180 / Math.PI + gameObject.ImageRotation);
@@ -47,17 +51,22 @@ namespace Zenith.Desktop
 
             currentAngle = gameObject.Angle;
 
-            Width = gameObject.Size.X;
-            Height = gameObject.Size.Y;
-
             try
             {
-                Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Absolute));
+                for (int i = 0; i < gameObject.ImageSources.Length; ++i)
+                {
+                    images[i] = new Image();
+                    images[i].Source = new BitmapImage(new Uri(gameObject.ImageSources[i], UriKind.Absolute));
+                    images[i].Width = gameObject.Size.X;
+                    images[i].Height = gameObject.Size.Y;
+                }
             }
             catch(Exception e)
             {
                 MessageBox.Show("Error retrieving image for " + gameObject.Type.ToString());
             }
+
+            Content = images[0];
         }
     }
 }

@@ -20,7 +20,9 @@ namespace Zenith.Library
             : base(host.Position)
         {
             this.host = host;
-            imageSource = Util.GetSpriteFolderPath("Health_Bar\\healthbar_10.png");
+            imageSources = new string[] {
+                Util.GetSpriteFolderPath("Health_Bar\\healthbar_10.png") 
+            };
             imageRotation = 0;
             collidable = false;
             type = GameObjectType.HealthBar;

@@ -19,7 +19,7 @@ namespace Zenith.Library
             velocity.X = -World.Instance.Random.NextDouble() * 8;
             velocity.Y = (World.Instance.Random.NextDouble() * 2 - 1) * 8;
             type = GameObjectType.Asteroid;
-            imageSource = Util.GetSpriteFolderPath("Aster1.png");
+            imageSources = new string[] { Util.GetSpriteFolderPath("Aster1.png") };
         }
     }
 }

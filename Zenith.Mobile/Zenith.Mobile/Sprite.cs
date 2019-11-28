@@ -31,7 +31,7 @@ namespace Zenith.View
         public Sprite(GameObject gameObject)
         {
             this.gameObject = gameObject;
-            Source = gameObject.ImageSource;
+            Source = gameObject.ImageSources;
         }
     }
 }

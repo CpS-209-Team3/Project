@@ -7,7 +7,7 @@ namespace Zenith.Library
     public class Player : Ship
     {
         private const double acceleration = 2000;
-        
+
         public override void ShipLoop()
         {
             if (World.Instance.PlayerController.Up) AddForce(new Vector(0, -acceleration));
@@ -22,7 +22,9 @@ namespace Zenith.Library
             : base(position)
         {
             type = GameObjectType.Player;
-            imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
+            imageSources = new string[] {
+                Util.GetShipSpriteFolderPath("blue_01.png")
+            };
             angle = 0;
             firePattern = new int[] { 0 };
             accuracy = 0.1;

@@ -32,7 +32,7 @@ namespace Zenith.Library
             : base(position)
         {
             firePattern = new int[] { 15, 15, 15, 100 };
-            imageSource = Util.GetShipSpriteFolderPath("large_grey_01.png");
+            imageSources = new string[] { Util.GetShipSpriteFolderPath("large_grey_01.png") };
             angle = Math.PI;
             type = GameObjectType.Boss1;
             size = new Vector(256, 256);

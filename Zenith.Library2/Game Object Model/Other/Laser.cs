@@ -48,7 +48,7 @@ namespace Zenith.Library
             this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
-            imageSource = Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png");
+            imageSources = new string[] { Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png") };
             imageRotation = 0;
             
             size = new Vector(damage, damage);
