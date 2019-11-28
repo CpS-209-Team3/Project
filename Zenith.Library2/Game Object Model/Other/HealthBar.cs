@@ -16,6 +16,7 @@ namespace Zenith.Library
             destroy = host.Destroy;
 
             imageIndex = (int)((double)host.Health / host.MaxHealth * 10);
+            if (imageIndex < 0) imageIndex = 0;
         }
 
         public HealthBar(Ship host)

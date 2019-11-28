@@ -9,7 +9,7 @@ namespace Zenith.Library
         public override void ShipLoop()
         {
             var playerOffset = World.Instance.Player.Position - position;
-            Shoot();
+            cannon.Fire();
 
             if (playerOffset.Magnitude > 200)
             {
@@ -31,7 +31,7 @@ namespace Zenith.Library
             imageSources = new string[] { Util.GetShipSpriteFolderPath("purple_06.png") };
             imageRotation = 90;
             angle = Math.PI;
-            firePattern = new int[] { 120 };
+            cannon = new BasicCannon(this, 120);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Zenith.Library
 
         public override void ShipLoop()
         {
-            Shoot();
+            cannon.Fire();
             var playerOffset = World.Instance.Player.Position - position;
             angle = playerOffset.Angle;
 
@@ -33,7 +33,7 @@ namespace Zenith.Library
             double x = (World.Instance.Random.NextDouble() * World.Instance.Width / 2) + World.Instance.Width / 2;
             double y = World.Instance.Random.NextDouble() * World.Instance.Height;
             goal = new Vector(x, y);
-            firePattern = new int[] { 200 };
+            cannon = new BasicCannon(this, 200);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Zenith.Library
 
         public override void ShipLoop()
         {
-            Shoot();
+            cannon.Fire();
             switch (state)
             {
                 case EnemyState.Sway:
@@ -31,7 +31,6 @@ namespace Zenith.Library
         public Boss1(Vector position)
             : base(position)
         {
-            firePattern = new int[] { 15, 15, 15, 100 };
             imageSources = new string[] { Util.GetShipSpriteFolderPath("large_grey_01.png") };
             angle = Math.PI;
             type = GameObjectType.Boss1;
@@ -39,7 +38,7 @@ namespace Zenith.Library
             health = 4000;
             maxHealth = 4000;
             mass = 400;
-            laserDamage = 100;
+            cannon = new Boss1Cannon(this);
         }
     }
 }

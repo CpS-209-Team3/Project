@@ -15,20 +15,17 @@ namespace Zenith.Library
             if (World.Instance.PlayerController.Left) AddForce(new Vector(-acceleration, 0));
             if (World.Instance.PlayerController.Right) AddForce(new Vector(acceleration, 0));
 
-            if (World.Instance.PlayerController.Fire) Shoot();
+            if (World.Instance.PlayerController.Fire) cannon.Fire();
         }
 
         public Player(Vector position)
             : base(position)
         {
+            health = 1000;
+            maxHealth = 1000;
             type = GameObjectType.Player;
-            imageSources = new string[] {
-                Util.GetShipSpriteFolderPath("blue_01.png")
-            };
-            angle = 0;
-            firePattern = new int[] { 0 };
-            accuracy = 0.1;
-            //size = new Vector(128, 128);
+            imageSources = new string[] { Util.GetShipSpriteFolderPath("blue_01.png") };
+            cannon = new BasicCannon(this, 15);
         }
     }
 }
