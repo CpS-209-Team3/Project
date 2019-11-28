@@ -21,7 +21,8 @@ namespace Zenith.Library
         Boss3,
         Boss4,
         Boss5,
-        Player
+        Player,
+        HealthBar
     }
 
     public enum GameTag
@@ -40,7 +41,7 @@ namespace Zenith.Library
         protected double deacceleration = 1;
         protected double angle = 0;
 
-        protected bool collidable;
+        protected bool collidable = true;
         protected bool destroy = false;
 
         protected string imageSource;
@@ -115,7 +116,7 @@ namespace Zenith.Library
         {
             this.position = position;
             velocity = new Vector(0, 0);
-            size = new Vector(0, 0);
+            size = new Vector(1, 1);
             type = GameObjectType.Unknown;
             imageRotation = 90;
         }

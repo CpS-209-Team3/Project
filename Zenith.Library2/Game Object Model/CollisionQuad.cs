@@ -39,6 +39,7 @@ namespace Zenith.Library
         {
             for (int i = 0; i < objects.Count; ++i)
             {
+                if (!objects[i].Collidable) continue;
                 // if the object fits to the left of the quad
                 if (objects[i].Position.X < origin.X)
                 {
@@ -77,8 +78,10 @@ namespace Zenith.Library
             {
                 for (int i = 0; i < objectCount; ++i)
                 {
+                    if (!objects[i].Collidable) continue;
                     for (int j = i + 1; j < objectCount; ++j)
                     {
+                        if (!objects[j].Collidable) continue;
                         // todo: implement the collision checks here
                         if (objects[i].Position.X - objects[i].Size.X / 2 <= objects[j].Position.X + objects[j].Size.X / 2 &&
                             objects[i].Position.Y - objects[i].Size.Y / 2 <= objects[j].Position.Y + objects[j].Size.Y / 2 &&

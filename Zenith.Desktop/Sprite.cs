@@ -42,6 +42,9 @@ namespace Zenith.Desktop
             // Source: https://stackoverflow.com/questions/13034201/wpf-rotate-image-around-center
             RenderTransformOrigin = new Point(0.5, 0.5);
 
+            // Source: https://stackoverflow.com/questions/19302061/resize-image-in-xaml-without-losing-quality
+            RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.NearestNeighbor);
+
             currentAngle = gameObject.Angle;
 
             Width = gameObject.Size.X;

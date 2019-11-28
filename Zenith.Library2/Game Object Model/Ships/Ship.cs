@@ -9,6 +9,7 @@ namespace Zenith.Library
     {
         // instance variables
         protected int health = 120;
+        protected int maxHealth = 120;
         protected int reloadTime = 0;
         protected int bodyDamage = 0;
 
@@ -35,6 +36,7 @@ namespace Zenith.Library
         public double LaserSpeed { get { return laserSpeed; } set { laserSpeed = value; } }
         public Vector ShakeOffSet { get { return shakeOffset; } }
         public Action OnDeath { set { onDeath = value; } }
+        public int MaxHealth { get { return maxHealth; } }
 
         // Methods
 
@@ -130,6 +132,9 @@ namespace Zenith.Library
             shakeOffset = new Vector(0, 0);
             mass = 50;
             tag = GameTag.Ship;
+
+            var h = new HealthBar(this);
+            World.Instance.AddObject(h);
         }
 
         public override string Serialize()
