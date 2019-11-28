@@ -99,6 +99,11 @@ namespace Zenith.Desktop
             p.Position.X = 90;
             p.Position.Y = World.Instance.Height / 2;
 
+            var b = new Boss1(new Library.Vector(0, 0));
+            b.Position.X = 900;
+            b.Position.Y = World.Instance.Height / 2;
+            World.Instance.AddObject(b);
+
             // setting cheat mode on
             isCheating = true;
             if (isCheating) p.Health = 0xfffffff;

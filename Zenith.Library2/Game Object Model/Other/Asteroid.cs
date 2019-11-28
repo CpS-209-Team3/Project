@@ -8,7 +8,7 @@ namespace Zenith.Library
     {
         public override void Loop()
         {
-            velocity.X = -50;
+            if (velocity.X > -50) AddForce(new Vector(-50, 0));
         }
 
         public Asteroid(Vector position, double size)

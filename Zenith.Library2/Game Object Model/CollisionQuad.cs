@@ -80,10 +80,10 @@ namespace Zenith.Library
                     for (int j = i + 1; j < objectCount; ++j)
                     {
                         // todo: implement the collision checks here
-                        if (objects[i].Position.X <= objects[j].Position.X + objects[j].Size.X &&
-                            objects[i].Position.Y <= objects[j].Position.Y + objects[j].Size.Y &&
-                            objects[i].Position.X + objects[i].Size.X >= objects[j].Position.X &&
-                            objects[i].Position.Y + objects[i].Size.Y >= objects[j].Position.Y)
+                        if (objects[i].Position.X - objects[i].Size.X / 2 <= objects[j].Position.X + objects[j].Size.X / 2 &&
+                            objects[i].Position.Y - objects[i].Size.Y / 2 <= objects[j].Position.Y + objects[j].Size.Y / 2 &&
+                            objects[i].Position.X + objects[i].Size.X / 2 >= objects[j].Position.X - objects[j].Size.X / 2 &&
+                            objects[i].Position.Y + objects[i].Size.Y / 2 >= objects[j].Position.Y - objects[j].Size.Y / 2)
                         {
                             objects[i].OnCollision(objects[j]);
                             objects[j].OnCollision(objects[i]);

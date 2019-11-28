@@ -27,7 +27,8 @@ namespace Zenith.Desktop
                 currentAngle = gameObject.Angle;
             }
 
-            var offset = gameObject.Position - gameObject.Size * 0.5;
+            var offset = gameObject.Position - (gameObject.Size / 2);
+            //var offset = gameObject.Position;
 
             Margin = new Thickness(offset.X, offset.Y, 0, 0);
         }
