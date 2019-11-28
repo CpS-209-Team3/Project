@@ -15,15 +15,16 @@ namespace Zenith.Desktop
     {
         private GameObject gameObject;
         private double currentAngle;
+        private Image[] healthBar = { new Image() };
 
         public GameObject GameObject { get { return gameObject; } }
 
         public void Update()
         {
-            if (currentAngle != gameObject.ImageRotation)
+            if (currentAngle != gameObject.Angle)
             {
-                RenderTransform = new RotateTransform(gameObject.ImageRotation);
-                currentAngle = gameObject.ImageRotation;
+                RenderTransform = new RotateTransform(gameObject.Angle * 180 / Math.PI + gameObject.ImageRotation);
+                currentAngle = gameObject.Angle;
             }
 
             var offset = gameObject.Position - gameObject.Size * 0.5;
@@ -35,17 +36,24 @@ namespace Zenith.Desktop
         {
             this.gameObject = gameObject;
 
-            RenderTransform = new RotateTransform(gameObject.ImageRotation);
+            RenderTransform = new RotateTransform(gameObject.Angle * 180 / Math.PI + gameObject.ImageRotation);
 
             // Source: https://stackoverflow.com/questions/13034201/wpf-rotate-image-around-center
             RenderTransformOrigin = new Point(0.5, 0.5);
 
-            currentAngle = gameObject.ImageRotation;
+            currentAngle = gameObject.Angle;
 
             Width = gameObject.Size.X;
             Height = gameObject.Size.Y;
 
-            Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Absolute));
+            try
+            {
+                Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Absolute));
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error retrieving image for " + gameObject.Type.ToString());
+            }
         }
     }
 }

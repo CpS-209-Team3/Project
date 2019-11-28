@@ -80,7 +80,7 @@ namespace Zenith.Desktop
 
                 int potentialCollisions = World.Instance.Objects.Count;
                 potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
-                txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
+                //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
             });
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,6 +97,7 @@ namespace Zenith.Desktop
             World.Instance.Player = p;
             p.Velocity.Cap(0);
             p.Position.X = 90;
+            p.Position.Y = World.Instance.Height / 2;
 
             // setting cheat mode on
             isCheating = true;

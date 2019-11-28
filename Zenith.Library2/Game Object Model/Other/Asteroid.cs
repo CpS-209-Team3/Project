@@ -6,7 +6,10 @@ namespace Zenith.Library
 {
     public class Asteroid : Enemy
     {
-        public override void Loop() { }
+        public override void Loop()
+        {
+            velocity.X = -50;
+        }
 
         public Asteroid(Vector position, double size)
             : base(position)

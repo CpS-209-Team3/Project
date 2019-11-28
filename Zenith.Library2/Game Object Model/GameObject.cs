@@ -36,8 +36,9 @@ namespace Zenith.Library
     {
         protected Vector position, velocity, size;
         protected GameObjectType type;
-        protected double maxSpeed = 2000;
+        protected const double maxSpeed = 2000;
         protected double deacceleration = 1;
+        protected double angle = 0;
 
         protected bool collidable;
         protected bool destroy = false;
@@ -65,11 +66,13 @@ namespace Zenith.Library
 
         public string ImageSource { get { return imageSource; } }
 
-        public double ImageRotation { get { return imageRotation; } set { imageRotation = value; } }
+        public double ImageRotation { get { return imageRotation; } }
 
         public double Mass { get { return mass; } }
 
         public GameTag Tag { get { return tag; } }
+
+        public double Angle { get { return angle; } }
 
         // Methods
 
@@ -85,6 +88,22 @@ namespace Zenith.Library
                 velocity.Magnitude = maxSpeed;
             }
             position += velocity * World.Instance.DeltaTime;
+
+            if (position.Y < -1)
+            {
+                position.Y = -1;
+                velocity.Y = 0;
+            }
+            if (position.Y > World.Instance.Height + 1)
+            {
+                position.Y = World.Instance.Height + 1;
+                velocity.Y = 0;
+            }
+            if (position.X < -1)
+            {
+                position.X = -1;
+                velocity.X = 0;
+            }
         }
 
         public void AddForce(Vector f)
@@ -98,6 +117,7 @@ namespace Zenith.Library
             velocity = new Vector(0, 0);
             size = new Vector(0, 0);
             type = GameObjectType.Unknown;
+            imageRotation = 90;
         }
 
         public virtual string Serialize()

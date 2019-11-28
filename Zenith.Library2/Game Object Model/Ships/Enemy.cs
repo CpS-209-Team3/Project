@@ -22,7 +22,6 @@ namespace Zenith.Library
         public Enemy(Vector position)
             : base(position)
         {
-            this.isPlayer = false;
             type = GameObjectType.Enemy;
             state = EnemyState.Sway;
             swayStatus = 0;

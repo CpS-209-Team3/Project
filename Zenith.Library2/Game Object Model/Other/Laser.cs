@@ -8,11 +8,11 @@ namespace Zenith.Library
     class Laser : GameObject
     {
         private int damage;
-        private GameObjectType senderType;
+        private bool isFromPlayer;
 
-        public GameObjectType SenderType
+        public bool IsFromPlayer
         {
-            get { return senderType; }
+            get { return isFromPlayer; }
         }
 
         public int Damage
@@ -23,9 +23,11 @@ namespace Zenith.Library
         public override void OnCollision(GameObject gameObject)
         {
             // only does damage to the opponenet
-            if (gameObject is Ship)
+            if (gameObject.Tag == GameTag.Ship)
             {
-                if (senderType != (gameObject.Type))
+                // Found here that C# has a xor operator
+                // Source: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators
+                if (isFromPlayer ^ (gameObject is Player))
                 {
                     Destroy = true;
                 }
@@ -40,22 +42,23 @@ namespace Zenith.Library
                 position.Y > World.Instance.Height) Destroy = true;
         }
 
-        public Laser(Vector position, Vector velocity, int damage, GameObjectType isFromPlayer)
+        public Laser(Vector position, Vector velocity, int damage, bool isFromPlayer)
             : base(position)
         {
-            this.senderType = isFromPlayer;
+            this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
             imageSource = Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png");
+            imageRotation = 0;
             type = GameObjectType.Laser;
             size = new Vector(32, 32);
-            imageRotation = velocity.Angle * 180 / Math.PI;
+            angle = velocity.Angle;
             tag = GameTag.Projectile;
         }
 
         public override string Serialize()
         {
-            return base.Serialize() + ',' + senderType.ToString() + ',' + damage.ToString();
+            return base.Serialize() + ',' + isFromPlayer.ToString() + ',' + damage.ToString();
         }
 
         public override void Deserialize(string saveInfo)
