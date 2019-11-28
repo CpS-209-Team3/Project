@@ -36,7 +36,7 @@ namespace Zenith.Library
         public double LaserSpeed { get { return laserSpeed; } set { laserSpeed = value; } }
         public Vector ShakeOffSet { get { return shakeOffset; } }
         public Action OnDeath { set { onDeath = value; } }
-        public int MaxHealth { get { return maxHealth; } }
+        public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
 
         // Methods
 

@@ -37,6 +37,7 @@ namespace Zenith.Library
             type = GameObjectType.Boss1;
             size = new Vector(256, 256);
             health = 4000;
+            maxHealth = 4000;
             mass = 400;
             laserDamage = 100;
         }

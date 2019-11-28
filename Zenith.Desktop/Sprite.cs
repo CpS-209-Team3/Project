@@ -16,12 +16,18 @@ namespace Zenith.Desktop
         private GameObject gameObject;
         private double currentAngle;
         private Image[] images;
-        private int lastImageIndex = 0;
+        private int currentIndex = 0;
 
         public GameObject GameObject { get { return gameObject; } }
 
         public void Update()
         {
+            if (currentIndex != gameObject.ImageIndex)
+            {
+                currentIndex = gameObject.ImageIndex;
+                Content = images[currentIndex];
+            }
+
             if (currentAngle != gameObject.Angle)
             {
                 RenderTransform = new RotateTransform(gameObject.Angle * 180 / Math.PI + gameObject.ImageRotation);

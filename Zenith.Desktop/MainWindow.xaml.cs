@@ -106,7 +106,7 @@ namespace Zenith.Desktop
 
             // setting cheat mode on
             isCheating = true;
-            if (isCheating) p.Health = 0xfffffff;
+            if (isCheating) { p.Health = 0xfffffff; p.MaxHealth = 0xfffffff; };
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
