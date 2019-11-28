@@ -33,7 +33,7 @@ namespace Zenith.Library
             double x = (World.Instance.Random.NextDouble() * World.Instance.Width / 2) + World.Instance.Width / 2;
             double y = World.Instance.Random.NextDouble() * World.Instance.Height;
             goal = new Vector(x, y);
-            fireRate = 200;
+            firePattern = new int[] { 200 };
         }
     }
 }

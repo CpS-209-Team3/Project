@@ -31,7 +31,7 @@ namespace Zenith.Library
             imageSource = Util.GetShipSpriteFolderPath("purple_06.png");
             imageRotation = 90;
             angle = Math.PI;
-            fireRate = 120;
+            firePattern = new int[] { 120 };
         }
     }
 }

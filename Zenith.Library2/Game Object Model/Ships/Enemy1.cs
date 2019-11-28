@@ -22,7 +22,7 @@ namespace Zenith.Library
             angle = Math.PI;
             velocity.X = -50;
             this.position.X = World.Instance.Width;
-            fireRate = 300;
+            firePattern = new int[] { 300 };
             swayRadius = 20;
         }
     }

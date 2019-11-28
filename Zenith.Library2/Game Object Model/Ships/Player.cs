@@ -16,8 +16,6 @@ namespace Zenith.Library
             if (World.Instance.PlayerController.Right) AddForce(new Vector(acceleration, 0));
 
             if (World.Instance.PlayerController.Fire) Shoot();
-
-            angle += 0.01;
         }
 
         public Player(Vector position)
@@ -26,9 +24,9 @@ namespace Zenith.Library
             type = GameObjectType.Player;
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
             angle = 0;
-            fireRate = 0;
-            accuracy = Math.PI / 4;
-            size = new Vector(128, 128);
+            firePattern = new int[] { 0 };
+            accuracy = 0.1;
+            //size = new Vector(128, 128);
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Zenith.Library
         // instance variables
         protected int health = 120;
         protected int reloadTime = 0;
-        protected int fireRate = 15;
         protected int bodyDamage = 0;
 
         protected double accuracy = 0.05;
@@ -22,6 +21,9 @@ namespace Zenith.Library
         private int shakeDuration = 30;
 
         private Action onDeath;
+
+        protected int[] firePattern = { 15 };
+        private int fireSequence = 0;
 
         // Properties
 
@@ -71,7 +73,9 @@ namespace Zenith.Library
                 var offset = new Vector(angle, size.X / 2, true);
                 var laser = new Laser(position + offset, vel, laserDamage, this is Player);
                 World.Instance.AddObject(laser);
-                reloadTime += fireRate;
+
+                reloadTime += firePattern[fireSequence];
+                fireSequence = (fireSequence + 1) % firePattern.Length;
             }
         }
 
