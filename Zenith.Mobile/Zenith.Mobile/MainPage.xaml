@@ -7,17 +7,17 @@
              x:Class="Zenith.View.MainPage"
              BackgroundImageSource="universe.jpg">
     <StackLayout Orientation="Horizontal">
-        <StackLayout x:Name="StkBuffer" WidthRequest="285">
+        <StackLayout x:Name="StkBuffer" WidthRequest="548">
         </StackLayout>
-        <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-            <Image x:Name="ImgLogo" Source="lightLogo.png" HeightRequest="75" Margin="20"/>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+            <Image x:Name="ImgLogo" Source="lightLogo.png" HeightRequest="100" Margin="30"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <StackLayout HorizontalOptions="Center">
-                    <Button x:Name="BtnStart" Text="NEW GAME" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnNew_Clicked"/>
-                    <Button x:Name="BtnLoad" Text="LOAD GAME" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnLoad_Clicked"/>
-                    <Button x:Name="BtnScores" Text="HIGH SCORES" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnScores_Clicked"/>
-                    <Button x:Name="BtnHelp" Text="HELP" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnHelp_Clicked"/>
-                    <Button x:Name="BtnCredits" Text="ABOUT" FontFamily="Impact" FontSize="20" TextColor="White" Margin="20,0,20,10" Clicked="BtnCredits_Clicked"/>
+                    <Button x:Name="BtnStart" Text="NEW GAME" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnNew_Clicked"/>
+                    <Button x:Name="BtnLoad" Text="LOAD GAME" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnLoad_Clicked"/>
+                    <Button x:Name="BtnScores" Text="HIGH SCORES" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnScores_Clicked"/>
+                    <Button x:Name="BtnHelp" Text="HELP" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnHelp_Clicked"/>
+                    <Button x:Name="BtnCredits" Text="ABOUT" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnCredits_Clicked"/>
                 </StackLayout>
             </StackLayout>
             

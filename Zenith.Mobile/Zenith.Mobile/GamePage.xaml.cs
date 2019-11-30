@@ -73,7 +73,7 @@ namespace Zenith.View
             gameGrid.Children.Add(img);
 
             var txt = new Entry();
-            txt.Text = Util.GetImagePath("blue_01.png");
+            //txt.Text = Util.GetImagePath("blue_01.png");
             gameGrid.Children.Add(txt);
 
             var e = new Enemy1(new Library.Vector(70, 70));
