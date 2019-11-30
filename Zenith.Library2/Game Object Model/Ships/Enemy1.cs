@@ -10,7 +10,6 @@ namespace Zenith.Library
             if (reloadTime == 0)
             {
                 var p = World.Instance.Player.Position - position;
-                direction = p.Angle;
                 Shoot();
             }
         }
@@ -20,9 +19,11 @@ namespace Zenith.Library
         {
             type = GameObjectType.Enemy1;
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
-            imageRotation = 270;
-            this.velocity.X = -50;
-            this.position.X = World.Instance.Width - 100;
+            angle = Math.PI;
+            velocity.X = -50;
+            this.position.X = World.Instance.Width;
+            fireRate = 300;
+            swayRadius = 20;
         }
     }
 }
