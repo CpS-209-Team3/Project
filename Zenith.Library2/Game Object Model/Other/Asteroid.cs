@@ -6,11 +6,6 @@ namespace Zenith.Library
 {
     public class Asteroid : Enemy
     {
-        public override void Loop()
-        {
-            if (velocity.X > -50) AddForce(new Vector(-50, 0));
-        }
-
         public Asteroid(Vector position, double size)
             : base(position)
         {

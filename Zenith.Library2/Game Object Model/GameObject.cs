@@ -112,7 +112,7 @@ namespace Zenith.Library
 
         public void AddForce(Vector f)
         {
-            this.velocity += f * World.Instance.DeltaTime;
+            this.velocity += f / mass;
         }
 
         public GameObject(Vector position)

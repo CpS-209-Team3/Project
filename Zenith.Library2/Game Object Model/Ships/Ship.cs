@@ -42,7 +42,7 @@ namespace Zenith.Library
                         health -= ship.BodyDamage;
                         Shake();
                     }
-                    AddForce(offset * (gameObject.Velocity.Magnitude * gameObject.Mass / mass));
+                    AddForce(offset * ((gameObject.Velocity.Magnitude) * gameObject.Mass / mass));
                     break;
                 case GameTag.Projectile:
                     var laser = (Laser)gameObject;

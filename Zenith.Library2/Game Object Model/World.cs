@@ -118,7 +118,7 @@ namespace Zenith.Library
             collisions = 0;
             collisionManager.CheckForCollisions();
 
-            // spawnManager.Update();
+            spawnManager.Update();
 
             ++gameTick;
         }

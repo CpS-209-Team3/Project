@@ -21,7 +21,7 @@ namespace Zenith.Library
             }
             ++clock;
             double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.Height - position.Y;
-            AddForce(new Vector(0, goalY));
+            AddForce(new Vector(0, goalY) * 100);
             var offset = new Vector(World.Instance.Width * 0.75 - position.X, 0);
             AddForce(offset);
 
