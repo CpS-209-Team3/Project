@@ -135,7 +135,8 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
-
+            GamePage game = new GamePage();
+            this.Content = game;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
