@@ -6,9 +6,8 @@ namespace Zenith.Library
 {
     public enum GameObjectType
     {
-        Generic,
+        Unknown,
         Ship,
-        Player,
         Item,
         Asteroid,
         Laser,
@@ -22,6 +21,7 @@ namespace Zenith.Library
         Boss3,
         Boss4,
         Boss5,
+        Player
     }
 
     public abstract class GameObject : ISerialize
@@ -82,7 +82,7 @@ namespace Zenith.Library
             this.position = position;
             velocity = new Vector(0, 0);
             size = new Vector(0, 0);
-            type = GameObjectType.Generic;
+            type = GameObjectType.Unknown;
         }
 
         public virtual string Serialize()

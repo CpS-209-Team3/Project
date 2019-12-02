@@ -41,7 +41,8 @@ namespace Zenith.Library
             {
                 case GameObjectType.Laser:
                     var laser = (Laser)gameObject;
-                    if ((laser.IsFromPlayer && type != GameObjectType.Player) || (!laser.IsFromPlayer && type == GameObjectType.Player))
+                    if (laser.SenderType != this.type)
+
                     {
                         health -= laser.Damage;
                         Shake();
@@ -93,7 +94,6 @@ namespace Zenith.Library
             }
             else
             {
-
                 shakeOffset.Cap(0);
             }
         }

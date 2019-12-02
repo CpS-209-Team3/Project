@@ -8,11 +8,11 @@ namespace Zenith.Library
     class Laser : GameObject
     {
         private int damage;
-        private bool isFromPlayer;
+        private GameObjectType senderType;
 
-        public bool IsFromPlayer
+        public GameObjectType SenderType
         {
-            get { return isFromPlayer; }
+            get { return senderType; }
         }
 
         public int Damage
@@ -25,7 +25,7 @@ namespace Zenith.Library
             // only does damage to the opponenet
             if (gameObject is Ship)
             {
-                if (isFromPlayer != (gameObject is Player))
+                if (senderType != (gameObject.Type))
                 {
                     Destroy = true;
                 }
@@ -40,27 +40,22 @@ namespace Zenith.Library
                 position.Y > World.Instance.Height) Destroy = true;
         }
 
-        public Laser(Vector position, Vector velocity, int damage, GameObjectType type)
+
+        public Laser(Vector position, Vector velocity, int damage, GameObjectType isFromPlayer)
             : base(position)
         {
-            if (type == GameObjectType.Player)
-            {
-                this.isFromPlayer = true;
-            }
-            else
-            {
-                this.isFromPlayer = false;
-            }
+            this.senderType = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
             imageSource = Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png");
             type = GameObjectType.Laser;
             size = new Vector(32, 32);
+            imageRotation = velocity.Angle * 180 / Math.PI;
         }
 
         public override string Serialize()
         {
-            return base.Serialize() + ',' + isFromPlayer.ToString() + ',' + damage.ToString();
+            return base.Serialize() + ',' + senderType.ToString() + ',' + damage.ToString();
         }
 
         public override void Deserialize(string saveInfo)

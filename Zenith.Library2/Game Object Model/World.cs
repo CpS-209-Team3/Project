@@ -47,7 +47,7 @@ namespace Zenith.Library
             collisionManager = new CollisionQuad(new Vector(0, 0), new Vector(Width, Height), 0);
             collisionManager.Objects = objects;
 
-            spawnManager = new SpawnManager(difficulty , level);
+            levelManager = new LevelManager(difficulty, level);
         }
 
         // End of Singleton Code
@@ -66,7 +66,7 @@ namespace Zenith.Library
         private int collisions = 0;
 
         private int difficulty = 1;
-        private SpawnManager spawnManager;
+        private LevelManager levelManager;
 
         // Properties
 
@@ -104,24 +104,28 @@ namespace Zenith.Library
 
         public void Update()
         {
-            for (int i = 0; i < objects.Count; ++i)
+            if (!PlayerController.Pause)
             {
-                objects[i].Update();
-
-                if (objects[i].Destroy)
+                for (int i = 0; i < objects.Count; ++i)
                 {
-                    RemoveObject(objects[i]);
-                    // fix index after removal
-                    --i;
+                    objects[i].Update();
+
+                    if (objects[i].Destroy)
+                    {
+                        RemoveObject(objects[i]);
+                        // fix index after removal
+                        --i;
+                    }
                 }
+
+                collisions = 0;
+                collisionManager.CheckForCollisions();
+
+                levelManager.Update();
+
+                ++gameTick;
             }
-
-            collisions = 0;
-            collisionManager.CheckForCollisions();
-
-            spawnManager.Update();
-
-            ++gameTick;
+            
         }
 
         public void AddObject(GameObject gameObject)
@@ -216,7 +220,7 @@ namespace Zenith.Library
                 case "BackgroundElement":
                     return new BackgroundElement(null, 0);
                 case "Laser":
-                    return new Laser(null, null, 0, GameObjectType.Player);
+                    return new Laser(null, null, 0, GameObjectType.Unknown);
                 case "Asteroid":
                     return new Asteroid(null, 0);
                 case "Player":

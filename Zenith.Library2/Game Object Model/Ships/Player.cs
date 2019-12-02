@@ -33,12 +33,15 @@ namespace Zenith.Library
             }
             if (!isAccerlating) velocity *= 0.97;
 
+            imageRotation += 15;
+
             if (World.Instance.PlayerController.Fire) Shoot();
         }
 
         public Player(Vector position)
             : base(position)
         {
+            type = GameObjectType.Player;
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
             imageRotation = 90;
             type = GameObjectType.Player;

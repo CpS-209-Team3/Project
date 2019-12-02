@@ -18,9 +18,6 @@ using Zenith.Library;
 
 namespace Zenith.Desktop
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
         DispatcherTimer timer;
@@ -80,6 +77,7 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+                World.Instance.PlayerController.Pause = Keyboard.IsKeyToggled(Key.P);
 
                 txtTest.Text = World.Instance.Player.Position.X.ToString();
             });

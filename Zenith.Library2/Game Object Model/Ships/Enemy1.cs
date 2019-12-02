@@ -24,11 +24,7 @@ namespace Zenith.Library
             imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
             imageRotation = 270;
             this.velocity.X = -50;
-
-            // upgrade stats based on difficulty
-            this.velocity.X -= difficulty * 10;
-            this.Health += difficulty * 20;
-            this.fireRate -= difficulty * 2;
+            this.position.X = World.Instance.Width - 100;
 
         }
     }

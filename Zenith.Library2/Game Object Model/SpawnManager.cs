@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    public class SpawnManager
+    public class LevelManager
     {
         private int level;
         private int difficulty;
@@ -50,11 +50,11 @@ namespace Zenith.Library
             }
         }
 
-        public SpawnManager(int difficulty, int level)
+        public LevelManager(int difficulty, int level)
         {
             this.difficulty = difficulty;
             this.level = level;
-            spawnRate = 400 - (30 * difficulty) - (20 * level);
+            spawnRate = 100 - (30 * difficulty) - (20 * level);
             timeUntilNextSpawn = spawnRate;
         }
     }
