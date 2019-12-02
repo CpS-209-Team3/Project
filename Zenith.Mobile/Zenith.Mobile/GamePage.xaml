@@ -11,5 +11,8 @@
         <Grid x:Name="gameGrid">
             
         </Grid>
+        <Grid x:Name="controlGrid">
+            <Button
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
