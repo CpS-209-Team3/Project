@@ -1,0 +1,20 @@
+﻿<Page x:Class="Zenith.Desktop.HighScorePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Zenith.Desktop"
+      mc:Ignorable="d" 
+      d:DesignHeight="630" d:DesignWidth="1120"
+      Title="HighScorePage">
+    <Grid>
+        <StackPanel Margin="0,0,0,555.4">
+            <TextBlock Text="Screen of Fame" FontSize="40" FontWeight="Bold" Foreground="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Margin="62,80,55,61.4" Orientation="Horizontal">
+            <TextBox x:Name="lbl_hiscore" Height="530" Width="380" Margin="80,1,54,1" Background="Aqua" BorderBrush="Transparent"/>
+            <TextBox x:Name="lbl_hiscore2" Height="auto" Width="393" Background="Aqua" BorderBrush="Transparent"/>
+        </StackPanel>
+        <Button x:Name="btn_Back" Content="Back" FontSize="20" Foreground="AliceBlue" FontWeight="DemiBold" Background="Transparent" BorderBrush="Transparent" Height="50" Width="50" Margin="62,569,1008,11.4" Click="btn_Back_Click"/>
+    </Grid>
+</Page>

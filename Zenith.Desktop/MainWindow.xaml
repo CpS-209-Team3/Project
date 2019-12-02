@@ -13,14 +13,13 @@
         </Canvas.Background>
         <StackPanel Orientation="Vertical" Height="476" Canvas.Left="194" Width="720" Canvas.Top="57">
             <Image Source="zenithLogo.png" Height="151" Width="574" Margin="30,30,0,20"/>
-            <Button x:Name="btn_Play" Content="Play Game" FontSize="30" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Play_Click"/>
-            <Button x:Name="btn_Load" Content="Load Game" FontSize="30" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Load_Click"/>
-            <Button x:Name="btn_Setting" Content="Setting" FontSize="30" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Setting_Click"/>
+            <Button x:Name="btn_Play" Content="Play Game" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Play_Click"/>
+            <Button x:Name="btn_Load" Content="Load Game" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Load_Click"/>
+            <Button x:Name="btn_HighScore" Content="High Scores" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="175" Margin="0,0,0,5" Click="btn_HighScore_Click"/>
             <StackPanel Orientation="Horizontal" Margin="177,0,167,5" HorizontalAlignment="Center">
-                <Button x:Name="btn_Help" Content="Help" FontSize="30" Height="50" Width="175" Margin="0,0,5,0" Click="btn_Help_Click"/>
-                <Button x:Name="btn_About" Content="About" FontSize="30" Height="50" Width="175" Margin="0,0,0,0" Click="btn_About_Click"/>
+                <Button x:Name="btn_Help" Content="Help" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="150" Margin="0,0,2,0" Click="btn_Help_Click"/>
+                <Button x:Name="btn_Credits" Content="Credits" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="150" Margin="2,0,0,0" Click="btn_Credits_Click"/>
             </StackPanel>
-            <Button x:Name="btn_Credits" Content="Credits" FontSize="30" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Credits_Click"/>
         </StackPanel>
         <TextBox x:Name="txtTest"/>
         <!--

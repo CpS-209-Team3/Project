@@ -10,7 +10,7 @@ namespace Zenith.Library
 
         public override void ShipLoop()
         {
-            Shoot();
+            cannon.Fire();
             var playerOffset = World.Instance.Player.Position - position;
             angle = playerOffset.Angle;
 
@@ -28,12 +28,12 @@ namespace Zenith.Library
         public Enemy2(Vector position)
            : base(position)
         {
-            imageSource = Util.GetShipSpriteFolderPath("darkgrey_01.png");
+            imageSources = new string[] { Util.GetShipSpriteFolderPath("darkgrey_01.png") };
             type = GameObjectType.Enemy2;
             double x = (World.Instance.Random.NextDouble() * World.Instance.Width / 2) + World.Instance.Width / 2;
             double y = World.Instance.Random.NextDouble() * World.Instance.Height;
             goal = new Vector(x, y);
-            fireRate = 200;
+            cannon = new BasicCannon(this, 200);
         }
     }
 }

@@ -21,7 +21,8 @@ namespace Zenith.Library
         Boss3,
         Boss4,
         Boss5,
-        Player
+        Player,
+        HealthBar
     }
 
     public enum GameTag
@@ -40,11 +41,12 @@ namespace Zenith.Library
         protected double deacceleration = 1;
         protected double angle = 0;
 
-        protected bool collidable;
+        protected bool collidable = true;
         protected bool destroy = false;
 
-        protected string imageSource;
+        protected string[] imageSources;
         protected double imageRotation = 0;
+        protected int imageIndex = 0;
 
         protected double mass = 1;
         protected GameTag tag = GameTag.None;
@@ -64,7 +66,7 @@ namespace Zenith.Library
 
         public bool Destroy { get { return destroy;} set { destroy = value; } }
 
-        public string ImageSource { get { return imageSource; } }
+        public string[] ImageSources { get { return imageSources; } }
 
         public double ImageRotation { get { return imageRotation; } }
 
@@ -73,6 +75,8 @@ namespace Zenith.Library
         public GameTag Tag { get { return tag; } }
 
         public double Angle { get { return angle; } }
+
+        public int ImageIndex { get { return imageIndex; } }
 
         // Methods
 
@@ -108,14 +112,14 @@ namespace Zenith.Library
 
         public void AddForce(Vector f)
         {
-            this.velocity += f * World.Instance.DeltaTime;
+            this.velocity += f / mass;
         }
 
         public GameObject(Vector position)
         {
             this.position = position;
             velocity = new Vector(0, 0);
-            size = new Vector(0, 0);
+            size = new Vector(1, 1);
             type = GameObjectType.Unknown;
             imageRotation = 90;
         }
