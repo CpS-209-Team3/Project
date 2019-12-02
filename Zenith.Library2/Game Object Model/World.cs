@@ -135,6 +135,12 @@ namespace Zenith.Library
             ViewManager.RemoveSprite(gameObject);
         }
 
+        public void EnableCheatMode()
+        {
+            Player.Health = 0x7FFFFFFF;
+            Player.MaxHealth = 0x7FFFFFFF;
+        }
+
         // Reads a list of strings from the file specifed by filename and puts them into the list
         // of game object strings, then depending on the type of the string given by the first comma
         // seperated value, it will create a different object, deserialize the rest of the information
@@ -198,10 +204,10 @@ namespace Zenith.Library
 
             objects.RemoveAll(obj => true);
 
-            /*foreach (GameObject obj in objects)
-            {
-                RemoveObject(obj);
-            }*/
+            var p = new Player(new Library.Vector(90, Height / 2));
+            AddObject(p);
+            Player = p;
+            p.Velocity.Cap(0);
         }
 
         public GameObject CreateInstanceOf(string objectType)
