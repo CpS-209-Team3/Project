@@ -13,6 +13,11 @@ namespace Zenith.View
     public partial class GamePage : ContentPage, ViewManager
     {
         bool isCheating = false;
+        bool left = false;
+        bool right = false;
+        bool up = false;
+        bool down = false;
+        bool fire = false;
 
         public GamePage()
         {
@@ -63,11 +68,11 @@ namespace Zenith.View
                 }
 
                 // Input handling
-                //World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
-                //World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
-                //World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
-                //World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
-                //World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+                World.Instance.PlayerController.Up = up;
+                World.Instance.PlayerController.Down = down;
+                World.Instance.PlayerController.Left = left;
+                World.Instance.PlayerController.Right = right;
+                World.Instance.PlayerController.Fire = fire;
 
                 int potentialCollisions = World.Instance.Objects.Count;
                 potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
@@ -93,8 +98,63 @@ namespace Zenith.View
             TimeSpan time = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             Device.StartTimer(time, () => 
             {
+
                 return true;
             });
+        }
+
+
+        //~~~~~~~~~~~~~~~~~~~Control Management Zone~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~Pressed~~~~~~~~~~~~~~~~~~~~~~~~~
+        private void btnLeft_Pressed(object sender, EventArgs e)
+        {
+            left = true;
+        }
+
+        private void btnRight_Pressed(object sender, EventArgs e)
+        {
+            right = true;
+        }
+
+        private void btnUp_Pressed(object sender, EventArgs e)
+        {
+            up = true;
+        }
+
+        private void btnDown_Pressed(object sender, EventArgs e)
+        {
+            down = true;
+        }
+
+        private void btnFire_Pressed(object sender, EventArgs e)
+        {
+            fire = true;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~~~Released~~~~~~~~~~~~~~~~~~~~~~~~~
+        private void btnLeft_Released(object sender, EventArgs e)
+        {
+            left = false;
+        }
+
+        private void btnRight_Released(object sender, EventArgs e)
+        {
+            right = false;
+        }
+
+        private void btnUp_Released(object sender, EventArgs e)
+        {
+            up = false;
+        }
+
+        private void btnDown_Released(object sender, EventArgs e)
+        {
+            down = false;
+        }
+
+        private void btnFire_Released(object sender, EventArgs e)
+        {
+            fire = false;
         }
     }
 }
