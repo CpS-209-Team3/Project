@@ -11,38 +11,68 @@ using Zenith.Library;
 
 namespace Zenith.Desktop
 {
-    class Sprite : Image
+    class Sprite : Label
     {
         private GameObject gameObject;
         private double currentAngle;
+        private Image[] images;
+        private int currentIndex = 0;
 
         public GameObject GameObject { get { return gameObject; } }
 
         public void Update()
         {
-            if (currentAngle != gameObject.ImageRotation)
+            if (currentIndex != gameObject.ImageIndex)
             {
-                RenderTransform = new RotateTransform(gameObject.ImageRotation);
-                currentAngle = gameObject.ImageRotation;
+                currentIndex = gameObject.ImageIndex;
+                Content = images[currentIndex];
             }
 
-            var offset = gameObject.Position - gameObject.Size * 0.5;
+            if (currentAngle != gameObject.Angle)
+            {
+                RenderTransform = new RotateTransform(gameObject.Angle * 180 / Math.PI + gameObject.ImageRotation);
+                currentAngle = gameObject.Angle;
+            }
+
+            var offset = gameObject.Position - (gameObject.Size / 2);
+            //var offset = gameObject.Position;
 
             Margin = new Thickness(offset.X, offset.Y, 0, 0);
         }
 
         public Sprite(GameObject gameObject)
         {
+            // Load images for sprite
+            images = new Image[gameObject.ImageSources.Length];
+
             this.gameObject = gameObject;
 
-            RenderTransform = new RotateTransform(gameObject.ImageRotation);
+            RenderTransform = new RotateTransform(gameObject.Angle * 180 / Math.PI + gameObject.ImageRotation);
 
             // Source: https://stackoverflow.com/questions/13034201/wpf-rotate-image-around-center
             RenderTransformOrigin = new Point(0.5, 0.5);
 
-            currentAngle = gameObject.ImageRotation;
+            // Source: https://stackoverflow.com/questions/19302061/resize-image-in-xaml-without-losing-quality
+            RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.NearestNeighbor);
 
-            Source = new BitmapImage(new Uri(gameObject.ImageSource, UriKind.Absolute));
+            currentAngle = gameObject.Angle;
+
+            try
+            {
+                for (int i = 0; i < gameObject.ImageSources.Length; ++i)
+                {
+                    images[i] = new Image();
+                    images[i].Source = new BitmapImage(new Uri(gameObject.ImageSources[i], UriKind.Absolute));
+                    images[i].Width = gameObject.Size.X;
+                    images[i].Height = gameObject.Size.Y;
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error retrieving image for " + gameObject.Type.ToString());
+            }
+
+            Content = images[0];
         }
     }
 }

@@ -21,8 +21,8 @@ namespace Zenith.Library
             if (r < 9)
             {
                 if (r < 3) World.Instance.AddObject(new Enemy1(pos));
-                else if (r < 7) World.Instance.AddObject(new Enemy1(pos));
-                else World.Instance.AddObject(new Enemy1(pos));
+                else if (r < 7) World.Instance.AddObject(new Enemy2(pos));
+                else World.Instance.AddObject(new Enemy3(pos));
             }
             else
             {
@@ -46,7 +46,7 @@ namespace Zenith.Library
         public SpawnManager(int difficulty)
         {
             this.difficulty = difficulty;
-            spawnRate = 400 - 30 * difficulty;
+            spawnRate = 100 - 30 * difficulty;
             timeUntilNextSpawn = spawnRate;
         }
     }

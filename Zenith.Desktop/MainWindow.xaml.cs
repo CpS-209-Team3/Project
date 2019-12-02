@@ -18,9 +18,6 @@ using Zenith.Library;
 
 namespace Zenith.Desktop
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, ViewManager
     {
         DispatcherTimer timer;
@@ -81,7 +78,9 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
 
-                txtTest.Text = World.Instance.Player.Position.X.ToString();
+                int potentialCollisions = World.Instance.Objects.Count;
+                potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
+                //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
             });
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,10 +97,16 @@ namespace Zenith.Desktop
             World.Instance.Player = p;
             p.Velocity.Cap(0);
             p.Position.X = 90;
+            p.Position.Y = World.Instance.Height / 2;
+
+            var b = new Boss1(new Library.Vector(0, 0));
+            b.Position.X = 900;
+            b.Position.Y = World.Instance.Height / 2;
+            World.Instance.AddObject(b);
 
             // setting cheat mode on
             isCheating = true;
-            if (isCheating) p.Health = 0xfffffff;
+            if (isCheating) { p.Health = 0xfffffff; p.MaxHealth = 0xfffffff; };
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
