@@ -10,8 +10,10 @@ using Xamarin.Forms.Xaml;
 namespace Zenith.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GamePage : ContentPage
+    public partial class GamePage : ContentPage, ViewManager
     {
+        bool isCheating = false;
+
         public GamePage()
         {
             InitializeComponent();
@@ -19,67 +21,93 @@ namespace Zenith.View
 
         List<Sprite> sprites;
 
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Add Sprite ~~~~~~~~~~~~~~~~~~~~
         public void AddSprite(GameObject obj)
         {
-            var s = new Sprite(obj);
-            sprites.Add(s);
-            gameGrid.Children.Add(s);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var s = new Sprite(obj);
+                sprites.Add(s);
+                gameGrid.Children.Add(s);
+            });
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Remove Sprite ~~~~~~~~~~~~~~~~~~~~
         public void RemoveSprite(GameObject obj)
         {
-            foreach (var s in sprites)
+            Device.BeginInvokeOnMainThread(() =>
             {
-                if (s.GameObject == obj)
+                foreach (var s in sprites)
                 {
-                    sprites.Remove(s);
-                    gameGrid.Children.Remove(s);
-                    break;
-                }
-            }
-        }
-
-        public void GameLoop()
-        {
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    World.Instance.Update();
-                    //e.Update();
-
-                    Device.BeginInvokeOnMainThread(() =>
+                    if (s.GameObject == obj)
                     {
-                        for (int i = 0; i < sprites.Count; ++i)
-                        {
-                            sprites[i].Update();
-                        }
-                    });
-                    Task.Delay(1000 / 60);
+                        sprites.Remove(s);
+                        gameGrid.Children.Remove(s);
+                        break;
+                    }
                 }
             });
         }
 
-        private void ContentPage_Appearing(object sender, EventArgs args)
+        //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
+        public void GameLoop(object sender, EventArgs e)
         {
+            World.Instance.Update();
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                for (int i = 0; i < sprites.Count; ++i)
+                {
+                    sprites[i].Update();
+                }
+
+                // Input handling
+                //World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
+                //World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
+                //World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
+                //World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
+                //World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+
+                int potentialCollisions = World.Instance.Objects.Count;
+                potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
+                //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
+            });
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
+        private void Window_Loaded(object sender, EventArgs ev)
+        {
+            //World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
+            World.Instance.ViewManager = this;
+            var p = new Player(new Library.Vector(0, 0));
+            World.Instance.AddObject(p);
+            World.Instance.Player = p;
+            p.Velocity.Cap(0);
+            p.Position.X = 90;
+            p.Position.Y = World.Instance.Height / 2;
 
-            /////////////////////////////////////////////////////////////Error thrown here due to wpf/xamarin integration
-            World.Instance.ViewManager = (ViewManager)this;
+            var b = new Boss1(new Library.Vector(0, 0));
+            b.Position.X = 900;
+            b.Position.Y = World.Instance.Height / 2;
+            World.Instance.AddObject(b);
+
+            // setting cheat mode on
+            isCheating = true;
+            if (isCheating) { p.Health = 0xfffffff; p.MaxHealth = 0xfffffff; };
+
+            World.Instance.Width = Width;
+            World.Instance.Height = Height;
 
 
-            var img = new Image();
-            img.Source = "blue_01.png";
-            gameGrid.Children.Add(img);
-
-            var txt = new Entry();
-            //txt.Text = Util.GetImagePath("blue_01.png");
-            gameGrid.Children.Add(txt);
-
-            var e = new Enemy1(new Library.Vector(70, 70));
-            AddSprite(e);
-            e.Update();
-            GameLoop();
+            TimeSpan time = new TimeSpan(0, 0, 0, 0, 1000 / 60);
+            Device.StartTimer(time, () => 
+            {
+                return true;
+            });
         }
     }
 }
