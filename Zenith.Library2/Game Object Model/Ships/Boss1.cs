@@ -4,14 +4,41 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class Boss1 : Enemy
+    public class Boss1 : Enemy
     {
-        public override void ShipLoop() { }
+        // Source: https://stackoverflow.com/questions/5142349/declare-a-const-array/5142378
+        
+
+        public override void ShipLoop()
+        {
+            cannon.Fire();
+            switch (state)
+            {
+                case EnemyState.Sway:
+                    
+                    
+                    break;
+            }
+            ++clock;
+            double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.Height - position.Y;
+            AddForce(new Vector(0, goalY) * 100);
+            var offset = new Vector(World.Instance.Width * 0.75 - position.X, 0);
+            AddForce(offset);
+
+            angle = (World.Instance.Player.Position - position).Angle;
+        }
 
         public Boss1(Vector position)
-            : base(position) 
+            : base(position)
         {
+            imageSources = new string[] { Util.GetShipSpriteFolderPath("large_grey_01.png") };
+            angle = Math.PI;
             type = GameObjectType.Boss1;
+            size = new Vector(256, 256);
+            health = 4000;
+            maxHealth = 4000;
+            mass = 400;
+            cannon = new Boss1Cannon(this);
         }
     }
 }

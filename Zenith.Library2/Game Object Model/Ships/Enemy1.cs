@@ -7,21 +7,19 @@ namespace Zenith.Library
     public class Enemy1 : Enemy
     {
         public override void ShipLoop() {
-            if (reloadTime == 0)
-            {
-                var p = World.Instance.Player.Position - position;
-                direction = p.Angle;
-                Shoot();
-            }
+            cannon.Fire();
         }
 
         public Enemy1(Vector position)
            : base(position)
         {
             type = GameObjectType.Enemy1;
-            imageSource = Util.GetShipSpriteFolderPath("blue_01.png");
-            imageRotation = 270;
-            this.velocity.X = -50;
+            imageSources = new string[] { Util.GetShipSpriteFolderPath("blue_01.png") };
+            angle = Math.PI;
+            velocity.X = -50;
+            this.position.X = World.Instance.Width;
+            cannon = new BasicCannon(this, 300);
+            swayRadius = 20;
         }
     }
 }

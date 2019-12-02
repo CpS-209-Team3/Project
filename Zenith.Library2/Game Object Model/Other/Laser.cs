@@ -23,9 +23,11 @@ namespace Zenith.Library
         public override void OnCollision(GameObject gameObject)
         {
             // only does damage to the opponenet
-            if (gameObject is Ship)
+            if (gameObject.Tag == GameTag.Ship)
             {
-                if (isFromPlayer != (gameObject is Player))
+                // Found here that C# has a xor operator
+                // Source: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators
+                if (isFromPlayer ^ (gameObject is Player))
                 {
                     Destroy = true;
                 }
@@ -46,9 +48,14 @@ namespace Zenith.Library
             this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
-            imageSource = Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png");
+            imageSources = new string[] { Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png") };
+            imageRotation = 0;
+            
+            size = new Vector(damage, damage);
+            angle = velocity.Angle;
+
             type = GameObjectType.Laser;
-            size = new Vector(32, 32);
+            tag = GameTag.Projectile;
         }
 
         public override string Serialize()
