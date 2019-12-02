@@ -16,21 +16,20 @@ using System.Windows.Shapes;
 namespace Zenith.Desktop
 {
     /// <summary>
-    /// Interaction logic for AboutPage.xaml
+    /// Interaction logic for HighScorePage.xaml
     /// </summary>
-    public partial class AboutPage : Page
+    public partial class HighScorePage : Page
     {
-        public AboutPage()
+        public HighScorePage()
         {
             InitializeComponent();
+
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Back Button ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
-            // trying to fix this......
-            MainWindow main = new MainWindow();
-            this.Content = main;
+
         }
     }
 }

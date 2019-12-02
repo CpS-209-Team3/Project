@@ -220,13 +220,13 @@ namespace Zenith.Library
                 case "BackgroundElement":
                     return new BackgroundElement(null, 0);
                 case "Laser":
-                    return new Laser(null, null, 0, GameObjectType.Unknown);
+                    return new Laser(null, null, 0, true);
                 case "Asteroid":
                     return new Asteroid(null, 0);
                 case "Player":
                     return new Player(null);
                 case "Enemy1":
-                    return new Enemy1(null, 0);
+                    return new Enemy1(null);
                 case "Enemy2":
                     return new Enemy2(null);
                 case "Enemy3":

@@ -30,7 +30,7 @@ namespace Zenith.UnitTests
             w.Objects.Add(e);
 
             Vector v2 = new Vector(5, 5);
-            Enemy1 e1 = new Enemy1(v2, 0);
+            Enemy1 e1 = new Enemy1(v2);
             w.Objects.Add(e1);
 
             // The world should now be populated with instance variables and game objects

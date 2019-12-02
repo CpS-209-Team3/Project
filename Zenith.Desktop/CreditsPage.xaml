@@ -34,6 +34,6 @@
             <TextBlock Text="Dr. Stephen Schaub" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
             <TextBlock Text="(...)" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-        <Button x:Name="btn_Back" Content="Back" Foreground="Yellow" FontWeight="Heavy" FontSize="30" Height="60" Width="100" Margin="30,380,670,9.6" Background="Transparent" Click="btn_Back_Click"/>
+        <Button x:Name="btn_Back" Content="Back" Foreground="Yellow" FontWeight="Heavy" FontSize="30" Height="60" Width="100" Margin="30,380,670,9.6" BorderBrush="Transparent" Background="Transparent" Click="btn_Back_Click"/>
     </Grid>
 </Page>

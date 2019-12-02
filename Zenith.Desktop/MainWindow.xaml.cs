@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -79,7 +79,9 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
                 World.Instance.PlayerController.Pause = Keyboard.IsKeyToggled(Key.P);
 
-                txtTest.Text = World.Instance.Player.Position.X.ToString();
+                int potentialCollisions = World.Instance.Objects.Count;
+                potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
+                //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
             });
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -96,10 +98,16 @@ namespace Zenith.Desktop
             World.Instance.Player = p;
             p.Velocity.Cap(0);
             p.Position.X = 90;
+            p.Position.Y = World.Instance.Height / 2;
+
+            var b = new Boss1(new Library.Vector(0, 0));
+            b.Position.X = 900;
+            b.Position.Y = World.Instance.Height / 2;
+            World.Instance.AddObject(b);
 
             // setting cheat mode on
             isCheating = true;
-            if (isCheating) p.Health = 0xfffffff;
+            if (isCheating) { p.Health = 0xfffffff; p.MaxHealth = 0xfffffff; };
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
@@ -117,15 +125,8 @@ namespace Zenith.Desktop
             this.Content = help;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ About Page ~~~~~~~~~~~~~~~~~~~~
-        private void btn_About_Click(object sender, RoutedEventArgs e)
-        {
-            AboutPage about = new AboutPage();
-            this.Content = about;
-        }
-
-        //~~~~~~~~~~~~~~~~~~~~ Setting Page ~~~~~~~~~~~~~~~~~~~~
-        private void btn_Setting_Click(object sender, RoutedEventArgs e)
+        //~~~~~~~~~~~~~~~~~~~~ High Score Page ~~~~~~~~~~~~~~~~~~~~
+        private void btn_HighScore_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -139,13 +140,14 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Play_Click(object sender, RoutedEventArgs e)
         {
-
+            OptionPage option = new OptionPage(this);
+            this.Content = option;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Credits Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_Credits_Click(object sender, RoutedEventArgs e)
         {
-            CreditsPage credits = new CreditsPage();
+            CreditsPage credits = new CreditsPage(this);
             this.Content = credits;
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling ~~~~~~~~~~~~~~~~~~~~~~~~~
