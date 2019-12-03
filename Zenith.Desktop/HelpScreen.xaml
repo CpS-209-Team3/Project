@@ -20,9 +20,11 @@
                 <Image Source="arrowKeys.png" Height="102" Width="155" Margin="20,25,10,30"/>
                 <TextBlock Text="Move Ship" Height="30" Width="100" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="123" Margin="0,0,80,0">
-                <Image Source="asteroid.png" Margin="20,0,10,0" Height="104" Width="106" />
-                <TextBlock Text="Asteroid" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
+            <StackPanel Orientation="Horizontal" Height="130" Margin="0,0,10,0">
+                <Image Source="Image_Button_P.png" Height="50" Width="50" Margin="10,25,0,30"/>
+                <TextBlock Text="Pause" Width="88" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20,50,5,49.6"/>
+                <Image Source="Image_Button_S.png" Height="50" Width="50" Margin="20,25,10,30"/>
+                <TextBlock Text="Save" Height="30" Width="100" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="A: (...)" Height="30" Width="Auto" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
@@ -31,19 +33,23 @@
                 <TextBlock Text="D: (...)" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Margin="678,95,0,225.4">
-            <StackPanel Orientation="Horizontal" Height="176" Margin="10,0,-0.4,0">
+        <StackPanel Orientation="Vertical" Margin="678,95,0,107.4">
+            <StackPanel Orientation="Horizontal" Height="143" Margin="10,0,-0.4,0">
                 <Image Source="darkgrey_01.png" Margin="37,30,0,30" Height="60" />
                 <Image Source="purple_06.png" Margin="0,30,0,30" Height="60" />
                 <Image Source="tankbase_01.png" Margin="0,30,0,30" Height="60" />
                 <TextBlock Text="Enemy Ship" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20,30,0,30" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="124">
+            <StackPanel Orientation="Horizontal" Height="106" Margin="0,0,-0.4,0">
                 <Image Source="projectile-blue.png" Margin="37,10,0,0" Height="60" />
                 <Image Source="projectile-green.png" Margin="0,10,0,0" Height="60"/>
                 <Image Source="projectile-orange.png" Margin="0,10,0,0" Height="60"/>
                 <Image Source="projectile-red.png" Margin="0,10,0,0" Height="60"/>
                 <TextBlock Text="Lasers" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20,10,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="110" Margin="10,0,9.6,0">
+                <Image Source="asteroid.png" Margin="20,0,10,0" Height="84" Width="86" />
+                <TextBlock Text="Asteroid" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
             </StackPanel>
         </StackPanel>
         <Button x:Name="btn_Back" Height="57" Width="114" Content="Back" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="DemiBold" Foreground="Yellow" Background="Black" Margin="489,527,517,46.4" Click="btn_Back_Click"/>

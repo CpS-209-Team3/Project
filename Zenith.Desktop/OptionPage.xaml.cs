@@ -53,7 +53,8 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Start Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {
-
+            GamePage gamepg = new GamePage(main);
+            main.Content = gamepg;
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handler Zone ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -23,10 +23,12 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class GamePage : Page, ViewManager
     {
+        MainWindow main;
         DispatcherTimer timer;
         bool isCheating = false;
-        public GamePage()
+        public GamePage(MainWindow theMainOne)
         {
+            main = theMainOne;
             InitializeComponent();
         }
 
@@ -103,7 +105,7 @@ namespace Zenith.Desktop
 
             // setting cheat mode on
             isCheating = true;
-            if (isCheating) p.Health = 0xfffffff;
+            if (isCheating) World.Instance.Reset();
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
@@ -113,5 +115,33 @@ namespace Zenith.Desktop
             timer.Tick += GameLoop;
             timer.Start();
         }
+
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Continue_Click(object sender, RoutedEventArgs e)
+        {
+            // Continue to play game => close the popup and continue the game
+            if (StandardPopup.IsOpen == true)
+                StandardPopup.IsOpen = false;
+
+            // Write the `unpause` game here....
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Save_Click(object sender, RoutedEventArgs e)
+        {
+            //----------------------------------------------------------------//
+            // I don't know how to make the game Save or Load...              //
+            // Please help me. Thank you very much.                           //
+            //----------------------------------------------------------------//
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~
+        private void btn_MainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            //Return to main menu as Back button works.
+            main.Content = main.canView;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }

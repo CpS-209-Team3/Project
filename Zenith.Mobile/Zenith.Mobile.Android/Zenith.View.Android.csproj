@@ -143,22 +143,28 @@
     <AndroidResource Include="Resources\drawable\purple_06.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\missile-02.png" />
+    <AndroidResource Include="Resources\drawable\pause.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\projectile-blue.png" />
+    <AndroidResource Include="Resources\drawable\blueLaser.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\projectile-green.png" />
+    <AndroidResource Include="Resources\drawable\greenLaser.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\projectile-orange.png" />
+    <AndroidResource Include="Resources\drawable\missile1.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\projectile-red.png" />
+    <AndroidResource Include="Resources\drawable\missile2.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\missile-01.png" />
+    <AndroidResource Include="Resources\drawable\orangeLaser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\redLaser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\parallaxBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
