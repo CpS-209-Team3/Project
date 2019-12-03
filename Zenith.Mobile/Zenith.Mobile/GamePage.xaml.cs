@@ -18,6 +18,7 @@ namespace Zenith.View
         bool up = false;
         bool down = false;
         bool fire = false;
+        bool pause = false;
 
         public GamePage()
         {
@@ -27,6 +28,52 @@ namespace Zenith.View
         List<Sprite> sprites;
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~ Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        public void LoadPause()
+        {
+            StackLayout stkPause = new StackLayout();
+            stkPause.HorizontalOptions = LayoutOptions.Center;
+            stkPause.Margin = new Thickness(200, 100);
+            stkPause.BackgroundColor = Color.DarkCyan;
+            stkPause.MinimumHeightRequest = 300;
+            stkPause.MinimumWidthRequest = 200;
+            stkPause.HorizontalOptions = LayoutOptions.CenterAndExpand;
+
+            Button btnContinue = new Button();
+            btnContinue.Text = "CONTINUE";
+            btnContinue.TextColor = Color.White;
+            btnContinue.FontFamily = "Impact";
+            btnContinue.FontSize = 20;
+            btnContinue.Clicked += btnContinue_Clicked;
+            stkPause.Children.Add(btnContinue);
+
+            Button btnLoad = new Button();
+            btnContinue.Text = "LOAD GAME";
+            btnContinue.TextColor = Color.White;
+            btnContinue.FontFamily = "Impact";
+            btnContinue.FontSize = 20;
+            btnContinue.Clicked += btnLoad_Clicked;
+            stkPause.Children.Add(btnLoad);
+
+            Button btnSave = new Button();
+            btnContinue.Text = "SAVE GAME";
+            btnContinue.TextColor = Color.White;
+            btnContinue.FontFamily = "Impact";
+            btnContinue.FontSize = 20;
+            btnContinue.Clicked += btnSave_Clicked;
+            stkPause.Children.Add(btnSave);
+
+            Button btnBack = new Button();
+            btnContinue.Text = "BACK TO MENU";
+            btnContinue.TextColor = Color.White;
+            btnContinue.FontFamily = "Impact";
+            btnContinue.FontSize = 20;
+            btnContinue.Clicked += btnBack_Clicked;
+            stkPause.Children.Add(btnBack);
+
+            controlGrid.Children.Add(stkPause);
+        }
+
         //~~~~~~~~~~~~~~~~~~~~ Add Sprite ~~~~~~~~~~~~~~~~~~~~
         public void AddSprite(GameObject obj)
         {
@@ -56,7 +103,7 @@ namespace Zenith.View
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
-        public void GameLoop(object sender, EventArgs e)
+        public void GameLoop()
         {
             World.Instance.Update();
 
@@ -96,15 +143,25 @@ namespace Zenith.View
 
 
             TimeSpan time = new TimeSpan(0, 0, 0, 0, 1000 / 60);
-            Device.StartTimer(time, () => 
+            Device.StartTimer(time, () =>
             {
-
+                GameLoop();
+                if (pause)
+                {
+                    LoadPause();
+                    return false;
+                }
                 return true;
             });
         }
 
 
         //~~~~~~~~~~~~~~~~~~~Control Management Zone~~~~~~~~~~~~~~~~~~~~~
+        private void btnPause_Clicked(object sender, EventArgs e)
+        {
+            pause = true;
+        }
+
         //~~~~~~~~~~~~~~~~~~~Pressed~~~~~~~~~~~~~~~~~~~~~~~~~
         private void btnLeft_Pressed(object sender, EventArgs e)
         {
@@ -155,6 +212,23 @@ namespace Zenith.View
         private void btnFire_Released(object sender, EventArgs e)
         {
             fire = false;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~Pause Menu Buttons~~~~~~~~~~~~~~~~~~~~~~~~~
+        private void btnContinue_Clicked(object sender, EventArgs ev)
+        {
+        }
+
+        private void btnLoad_Clicked(object sender, EventArgs ev)
+        {
+        }
+
+        private void btnSave_Clicked(object sender, EventArgs ev)
+        {
+        }
+
+        private void btnBack_Clicked(object sender, EventArgs ev)
+        {
         }
     }
 }

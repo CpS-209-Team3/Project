@@ -143,6 +143,8 @@
     <Content Include="missile-02.png" />
     <Content Include="missile-01.png" />
     <Content Include="orange_05.png" />
+    <Content Include="parallax-space-backgound.png" />
+    <Content Include="pause.png" />
     <Content Include="projectile-blue.png" />
     <Content Include="projectile-green.png" />
     <Content Include="projectile-orange.png" />
