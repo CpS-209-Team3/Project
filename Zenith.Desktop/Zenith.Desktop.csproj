@@ -174,5 +174,12 @@
   <ItemGroup>
     <Resource Include="blue_01.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image_Button_P.png" />
+    <Resource Include="Image_Button_S.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HighScoreBG.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

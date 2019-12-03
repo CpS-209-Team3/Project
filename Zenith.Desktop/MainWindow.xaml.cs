@@ -114,13 +114,14 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ High Score Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_HighScore_Click(object sender, RoutedEventArgs e)
         {
-
+            HighScorePage highscore = new HighScorePage(this);
+            this.Content = highscore;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
-            GamePage game = new GamePage();
+            GamePage game = new GamePage(this);
             this.Content = game;
         }
 
