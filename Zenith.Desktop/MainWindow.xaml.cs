@@ -95,7 +95,7 @@ namespace Zenith.Desktop
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            World.Instance.Reset();
+            World.Instance.CreatePlayer();
             if (isCheating) World.Instance.EnableCheatMode();
 
             World.Instance.Width = Width;

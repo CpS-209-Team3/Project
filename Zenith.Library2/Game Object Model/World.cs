@@ -223,6 +223,11 @@ namespace Zenith.Library
                 RemoveObject(Objects[i]);
             }
 
+            
+        }
+
+        public void CreatePlayer()
+        {
             var p = new Player(new Library.Vector(90, Height / 2));
             AddObject(p);
             Player = p;
