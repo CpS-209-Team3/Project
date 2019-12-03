@@ -207,7 +207,7 @@ namespace Zenith.Library
             score = 0;
             gameTick = 0;
 
-            objects.RemoveAll(obj => true);
+            objects.Clear();
 
             var p = new Player(new Library.Vector(90, Height / 2));
             AddObject(p);

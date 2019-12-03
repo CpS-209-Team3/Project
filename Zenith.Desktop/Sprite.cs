@@ -70,6 +70,7 @@ namespace Zenith.Desktop
             catch(Exception e)
             {
                 MessageBox.Show("Error retrieving image for " + gameObject.Type.ToString());
+                MessageBox.Show(gameObject.ImageSources[0]);
             }
 
             Content = images[0];
