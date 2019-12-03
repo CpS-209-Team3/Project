@@ -92,21 +92,8 @@ namespace Zenith.Desktop
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            var p = new Player(new Library.Vector(0, 0));
-            World.Instance.AddObject(p);
-            World.Instance.Player = p;
-            p.Velocity.Cap(0);
-            p.Position.X = 90;
-            p.Position.Y = World.Instance.Height / 2;
-
-            var b = new Boss1(new Library.Vector(0, 0));
-            b.Position.X = 900;
-            b.Position.Y = World.Instance.Height / 2;
-            World.Instance.AddObject(b);
-
-            // setting cheat mode on
-            isCheating = true;
-            if (isCheating) { p.Health = 0xfffffff; p.MaxHealth = 0xfffffff; };
+            World.Instance.Reset();
+            if (isCheating) World.Instance.EnableCheatMode();
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
