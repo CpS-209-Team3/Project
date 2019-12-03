@@ -13,5 +13,18 @@
         <Canvas.Background>
             <ImageBrush ImageSource="parallax-space-backgound.png"/>
         </Canvas.Background>
+        <!-- Trying to make the popup when press Pause here-->
+        <Popup VerticalOffset="10" HorizontalOffset="200" x:Name="StandardPopup">
+            <Border BorderBrush="Transparent"
+                Background="Transparent"
+                BorderThickness="2" Width="180" Height="250">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="PAUSE" Background="Brown" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="120" TextAlignment="Center" />
+                    <Button x:Name="btn_Continue" Content="Continue" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5" Click="btn_Continue_Click" />
+                    <Button x:Name="btn_Save" Content="Save" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5" Click="btn_Save_Click" />
+                    <Button x:Name="btn_MainMenu" Content="Main Menu" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5" Click="btn_MainMenu_Click" />
+                </StackPanel>
+            </Border>
+        </Popup>
     </Canvas>
 </Page>
