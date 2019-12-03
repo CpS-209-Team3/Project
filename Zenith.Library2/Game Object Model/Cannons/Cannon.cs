@@ -21,7 +21,7 @@ namespace Zenith.Library
 
         public GameObject Host { get { return host; } set { host = value; } }
         public int ReloadTime { get { return reloadTime; } set { reloadTime = value; } }
-        public List<int> FirePattern { get { return FirePattern; } }
+        public List<int> FirePattern { get { return firePattern; } }
         public int FireSequence { get { return fireSequence; } set { fireSequence = value; } }
         public int Damage { get { return damage; } set { damage = value; } }
         public double Accuracy { get { return accuracy; } set { accuracy = value; } }

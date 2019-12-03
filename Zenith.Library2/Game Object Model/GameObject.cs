@@ -128,14 +128,14 @@ namespace Zenith.Library
 
         public virtual string Serialize()
         {
-            string serializedImageSources = "";
+            /*string serializedImageSources = "";
             foreach (string image in imageSources)
             {
                 serializedImageSources += image + ':';
-            }
+            }*/
             return type.ToString() + ',' + collidable.ToString() + ',' + Destroy.ToString() + 
                 ',' + position.ToString() + ',' + velocity.ToString() + ',' + size.ToString() + 
-                ',' + deacceleration.ToString() + ',' + angle.ToString() + ',' + serializedImageSources + 
+                ',' + deacceleration.ToString() + ',' + angle.ToString() /* + ',' + serializedImageSources*/ + 
                 ',' + imageRotation.ToString() + ',' + ImageIndex.ToString() + ',' + mass.ToString() + ',' + tag.ToString();         
         }
 
@@ -160,17 +160,17 @@ namespace Zenith.Library
             angle = Convert.ToDouble(savedValues[6]);
 
             // imagesources, rotation, and index
-            string[] Isources = savedValues[7].Split(':');
+            /*string[] Isources = savedValues[7].Split(':');
             foreach(string source in Isources)
             {
                 imageSources.Add(source);
-            }
-            ImageRotation = Convert.ToDouble(savedValues[8]);
-            ImageIndex = Convert.ToInt32(savedValues[9]);
+            }*/
+            ImageRotation = Convert.ToDouble(savedValues[7]);
+            ImageIndex = Convert.ToInt32(savedValues[8]);
 
             // mass, tag (double, GameTag)
-            mass = Convert.ToDouble(savedValues[10]);
-            Enum.TryParse(savedValues[11], out GameTag tag);
+            mass = Convert.ToDouble(savedValues[9]);
+            Enum.TryParse(savedValues[10], out GameTag tag);
         }
 
         // Got this method from here: https://stackoverflow.com/questions/186653/get-the-index-of-the-nth-occurrence-of-a-string

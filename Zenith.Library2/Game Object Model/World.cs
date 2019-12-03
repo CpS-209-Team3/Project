@@ -104,6 +104,14 @@ namespace Zenith.Library
 
         public void Update()
         {
+            if (PlayerController.Save) Save("test.txt");
+            
+            if (PlayerController.Load)
+            {
+                Reset();
+                Load("test.txt");
+            }
+
             if (!PlayerController.Pause)
             {
                 for (int i = 0; i < objects.Count; ++i)
@@ -167,8 +175,7 @@ namespace Zenith.Library
                         string objectInfo = saveInfo.Substring(saveInfo.IndexOf(",") + 1);
                         GameObject obj = CreateInstanceOf(objectType);
                         obj.Deserialize(objectInfo);
-                        //AddObject(obj);
-                        objects.Add(obj);
+                        AddObject(obj);
                     }
                 }
             }
@@ -194,7 +201,11 @@ namespace Zenith.Library
                 writer.WriteLine(score);
                 foreach (GameObject obj in this.objects)
                 {
-                    writer.WriteLine(obj.Serialize());
+                    if (!(obj is HealthBar))
+                    {
+                        writer.WriteLine(obj.Serialize());
+                    }
+                    
                 }
             }
         }
@@ -207,7 +218,10 @@ namespace Zenith.Library
             score = 0;
             gameTick = 0;
 
-            objects.RemoveAll(obj => true);
+            for (int i = Objects.Count - 1; i >= 0; i--)
+            {
+                RemoveObject(Objects[i]);
+            }
 
             var p = new Player(new Library.Vector(90, Height / 2));
             AddObject(p);
@@ -217,34 +231,35 @@ namespace Zenith.Library
 
         public GameObject CreateInstanceOf(string objectType)
         {
+            Vector tempVector = new Vector(1, 1, false);
             switch (objectType)
             {
                 case "Item":
-                    return new Item(null);
+                    return new Item(tempVector);
                 case "Asteroid":
-                    return new Asteroid(null, 0);
+                    return new Asteroid(tempVector, 0);
                 case "Laser":
-                    return new Laser(null, null, 0, true);
+                    return new Laser(tempVector, tempVector, 0, true);
                 case "BackgroundElement":
-                    return new BackgroundElement(null, 0);
+                    return new BackgroundElement(tempVector, 0);
                 case "Enemy1":
-                    return new Enemy1(null);
+                    return new Enemy1(tempVector);
                 case "Enemy2":
-                    return new Enemy2(null);
+                    return new Enemy2(tempVector);
                 case "Enemy3":
-                    return new Enemy3(null);
+                    return new Enemy3(tempVector);
                 case "Boss1":
-                    return new Boss1(null);
+                    return new Boss1(tempVector);
                 case "Boss2":
-                    return new Boss2(null);
+                    return new Boss2(tempVector);
                 case "Boss3":
-                    return new Boss3(null);
+                    return new Boss3(tempVector);
                 case "Boss4":
-                    return new Boss4(null);
+                    return new Boss4(tempVector);
                 case "Boss5":
-                    return new Boss5(null);
+                    return new Boss5(tempVector);
                 case "Player":
-                    return new Player(null);
+                    return new Player(tempVector);
                 case "HealthBar":
                     return new HealthBar(null);
             }
