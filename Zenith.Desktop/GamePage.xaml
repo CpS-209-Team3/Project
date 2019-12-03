@@ -13,7 +13,7 @@
         <Canvas.Background>
             <ImageBrush ImageSource="parallax-space-backgound.png"/>
         </Canvas.Background>
-        <!-- Trying to make the popup when press Pause here-->
+        <!-- Trying to make the popup appear when press Pause here-->
         <Popup VerticalOffset="10" HorizontalOffset="200" x:Name="StandardPopup">
             <Border BorderBrush="Transparent"
                 Background="Transparent"
