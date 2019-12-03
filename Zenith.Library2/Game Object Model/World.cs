@@ -140,6 +140,12 @@ namespace Zenith.Library
             ViewManager.RemoveSprite(gameObject);
         }
 
+        public void EnableCheatMode()
+        {
+            Player.Health = 0x7FFFFFFF;
+            Player.MaxHealth = 0x7FFFFFFF;
+        }
+
         // Reads a list of strings from the file specifed by filename and puts them into the list
         // of game object strings, then depending on the type of the string given by the first comma
         // seperated value, it will create a different object, deserialize the rest of the information
@@ -203,28 +209,24 @@ namespace Zenith.Library
 
             objects.RemoveAll(obj => true);
 
-            /*foreach (GameObject obj in objects)
-            {
-                RemoveObject(obj);
-            }*/
+            var p = new Player(new Library.Vector(90, Height / 2));
+            AddObject(p);
+            Player = p;
+            p.Velocity.Cap(0);
         }
 
         public GameObject CreateInstanceOf(string objectType)
         {
             switch (objectType)
             {
-                /*case "Generic":
-                    return;
                 case "Item":
-                    return;*/
-                case "BackgroundElement":
-                    return new BackgroundElement(null, 0);
-                case "Laser":
-                    return new Laser(null, null, 0, true);
+                    return new Item(null);
                 case "Asteroid":
                     return new Asteroid(null, 0);
-                case "Player":
-                    return new Player(null);
+                case "Laser":
+                    return new Laser(null, null, 0, true);
+                case "BackgroundElement":
+                    return new BackgroundElement(null, 0);
                 case "Enemy1":
                     return new Enemy1(null);
                 case "Enemy2":
@@ -241,6 +243,10 @@ namespace Zenith.Library
                     return new Boss4(null);
                 case "Boss5":
                     return new Boss5(null);
+                case "Player":
+                    return new Player(null);
+                case "HealthBar":
+                    return new HealthBar(null);
             }
             return null;
         }

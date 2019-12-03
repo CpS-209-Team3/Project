@@ -5,10 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Zenith.Desktop"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="630" d:DesignWidth="1120"
+      Loaded="Window_Loaded"
       Title="GamePage">
 
-    <Grid>
-        
-    </Grid>
+    <Canvas x:Name="canGame">
+        <Canvas.Background>
+            <ImageBrush ImageSource="parallax-space-backgound.png"/>
+        </Canvas.Background>
+    </Canvas>
 </Page>

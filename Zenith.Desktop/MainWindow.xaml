@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zenith.Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="630" Width="1120"
+        Title="Zenith" Height="630" Width="1120"
         Loaded="Window_Loaded">
     <Canvas x:Name="canView">
         <Canvas.Background>

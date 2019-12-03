@@ -164,7 +164,18 @@ namespace Zenith.Library
             //onDeath = shipSaveInfo[12];
 
             string[] cannonValues = shipSaveInfo[13].Split(':');
-            // need a way to create a new cannon with variable info. right now there is only one set of info for cannon.
+
+            cannon.Host = this;
+            cannon.ReloadTime = Convert.ToInt32(cannonValues[0]);
+            string[] firePatternValues = cannonValues[1].Split(';');
+            foreach (string value in firePatternValues)
+            {
+                cannon.FirePattern.Add(Convert.ToInt32(value));
+            }
+            cannon.FireSequence = Convert.ToInt32(cannonValues[2]);
+            cannon.Damage = Convert.ToInt32(cannonValues[3]);
+            cannon.Accuracy = Convert.ToDouble(cannonValues[4]);
+            cannon.ProjectileSpeed = Convert.ToDouble(cannonValues[5]);
         }
 
     }

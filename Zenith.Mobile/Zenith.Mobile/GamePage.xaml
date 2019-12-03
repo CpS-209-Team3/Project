@@ -8,8 +8,15 @@
              BackgroundImageSource="universe.jpg"
              Appearing="ContentPage_Appearing">
     <ContentPage.Content>
-        <Grid x:Name="gameGrid">
-            
+        <Grid x:Name="controlGrid">
+            <Grid x:Name="gameGrid">
+
+            </Grid>
+            <Button x:Name="btnLeft" HeightRequest="50" WidthRequest="100" Margin="40,306,897.6,117.4" Opacity="1" Pressed="btnLeft_Pressed"  Released="btnLeft_Released"/>
+            <Button x:Name="btnRight" HeightRequest="50" WidthRequest="100" Margin="195,306,747.6,117.4" Opacity="1" Pressed="btnRight_Pressed"  Released="btnRight_Released"/>
+            <Button x:Name="btnUp" HeightRequest="50" WidthRequest="100" Margin="120,231,822.6,192.4" Opacity="1" Pressed="btnUp_Pressed"  Released="btnUp_Released"/>
+            <Button x:Name="btnDown" HeightRequest="50" WidthRequest="100" Margin="120,381,822.6,42.4" Opacity="1" Pressed="btnDown_Pressed"  Released="btnDown_Released"/>
+            <Button x:Name="btnFire" Margin="512,52,0,0" Opacity="0" Pressed="btnFire_Pressed"  Released="btnFire_Released"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

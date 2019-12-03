@@ -10,8 +10,15 @@ using Xamarin.Forms.Xaml;
 namespace Zenith.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GamePage : ContentPage
+    public partial class GamePage : ContentPage, ViewManager
     {
+        bool isCheating = false;
+        bool left = false;
+        bool right = false;
+        bool up = false;
+        bool down = false;
+        bool fire = false;
+
         public GamePage()
         {
             InitializeComponent();
@@ -19,69 +26,137 @@ namespace Zenith.View
 
         List<Sprite> sprites;
 
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Add Sprite ~~~~~~~~~~~~~~~~~~~~
         public void AddSprite(GameObject obj)
         {
-            var s = new Sprite(obj);
-            sprites.Add(s);
-            gameGrid.Children.Add(s);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var s = new Sprite(obj);
+                sprites.Add(s);
+                gameGrid.Children.Add(s);
+            });
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Remove Sprite ~~~~~~~~~~~~~~~~~~~~
         public void RemoveSprite(GameObject obj)
         {
-            foreach (var s in sprites)
+            Device.BeginInvokeOnMainThread(() =>
             {
-                if (s.GameObject == obj)
+                foreach (var s in sprites)
                 {
-                    sprites.Remove(s);
-                    gameGrid.Children.Remove(s);
-                    break;
-                }
-            }
-        }
-
-        public void GameLoop()
-        {
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    World.Instance.Update();
-                    //e.Update();
-
-                    Device.BeginInvokeOnMainThread(() =>
+                    if (s.GameObject == obj)
                     {
-                        for (int i = 0; i < sprites.Count; ++i)
-                        {
-                            sprites[i].Update();
-                        }
-                    });
-                    Task.Delay(1000 / 60);
+                        sprites.Remove(s);
+                        gameGrid.Children.Remove(s);
+                        break;
+                    }
                 }
             });
         }
 
-        private void ContentPage_Appearing(object sender, EventArgs args)
+        //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
+        public void GameLoop(object sender, EventArgs e)
         {
+            World.Instance.Update();
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                for (int i = 0; i < sprites.Count; ++i)
+                {
+                    sprites[i].Update();
+                }
+
+                // Input handling
+                World.Instance.PlayerController.Up = up;
+                World.Instance.PlayerController.Down = down;
+                World.Instance.PlayerController.Left = left;
+                World.Instance.PlayerController.Right = right;
+                World.Instance.PlayerController.Fire = fire;
+
+                int potentialCollisions = World.Instance.Objects.Count;
+                potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
+                //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
+            });
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~ Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
+        private void ContentPage_Appearing(object sender, EventArgs ev)
+        {
+            //World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
+            World.Instance.ViewManager = this;
+            World.Instance.Reset();
+            if (isCheating) World.Instance.EnableCheatMode();
 
-            /////////////////////////////////////////////////////////////Error thrown here due to wpf/xamarin integration
-            World.Instance.ViewManager = (ViewManager)this;
+            World.Instance.Width = Width;
+            World.Instance.Height = Height;
 
 
-            var img = new Image();
-            img.Source = "blue_01.png";
-            gameGrid.Children.Add(img);
+            TimeSpan time = new TimeSpan(0, 0, 0, 0, 1000 / 60);
+            Device.StartTimer(time, () => 
+            {
 
-            var txt = new Entry();
+                return true;
+            });
+        }
 
-            //txt.Text = Util.GetImagePath("blue_01.png");
 
-            gameGrid.Children.Add(txt);
+        //~~~~~~~~~~~~~~~~~~~Control Management Zone~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~Pressed~~~~~~~~~~~~~~~~~~~~~~~~~
+        private void btnLeft_Pressed(object sender, EventArgs e)
+        {
+            left = true;
+        }
 
-            var e = new Enemy1(new Library.Vector(70, 70));
-            AddSprite(e);
-            e.Update();
-            GameLoop();
+        private void btnRight_Pressed(object sender, EventArgs e)
+        {
+            right = true;
+        }
+
+        private void btnUp_Pressed(object sender, EventArgs e)
+        {
+            up = true;
+        }
+
+        private void btnDown_Pressed(object sender, EventArgs e)
+        {
+            down = true;
+        }
+
+
+        private void btnFire_Pressed(object sender, EventArgs e)
+        {
+            fire = true;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~~~Released~~~~~~~~~~~~~~~~~~~~~~~~~
+        private void btnLeft_Released(object sender, EventArgs e)
+        {
+            left = false;
+        }
+
+
+        private void btnRight_Released(object sender, EventArgs e)
+        {
+            right = false;
+        }
+
+        private void btnUp_Released(object sender, EventArgs e)
+        {
+            up = false;
+        }
+
+        private void btnDown_Released(object sender, EventArgs e)
+        {
+            down = false;
+        }
+
+        private void btnFire_Released(object sender, EventArgs e)
+        {
+            fire = false;
         }
     }
 }

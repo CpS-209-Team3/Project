@@ -75,7 +75,6 @@ namespace Zenith.Library
             string[] laserSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
             damage = Convert.ToInt32(laserSaveInfo[0]);
             isFromPlayer = Convert.ToBoolean(laserSaveInfo[1]);
-
         }
     }
 }

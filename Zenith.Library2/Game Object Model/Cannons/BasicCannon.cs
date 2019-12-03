@@ -9,7 +9,7 @@ namespace Zenith.Library
         public BasicCannon(GameObject host, int fireRate)
             : base(host)
         {
-            firePattern = new int[] { fireRate };
+            firePattern = new List<int> { fireRate };
         }
     }
 }
