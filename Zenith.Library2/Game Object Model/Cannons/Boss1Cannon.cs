@@ -10,7 +10,7 @@ namespace Zenith.Library
         public Boss1Cannon(GameObject host)
             : base(host)
         {
-            firePattern = new int[] { 15, 15, 15, 100 };
+            firePattern = new List<int> { 15, 15, 15, 100 };
             damage = 100;
         }
     }

@@ -35,16 +35,17 @@ namespace Zenith.Library
 
     public abstract class GameObject : ISerialize
     {
-        protected Vector position, velocity, size;
         protected GameObjectType type;
-        protected const double maxSpeed = 2000;
-        protected double deacceleration = 1;
-        protected double angle = 0;
 
         protected bool collidable = true;
         protected bool destroy = false;
 
-        protected string[] imageSources;
+        protected Vector position, velocity, size;
+        protected const double maxSpeed = 2000; // not serialized because its constant
+        protected double deacceleration = 1;
+        protected double angle = 0;
+        
+        protected List<string> imageSources;
         protected double imageRotation = 0;
         protected int imageIndex = 0;
 
@@ -66,9 +67,11 @@ namespace Zenith.Library
 
         public bool Destroy { get { return destroy;} set { destroy = value; } }
 
-        public string[] ImageSources { get { return imageSources; } }
+        public List<string> ImageSources { get { return imageSources; } }
 
-        public double ImageRotation { get { return imageRotation; } }
+        public double ImageRotation { get { return imageRotation; } set { imageRotation = value; } }
+
+        public int ImageIndex { get { return imageIndex; } set { imageIndex = value; } }
 
         public double Mass { get { return mass; } }
 
@@ -76,7 +79,6 @@ namespace Zenith.Library
 
         public double Angle { get { return angle; } }
 
-        public int ImageIndex { get { return imageIndex; } }
 
         // Methods
 
@@ -126,21 +128,49 @@ namespace Zenith.Library
 
         public virtual string Serialize()
         {
-            return type.ToString() + ',' + collidable.ToString() + ',' + position.ToString() + ',' + velocity.ToString() + ',' + size.ToString() + ',' + Destroy.ToString();
+            string serializedImageSources = "";
+            foreach (string image in imageSources)
+            {
+                serializedImageSources += image + ':';
+            }
+            return type.ToString() + ',' + collidable.ToString() + ',' + Destroy.ToString() + 
+                ',' + position.ToString() + ',' + velocity.ToString() + ',' + size.ToString() + 
+                ',' + deacceleration.ToString() + ',' + angle.ToString() + ',' + serializedImageSources + 
+                ',' + imageRotation.ToString() + ',' + ImageIndex.ToString() + ',' + mass.ToString() + ',' + tag.ToString();         
         }
 
         public virtual void Deserialize(string saveInfo)
         {
             // saveInfo includes everything but the gameObjectType
             string[] savedValues = saveInfo.Split(',');
+
             collidable = Convert.ToBoolean(savedValues[0]);
-            string[] xNy1 = savedValues[1].Split(':');
+            Destroy = Convert.ToBoolean(savedValues[1]);
+
+            // position, velocity, and size vectors
+            string[] xNy1 = savedValues[2].Split(':');
             position = new Vector(Convert.ToDouble(xNy1[0]), Convert.ToDouble(xNy1[1]), false);
-            string[] xNy2 = savedValues[2].Split(':');
+            string[] xNy2 = savedValues[3].Split(':');
             velocity = new Vector(Convert.ToDouble(xNy2[0]), Convert.ToDouble(xNy2[1]), false);
-            string[] xNy3 = savedValues[3].Split(':');
+            string[] xNy3 = savedValues[4].Split(':');
             size = new Vector(Convert.ToDouble(xNy3[0]), Convert.ToDouble(xNy3[1]), false);
-            Destroy = Convert.ToBoolean(savedValues[4]);
+
+            // deacceleartion, and angle
+            deacceleration = Convert.ToDouble(savedValues[5]);
+            angle = Convert.ToDouble(savedValues[6]);
+
+            // imagesources, rotation, and index
+            string[] Isources = savedValues[7].Split(':');
+            foreach(string source in Isources)
+            {
+                imageSources.Add(source);
+            }
+            ImageRotation = Convert.ToDouble(savedValues[8]);
+            ImageIndex = Convert.ToInt32(savedValues[9]);
+
+            // mass, tag (double, GameTag)
+            mass = Convert.ToDouble(savedValues[10]);
+            Enum.TryParse(savedValues[11], out GameTag tag);
         }
 
         // Got this method from here: https://stackoverflow.com/questions/186653/get-the-index-of-the-nth-occurrence-of-a-string

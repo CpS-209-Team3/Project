@@ -37,6 +37,7 @@ namespace Zenith.Library
         private World()
         {
             gameTick = 0;
+            level = 1;
             random = new Random();
             PlayerController = new GameController();
             Width = 500;
@@ -46,7 +47,7 @@ namespace Zenith.Library
             collisionManager = new CollisionQuad(new Vector(0, 0), new Vector(Width, Height), 0);
             collisionManager.Objects = objects;
 
-            spawnManager = new SpawnManager(difficulty);
+            levelManager = new LevelManager(difficulty, level);
         }
 
         // End of Singleton Code
@@ -65,7 +66,7 @@ namespace Zenith.Library
         private int collisions = 0;
 
         private int difficulty = 1;
-        private SpawnManager spawnManager;
+        private LevelManager levelManager;
 
         // Properties
 
@@ -103,24 +104,28 @@ namespace Zenith.Library
 
         public void Update()
         {
-            for (int i = 0; i < objects.Count; ++i)
+            if (!PlayerController.Pause)
             {
-                objects[i].Update();
-
-                if (objects[i].Destroy)
+                for (int i = 0; i < objects.Count; ++i)
                 {
-                    RemoveObject(objects[i]);
-                    // fix index after removal
-                    --i;
+                    objects[i].Update();
+
+                    if (objects[i].Destroy)
+                    {
+                        RemoveObject(objects[i]);
+                        // fix index after removal
+                        --i;
+                    }
                 }
+
+                collisions = 0;
+                collisionManager.CheckForCollisions();
+
+                levelManager.Update();
+
+                ++gameTick;
             }
-
-            collisions = 0;
-            collisionManager.CheckForCollisions();
-
-            spawnManager.Update();
-
-            ++gameTick;
+            
         }
 
         public void AddObject(GameObject gameObject)
@@ -214,20 +219,14 @@ namespace Zenith.Library
         {
             switch (objectType)
             {
-                /*case "Generic":
-                    return;
                 case "Item":
-                    return;*/
-                case "BackgroundElement":
-                    return new BackgroundElement(null, 0);
-                case "Laser":
-                    return new Laser(null, null, 0, true);
+                    return new Item(null);
                 case "Asteroid":
                     return new Asteroid(null, 0);
-                case "Player":
-                    return new Player(null);
-                case "Enemy":
-                    return new Enemy1(null);
+                case "Laser":
+                    return new Laser(null, null, 0, true);
+                case "BackgroundElement":
+                    return new BackgroundElement(null, 0);
                 case "Enemy1":
                     return new Enemy1(null);
                 case "Enemy2":
@@ -244,6 +243,10 @@ namespace Zenith.Library
                     return new Boss4(null);
                 case "Boss5":
                     return new Boss5(null);
+                case "Player":
+                    return new Player(null);
+                case "HealthBar":
+                    return new HealthBar(null);
             }
             return null;
         }

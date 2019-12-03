@@ -6,15 +6,19 @@
       xmlns:local="clr-namespace:Zenith.Desktop"
       mc:Ignorable="d" 
       d:DesignHeight="630" d:DesignWidth="1120"
-      Title="HighScorePage">
-    <Grid>
-        <StackPanel Margin="0,0,0,555.4">
-            <TextBlock Text="Screen of Fame" FontSize="40" FontWeight="Bold" Foreground="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      Title="HighScorePage"
+      Loaded="HighScorePage_Loaded">
+    <Grid HorizontalAlignment="Center">
+        <Grid.Background>
+            <ImageBrush ImageSource="HighScoreBG.png"/>
+        </Grid.Background>
+        <StackPanel Margin="0,0,0,0.4">
+            <TextBlock Text="Screen of Fame" FontSize="40" FontWeight="Bold" Foreground="AliceBlue" TextAlignment="Center" Height="55" Margin="406,40,401,0" Width="313"/>
         </StackPanel>
-        <StackPanel Margin="62,80,55,61.4" Orientation="Horizontal">
-            <TextBox x:Name="lbl_hiscore" Height="530" Width="380" Margin="80,1,54,1" Background="Aqua" BorderBrush="Transparent"/>
-            <TextBox x:Name="lbl_hiscore2" Height="auto" Width="393" Background="Aqua" BorderBrush="Transparent"/>
+        <StackPanel Margin="117,121,87,100.4" Orientation="Horizontal">
+            <TextBlock x:Name="lbl_top1to5" FontSize="30" Height="auto" Width="380" Margin="50,1,54,-0.2" Background="Aqua" />
+            <TextBlock x:Name="lbl_top6to10" FontSize="30" Height="auto" Width="380" Background="Aqua" />
         </StackPanel>
-        <Button x:Name="btn_Back" Content="Back" FontSize="20" Foreground="AliceBlue" FontWeight="DemiBold" Background="Transparent" BorderBrush="Transparent" Height="50" Width="50" Margin="62,569,1008,11.4" Click="btn_Back_Click"/>
+        <Button x:Name="btn_Back" Content="Back" FontSize="25" Foreground="AliceBlue" FontWeight="DemiBold" Background="Transparent" BorderBrush="Transparent" Height="50" Width="60"  Margin="0,480,900,0" Click="btn_Back_Click"/>
     </Grid>
 </Page>

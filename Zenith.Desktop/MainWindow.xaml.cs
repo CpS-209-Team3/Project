@@ -77,6 +77,7 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+                World.Instance.PlayerController.Pause = Keyboard.IsKeyToggled(Key.P);
 
                 int potentialCollisions = World.Instance.Objects.Count;
                 potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
@@ -114,14 +115,14 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ High Score Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_HighScore_Click(object sender, RoutedEventArgs e)
         {
-
+            HighScorePage highscore = new HighScorePage(this);
+            this.Content = highscore;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
-            GamePage game = new GamePage();
+            GamePage game = new GamePage(this);
             this.Content = game;
         }
 

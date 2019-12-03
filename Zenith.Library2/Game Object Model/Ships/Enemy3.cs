@@ -28,7 +28,7 @@ namespace Zenith.Library
             : base(position)
         {
             type = GameObjectType.Enemy3;
-            imageSources = new string[] { Util.GetShipSpriteFolderPath("purple_06.png") };
+            imageSources = new List<string> { Util.GetShipSpriteFolderPath("purple_06.png") };
             imageRotation = 90;
             angle = Math.PI;
             cannon = new BasicCannon(this, 120);

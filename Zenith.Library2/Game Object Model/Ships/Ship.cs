@@ -8,9 +8,18 @@ namespace Zenith.Library
     public abstract class Ship : GameObject
     {
         // instance variables
+
+        protected int reloadTime = 0;
+        protected int fireRate = 15;
+        protected int bodyDamage = 100;
+
+        protected double direction = 0;
+        protected double accuracy = 0.05;
+        protected int laserDamage = 40;
+        protected double laserSpeed = 400;
+
         protected int health = 120;
         protected int maxHealth = 120;
-        protected int bodyDamage = 0;
 
         private Vector shakeOffset;
         private int shakeTime = 0;
@@ -25,7 +34,7 @@ namespace Zenith.Library
         public int Health { get { return health; } set { health = value; } }
         public int BodyDamage { get { return bodyDamage; } set { bodyDamage = value; } }
         public Vector ShakeOffSet { get { return shakeOffset; } }
-        public Action OnDeath { set { onDeath = value; } }
+        public Action OnDeath { get { return onDeath; } set { onDeath = value; } }
         public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
 
         // Methods
@@ -46,6 +55,7 @@ namespace Zenith.Library
                     break;
                 case GameTag.Projectile:
                     var laser = (Laser)gameObject;
+
                     if (laser.IsFromPlayer != this is Player)
                     {
                         health -= laser.Damage;
@@ -117,27 +127,55 @@ namespace Zenith.Library
 
         public override string Serialize()
         {
-            //return base.Serialize() + ',' + isPlayer.ToString() + ',' + health.ToString() + ',' + reloadTime.ToString() + ',' + bodyDamage.ToString() + ',' + laserDamage.ToString() + ',' + accuracy.ToString() + ',' + laserSpeed.ToString();
-            //return base.Serialize() + ',' + health.ToString() + ',' + reloadTime.ToString() + ',' + bodyDamage.ToString() + ',' + laserDamage.ToString() + ',' + accuracy.ToString() + ',' + laserSpeed.ToString();
-            return base.Serialize() + ',' + health.ToString() + ',' + bodyDamage.ToString();
+            return base.Serialize() + ',' + reloadTime.ToString() + ',' + fireRate.ToString() + ',' +
+                bodyDamage.ToString() + ',' + direction.ToString() + ',' + accuracy.ToString() + ',' +
+                laserDamage.ToString() + ',' + laserSpeed.ToString() + ',' + health.ToString() + ',' +
+                maxHealth.ToString() + ',' + shakeOffset.ToString() + ',' + shakeTime.ToString() + ',' +
+                shakeDuration.ToString() + ',' + onDeath.ToString() + ',' + cannon.ToString();
         }
 
         public override void Deserialize(string saveInfo)
         {
-            int i = 0;
-            int index = IndexOfNthOccurance(saveInfo, ",", 5);
+
+            int index = IndexOfNthOccurance(saveInfo, ",", 12);
 
             string gameObjectSaveInfo = saveInfo.Substring(0, index);
-            string[] shipSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
             base.Deserialize(gameObjectSaveInfo);
 
-            //isPlayer = Convert.ToBoolean(shipSaveInfo[0]);
-            health = Convert.ToInt32(shipSaveInfo[0]);
-            //reloadTime = Convert.ToInt32(shipSaveInfo[1]);
+            string[] shipSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
+
+            reloadTime = Convert.ToInt32(shipSaveInfo[0]);
+            fireRate = Convert.ToInt32(shipSaveInfo[1]);
             bodyDamage = Convert.ToInt32(shipSaveInfo[2]);
-            //laserDamage = Convert.ToInt32(shipSaveInfo[3]);
-            //accuracy = Convert.ToDouble(shipSaveInfo[4]);
-            //laserSpeed = Convert.ToDouble(shipSaveInfo[5]);
+
+            direction = Convert.ToDouble(shipSaveInfo[3]);
+            accuracy = Convert.ToDouble(shipSaveInfo[4]);
+            laserDamage = Convert.ToInt32(shipSaveInfo[5]);
+            laserSpeed = Convert.ToDouble(shipSaveInfo[6]);
+
+            health = Convert.ToInt32(shipSaveInfo[7]);
+            maxHealth = Convert.ToInt32(shipSaveInfo[8]);
+
+            string[] xNy = shipSaveInfo[9].Split(':');
+            shakeOffset = new Vector(Convert.ToDouble(xNy[0]), Convert.ToDouble(xNy[1]), false);
+            shakeTime = Convert.ToInt32(shipSaveInfo[10]);
+            shakeDuration = Convert.ToInt32(shipSaveInfo[11]);
+
+            //onDeath = shipSaveInfo[12];
+
+            string[] cannonValues = shipSaveInfo[13].Split(':');
+
+            cannon.Host = this;
+            cannon.ReloadTime = Convert.ToInt32(cannonValues[0]);
+            string[] firePatternValues = cannonValues[1].Split(';');
+            foreach (string value in firePatternValues)
+            {
+                cannon.FirePattern.Add(Convert.ToInt32(value));
+            }
+            cannon.FireSequence = Convert.ToInt32(cannonValues[2]);
+            cannon.Damage = Convert.ToInt32(cannonValues[3]);
+            cannon.Accuracy = Convert.ToDouble(cannonValues[4]);
+            cannon.ProjectileSpeed = Convert.ToDouble(cannonValues[5]);
         }
 
     }

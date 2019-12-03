@@ -24,7 +24,7 @@ namespace Zenith.Library
             health = 1000;
             maxHealth = 1000;
             type = GameObjectType.Player;
-            imageSources = new string[] { Util.GetShipSpriteFolderPath("blue_01.png") };
+            imageSources = new List<string> { Util.GetShipSpriteFolderPath("blue_01.png") };
             cannon = new BasicCannon(this, 15);
         }
     }
