@@ -96,16 +96,8 @@ namespace Zenith.Desktop
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            var p = new Player(new Library.Vector(0, 0));
-            World.Instance.AddObject(p);
-            World.Instance.Player = p;
-            p.Velocity.Cap(0);
-            p.Position.X = 90;
-            p.Position.Y = World.Instance.Height / 2;
-
-            // setting cheat mode on
-            isCheating = true;
-            if (isCheating) World.Instance.Reset();
+            World.Instance.Reset();
+            if (isCheating) World.Instance.EnableCheatMode();
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
