@@ -134,13 +134,13 @@ namespace Zenith.Library
                 bodyDamage.ToString() + ',' + direction.ToString() + ',' + accuracy.ToString() + ',' +
                 laserDamage.ToString() + ',' + laserSpeed.ToString() + ',' + health.ToString() + ',' +
                 maxHealth.ToString() + ',' + shakeOffset.ToString() + ',' + shakeTime.ToString() + ',' +
-                shakeDuration.ToString() + ',' + onDeath.ToString() + ',' + cannon.ToString();
+                shakeDuration.ToString() + ',' /*+ onDeath.ToString() + ','*/ + cannon.ToString();
         }
 
         public override void Deserialize(string saveInfo)
         {
 
-            int index = IndexOfNthOccurance(saveInfo, ",", 12);
+            int index = IndexOfNthOccurance(saveInfo, ",", 11);
 
             string gameObjectSaveInfo = saveInfo.Substring(0, index);
             base.Deserialize(gameObjectSaveInfo);
@@ -166,11 +166,12 @@ namespace Zenith.Library
 
             //onDeath = shipSaveInfo[12];
 
-            string[] cannonValues = shipSaveInfo[13].Split(':');
+            string[] cannonValues = shipSaveInfo[12].Split(':');
 
             cannon.Host = this;
             cannon.ReloadTime = Convert.ToInt32(cannonValues[0]);
-            string[] firePatternValues = cannonValues[1].Split(';');
+            char[] charSeparators = new char[] { ';' };
+            string[] firePatternValues = cannonValues[1].Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
             foreach (string value in firePatternValues)
             {
                 cannon.FirePattern.Add(Convert.ToInt32(value));

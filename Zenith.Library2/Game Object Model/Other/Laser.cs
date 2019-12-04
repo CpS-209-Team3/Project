@@ -62,12 +62,12 @@ namespace Zenith.Library
 
         public override string Serialize()
         {
-            return base.Serialize() + ',' + isFromPlayer.ToString() + ',' + damage.ToString();
+            return base.Serialize() + ',' + damage.ToString() + ',' + isFromPlayer.ToString();
         }
 
         public override void Deserialize(string saveInfo)
         {
-            int index = IndexOfNthOccurance(saveInfo, ",", 12);
+            int index = IndexOfNthOccurance(saveInfo, ",", 11);
 
             string gameObjectSaveInfo = saveInfo.Substring(0, index);
             base.Deserialize(gameObjectSaveInfo);

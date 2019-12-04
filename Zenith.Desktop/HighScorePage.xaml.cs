@@ -23,7 +23,6 @@ namespace Zenith.Desktop
     {
         HighScores hiscrs = new HighScores();
         MainWindow main;
-        Dictionary<int, int> rankingScore;
         public HighScorePage(MainWindow theMainOne)
         {
             InitializeComponent();
@@ -32,6 +31,8 @@ namespace Zenith.Desktop
         }
         private void HighScorePage_Loaded(object sender, RoutedEventArgs e)
         {
+            List<string> nameList = new List<string> { "Darth Vader", "Luke Skywalker", "Han Solo", "Yoda", "Obi-Wan Kenobi", "Rey", "Chewbacca", "Finn", "Superman", "Son Goku", "Stephen Schaub" };
+            int PresetScore = 10000;
             int RankNum = 0;
             var HiScrBoard = lbl_top1to5;
             for (int i = 1; i < 11; ++i)
@@ -42,11 +43,15 @@ namespace Zenith.Desktop
                     //~~~~~ Change board if not in rank 5 ~~~~~
                     if (i > 5)
                         HiScrBoard = lbl_top6to10;
-                    HiScrBoard.Text += Convert.ToString(hiscrs.LeaderList[i]) + ".\n\n";
+                    // List start with 0 but i start with 1 => i - 1
+                    HiScrBoard.Text += " " + Convert.ToString(RankNum) + ". " + Convert.ToString(hiscrs.LeaderList[i - 1].Name) + " - " + Convert.ToString(hiscrs.LeaderList[i - 1].Score) + "\n\n";
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    HiScrBoard.Text += Convert.ToString(RankNum) + "." + "   0\n\n";
+                    int NewPreset = PresetScore - (i - 1)*1000;
+                    Random r = new Random();
+                    int randnum = r.Next(11);
+                    HiScrBoard.Text += " " + Convert.ToString(RankNum) + ". " + nameList[randnum] + " - " + NewPreset + "\n\n";
                 }
             }
         }
