@@ -12,13 +12,6 @@ namespace Zenith.Library
         public override void ShipLoop()
         {
             cannon.Fire();
-            switch (state)
-            {
-                case EnemyState.Sway:
-                    
-                    
-                    break;
-            }
             ++clock;
             double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.Height - position.Y;
             AddForce(new Vector(0, goalY) * 100);

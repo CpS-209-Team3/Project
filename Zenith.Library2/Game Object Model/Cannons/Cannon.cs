@@ -11,7 +11,7 @@ namespace Zenith.Library
 
         GameObject host;
         protected int reloadTime = 0;
-        protected List<int> firePattern = new List<int>(15);
+        protected List<int> firePattern = new List<int> { 15 };
         protected int fireSequence = 0;
         protected int damage = 40;
         protected double accuracy = 0;

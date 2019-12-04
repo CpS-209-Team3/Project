@@ -174,6 +174,8 @@ namespace Zenith.View
             World.Instance.Directory = System.Environment.CurrentDirectory;
             World.Instance.CreatePlayer();
 
+            // DisplayAlert("Alert", System.Environment.CurrentDirectory, "OK");
+
             GameTimerStart();
         }
 

@@ -99,6 +99,8 @@ namespace Zenith.Desktop
             World.Instance.Reset();
             if (isCheating) World.Instance.EnableCheatMode();
 
+            World.Instance.CreatePlayer();
+
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             timer.Tick += GameLoop;
