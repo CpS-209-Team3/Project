@@ -172,6 +172,7 @@ namespace Zenith.View
 
             // Source: https://stackoverflow.com/questions/29644200/how-get-mono-xamarin-android-app-path-folder
             World.Instance.Directory = System.Environment.CurrentDirectory;
+            World.Instance.CreatePlayer();
 
             GameTimerStart();
         }
