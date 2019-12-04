@@ -15,7 +15,7 @@ namespace Zenith.Library
         {
             type = GameObjectType.Enemy1;
 
-            imageSources = new List<string> { Util.GetShipSpriteFolderPath("blue_01.png") };
+            imageSources = new List<string> { Util.GetShipSpriteFolderPath("tankbase_01.png") };
             angle = Math.PI;
             velocity.X = -50;
             this.position.X = World.Instance.Width;

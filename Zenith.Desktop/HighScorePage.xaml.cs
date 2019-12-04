@@ -31,6 +31,8 @@ namespace Zenith.Desktop
         }
         private void HighScorePage_Loaded(object sender, RoutedEventArgs e)
         {
+            HighScores highScores = HighScores.Load("highScores.txt");
+            lbl_top1to5.Text = highScores.LeaderList[0].Name;
             List<string> nameList = new List<string> { "Darth Vader", "Luke Skywalker", "Han Solo", "Yoda", "Obi-Wan Kenobi", "Rey", "Chewbacca", "Finn", "Superman", "Son Goku", "Stephen Schaub" };
             int PresetScore = 10000;
             int RankNum = 0;
@@ -52,8 +54,8 @@ namespace Zenith.Desktop
                     Random r = new Random();
                     int randnum = r.Next(11);
                     HiScrBoard.Text += " " + Convert.ToString(RankNum) + ". " + nameList[randnum] + " - " + NewPreset + "\n\n";
-                }
-            }
+        }
+    }
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~
