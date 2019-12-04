@@ -31,7 +31,7 @@ namespace Zenith.Library
         public Boss1(Vector position)
             : base(position)
         {
-            imageSources = new string[] { Util.GetShipSpriteFolderPath("large_grey_01.png") };
+            imageSources = new List<string> { Util.GetShipSpriteFolderPath("large_grey_01.png") };
             angle = Math.PI;
             type = GameObjectType.Boss1;
             size = new Vector(256, 256);

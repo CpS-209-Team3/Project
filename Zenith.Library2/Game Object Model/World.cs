@@ -37,6 +37,7 @@ namespace Zenith.Library
         private World()
         {
             gameTick = 0;
+            level = 1;
             random = new Random();
             PlayerController = new GameController();
             Width = 500;
@@ -46,7 +47,7 @@ namespace Zenith.Library
             collisionManager = new CollisionQuad(new Vector(0, 0), new Vector(Width, Height), 0);
             collisionManager.Objects = objects;
 
-            spawnManager = new SpawnManager(difficulty);
+            levelManager = new LevelManager(difficulty, level);
         }
 
         // End of Singleton Code
@@ -65,7 +66,7 @@ namespace Zenith.Library
         private int collisions = 0;
 
         private int difficulty = 1;
-        private SpawnManager spawnManager;
+        private LevelManager levelManager;
 
         // Properties
 
@@ -103,24 +104,36 @@ namespace Zenith.Library
 
         public void Update()
         {
-            for (int i = 0; i < objects.Count; ++i)
+            if (PlayerController.Save) Save("test.txt");
+            
+            if (PlayerController.Load)
             {
-                objects[i].Update();
-
-                if (objects[i].Destroy)
-                {
-                    RemoveObject(objects[i]);
-                    // fix index after removal
-                    --i;
-                }
+                Reset();
+                Load("test.txt");
             }
 
-            collisions = 0;
-            collisionManager.CheckForCollisions();
+            if (!PlayerController.Pause)
+            {
+                for (int i = 0; i < objects.Count; ++i)
+                {
+                    objects[i].Update();
 
-            spawnManager.Update();
+                    if (objects[i].Destroy)
+                    {
+                        RemoveObject(objects[i]);
+                        // fix index after removal
+                        --i;
+                    }
+                }
 
-            ++gameTick;
+                collisions = 0;
+                collisionManager.CheckForCollisions();
+
+                levelManager.Update();
+
+                ++gameTick;
+            }
+            
         }
 
         public void AddObject(GameObject gameObject)
@@ -162,8 +175,7 @@ namespace Zenith.Library
                         string objectInfo = saveInfo.Substring(saveInfo.IndexOf(",") + 1);
                         GameObject obj = CreateInstanceOf(objectType);
                         obj.Deserialize(objectInfo);
-                        //AddObject(obj);
-                        objects.Add(obj);
+                        AddObject(obj);
                     }
                 }
             }
@@ -189,7 +201,11 @@ namespace Zenith.Library
                 writer.WriteLine(score);
                 foreach (GameObject obj in this.objects)
                 {
-                    writer.WriteLine(obj.Serialize());
+                    if (!(obj is HealthBar))
+                    {
+                        writer.WriteLine(obj.Serialize());
+                    }
+                    
                 }
             }
         }
@@ -202,8 +218,16 @@ namespace Zenith.Library
             score = 0;
             gameTick = 0;
 
-            objects.RemoveAll(obj => true);
+            for (int i = Objects.Count - 1; i >= 0; i--)
+            {
+                RemoveObject(Objects[i]);
+            }
 
+            
+        }
+
+        public void CreatePlayer()
+        {
             var p = new Player(new Library.Vector(90, Height / 2));
             AddObject(p);
             Player = p;
@@ -212,38 +236,37 @@ namespace Zenith.Library
 
         public GameObject CreateInstanceOf(string objectType)
         {
+            Vector tempVector = new Vector(1, 1, false);
             switch (objectType)
             {
-                /*case "Generic":
-                    return;
                 case "Item":
-                    return;*/
-                case "BackgroundElement":
-                    return new BackgroundElement(null, 0);
-                case "Laser":
-                    return new Laser(null, null, 0, true);
+                    return new Item(tempVector);
                 case "Asteroid":
-                    return new Asteroid(null, 0);
-                case "Player":
-                    return new Player(null);
-                case "Enemy":
-                    return new Enemy1(null);
+                    return new Asteroid(tempVector, 0);
+                case "Laser":
+                    return new Laser(tempVector, tempVector, 0, true);
+                case "BackgroundElement":
+                    return new BackgroundElement(tempVector, 0);
                 case "Enemy1":
-                    return new Enemy1(null);
+                    return new Enemy1(tempVector);
                 case "Enemy2":
-                    return new Enemy2(null);
+                    return new Enemy2(tempVector);
                 case "Enemy3":
-                    return new Enemy3(null);
+                    return new Enemy3(tempVector);
                 case "Boss1":
-                    return new Boss1(null);
+                    return new Boss1(tempVector);
                 case "Boss2":
-                    return new Boss2(null);
+                    return new Boss2(tempVector);
                 case "Boss3":
-                    return new Boss3(null);
+                    return new Boss3(tempVector);
                 case "Boss4":
-                    return new Boss4(null);
+                    return new Boss4(tempVector);
                 case "Boss5":
-                    return new Boss5(null);
+                    return new Boss5(tempVector);
+                case "Player":
+                    return new Player(tempVector);
+                case "HealthBar":
+                    return new HealthBar(null);
             }
             return null;
         }

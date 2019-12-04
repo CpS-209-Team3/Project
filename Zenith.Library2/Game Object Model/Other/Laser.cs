@@ -42,13 +42,15 @@ namespace Zenith.Library
                 position.Y > World.Instance.Height) Destroy = true;
         }
 
+
         public Laser(Vector position, Vector velocity, int damage, bool isFromPlayer)
+
             : base(position)
         {
             this.isFromPlayer = isFromPlayer;
             this.velocity = velocity;
             this.damage = damage;
-            imageSources = new string[] { Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png") };
+            imageSources = new List<string> { Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png") };
             imageRotation = 0;
             
             size = new Vector(damage, damage);
@@ -60,24 +62,19 @@ namespace Zenith.Library
 
         public override string Serialize()
         {
-            return base.Serialize() + ',' + isFromPlayer.ToString() + ',' + damage.ToString();
+            return base.Serialize() + ',' + damage.ToString() + ',' + isFromPlayer.ToString();
         }
 
         public override void Deserialize(string saveInfo)
         {
-            int i = 0;
-            int index = IndexOfNthOccurance(saveInfo, ",", 5);
+            int index = IndexOfNthOccurance(saveInfo, ",", 11);
 
             string gameObjectSaveInfo = saveInfo.Substring(0, index);
-            string[] laserSaveInfo = saveInfo.Substring(index, saveInfo.Length - index).Split(',');
-
             base.Deserialize(gameObjectSaveInfo);
 
-            foreach (PropertyInfo property in typeof(Ship).GetProperties())
-            {
-                property.SetValue(this, laserSaveInfo[i]);
-                i++;
-            }
+            string[] laserSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
+            damage = Convert.ToInt32(laserSaveInfo[0]);
+            isFromPlayer = Convert.ToBoolean(laserSaveInfo[1]);
         }
     }
 }

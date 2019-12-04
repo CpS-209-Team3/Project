@@ -50,7 +50,7 @@ namespace Zenith.View
         public Sprite(GameObject gameObject)
         {
             // Load images for sprite
-            images = new Image[gameObject.ImageSources.Length];
+            images = new Image[gameObject.ImageSources.Count];
 
             this.gameObject = gameObject;
 
@@ -68,7 +68,7 @@ namespace Zenith.View
 
             try
             {
-                for (int i = 0; i < gameObject.ImageSources.Length; ++i)
+                for (int i = 0; i < gameObject.ImageSources.Count; ++i)
                 {
                     images[i] = new Image();
                     images[i].Source = gameObject.ImageSources[i];

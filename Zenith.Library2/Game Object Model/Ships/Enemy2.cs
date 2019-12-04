@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
+
+// needs a different sprite. 
+// needs its own movemment pattern put in ship loop.
+// 
+
+
+
+
 namespace Zenith.Library
 {
     class Enemy2 : Enemy
@@ -28,7 +36,7 @@ namespace Zenith.Library
         public Enemy2(Vector position)
            : base(position)
         {
-            imageSources = new string[] { Util.GetShipSpriteFolderPath("darkgrey_01.png") };
+            imageSources = new List<string> { Util.GetShipSpriteFolderPath("darkgrey_01.png") };
             type = GameObjectType.Enemy2;
             double x = (World.Instance.Random.NextDouble() * World.Instance.Width / 2) + World.Instance.Width / 2;
             double y = World.Instance.Random.NextDouble() * World.Instance.Height;

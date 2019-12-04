@@ -23,7 +23,7 @@ namespace Zenith.Library
             : base(host.Position)
         {
             this.host = host;
-            imageSources = new string[] {
+            imageSources = new List<string> {
                 Util.GetSpriteFolderPath("Health_Bar\\healthbar_0.png"),
                 Util.GetSpriteFolderPath("Health_Bar\\healthbar_1.png"),
                 Util.GetSpriteFolderPath("Health_Bar\\healthbar_2.png"),
@@ -40,6 +40,27 @@ namespace Zenith.Library
             collidable = false;
             type = GameObjectType.HealthBar;
             size *= 100;
+        }
+
+        public override string Serialize()
+        {
+            return base.Serialize() + ',' + host.Position.ToString() + ',' + distance.ToString();
+        }
+
+        public override void Deserialize(string saveInfo)
+        {
+            int index = IndexOfNthOccurance(saveInfo, ",", 12);
+
+            string gameObjectSaveInfo = saveInfo.Substring(0, index);
+            base.Deserialize(gameObjectSaveInfo);
+
+            string[] healthBarSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
+
+            string[] xNy = healthBarSaveInfo[0].Split(':');
+            Vector pos = new Vector(Convert.ToDouble(xNy[0]), Convert.ToDouble(xNy[1]), false);
+
+            host = (Ship)World.Instance.Objects.Find(obj => (obj.Position == pos && obj.Collidable == true));
+            distance = Convert.ToDouble(healthBarSaveInfo[1]);
         }
     }
 }
