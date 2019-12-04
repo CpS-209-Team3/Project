@@ -170,6 +170,7 @@ namespace Zenith.View
             World.Instance.Width = Width;
             World.Instance.Height = Height;
 
+            // Source: https://stackoverflow.com/questions/29644200/how-get-mono-xamarin-android-app-path-folder
             World.Instance.Directory = System.Environment.CurrentDirectory;
 
             GameTimerStart();

@@ -16,6 +16,7 @@ namespace Zenith.Library
         protected int damage = 40;
         protected double accuracy = 0;
         protected double projectileSpeed = 800;
+        protected string projectileImage = Util.GetSpriteFolderPath("project");
 
         //  properties
 
@@ -26,6 +27,13 @@ namespace Zenith.Library
         public int Damage { get { return damage; } set { damage = value; } }
         public double Accuracy { get { return accuracy; } set { accuracy = value; } }
         public double ProjectileSpeed { get { return projectileSpeed; } set { projectileSpeed = value; } }
+
+        // Methods
+
+        public void ChangeProjectileImage(string source)
+        {
+
+        }
 
         public virtual void Fire()
         {
