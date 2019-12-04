@@ -12,12 +12,12 @@
         <Grid.Background>
             <ImageBrush ImageSource="HighScoreBG.png"/>
         </Grid.Background>
-        <StackPanel Margin="0,0,0,0.4">
-            <TextBlock Text="Screen of Fame" FontSize="40" FontWeight="Bold" Foreground="AliceBlue" TextAlignment="Center" Height="55" Margin="406,40,401,0" Width="313"/>
+        <StackPanel Margin="0,0,0,0.4" Width="auto">
+            <TextBlock Text="Astronauts of the Game" FontSize="40" FontWeight="Bold" Foreground="AliceBlue" TextAlignment="Center" Height="55" Width="auto" Margin="300,40,300,0"/>
         </StackPanel>
-        <StackPanel Margin="117,121,87,100.4" Orientation="Horizontal">
-            <TextBlock x:Name="lbl_top1to5" FontSize="30" Height="auto" Width="380" Margin="50,1,54,-0.2" Background="Aqua" />
-            <TextBlock x:Name="lbl_top6to10" FontSize="30" Height="auto" Width="380" Background="Aqua" />
+        <StackPanel Margin="102,121,101.4,100.4" Orientation="Horizontal">
+            <TextBlock x:Name="lbl_top1to5" FontSize="30" Foreground="DarkOrange" Height="auto" Width="380" Margin="15,1,54,-0.2" Background="Transparent" Opacity="1" />
+            <TextBlock x:Name="lbl_top6to10" FontSize="30" Foreground="DarkOrange" Height="auto" Width="380" Background="Transparent" Opacity="1" />
         </StackPanel>
         <Button x:Name="btn_Back" Content="Back" FontSize="25" Foreground="AliceBlue" FontWeight="DemiBold" Background="Transparent" BorderBrush="Transparent" Height="50" Width="60"  Margin="0,480,900,0" Click="btn_Back_Click"/>
     </Grid>

@@ -116,12 +116,13 @@ namespace Zenith.Desktop
             timer.Start();
         }
 
+        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Continue_Click(object sender, RoutedEventArgs e)
         {
             // Continue to play game => close the popup and continue the game
-            if (StandardPopup.IsOpen == true)
-                StandardPopup.IsOpen = false;
+            if (Popup_Pause.IsOpen == true)
+                Popup_Pause.IsOpen = false;
 
             // Write the `unpause` game here....
         }
@@ -138,10 +139,22 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_MainMenu_Click(object sender, RoutedEventArgs e)
         {
+            //Close popup then go back to Main Menu
+            if (Popup_Pause.IsOpen == true)
+                Popup_Pause.IsOpen = false;
             //Return to main menu as Back button works.
             main.Content = main.canView;
         }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
 
+        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Close ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+            if (Popup_NewHighScore.IsOpen == true)
+                Popup_NewHighScore.IsOpen = false;
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }
