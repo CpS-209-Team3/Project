@@ -49,6 +49,7 @@ namespace Zenith.View
 
         public Sprite(GameObject gameObject)
         {
+
             // Load images for sprite
             images = new Image[gameObject.ImageSources.Count];
 

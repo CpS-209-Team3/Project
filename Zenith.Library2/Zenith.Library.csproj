@@ -59,6 +59,9 @@
     <None Update="Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4\large_grey_01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4\large_purple_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4\Projectiles\projectile-blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
