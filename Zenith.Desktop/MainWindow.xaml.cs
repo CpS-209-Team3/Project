@@ -101,10 +101,10 @@ namespace Zenith.Desktop
             World.Instance.Width = Width;
             World.Instance.Height = Height;
 
-            timer = new DispatcherTimer();
+            /*timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             timer.Tick += GameLoop;
-            timer.Start();
+            timer.Start();*/
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
