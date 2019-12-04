@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
+// Not sure if I should rename the file, seeing as ive renamed the class.
+
+// Waves. Im gonna use the ships ondeath variable to call a different method depending on what ship it is in the wave. Or maybe not.
+// Lets first design level 1. We'll have 3 waves until the boss. Each Wave will spawn an assortment of different enemies. 
+
+    // Basically the waves will spawn and the player will have to destroy them all to progress to the next wave. Might have a couple different wave classes
+    // Final wave includes a boss, who has the power to spawn different waves.
+
+    // Waves will not be Random. This will allow high score to be totally dependent on time it took to finish and level of difficulty.
+
+
+
+
 // Levels should speed up the rate at which enemies spawn. check
 // Enemies should be varied based on level. Different types have different stats. check
 // Enemies should have more hp and damage based on difficulty.
@@ -16,28 +29,14 @@ namespace Zenith.Library
         private int difficulty;
         private int spawnRate;
         private int timeUntilNextSpawn;
+        private Vector startingPos;
+        private static int nextWave;
+
+        public static int NextWave { get { return nextWave; } set { nextWave = value; } }
 
         public void Spawn()
         {
-            int r = World.Instance.Random.Next(0, 5) + level;
-           
-            double x = World.Instance.Width;
-            double y = World.Instance.Random.NextDouble() * (World.Instance.Height - 32);
-            var pos = new Vector(x, y);
-
-            if (r < 9 && r > 0)
-            {
-                if (r < 3) World.Instance.AddObject(new Enemy1(pos));
-                else if (r < 7) World.Instance.AddObject(new Enemy2(pos));
-                else World.Instance.AddObject(new Enemy3(pos));
-            }
-            else
-            {
-                World.Instance.AddObject(new Asteroid(
-                    pos,
-                    World.Instance.Random.Next(30, 50))
-                    );
-            }
+            new Wave1(difficulty, level);
         }
 
         public void Update()
@@ -54,8 +53,13 @@ namespace Zenith.Library
         {
             this.difficulty = difficulty;
             this.level = level;
-            spawnRate = 100 - (30 * difficulty) - (20 * level);
+
+            spawnRate = 100;
             timeUntilNextSpawn = spawnRate;
+            
+
         }
+
+        
     }
 }
