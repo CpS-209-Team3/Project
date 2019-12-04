@@ -52,6 +52,6 @@
                 <TextBlock Text="Asteroid" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
             </StackPanel>
         </StackPanel>
-        <Button x:Name="btn_Back" Height="57" Width="114" Content="Back" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="DemiBold" Foreground="Yellow" Background="Black" Margin="489,527,517,46.4" Click="btn_Back_Click"/>
+        <Button x:Name="btn_Back" Height="60" Width="114" Content="Back" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="DemiBold" Foreground="Yellow" Background="Black" Margin="489,500,517,70" Click="btn_Back_Click"/>
     </Grid>
 </Page>

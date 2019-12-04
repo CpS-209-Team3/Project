@@ -7,6 +7,9 @@ namespace Zenith.Library
 {
     public abstract class Ship : GameObject
     {
+
+        const double collisionDamper = 0.50;
+
         // instance variables
 
         protected int reloadTime = 0;
@@ -51,7 +54,7 @@ namespace Zenith.Library
                         health -= ship.BodyDamage;
                         Shake();
                     }
-                    AddForce(offset * ((gameObject.Velocity.Magnitude) * gameObject.Mass / mass));
+                    AddForce(offset * ((gameObject.Velocity.Magnitude) * gameObject.Mass / mass) * collisionDamper);
                     break;
                 case GameTag.Projectile:
                     var laser = (Laser)gameObject;
@@ -59,7 +62,7 @@ namespace Zenith.Library
                     if (laser.IsFromPlayer != this is Player)
                     {
                         health -= laser.Damage;
-                        AddForce(offset * (gameObject.Velocity.Magnitude * gameObject.Mass / mass));
+                        AddForce(offset * (gameObject.Velocity.Magnitude * gameObject.Mass / mass) * collisionDamper);
                         Shake();
                     }
                     break;

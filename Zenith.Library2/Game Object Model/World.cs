@@ -218,10 +218,7 @@ namespace Zenith.Library
             score = 0;
             gameTick = 0;
 
-            for (int i = Objects.Count - 1; i >= 0; i--)
-            {
-                RemoveObject(Objects[i]);
-            }
+            objects.Clear();
 
             
         }
