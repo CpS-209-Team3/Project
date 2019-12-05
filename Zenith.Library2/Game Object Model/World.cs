@@ -258,7 +258,7 @@ namespace Zenith.Library
             Player = p;
             p.Velocity.Cap(0);
             EnableCheatMode();
-            SpawnBoss(2);
+            SpawnBoss(3);
         }
 
         public GameObject CreateInstanceOf(string objectType)
