@@ -52,8 +52,9 @@ namespace Zenith.Library
             this.damage = damage;
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png") };
             imageRotation = 0;
-            
-            size = new Vector(damage, damage);
+
+            int size2 = Math.Min(damage, 100);
+            size = new Vector(size2, size2);
             angle = velocity.Angle;
 
             type = GameObjectType.Laser;

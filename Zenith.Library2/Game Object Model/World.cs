@@ -154,6 +154,34 @@ namespace Zenith.Library
             Player.MaxHealth = 0x7FFFFFFF;
         }
 
+        // Spawns a boss with a valid ID. Mainly used for debugging purposes.
+        public void SpawnBoss(int bossID)
+        {
+            Ship boss = null;
+            var startingPosition = new Vector(Width, Height / 2);
+
+            switch (bossID)
+            {
+                case 1:
+                    boss = new Boss1(startingPosition);
+                    break;
+                case 2:
+                    boss = new Boss2(startingPosition);
+                    break;
+                case 3:
+                    boss = new Boss3(startingPosition);
+                    break;
+                case 4:
+                    boss = new Boss4(startingPosition);
+                    break;
+                case 5:
+                    boss = new Boss5(startingPosition);
+                    break;
+            }
+
+            if (boss != null) AddObject(boss);
+        }
+
         // Reads a list of strings from the file specifed by filename and puts them into the list
         // of game object strings, then depending on the type of the string given by the first comma
         // seperated value, it will create a different object, deserialize the rest of the information
@@ -229,6 +257,8 @@ namespace Zenith.Library
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
+            EnableCheatMode();
+            SpawnBoss(2);
         }
 
         public GameObject CreateInstanceOf(string objectType)
