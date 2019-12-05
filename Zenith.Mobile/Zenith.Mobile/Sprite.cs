@@ -77,7 +77,7 @@ namespace Zenith.View
                     images[i].WidthRequest = gameObject.Size.X;
                     images[i].HeightRequest = gameObject.Size.Y;
                     images[i].Aspect = Aspect.AspectFit;
-                    images[i].HorizontalOptions = LayoutOptions.CenterAndExpand;
+                    images[i].HorizontalOptions = LayoutOptions.Center;
                 }
             }
             catch (Exception e)
