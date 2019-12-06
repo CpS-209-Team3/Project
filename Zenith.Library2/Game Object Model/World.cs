@@ -100,6 +100,8 @@ namespace Zenith.Library
 
         public int Collisions { get { return collisions; } set { collisions = value; } }
 
+        public LevelManager LevelManager { get { return levelManager; } }
+
         // Methods
 
         public void Update()
@@ -231,7 +233,7 @@ namespace Zenith.Library
                         obj.Deserialize(objectInfo);
                         AddObject(obj);
                     }
-                }
+                }   
             }
 
         }

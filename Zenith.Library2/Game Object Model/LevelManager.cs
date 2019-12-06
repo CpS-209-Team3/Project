@@ -40,6 +40,8 @@ namespace Zenith.Library
         private Wave currentWave;
         private static int waveNum;
 
+        public int Level { get { return level; } set { level = value; } }
+        public int Difficulty { get { return difficulty; } set { difficulty = value; } }
         public static int WaveNum { get { return waveNum; } set { waveNum = value; } }
 
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }

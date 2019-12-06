@@ -43,6 +43,7 @@ namespace Zenith.Library
             goal = new Vector(x, y);
             cannon = new BasicCannon(this, 200);
             cannon.ProjectileColor = ProjectileColor.Red;
+            worth = 40;
         }
     }
 }

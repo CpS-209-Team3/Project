@@ -145,6 +145,8 @@ namespace Zenith.Library
             cannon = new Boss2Cannon(this);
 
             sensor = new Sensor(this, OnSense, 200);
+
+            worth = 500;
         }
     }
 }
