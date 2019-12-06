@@ -10,7 +10,7 @@ namespace Zenith.Library
 
         public override void Loop()
         {
-            imageIndex = clock / 10;
+            imageIndex = 7;
             if (imageIndex == 109)
             {
                 destroy = true;

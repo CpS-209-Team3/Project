@@ -11,25 +11,30 @@
         <Grid.Background>
             <ImageBrush ImageSource="GameScreen.JPG" />
         </Grid.Background>
-        <StackPanel Margin="10,44,559,147.6" Orientation="Vertical">
+        <StackPanel Margin="15,44,856,297.4" Orientation="Vertical">
             <TextBlock Text="Developers" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="200" Margin="5"/>
             <TextBlock Text="Steven Platt" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="James Gonzales" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="Bao Le" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-        <StackPanel Margin="264,44,305,229.6">
+        <StackPanel Margin="587,225,289,186.4" HorizontalAlignment="Center" Width="244">
+            <TextBlock Text="Sounds" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
+            <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
+            <TextBlock Text="Steven Platt" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
+        </StackPanel>
+        <StackPanel Margin="316,44,603,405.4">
             <TextBlock Text="Graphics" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="200" Margin="5"/>
             <TextBlock Text="Steven Platt" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="(...)" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-        <StackPanel Margin="272,225,313,9.6" HorizontalAlignment="Center">
+        <StackPanel Margin="316,225,589,143.4" HorizontalAlignment="Center">
             <TextBlock Text="Code Design" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
             <TextBlock Text="James Gonzales" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="(...)" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-        <StackPanel Margin="521,49,35,185.6" HorizontalAlignment="Center" Width="244">
+        <StackPanel Margin="587,49,289,380.4" HorizontalAlignment="Center" Width="244">
             <TextBlock Text="Special Thanks" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
             <TextBlock Text="Dr. Stephen Schaub" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
             <TextBlock Text="(...)" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>

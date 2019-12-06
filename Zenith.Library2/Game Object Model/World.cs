@@ -185,7 +185,7 @@ namespace Zenith.Library
         }
 
         // Spawns a boss with a valid ID. Mainly used for debugging purposes.
-        public void SpawnBoss(int bossID)
+        public Ship SpawnBoss(int bossID)
         {
             Ship boss = null;
             var startingPosition = new Vector(EndX, EndY / 2);
@@ -208,8 +208,8 @@ namespace Zenith.Library
                     boss = new Boss5(startingPosition);
                     break;
             }
-
-            if (boss != null) AddObject(boss);
+            return boss;
+            //if (boss != null) AddObject(boss);
         }
 
         public void CreatePlayer()
@@ -219,7 +219,6 @@ namespace Zenith.Library
             Player = p;
             p.Velocity.Cap(0);
             EnableCheatMode();
-            SpawnBoss(5);
         }
 
         // This method resets the instance of world.

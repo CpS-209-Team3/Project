@@ -69,5 +69,23 @@ namespace Zenith.Library
             mass = 400;
             worth = 400;
         }
+
+        public override string Serialize()
+        {
+            return base.Serialize() + ',' + goal.ToString();
+        }
+
+        public override void Deserialize(string saveInfo)
+        {
+            int index = IndexOfNthOccurance(saveInfo, ",", 24);
+
+            string enemySaveInfo = saveInfo.Substring(0, index);
+            base.Deserialize(enemySaveInfo);
+
+            string[] boss4SaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
+
+            string[] xNy = boss4SaveInfo[0].Split(':');
+            goal = new Vector(Convert.ToDouble(xNy[0]), Convert.ToDouble(xNy[1]), false);
+        }
     }
 }

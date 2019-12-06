@@ -6,9 +6,9 @@ namespace Zenith.Library
 {
     class Boss5 : Enemy
     {
-        private const double spinSpeed = 0.5;
+        private double spinSpeed = 0.5;
 
-        private Sensor sensor;
+        private Sensor sensor; // don't serialize
         private Vector avoid = new Vector(0, 0);
         private int nextDamageMarker;
 
@@ -147,6 +147,39 @@ namespace Zenith.Library
             sensor = new Sensor(this, OnSense, 200);
 
             worth = 500;
+        }
+
+        /*private const double spinSpeed = 0.5;
+
+        private Sensor sensor; // don't serialize
+        private Vector avoid = new Vector(0, 0);
+        private int nextDamageMarker;
+
+        private Vector goal = new Vector(0, 0);
+        private int minionsLeft = 0;*/
+        public override string Serialize()
+        {
+            return base.Serialize() + ',' + spinSpeed.ToString() + ',' + avoid.ToString() + ',' +
+                nextDamageMarker.ToString() + ',' + goal.ToString() + ',' + minionsLeft.ToString();
+        }
+
+        public override void Deserialize(string saveInfo)
+        {
+            int index = IndexOfNthOccurance(saveInfo, ",", 24);
+
+            string enemySaveInfo = saveInfo.Substring(0, index);
+            base.Deserialize(enemySaveInfo);
+
+            string[] boss5SaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
+
+            spinSpeed = Convert.ToDouble(boss5SaveInfo[0]);
+            string[] xNy = boss5SaveInfo[1].Split(':');
+            avoid = new Vector(Convert.ToDouble(xNy[0]), Convert.ToDouble(xNy[1]), false);
+            nextDamageMarker = Convert.ToInt32(boss5SaveInfo[2]);
+            string[] xNy1 = boss5SaveInfo[3].Split(':');
+            goal = new Vector(Convert.ToDouble(xNy1[0]), Convert.ToDouble(xNy1[1]), false);
+            minionsLeft = Convert.ToInt32(boss5SaveInfo[4]);
+
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,23 @@ namespace Zenith.Desktop
         {
             InitializeComponent();
             main = theMainOne;
+            
+            // Uncomment to let the asteroid spin...
+            // Just make the Asteroid spin for fun... Ignore it :D
+            
+            // Task.Run(() =>
+            //{
+            //    while (true)
+            //    {
+            //        Thread.Sleep(16);
+            //        Dispatcher.Invoke(() =>
+            //       {
+            //           if (img_angle.Angle == 360)
+            //               img_angle.Angle = 0;
+            //           img_angle.Angle += 3;
+            //       });
+            //    }
+            //});
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~

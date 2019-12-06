@@ -8,7 +8,7 @@ namespace Zenith.Library
     {
         public Wave5(int difficulty, int level)
         {
-            World.Instance.SpawnBoss(level);
+            AddEnemy(World.Instance.SpawnBoss(level));
         }
     }
 }

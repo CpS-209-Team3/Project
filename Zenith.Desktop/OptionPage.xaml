@@ -24,7 +24,7 @@
                         </Style>
                     </ComboBox.ItemContainerStyle>
                     <ComboBoxItem x:Name="drop_Easy" FontSize="30" VerticalAlignment="Center" Width="auto" Height="auto" FontWeight="DemiBold" Foreground="AliceBlue" Content="Easy"/>
-                    <ComboBoxItem x:Name="drop_Medium" FontSize="30" VerticalAlignment="Center" Width="auto" Height="auto" FontWeight="DemiBold" Foreground="AliceBlue" Content="Medium"/>
+                    <ComboBoxItem x:Name="drop_Medium" FontSize="30" VerticalAlignment="Center" Width="auto" Height="auto" FontWeight="DemiBold" Foreground="AliceBlue" Content="Medium" IsSelected="True"/>
                     <ComboBoxItem x:Name="drop_Hard" FontSize="30" VerticalAlignment="Center" Width="auto" Height="auto" FontWeight="DemiBold" Foreground="AliceBlue" Content="Hard"/>
                 </ComboBox>
             </StackPanel>
