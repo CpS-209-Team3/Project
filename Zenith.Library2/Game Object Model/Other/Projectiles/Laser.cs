@@ -38,8 +38,8 @@ namespace Zenith.Library
         {
             if (position.X < 0 ||
                 position.Y < 0 ||
-                position.X > World.Instance.Width ||
-                position.Y > World.Instance.Height) Destroy = true;
+                position.X > World.Instance.EndX ||
+                position.Y > World.Instance.EndY) Destroy = true;
         }
 
 

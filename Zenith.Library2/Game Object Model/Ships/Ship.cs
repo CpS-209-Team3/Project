@@ -110,7 +110,7 @@ namespace Zenith.Library
             {
                 shakeOffset.Cap(0);
             }
-            if (position.X > World.Instance.Width) AddForce(new Vector(-500, 0));
+            if (position.X > World.Instance.EndX) AddForce(new Vector(-500, 0));
             velocity *= 0.97;
 
             cannon.Update();

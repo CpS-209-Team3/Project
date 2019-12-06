@@ -22,8 +22,8 @@ namespace Zenith.Library
 
                     cannon.Fire();
 
-                    double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.Height;
-                    double goalX = World.Instance.Width * 0.75;
+                    double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.EndY;
+                    double goalX = World.Instance.EndX * 0.75;
 
                     //AddForce(new Vector(goalX, goalY) * 200);
                     MoveTo(new Vector(goalX, goalY), 200);
@@ -32,7 +32,7 @@ namespace Zenith.Library
                     break;
                 case EnemyState.Pause:
                     angle = (World.Instance.Player.Position - position).Angle;
-                    AddForce((new Vector(World.Instance.Width * 0.90, World.Instance.Height / 2) - position) * 50);
+                    AddForce((new Vector(World.Instance.EndX * 0.90, World.Instance.EndY / 2) - position) * 50);
 
                     ++clock;
                     if (clock >= 90)
