@@ -23,6 +23,8 @@ namespace Zenith.Library
             this.host = host;
             onSense = callback;
 
+            canSerialize = false;
+
             imageSources = new List<string> { };
 
             World.Instance.AddObject(this);
