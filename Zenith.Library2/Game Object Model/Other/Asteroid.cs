@@ -8,7 +8,7 @@ namespace Zenith.Library
     {
         public override void ShipLoop()
         {
-            velocity.X = -1/size.X * 1000;
+            velocity.X = -1/size.X * 2000;
         }
 
         public Asteroid(Vector position, double size)

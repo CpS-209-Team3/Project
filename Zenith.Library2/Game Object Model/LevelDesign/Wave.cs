@@ -23,17 +23,17 @@ namespace Zenith.Library
                 else
                 {
                     World.Instance.LevelManager.Level++;
-                    World.Instance.LevelManager.CurrentWave = new Wave1(World.Instance.LevelManager.Difficulty, World.Instance.LevelManager.Level);
+                    LevelManager.WaveNum = 1; 
                 }
             }
                 
         }
 
-        public void AddEnemy(Enemy type)
+        public void AddEnemy(Ship type)
         {
             type.OnDeath = DeathAction;
-            World.Instance.AddObject(type);
             waveCount++;
+            World.Instance.AddObject(type);
         }
     }
 }
