@@ -38,10 +38,10 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Cheat Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Cheat_Click(object sender, RoutedEventArgs e)
         {
-            if (lblCheat.Text == "ON")
-                lblCheat.Text = "OFF";
+            if (btn_Cheat.Content == "OFF")
+                btn_Cheat.Content = "ON";
             else
-                lblCheat.Text = "ON";
+                btn_Cheat.Content = "OFF";
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Difficult Button Click ~~~~~~~~~~~~~~~~~~~~
