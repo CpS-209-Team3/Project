@@ -8,7 +8,6 @@ namespace Zenith.Library
     {
         public override void ShipLoop()
         {
-            velocity.X = -1/size.X * 1000;
         }
 
         public Asteroid(Vector position, double size)
@@ -16,7 +15,7 @@ namespace Zenith.Library
         {
             this.size = new Vector(size, size);
             mass = size * size;
-            velocity.X = -World.Instance.Random.NextDouble() * 200;
+            velocity.X = (-1 / size * 10) * 7000;
             velocity.Y = (World.Instance.Random.NextDouble() * 2 - 1) * 8;
             type = GameObjectType.Asteroid;
             imageSources = new List<string> { Util.GetSpriteFolderPath("Aster1.png") };
