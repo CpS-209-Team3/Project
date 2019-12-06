@@ -70,6 +70,8 @@ namespace Zenith.Library
         private int difficulty = 1;
         private LevelManager levelManager;
 
+        private bool cheatsOn = false;
+
         // Properties
 
         public double Width { get { return EndX - StartX; } }
@@ -116,7 +118,14 @@ namespace Zenith.Library
 
         public LevelManager LevelManager { get { return levelManager; } }
 
+        public bool CheatsOn { get { return cheatsOn; } }
+
         // Methods
+
+        public void PlaySound()
+        {
+
+        }
 
         public void SetScreenDimensions(double startX, double startY, double endX, double endY)
         {
@@ -185,8 +194,7 @@ namespace Zenith.Library
 
         public void EnableCheatMode()
         {
-            Player.Health = 0x7FFFFFFF;
-            Player.MaxHealth = 0x7FFFFFFF;
+            cheatsOn = true;
         }
 
         // Spawns a boss with a valid ID. Mainly used for debugging purposes.
@@ -214,7 +222,6 @@ namespace Zenith.Library
                     break;
             }
             return boss;
-            //if (boss != null) AddObject(boss);
         }
 
         public void CreatePlayer()

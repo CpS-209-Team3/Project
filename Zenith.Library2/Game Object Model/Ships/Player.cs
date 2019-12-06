@@ -21,12 +21,25 @@ namespace Zenith.Library
         public Player(Vector position)
             : base(position)
         {
-            health = 1000;
-            maxHealth = 1000;
+            if (World.Instance.CheatsOn)
+            {
+                health = 1000;
+                maxHealth = 1000;
+            }
+            else
+            {
+                health = 0x7FFFFFFF;
+                maxHealth = 0x7FFFFFFF;
+            }
+            
             type = GameObjectType.Player;
-            imageSources = new List<string> { Util.GetShipSpriteFolderPath("blue_01.png") };
+            imageSources = new List<string> { 
+                Util.GetShipSpriteFolderPath("blue_01.png")
+            };
             cannon = new BasicCannon(this, 15);
             worth = 0;
+
+            onDeath = World.Instance.OnPlayerDeath;
         }
     }
 }
