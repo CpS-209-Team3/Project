@@ -32,30 +32,24 @@ namespace Zenith.Desktop
         private void HighScorePage_Loaded(object sender, RoutedEventArgs e)
         {
             HighScores highScores = HighScores.Load("highScores.txt");
-            lbl_top1to5.Text = highScores.LeaderList[0].Name;
-            List<string> nameList = new List<string> { "Darth Vader", "Luke Skywalker", "Han Solo", "Yoda", "Obi-Wan Kenobi", "Rey", "Chewbacca", "Finn", "Superman", "Son Goku", "Stephen Schaub" };
-            int PresetScore = 10000;
             int RankNum = 0;
             var HiScrBoard = lbl_top1to5;
-            for (int i = 1; i < 11; ++i)
+            for (int i = 0; i < highScores.LeaderList.Count; ++i)
             {
-                try
-                {
-                    RankNum = i;
+                //try
+                //{
+                    RankNum = i + 1;
                     //~~~~~ Change board if not in rank 5 ~~~~~
-                    if (i > 5)
+                    if (i >= 5)
                         HiScrBoard = lbl_top6to10;
                     // List start with 0 but i start with 1 => i - 1
-                    HiScrBoard.Text += " " + Convert.ToString(RankNum) + ". " + Convert.ToString(hiscrs.LeaderList[i - 1].Name) + " - " + Convert.ToString(hiscrs.LeaderList[i - 1].Score) + "\n\n";
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    int NewPreset = PresetScore - (i - 1)*1000;
-                    Random r = new Random();
-                    int randnum = r.Next(11);
-                    HiScrBoard.Text += " " + Convert.ToString(RankNum) + ". " + nameList[randnum] + " - " + NewPreset + "\n\n";
-        }
-    }
+                    HiScrBoard.Text += " " + Convert.ToString(RankNum) + ". " + Convert.ToString(highScores.LeaderList[i].Name) + " - " + Convert.ToString(highScores.LeaderList[i].Score) + "\n\n";
+                //}
+                //catch (ArgumentOutOfRangeException)
+                //{
+
+                //}
+            }
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~

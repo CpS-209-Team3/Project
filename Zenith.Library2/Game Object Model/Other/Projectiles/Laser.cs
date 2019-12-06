@@ -44,7 +44,6 @@ namespace Zenith.Library
 
 
         public Laser(Vector position, Vector velocity, int damage, bool isFromPlayer)
-
             : base(position)
         {
             this.isFromPlayer = isFromPlayer;

@@ -29,7 +29,7 @@ namespace Zenith.Library
             }
             else
             {
-                MoveTo(goal);
+                MoveTo(goal, 10);
             }
         }
 
@@ -42,6 +42,7 @@ namespace Zenith.Library
             double y = World.Instance.Random.NextDouble() * World.Instance.Height;
             goal = new Vector(x, y);
             cannon = new BasicCannon(this, 200);
+            cannon.ProjectileColor = ProjectileColor.Red;
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Zenith.Library
 
         public Vector Position { get { return position; } }
 
-        public Vector Velocity { get { return velocity; } }
+        public Vector Velocity { get { return velocity; } set { velocity = value; } }
 
         public Vector Size { get { return size; } }
 
@@ -108,6 +108,11 @@ namespace Zenith.Library
             if (position.X < -1)
             {
                 position.X = -1;
+                velocity.X = 0;
+            }
+            if (position.X > World.Instance.Width + 30)
+            {
+                position.X = World.Instance.Width + 30;
                 velocity.X = 0;
             }
         }

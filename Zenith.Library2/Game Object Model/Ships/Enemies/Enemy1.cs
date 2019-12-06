@@ -9,7 +9,7 @@ namespace Zenith.Library
         public override void ShipLoop() {
             
             cannon.Fire();
-            MoveTo(World.Instance.Player.Position);
+            MoveTo(World.Instance.Player.Position, 10);
         }
 
         public Enemy1(Vector position)
@@ -19,12 +19,11 @@ namespace Zenith.Library
 
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("tankbase_01.png") };
             angle = Math.PI;
-            velocity.X = -500 + 100 * 1;
-            cannon = new BasicCannon(this, 500);
-            swayRadius = 0;
-            maxHealth = 50;
-            health = 50;
-
+            velocity.X = -50;
+            this.position.X = World.Instance.Width;
+            cannon = new BasicCannon(this, 300);
+            swayRadius = 10;
+            cannon.ProjectileColor = ProjectileColor.Red;
         }
     }
 }

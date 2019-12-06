@@ -52,7 +52,7 @@ namespace Zenith.Library
         public void Update()
         {
             if (currentWave == null) Spawn();
-            if (currentWave.WaveCount == 0)
+            if (currentWave.WaveCount <= 0)
             {
                 if (timeUntilNextSpawn > 0) --timeUntilNextSpawn;
                 else

@@ -28,6 +28,7 @@ namespace Zenith.Library
         {
             firePattern = new List<int> { 15, 15, 100 };
             damage = 200;
+            ProjectileColor = ProjectileColor.Red;
         }
     }
 }

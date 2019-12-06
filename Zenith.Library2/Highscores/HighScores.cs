@@ -64,14 +64,21 @@ namespace Zenith.Library.Highscores
             using (StreamReader reader = new StreamReader(saveFile))
             {
                 HighScores h = new HighScores();
-                string line = reader.ReadLine();
-                string[] data = line.Split(';');
-                for(int i = 0; i < data.Length; ++i)
+                try
                 {
-                    string[] couple = data[i].Split(',');
-                    h.AddHighScore(new HiScore(couple[0], Convert.ToInt32(couple[1])));
+                    string line = reader.ReadLine();
+                    string[] data = line.Split(';');
+                    for (int i = 0; i < data.Length; ++i)
+                    {
+                        string[] couple = data[i].Split(',');
+                        h.AddHighScore(new HiScore(couple[0], Convert.ToInt32(couple[1])));
+                    }
+                    return h;
                 }
-                return h;
+                catch
+                {
+                    return h;
+                }
             }
         }
 
