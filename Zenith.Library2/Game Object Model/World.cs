@@ -70,7 +70,7 @@ namespace Zenith.Library
         private int difficulty = 1;
         private LevelManager levelManager;
 
-        private bool cheatsOn = false;
+        private bool cheatsOn = true;
 
         // Properties
 
@@ -195,6 +195,11 @@ namespace Zenith.Library
         public void EnableCheatMode()
         {
             cheatsOn = true;
+        }
+
+        public void DisableCheatMode()
+        {
+            cheatsOn = false;
         }
 
         // Spawns a boss with a valid ID. Mainly used for debugging purposes.
