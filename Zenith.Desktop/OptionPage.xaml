@@ -15,8 +15,12 @@
             <Image Source="zenithLogo.png" Height="151" Width="574" Margin="30,30,0,20"/>
             <Button x:Name="btn_Start" Content="Start" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="175" Margin="0,0,0,5" Click="btn_Start_Click"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Ship Name:" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" Background="Transparent" Height="50" Width="170"/>
+                <TextBox x:Name="Txt_shipName" Text="Schaubian" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" Background="Transparent" Height="50" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Difficult:" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" Background="Transparent" Height="50" Width="130"/>
-                <ComboBox x:Name="difficult_Dropdown" FontSize="25" VerticalAlignment="Center" Width="auto" Height="auto" FontWeight="DemiBold" Background="Black" Style="{DynamicResource ResourceKey=ComboBoxStyle1 }">
+                <ComboBox x:Name="difficult_Dropdown" FontSize="25" VerticalAlignment="Center" Width="auto" Height="auto" FontWeight="DemiBold" Style="{DynamicResource ResourceKey=ComboBoxStyle1 }">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="Background" Value="Black"/>
