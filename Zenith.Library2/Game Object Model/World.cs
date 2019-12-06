@@ -219,7 +219,6 @@ namespace Zenith.Library
             Player = p;
             p.Velocity.Cap(0);
             EnableCheatMode();
-            SpawnBoss(5);
         }
 
         // This method resets the instance of world.
