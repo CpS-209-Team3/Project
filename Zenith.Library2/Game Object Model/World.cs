@@ -166,6 +166,11 @@ namespace Zenith.Library
             
         }
 
+        public void OnPlayerDeath()
+        {
+
+        }
+
         public void AddObject(GameObject gameObject)
         {
             objects.Add(gameObject);
@@ -218,6 +223,7 @@ namespace Zenith.Library
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
+            p.OnDeath = OnPlayerDeath;
             EnableCheatMode();
         }
 

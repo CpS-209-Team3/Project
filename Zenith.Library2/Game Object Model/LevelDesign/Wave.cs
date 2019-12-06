@@ -23,6 +23,7 @@ namespace Zenith.Library
                 else
                 {
                     World.Instance.LevelManager.Level++;
+                    World.Instance.Level++;
                     LevelManager.WaveNum = 1; 
                 }
             }
