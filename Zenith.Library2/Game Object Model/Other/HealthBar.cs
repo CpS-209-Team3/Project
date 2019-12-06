@@ -22,6 +22,8 @@ namespace Zenith.Library
         public HealthBar(Ship host)
             : base(host.Position)
         {
+            canSerialize = false;
+
             this.host = host;
             imageSources = new List<string> {
                 Util.GetSpriteFolderPath("Health_Bar\\healthbar_0.png"),

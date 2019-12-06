@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Zenith.Library;
+using System.Media;
 
 namespace Zenith.Desktop
 {
