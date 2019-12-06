@@ -132,6 +132,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="blueLaser.png" />
     <Content Include="greenLaser.png" />
+    <Content Include="HighScoreBG.png" />
     <Content Include="large_grey_01.png" />
     <Content Include="large_purple_01.png" />
     <Content Include="large_green_01.png" />
