@@ -25,12 +25,17 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class GamePage : Page, ViewManager
     {
+        string shipName;
+        int difficulty;
         MainWindow main;
         DispatcherTimer timer;
         bool isCheating = false;
         List<Button> ItemsOnSale;
-        public GamePage(MainWindow theMainOne)
+        public GamePage(MainWindow theMainOne, String playerName, int diff, bool cht)
         {
+            isCheating = cht;
+            shipName = playerName;
+            difficulty = diff;
             ItemsOnSale = new List<Button>();
             main = theMainOne;
             InitializeComponent();
@@ -71,9 +76,9 @@ namespace Zenith.Desktop
         public void GameLoop(object sender, EventArgs e)
         {
             World.Instance.Update();
-
             Dispatcher.Invoke(() =>
             {
+                lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
                 for (int i = 0; i < sprites.Count; ++i)
                 {
                     sprites[i].Update();
@@ -111,9 +116,12 @@ namespace Zenith.Desktop
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
             World.Instance.Reset();
+            World.Instance.PlayerName = shipName;
+            World.Instance.Difficulty = difficulty;
             if (isCheating) World.Instance.EnableCheatMode();
 
             World.Instance.CreatePlayer();
+            lbl_PlayerName.Text = World.Instance.PlayerName;
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);

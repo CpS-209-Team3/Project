@@ -20,9 +20,11 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class OptionPage : Page
     {
+        bool cheat;
         MainWindow main;
         public OptionPage(MainWindow theMainOne)
         {
+            cheat = true;
             InitializeComponent();
             main = theMainOne;
         }
@@ -38,16 +40,22 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Cheat Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Cheat_Click(object sender, RoutedEventArgs e)
         {
-            if (btn_Cheat.Content == "OFF")
+            if (Convert.ToString(btn_Cheat.Content) == "OFF")
+            {
                 btn_Cheat.Content = "ON";
+                cheat = true;
+            }
             else
+            {
                 btn_Cheat.Content = "OFF";
+                cheat = false;
+            }  
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Start Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {
-            GamePage gamepg = new GamePage(main);
+            GamePage gamepg = new GamePage(main, Txt_shipName.Text, difficult_Dropdown.SelectedIndex + 1, cheat);
             main.Content = gamepg;
         }
 
