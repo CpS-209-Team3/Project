@@ -10,9 +10,9 @@ namespace Zenith.Library
         {
             cannon.Fire();
             ++clock;
-            double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.Height - position.Y;
+            double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.EndY - position.Y;
             AddForce(new Vector(0, goalY) * 100);
-            var offset = new Vector(World.Instance.Width * 0.75 - position.X, 0);
+            var offset = new Vector(World.Instance.EndX * 0.75 - position.X, 0);
             AddForce(offset);
 
             angle = (World.Instance.Player.Position - position).Angle;

@@ -52,6 +52,8 @@ namespace Zenith.Library
         protected double mass = 1;
         protected GameTag tag = GameTag.None;
 
+        protected bool canSerialize = true;
+
 
         // Properties
 
@@ -79,6 +81,8 @@ namespace Zenith.Library
 
         public double Angle { get { return angle; } }
 
+        public bool CanSerialize { get { return canSerialize; } }
+
 
         // Methods
 
@@ -95,24 +99,24 @@ namespace Zenith.Library
             }
             position += velocity * World.Instance.DeltaTime;
 
-            if (position.Y < -1)
+            if (position.Y < World.Instance.StartY - 1)
             {
-                position.Y = -1;
+                position.Y = World.Instance.StartY - 1;
                 velocity.Y = 0;
             }
-            if (position.Y > World.Instance.Height + 1)
+            if (position.Y > World.Instance.EndY + 1)
             {
-                position.Y = World.Instance.Height + 1;
+                position.Y = World.Instance.EndY + 1;
                 velocity.Y = 0;
             }
-            if (position.X < -1)
+            if (position.X < World.Instance.StartX - 1)
             {
-                position.X = -1;
+                position.X = World.Instance.StartX - 1;
                 velocity.X = 0;
             }
-            if (position.X > World.Instance.Width + 30)
+            if (position.X > World.Instance.EndX + 30)
             {
-                position.X = World.Instance.Width + 30;
+                position.X = World.Instance.EndX + 30;
                 velocity.X = 0;
             }
         }
