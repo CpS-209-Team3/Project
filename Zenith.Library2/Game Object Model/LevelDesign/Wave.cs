@@ -7,20 +7,31 @@ namespace Zenith.Library
     public abstract class Wave
     {
         protected int waveCount = 0;
-        protected Vector startingPos = new Vector(World.Instance.Width, World.Instance.Random.Next(0, Convert.ToInt32(World.Instance.Height)), false);
-        protected double size = World.Instance.Random.NextDouble() * 100 + 30;
+        protected Vector startingPos;
+        protected double size; 
         public int WaveCount { get { return waveCount; } set { waveCount = value; } }
 
-        public void DecreaseCount()
+        public void DeathAction()
         {
-            World.Instance.Score += 
             waveCount--;
-            if (waveCount == 0) LevelManager.WaveNum++;
+            if (waveCount == 0)
+            {
+                if (LevelManager.WaveNum < 5)
+                {
+                    LevelManager.WaveNum++;
+                }
+                else
+                {
+                    World.Instance.LevelManager.Level++;
+                    World.Instance.LevelManager.CurrentWave = new Wave1(World.Instance.LevelManager.Difficulty, World.Instance.LevelManager.Level);
+                }
+            }
+                
         }
 
         public void AddEnemy(Enemy type)
         {
-            type.OnDeath = DecreaseCount;
+            type.OnDeath = DeathAction;
             World.Instance.AddObject(type);
             waveCount++;
         }

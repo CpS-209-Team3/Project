@@ -26,6 +26,7 @@ namespace Zenith.Library
             type = GameObjectType.Player;
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("blue_01.png") };
             cannon = new BasicCannon(this, 15);
+            worth = 0;
         }
     }
 }

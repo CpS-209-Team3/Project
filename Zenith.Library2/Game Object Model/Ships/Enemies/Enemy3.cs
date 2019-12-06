@@ -33,6 +33,7 @@ namespace Zenith.Library
             angle = Math.PI;
             cannon = new BasicCannon(this, 120);
             cannon.ProjectileColor = ProjectileColor.Red;
+            worth = 50;
         }
     }
 }

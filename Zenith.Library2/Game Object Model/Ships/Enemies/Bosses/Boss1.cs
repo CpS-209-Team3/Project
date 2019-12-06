@@ -32,6 +32,7 @@ namespace Zenith.Library
             maxHealth = 4000;
             mass = 400;
             cannon = new Boss1Cannon(this);
+            worth = 100;
         }
     }
 }
