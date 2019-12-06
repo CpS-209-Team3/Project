@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,8 +27,10 @@ namespace Zenith.Desktop
         MainWindow main;
         DispatcherTimer timer;
         bool isCheating = false;
+        List<Button> ItemsOnSale;
         public GamePage(MainWindow theMainOne)
         {
+            ItemsOnSale = new List<Button>();
             main = theMainOne;
             InitializeComponent();
         }
@@ -109,7 +112,7 @@ namespace Zenith.Desktop
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
-        private void btn_Continue_Click(object sender, RoutedEventArgs e)
+        private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)
         {
             // Continue to play game => close the popup and continue the game
             if (Popup_Pause.IsOpen == true)
@@ -119,7 +122,7 @@ namespace Zenith.Desktop
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
-        private void btn_Save_Click(object sender, RoutedEventArgs e)
+        private void btn_Pause_Save_Click(object sender, RoutedEventArgs e)
         {
             //----------------------------------------------------------------//
             // I don't know how to make the game Save or Load...              //
@@ -128,7 +131,7 @@ namespace Zenith.Desktop
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~
-        private void btn_MainMenu_Click(object sender, RoutedEventArgs e)
+        private void btn_Pause_MainMenu_Click(object sender, RoutedEventArgs e)
         {
             //Close popup then go back to Main Menu
             if (Popup_Pause.IsOpen == true)
@@ -140,12 +143,91 @@ namespace Zenith.Desktop
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Popup: Close ~~~~~~~~~~~~~~~~~~~~
-        private void btn_Close_Click(object sender, RoutedEventArgs e)
+        private void btn_NewHighScore_Close_Click(object sender, RoutedEventArgs e)
         {
             if (Popup_NewHighScore.IsOpen == true)
                 Popup_NewHighScore.IsOpen = false;
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_SHOP EVENT HANDLING (In Development)~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Buy Button ~~~~~~~~~~~~~~~~~~~~
+        private void btn_Shop_Buy_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Loaded ~~~~~~~~~~~~~~~~~~~~
+        private void Popup_Shop_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Copy from the Good Old BattleShip
+            // Display shelf
+            var ItemLines = new StackPanel();
+            ItemLines.Orientation = Orientation.Horizontal;
+            ItemLines.HorizontalAlignment = HorizontalAlignment.Left;
+            layout_Shop_Items.Children.Add(ItemLines);
+
+            //~~~~~~~~~~~~~~~~~~~~ Put items on the shelf ~~~~~~~~~~~~~~~~~~~~
+            for (int i = 1; i <= 18; ++i)
+            {
+                var ShopItem = new Button();
+
+                //~~~~~~~~~~~~~~~~~~~~ How big and color of the place of an item ~~~~~~~~~~~~~~~~~~~~
+                ShopItem.Height = 50;
+                ShopItem.Width = 50;
+                ShopItem.Background = Brushes.Brown;
+                ShopItem.Margin = new Thickness(5);
+                ShopItem.Click += ShopItem_Click;
+                ItemLines.Children.Add(ShopItem);
+                ItemsOnSale.Add(ShopItem);
+
+                //~~~~~~~~~~~~~~~~~~~~ The line is full put on new line ~~~~~~~~~~~~~~~~~~~~
+                if (i % 6 == 0)
+                {
+                    ItemLines = new StackPanel();
+                    ItemLines.Orientation = Orientation.Horizontal;
+                    ItemLines.HorizontalAlignment = HorizontalAlignment.Left;
+                    layout_Shop_Items.Children.Add(ItemLines);
+                }
+            }
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Item Click ~~~~~~~~~~~~~~~~~~~~
+        private void ShopItem_Click(object sender, RoutedEventArgs e)
+        {
+            Color bgcolor = Color.FromRgb(150, 111, 51);
+            BrushConverter brush = new BrushConverter();
+            // My idea just highlight the item as we choose
+            // then click buy to confirm to buy it.
+            Button ItemChose = sender as Button;
+            int i = 0;
+            bool chooseThis = false;
+            while (chooseThis != true)
+            {
+                if (ItemsOnSale[i] == ItemChose)
+                {
+                    for (int n = 0; n < ItemsOnSale.Count; ++n)
+                    {
+                        ItemsOnSale[n].Background = Brushes.Brown;
+                    }
+                    ItemsOnSale[i].Background = Brushes.LightBlue;
+                    chooseThis = true;
+                }
+                else
+                    ++i;
+            }
+
+        }
+
+        private void btn_TestShop_Click(object sender, RoutedEventArgs e)
+        {
+            Popup_Shop.IsOpen = true;
+        }
+
+        private void btn_Shop_Close_Click(object sender, RoutedEventArgs e)
+        {
+            Popup_Shop.IsOpen = false;
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_SHOP EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }
