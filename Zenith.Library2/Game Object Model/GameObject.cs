@@ -52,6 +52,8 @@ namespace Zenith.Library
         protected double mass = 1;
         protected GameTag tag = GameTag.None;
 
+        protected bool canSerialize = true;
+
 
         // Properties
 
@@ -78,6 +80,8 @@ namespace Zenith.Library
         public GameTag Tag { get { return tag; } }
 
         public double Angle { get { return angle; } }
+
+        public bool CanSerialize { get { return canSerialize; } }
 
 
         // Methods
