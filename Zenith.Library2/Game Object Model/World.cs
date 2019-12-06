@@ -129,7 +129,7 @@ namespace Zenith.Library
                 collisions = 0;
                 collisionManager.CheckForCollisions();
 
-                levelManager.Update();
+                //levelManager.Update();
 
                 ++gameTick;
             }
@@ -180,6 +180,29 @@ namespace Zenith.Library
             }
 
             if (boss != null) AddObject(boss);
+        }
+
+        public void CreatePlayer()
+        {
+            var p = new Player(new Library.Vector(90, Height / 2));
+            AddObject(p);
+            Player = p;
+            p.Velocity.Cap(0);
+            // EnableCheatMode();
+            SpawnBoss(5);
+        }
+
+        // This method resets the instance of world.
+        public void Reset()
+        {
+            playerName = "";
+            level = 1;
+            score = 0;
+            gameTick = 0;
+
+            objects.Clear();
+
+
         }
 
         // Reads a list of strings from the file specifed by filename and puts them into the list
@@ -236,29 +259,6 @@ namespace Zenith.Library
                     
                 }
             }
-        }
-
-        // This method resets the instance of world.
-        public void Reset()
-        {
-            playerName = "";
-            level = 1;
-            score = 0;
-            gameTick = 0;
-
-            objects.Clear();
-
-            
-        }
-
-        public void CreatePlayer()
-        {
-            var p = new Player(new Library.Vector(90, Height / 2));
-            AddObject(p);
-            Player = p;
-            p.Velocity.Cap(0);
-            EnableCheatMode();
-            SpawnBoss(3);
         }
 
         public GameObject CreateInstanceOf(string objectType)

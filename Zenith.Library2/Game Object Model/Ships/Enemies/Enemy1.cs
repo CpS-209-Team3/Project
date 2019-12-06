@@ -21,6 +21,7 @@ namespace Zenith.Library
             this.position.X = World.Instance.Width;
             cannon = new BasicCannon(this, 300);
             swayRadius = 20;
+            cannon.ProjectileColor = ProjectileColor.Red;
         }
     }
 }

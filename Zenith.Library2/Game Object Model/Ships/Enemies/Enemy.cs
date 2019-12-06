@@ -8,7 +8,8 @@ namespace Zenith.Library
     {
         Sway,
         Ram,
-        Flee
+        Flee,
+        Pause
     }
 
     public class Enemy : Ship

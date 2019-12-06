@@ -32,6 +32,7 @@ namespace Zenith.Library
             imageRotation = 90;
             angle = Math.PI;
             cannon = new BasicCannon(this, 120);
+            cannon.ProjectileColor = ProjectileColor.Red;
         }
     }
 }

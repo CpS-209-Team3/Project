@@ -48,7 +48,7 @@ namespace Zenith.Library
             switch (gameObject.Tag)
             {
                 case GameTag.Ship:
-                    if (gameObject.Type == GameObjectType.Player)
+                    if ((this is Player) != (gameObject is Player))
                     {
                         var ship = (Ship)gameObject;
                         health -= ship.BodyDamage;
@@ -74,10 +74,10 @@ namespace Zenith.Library
             shakeTime = shakeDuration;
         }
 
-        public void MoveTo(Vector destination)
+        public void MoveTo(Vector destination, double acceleration)
         {
-            var f = (destination - position);
-            f.Magnitude = 500;
+            var f = (destination - position) - (velocity / 60);
+            f.Magnitude = mass * acceleration;
             AddForce(f);
         }
 

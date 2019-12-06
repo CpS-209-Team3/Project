@@ -10,8 +10,9 @@ namespace Zenith.Library
         public Boss1Cannon(Ship host)
             : base(host)
         {
-            firePattern = new List<int> { 15, 15, 15, 100 };
+            firePattern = new List<int> { 15, 15, 100 };
             damage = 100;
+            ProjectileColor = ProjectileColor.Red;
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Zenith.Desktop
                 MessageBox.Show(gameObject.ImageSources[0]);
             }
 
-            Content = images[0];
+            if (images.Length > 0) Content = images[0];
         }
     }
 }
