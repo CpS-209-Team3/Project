@@ -10,7 +10,7 @@ namespace Zenith.Library
     }
     public enum ProjectileColor
     {
-        Blue, Green, Orange, Red
+        Blue, Green, Orange, Red 
     }
     public class Cannon
     {
@@ -22,7 +22,8 @@ namespace Zenith.Library
             Util.GetShipSpriteFolderPath("Projectiles\\projectile-orange.png"),
             Util.GetShipSpriteFolderPath("Projectiles\\projectile-red.png")
         };
-        
+
+        protected ISoundPlayer soundPlayer;
         protected Ship host;
         protected int reloadTime = 0;
         protected List<int> firePattern = new List<int> { 15 };
@@ -34,7 +35,7 @@ namespace Zenith.Library
         protected string soundEffectLocation;
 
         //  properties
-
+        public ISoundPlayer SoundPlayer { get { return soundPlayer; } set { soundPlayer = value; } }
         public Ship Host { get { return host; } set { host = value; } }
         public int ReloadTime { get { return reloadTime; } set { reloadTime = value; } }
         public List<int> FirePattern { get { return firePattern; } }
@@ -61,8 +62,8 @@ namespace Zenith.Library
 
                 reloadTime += firePattern[fireSequence];
                 fireSequence = (fireSequence + 1) % firePattern.Count;
-                
 
+                //SoundPlayer.StartSoundEffect(SoundEffectLocation);
             }
         }
 
