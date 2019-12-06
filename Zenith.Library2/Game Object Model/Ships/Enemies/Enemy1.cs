@@ -7,7 +7,9 @@ namespace Zenith.Library
     public class Enemy1 : Enemy
     {
         public override void ShipLoop() {
+            
             cannon.Fire();
+            MoveTo(World.Instance.Player.Position, 10);
         }
 
         public Enemy1(Vector position)
@@ -20,7 +22,7 @@ namespace Zenith.Library
             velocity.X = -50;
             this.position.X = World.Instance.Width;
             cannon = new BasicCannon(this, 300);
-            swayRadius = 20;
+            swayRadius = 10;
             cannon.ProjectileColor = ProjectileColor.Red;
         }
     }

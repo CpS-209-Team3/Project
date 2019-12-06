@@ -84,6 +84,9 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
+                World.Instance.PlayerController.Pause = Keyboard.IsKeyToggled(Key.P);
+                World.Instance.PlayerController.Save = Keyboard.IsKeyDown(Key.S);
+                World.Instance.PlayerController.Load = Keyboard.IsKeyDown(Key.L);
 
                 int potentialCollisions = World.Instance.Objects.Count;
                 potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
