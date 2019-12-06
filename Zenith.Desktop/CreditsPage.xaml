@@ -18,9 +18,10 @@
             <TextBlock Text="Bao Le" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-        <StackPanel Margin="587,225,289,260.4" HorizontalAlignment="Center" Width="244">
+        <StackPanel Margin="587,225,289,186.4" HorizontalAlignment="Center" Width="244">
             <TextBlock Text="Sounds" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
             <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
+            <TextBlock Text="Steven Platt" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
         </StackPanel>
         <StackPanel Margin="316,44,603,405.4">
             <TextBlock Text="Graphics" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="200" Margin="5"/>
