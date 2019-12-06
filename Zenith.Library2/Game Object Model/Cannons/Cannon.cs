@@ -63,7 +63,7 @@ namespace Zenith.Library
                 reloadTime += firePattern[fireSequence];
                 fireSequence = (fireSequence + 1) % firePattern.Count;
 
-                SoundPlayer.StartSoundEffect(SoundEffectLocation);
+                //SoundPlayer.StartSoundEffect(SoundEffectLocation);
             }
         }
 
