@@ -50,6 +50,8 @@ namespace Zenith.Library
             this.velocity = velocity;
             this.damage = damage;
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png") };
+
+
             imageRotation = 0;
 
             int size2 = Math.Min(damage, 100);
