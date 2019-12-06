@@ -56,7 +56,7 @@ namespace Zenith.Library
                         AddForce(avoid);
                         avoid /= 2;
                     }
-                    else MoveTo(new Vector(World.Instance.Width * 0.75, World.Instance.Height / 2), 10);
+                    else MoveTo(new Vector(World.Instance.EndX * 0.75, World.Instance.EndY / 2), 10);
 
                     angle = (World.Instance.Player.Position - position).Angle;
                     cannon.Fire();
@@ -74,7 +74,7 @@ namespace Zenith.Library
                     if (clock >= 600)
                     {
                         state = EnemyState.Flee;
-                        goal = new Vector(World.Instance.Width, World.Instance.Height / 2);
+                        goal = new Vector(World.Instance.EndX, World.Instance.EndY / 2);
                     }
                     break;
                 case EnemyState.Flee:
@@ -120,7 +120,7 @@ namespace Zenith.Library
                     {
                         avoid.Y = 100 * mass;
                     }
-                    if (avoid.Y > 0 && position.Y > World.Instance.Height - 50)
+                    if (avoid.Y > 0 && position.Y > World.Instance.EndY - 50)
                     {
                         avoid.Y = -100 * mass;
                     }
@@ -145,6 +145,8 @@ namespace Zenith.Library
             cannon = new Boss2Cannon(this);
 
             sensor = new Sensor(this, OnSense, 200);
+
+            worth = 500;
         }
     }
 }

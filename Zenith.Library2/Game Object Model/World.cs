@@ -40,11 +40,13 @@ namespace Zenith.Library
             level = 1;
             random = new Random();
             PlayerController = new GameController();
-            Width = 500;
-            Height = 500;
+            EndX = 500;
+            EndY = 500;
+            StartX = 0;
+            StartY = 0;
 
             objects = new List<GameObject>();
-            collisionManager = new CollisionQuad(new Vector(0, 0), new Vector(Width, Height), 0);
+            collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(Width, Height), 0);
             collisionManager.Objects = objects;
 
             levelManager = new LevelManager(difficulty, level);
@@ -70,9 +72,21 @@ namespace Zenith.Library
 
         // Properties
 
-        public double Width { get; set; }
+        public double Width { get { return EndX - StartX; } }
 
-        public double Height { get; set; }
+        public double Height { get { return EndY - StartY; } }
+
+        public double EndX { get; set; }
+
+        public double EndY { get; set; }
+
+        public double StartX { get; set; }
+
+        public double StartY { get; set; }
+
+        public double MidX { get { return (EndX - StartX) / 2; } }
+
+        public double MidY { get { return (EndY - StartY) / 2; } }
 
         public Random Random { get { return random; } }
 
@@ -100,7 +114,23 @@ namespace Zenith.Library
 
         public int Collisions { get { return collisions; } set { collisions = value; } }
 
+        public LevelManager LevelManager { get { return levelManager; } }
+
         // Methods
+
+        public void SetScreenDimensions(double startX, double startY, double endX, double endY)
+        {
+            StartX = startX;
+            StartY = startY;
+            EndX = endX;
+            EndY = endY;
+            // collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(Width, Height), 0);
+        }
+
+        public Vector GetScreenPosition(double x, double y)
+        {
+            return new Vector((EndX - StartX) * x, (EndY - StartY) * y);
+        }
 
         public void Update()
         {
@@ -158,7 +188,7 @@ namespace Zenith.Library
         public void SpawnBoss(int bossID)
         {
             Ship boss = null;
-            var startingPosition = new Vector(Width, Height / 2);
+            var startingPosition = new Vector(EndX, EndY / 2);
 
             switch (bossID)
             {
@@ -184,12 +214,12 @@ namespace Zenith.Library
 
         public void CreatePlayer()
         {
-            var p = new Player(new Library.Vector(90, Height / 2));
+            var p = new Player(new Library.Vector(90, EndY / 2));
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
             EnableCheatMode();
-            // SpawnBoss(5);
+            SpawnBoss(5);
         }
 
         // This method resets the instance of world.
@@ -231,7 +261,7 @@ namespace Zenith.Library
                         obj.Deserialize(objectInfo);
                         AddObject(obj);
                     }
-                }
+                }   
             }
 
         }
