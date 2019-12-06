@@ -18,7 +18,7 @@ namespace Zenith.Library
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("tankbase_01.png") };
             angle = Math.PI;
             velocity.X = -50;
-            this.position.X = World.Instance.Width;
+            this.position.X = World.Instance.EndX;
             cannon = new BasicCannon(this, 300);
             swayRadius = 20;
             cannon.ProjectileColor = ProjectileColor.Red;

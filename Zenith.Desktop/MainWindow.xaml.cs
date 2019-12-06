@@ -97,8 +97,7 @@ namespace Zenith.Desktop
             World.Instance.ViewManager = this;
             if (isCheating) World.Instance.EnableCheatMode();
 
-            World.Instance.Width = Width;
-            World.Instance.Height = Height;
+            World.Instance.SetScreenDimensions(0, 0, Width, Height);
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~

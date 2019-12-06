@@ -95,24 +95,24 @@ namespace Zenith.Library
             }
             position += velocity * World.Instance.DeltaTime;
 
-            if (position.Y < -1)
+            if (position.Y < World.Instance.StartY)
             {
-                position.Y = -1;
+                position.Y = World.Instance.StartY;
                 velocity.Y = 0;
             }
-            if (position.Y > World.Instance.Height + 1)
+            if (position.Y > World.Instance.EndY + 1)
             {
-                position.Y = World.Instance.Height + 1;
+                position.Y = World.Instance.EndY + 1;
                 velocity.Y = 0;
             }
-            if (position.X < -1)
+            if (position.X < World.Instance.StartX)
             {
-                position.X = -1;
+                position.X = World.Instance.StartX;
                 velocity.X = 0;
             }
-            if (position.X > World.Instance.Width + 30)
+            if (position.X > World.Instance.EndX + 30)
             {
-                position.X = World.Instance.Width + 30;
+                position.X = World.Instance.EndX + 30;
                 velocity.X = 0;
             }
         }

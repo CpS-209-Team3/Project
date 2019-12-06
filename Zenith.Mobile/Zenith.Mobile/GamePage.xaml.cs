@@ -150,8 +150,8 @@ namespace Zenith.View
                 World.Instance.PlayerController.Right = right;
                 World.Instance.PlayerController.Fire = fire;
 
-                int potentialCollisions = World.Instance.Objects.Count;
-                potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
+                //int potentialCollisions = World.Instance.Objects.Count;
+                //potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
                 //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
             });
         }
@@ -167,8 +167,7 @@ namespace Zenith.View
             World.Instance.Reset();
             if (isCheating) World.Instance.EnableCheatMode();
 
-            World.Instance.Width = Width;
-            World.Instance.Height = Height;
+            World.Instance.SetScreenDimensions(-Width, -Height, Width, Height);
 
             // Source: https://stackoverflow.com/questions/29644200/how-get-mono-xamarin-android-app-path-folder
             World.Instance.Directory = System.Environment.CurrentDirectory;

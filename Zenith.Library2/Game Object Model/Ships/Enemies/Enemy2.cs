@@ -38,8 +38,8 @@ namespace Zenith.Library
         {
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("darkgrey_01.png") };
             type = GameObjectType.Enemy2;
-            double x = (World.Instance.Random.NextDouble() * World.Instance.Width / 2) + World.Instance.Width / 2;
-            double y = World.Instance.Random.NextDouble() * World.Instance.Height;
+            double x = (World.Instance.Random.NextDouble() * World.Instance.EndX / 2) + World.Instance.EndX / 2;
+            double y = World.Instance.Random.NextDouble() * World.Instance.EndY;
             goal = new Vector(x, y);
             cannon = new BasicCannon(this, 200);
             cannon.ProjectileColor = ProjectileColor.Red;

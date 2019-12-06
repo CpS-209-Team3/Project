@@ -21,8 +21,8 @@ namespace Zenith.Library
         {
             int r = World.Instance.Random.Next(0, 5) + level;
            
-            double x = World.Instance.Width;
-            double y = World.Instance.Random.NextDouble() * (World.Instance.Height - 32);
+            double x = World.Instance.EndX;
+            double y = World.Instance.Random.NextDouble() * (World.Instance.EndY - 32);
             var pos = new Vector(x, y);
 
             if (r < 9 && r > 0)
