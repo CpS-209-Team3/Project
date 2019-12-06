@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Zenith.Library
 {
+    public interface ISoundPlayer
+    {
+        void StartSoundEffect( String soundFilePath);
+    }
     public enum ProjectileColor
     {
         Blue, Green, Orange, Red
@@ -18,7 +22,7 @@ namespace Zenith.Library
             Util.GetShipSpriteFolderPath("Projectiles\\projectile-orange.png"),
             Util.GetShipSpriteFolderPath("Projectiles\\projectile-red.png")
         };
-
+        
         protected Ship host;
         protected int reloadTime = 0;
         protected List<int> firePattern = new List<int> { 15 };
@@ -27,6 +31,7 @@ namespace Zenith.Library
         protected double accuracy = 0;
         protected double projectileSpeed = 800;
         protected string projectileColor = colors[0];
+        protected string soundEffectLocation;
 
         //  properties
 
@@ -38,6 +43,7 @@ namespace Zenith.Library
         public double Accuracy { get { return accuracy; } set { accuracy = value; } }
         public double ProjectileSpeed { get { return projectileSpeed; } set { projectileSpeed = value; } }
         public ProjectileColor ProjectileColor { set { projectileColor = colors[(int)value]; } }
+        public String SoundEffectLocation { get { return soundEffectLocation; } set { soundEffectLocation = value; } }
 
         // Methods
 
@@ -55,6 +61,8 @@ namespace Zenith.Library
 
                 reloadTime += firePattern[fireSequence];
                 fireSequence = (fireSequence + 1) % firePattern.Count;
+                
+
             }
         }
 
