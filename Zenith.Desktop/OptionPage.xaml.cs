@@ -44,12 +44,6 @@ namespace Zenith.Desktop
                 btn_Cheat.Content = "OFF";
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Difficult Button Click ~~~~~~~~~~~~~~~~~~~~
-        private void btn_Difficult_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         //~~~~~~~~~~~~~~~~~~~~ Start Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {

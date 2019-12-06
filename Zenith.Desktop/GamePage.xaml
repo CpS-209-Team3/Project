@@ -13,9 +13,15 @@
         <Canvas.Background>
             <ImageBrush ImageSource="parallax-space-backgound.png"/>
         </Canvas.Background>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="lbl_PlayerName" Text="Schaubian" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="20,5,5,5" />
+            <TextBlock x:Name="lbl_CurrentScore" Text="5642" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,330,5"/>
+            <TextBlock Text="HP" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,15,5"/>
+            <ProgressBar x:Name="bar_HealthBar" Maximum="100" Margin="5,5,5,5" IsIndeterminate="False" Value="100" Width="400" Foreground="Red"/>
+        </StackPanel>
 
-        <!-- New HighScore Popup here -->
-        <Popup x:Name="Popup_NewHighScore" VerticalOffset="10" HorizontalOffset="200" PlacementTarget="{Binding ElementName=canGame}" Placement="Absolute" PopupAnimation="Scroll">
+        <!-- Shop Popup here (not done yet) -->
+        <Popup x:Name="Popup_Shop" VerticalOffset="10" HorizontalOffset="200" PlacementTarget="{Binding ElementName=canGame}" Placement="Absolute" PopupAnimation="Scroll">
             <Border BorderBrush="Transparent"
                 BorderThickness="2" Width="747" Height="450">
                 <Border.Background>
@@ -44,7 +50,7 @@
                 </Border.Background>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="PAUSE" Background="Brown" Foreground="White" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" />
-                    <TextBlock x:Name="lbl_PlayerName" Text="Blah B. Blah" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_PlayerName" Text="Blah B. Blah" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="☠Enemy Defeated☠: " Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
                         <TextBlock x:Name="lbl_EnemyDefeated" Text="57" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
@@ -55,7 +61,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="Score: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_CurrentScore" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_CurrentScore" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <Button x:Name="btn_Continue" Content="Continue" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="DarkGreen" Width="120" Height="40" BorderBrush="Transparent" Margin="3" Click="btn_Continue_Click" />
                     <Button x:Name="btn_Save" Content="Save" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="DarkGreen" Width="70" Height="40" BorderBrush="Transparent" Margin="3" Click="btn_Save_Click" />
@@ -64,14 +70,14 @@
             </Border>
         </Popup>
     
-        <!-- Shop Popup (Not done yet) -->
-        <Popup x:Name="Popup_Shop" VerticalOffset="10" HorizontalOffset="200" PlacementTarget="{Binding ElementName=canGame}" Placement="Absolute" PopupAnimation="Scroll">
+        <!-- New Highscore Popup here -->
+        <Popup x:Name="Popup_NewHighScore" VerticalOffset="10" HorizontalOffset="200" PlacementTarget="{Binding ElementName=canGame}" Placement="Absolute" PopupAnimation="Scroll">
             <Border BorderBrush="Transparent"
                 BorderThickness="2" Width="560" Height="315">
                 <Border.Background>
                     <SolidColorBrush Color="Gray" Opacity="0.45"/>
                 </Border.Background>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="CONGRATULATIONS" TextDecorations="Underline" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="50" Margin="5" Width="auto" TextAlignment="Center" />
                     <TextBlock Text="New High Score!" Background="Transparent" Foreground="Yellow" FontWeight="DemiBold" FontSize="40" Margin="5" Width="auto" TextAlignment="Center" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
@@ -82,7 +88,7 @@
                         <TextBlock Text="Position: #" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
                         <TextBlock x:Name="lbl_Position" Text="3" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
                     </StackPanel>
-                    <TextBox x:Name="txt_PlayerName" Text="Enter Your Name..." FontSize="28" VerticalAlignment="Center" Width="450" Height="35" Foreground="GhostWhite" Background="Blue" Opacity="0.7"/>
+                    <TextBox x:Name="txt_Popup_PromptPlayerName" Text="Enter Your Name..." FontSize="28" VerticalAlignment="Center" Width="450" Height="35" Foreground="GhostWhite" Background="Blue" Opacity="0.7"/>
                     <Button x:Name="btn_Close" Content="Close" FontSize="30" FontWeight="DemiBold" Foreground="Yellow" Background="Transparent" BorderBrush="Transparent" Margin="10" Width="100" Click="btn_Close_Click"/>
                 </StackPanel>
             </Border>
