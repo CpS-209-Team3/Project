@@ -23,13 +23,13 @@ namespace Zenith.Library
         {
             if (World.Instance.CheatsOn)
             {
-                health = 1000;
-                maxHealth = 1000;
+                health = 0x7FFFFFFF;
+                maxHealth = 0x7FFFFFFF;
             }
             else
             {
-                health = 0x7FFFFFFF;
-                maxHealth = 0x7FFFFFFF;
+                health = 1000;
+                maxHealth = 1000;
             }
             
             type = GameObjectType.Player;
