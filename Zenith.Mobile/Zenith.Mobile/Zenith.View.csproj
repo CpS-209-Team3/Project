@@ -6,12 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="HighScoreBG.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Zenith.Library2\Zenith.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="HighScoreBG.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -29,7 +29,8 @@ namespace Zenith.View
         //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~           ///////////////////////////////////////////////////////////Find a way to disable this button if no save file
         private void BtnLoad_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new ScorePage();
+            //Verify that a save file is able to go and is readable. This should be disabled if no save file is available.
+            Application.Current.MainPage = new GamePage();
         }
 
         //~~~~~~~~~~~~~~~~~~~~ High Scores Page ~~~~~~~~~~~~~~~~~~~~

@@ -44,5 +44,10 @@ namespace Zenith.View
         {
             Application.Current.MainPage = new MainPage();
         }
+
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BtnStart.IsEnabled = true;
+        }
     }
 }
