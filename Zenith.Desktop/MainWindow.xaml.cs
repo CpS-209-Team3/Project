@@ -119,8 +119,9 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
-            //GamePage game = new GamePage(this);
-            //this.Content = game;
+            // Disable button if no save file is available. 
+            GamePage game = new GamePage(this, "", 0, false);
+            this.Content = game;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
