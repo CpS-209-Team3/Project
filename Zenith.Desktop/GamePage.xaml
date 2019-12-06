@@ -47,7 +47,7 @@
         <!-- Trying to make the popup appear when press Pause here-->
         <!-- PlacementTarget choose the screen for Popup to show in-->
         <!-- Placement choose how it appears on the screen-->
-        <Popup x:Name="Popup_Pause" PlacementTarget="{Binding ElementName=canGame}" Placement="Center" PopupAnimation="Scroll">
+        <Popup x:Name="Popup_Pause" PlacementTarget="{Binding ElementName=canGame}" Placement="Center" PopupAnimation="Scroll" Loaded="Popup_Pause_Loaded">
             <Border BorderBrush="Transparent"
                 BorderThickness="2" Width="747" Height="450">
                 <Border.Background>
@@ -57,16 +57,16 @@
                     <TextBlock Text="PAUSE" Background="Brown" Foreground="White" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" />
                     <TextBlock x:Name="lbl_Popup_PlayerName" Text="Schaubian" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="☠Enemy Defeated☠: " Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_EnemyDefeated" Text="57" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
+                        <TextBlock Text="☠Enemies Defeated☠: " Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_EnemyDefeated" Text="??" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="Distance Traveled:" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Distance" Text="555" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Distance" Text="???" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="Score: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Popup_CurrentScore" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_CurrentScore" Text="????" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <Button x:Name="btn_Continue" Content="Continue" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="DarkGreen" Width="120" Height="40" BorderBrush="Transparent" Margin="3" Click="btn_Pause_Continue_Click" />
                     <Button x:Name="btn_Save" Content="Save" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="DarkGreen" Width="70" Height="40" BorderBrush="Transparent" Margin="3" Click="btn_Pause_Save_Click" />

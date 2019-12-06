@@ -78,7 +78,7 @@ namespace Zenith.Desktop
                     sprites[i].Update();
                 }
 
-                // Health
+                // Health Bar
                 progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
                 // Input handling
@@ -87,9 +87,13 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
                 World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
                 World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
-                World.Instance.PlayerController.Pause = Keyboard.IsKeyToggled(Key.P);
+                //World.Instance.PlayerController.Pause = Keyboard.IsKeyDown(Key.P);
+                if (Keyboard.IsKeyDown(Key.P)) World.Instance.PlayerController.Pause = true;
                 World.Instance.PlayerController.Save = Keyboard.IsKeyDown(Key.S);
                 World.Instance.PlayerController.Load = Keyboard.IsKeyDown(Key.L);
+
+                if (World.Instance.PlayerController.Pause == true)
+                    Popup_Pause.IsOpen = true;
 
                 int potentialCollisions = World.Instance.Objects.Count;
                 potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
@@ -117,14 +121,24 @@ namespace Zenith.Desktop
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Pause Load ~~~~~~~~~~~~~~~~~~~~
+        private void Popup_Pause_Loaded(object sender, RoutedEventArgs e)
+        {
+            lbl_Popup_PlayerName.Text = lbl_PlayerName.Text;
+            lbl_Popup_CurrentScore.Text = lbl_CurrentScore.Text;
+        }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)
         {
+            // Write the `unpause` game here....
+            World.Instance.PlayerController.Pause = false;
+
             // Continue to play game => close the popup and continue the game
             if (Popup_Pause.IsOpen == true)
+            {
                 Popup_Pause.IsOpen = false;
+            }
 
-            // Write the `unpause` game here....
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
