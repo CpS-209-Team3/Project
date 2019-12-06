@@ -78,6 +78,9 @@ namespace Zenith.Desktop
                     sprites[i].Update();
                 }
 
+                // Health
+                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+
                 // Input handling
                 World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
                 World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);

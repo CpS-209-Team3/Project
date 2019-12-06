@@ -55,7 +55,7 @@
                 </Border.Background>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="PAUSE" Background="Brown" Foreground="White" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" />
-                    <TextBlock x:Name="lbl_Popup_PlayerName" Text="Blah B. Blah" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_PlayerName" Text="Schaubian" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="☠Enemy Defeated☠: " Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
                         <TextBlock x:Name="lbl_EnemyDefeated" Text="57" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
