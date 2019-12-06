@@ -49,6 +49,7 @@ namespace Zenith.View
 
         public Sprite(GameObject gameObject)
         {
+
             // Load images for sprite
             images = new Image[gameObject.ImageSources.Count];
 
@@ -71,9 +72,12 @@ namespace Zenith.View
                 for (int i = 0; i < gameObject.ImageSources.Count; ++i)
                 {
                     images[i] = new Image();
+                    gameObject.ImageSources[i].Replace('-', '_');
                     images[i].Source = gameObject.ImageSources[i];
                     images[i].WidthRequest = gameObject.Size.X;
                     images[i].HeightRequest = gameObject.Size.Y;
+                    images[i].Aspect = Aspect.AspectFit;
+                    images[i].HorizontalOptions = LayoutOptions.CenterAndExpand;
                 }
             }
             catch (Exception e)

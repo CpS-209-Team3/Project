@@ -9,9 +9,9 @@ namespace Zenith.Library
 
         // instance variables
 
-        GameObject host;
+        Ship host;
         protected int reloadTime = 0;
-        protected List<int> firePattern = new List<int>(15);
+        protected List<int> firePattern = new List<int> { 15 };
         protected int fireSequence = 0;
         protected int damage = 40;
         protected double accuracy = 0;
@@ -20,7 +20,7 @@ namespace Zenith.Library
 
         //  properties
 
-        public GameObject Host { get { return host; } set { host = value; } }
+        public Ship Host { get { return host; } set { host = value; } }
         public int ReloadTime { get { return reloadTime; } set { reloadTime = value; } }
         public List<int> FirePattern { get { return firePattern; } }
         public int FireSequence { get { return fireSequence; } set { fireSequence = value; } }
@@ -55,7 +55,7 @@ namespace Zenith.Library
             if (reloadTime > 0) --reloadTime;
         }
 
-        public Cannon(GameObject host)
+        public Cannon(Ship host)
         {
             this.host = host;
         }

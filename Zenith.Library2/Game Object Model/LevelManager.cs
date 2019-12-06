@@ -23,43 +23,73 @@ using System.Text;
 
 namespace Zenith.Library
 {
+    public enum WaveType
+    {
+        Wave1,
+        Wave2,
+        Wave3,
+        Wave4,
+        Wave5
+    }
     public class LevelManager
     {
         private int level;
         private int difficulty;
         private int spawnRate;
         private int timeUntilNextSpawn;
-        private Vector startingPos;
-        private static int nextWave;
+        private Wave currentWave;
+        private static int waveNum;
 
-        public static int NextWave { get { return nextWave; } set { nextWave = value; } }
+        public static int WaveNum { get { return waveNum; } set { waveNum = value; } }
+
+        public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
         public void Spawn()
         {
-            new Wave1(difficulty, level);
+            currentWave = SpawnWave(WaveNum);
         }
 
         public void Update()
         {
-            if (timeUntilNextSpawn > 0) --timeUntilNextSpawn;
-            else
+            if (currentWave == null) Spawn();
+            if (currentWave.WaveCount == 0)
             {
-                Spawn();
-                timeUntilNextSpawn = spawnRate;
+                if (timeUntilNextSpawn > 0) --timeUntilNextSpawn;
+                else
+                {
+                    Spawn();
+                    timeUntilNextSpawn = spawnRate;
+                }
             }
+            
         }
 
         public LevelManager(int difficulty, int level)
         {
             this.difficulty = difficulty;
             this.level = level;
-
+            waveNum = 1;
             spawnRate = 100;
             timeUntilNextSpawn = spawnRate;
-            
-
         }
 
+        public Wave SpawnWave(int nextWave)
+        {
+            switch(nextWave)
+            {
+                case 1:
+                    return new Wave1(difficulty, level);
+                case 2:
+                    return new Wave2(difficulty, level);
+                case 3:
+                    return new Wave3(difficulty, level);
+                case 4:
+                    return new Wave4(difficulty, level);
+                case 5:
+                    return new Wave5(difficulty, level);
+            }
+            return null;
+        }
         
     }
 }

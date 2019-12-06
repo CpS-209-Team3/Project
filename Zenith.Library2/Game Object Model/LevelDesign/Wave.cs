@@ -4,14 +4,16 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    class Wave
+    public class Wave
     {
         protected int waveCount;
-   
+
+        public int WaveCount { get { return waveCount; } set { waveCount = value; } }
+
         public void DecreaseCount()
         {
             waveCount--;
-            if (waveCount == 0) LevelManager.NextWave++;
+            if (waveCount == 0) LevelManager.WaveNum++;
         }
     }
 }

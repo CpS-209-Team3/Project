@@ -8,8 +8,7 @@ namespace Zenith.Library
     {
         public override void ShipLoop()
         {
-            cannon.Fire();
-            MoveTo(World.Instance.Player.Position);
+            velocity.X = -1/size.X * 500;
         }
 
         public Asteroid(Vector position, double size)

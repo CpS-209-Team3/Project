@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zenith.Library.Game_Object_Model.LevelDesign
+namespace Zenith.Library
 {
     class Level2
     {

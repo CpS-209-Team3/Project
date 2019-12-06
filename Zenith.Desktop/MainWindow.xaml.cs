@@ -95,16 +95,10 @@ namespace Zenith.Desktop
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            World.Instance.CreatePlayer();
             if (isCheating) World.Instance.EnableCheatMode();
 
             World.Instance.Width = Width;
             World.Instance.Height = Height;
-
-            /*timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
-            timer.Tick += GameLoop;
-            timer.Start();*/
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
