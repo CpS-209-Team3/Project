@@ -46,7 +46,7 @@ namespace Zenith.Library
             StartY = 0;
 
             objects = new List<GameObject>();
-            collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(EndX, EndY), 0);
+            collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(Width, Height), 0);
             collisionManager.Objects = objects;
 
             levelManager = new LevelManager(difficulty, level);
@@ -122,7 +122,7 @@ namespace Zenith.Library
             StartY = startY;
             EndX = endX;
             EndY = endY;
-            collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(EndX, EndY), 0);
+            // collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(Width, Height), 0);
         }
 
         public Vector GetScreenPosition(double x, double y)

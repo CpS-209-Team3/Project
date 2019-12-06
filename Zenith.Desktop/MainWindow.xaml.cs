@@ -98,6 +98,8 @@ namespace Zenith.Desktop
             if (isCheating) World.Instance.EnableCheatMode();
 
             World.Instance.SetScreenDimensions(0, 0, Width, Height);
+            //World.Instance.EndX = Width;
+            //World.Instance.EndY = Height;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
