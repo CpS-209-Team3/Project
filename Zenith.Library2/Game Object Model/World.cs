@@ -129,7 +129,7 @@ namespace Zenith.Library
                 collisions = 0;
                 collisionManager.CheckForCollisions();
 
-                //levelManager.Update();
+                levelManager.Update();
 
                 ++gameTick;
             }
@@ -188,8 +188,8 @@ namespace Zenith.Library
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
-            // EnableCheatMode();
-            SpawnBoss(5);
+            EnableCheatMode();
+            // SpawnBoss(5);
         }
 
         // This method resets the instance of world.
