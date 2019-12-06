@@ -17,7 +17,7 @@
             <TextBlock x:Name="lbl_PlayerName" Text="Schaubian" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="20,5,5,5" />
             <TextBlock x:Name="lbl_CurrentScore" Text="5642" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,330,5"/>
             <TextBlock Text="HP" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,15,5"/>
-            <ProgressBar x:Name="bar_HealthBar" Maximum="100" Margin="5,5,5,5" IsIndeterminate="False" Value="100" Width="400" Foreground="Red"/>
+            <ProgressBar x:Name="progressbar_PlayerHealthBar" Maximum="1000" Margin="5,5,5,5" Value="400" Width="400" BorderThickness="2" Background="#FF3131FF" Foreground="Red"/>
         </StackPanel>
 
         <!-- Shop Popup here (not done yet) -->
