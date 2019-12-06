@@ -13,6 +13,7 @@ namespace Zenith.Library
 
         public void DecreaseCount()
         {
+            World.Instance.Score += 
             waveCount--;
             if (waveCount == 0) LevelManager.WaveNum++;
         }

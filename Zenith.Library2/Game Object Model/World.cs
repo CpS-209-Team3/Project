@@ -231,7 +231,7 @@ namespace Zenith.Library
                         obj.Deserialize(objectInfo);
                         AddObject(obj);
                     }
-                }
+                }   
             }
 
         }
