@@ -29,6 +29,7 @@ namespace Zenith.Library
             health = 4000;
             maxHealth = 4000;
             mass = 400;
+            worth = 300;
         }
     }
 }

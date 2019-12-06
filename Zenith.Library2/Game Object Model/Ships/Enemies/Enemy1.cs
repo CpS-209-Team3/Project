@@ -24,6 +24,7 @@ namespace Zenith.Library
             cannon = new BasicCannon(this, 300);
             swayRadius = 10;
             cannon.ProjectileColor = ProjectileColor.Red;
+            worth = 30;
         }
     }
 }

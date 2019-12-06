@@ -32,6 +32,8 @@ namespace Zenith.Library
 
         protected Cannon cannon;
 
+        protected int worth;
+        
         // Properties
 
         public int Health { get { return health; } set { health = value; } }
@@ -39,6 +41,8 @@ namespace Zenith.Library
         public Vector ShakeOffSet { get { return shakeOffset; } }
         public Action OnDeath { get { return onDeath; } set { onDeath = value; } }
         public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+
+        public int Worth { get { return worth; } }
 
         // Methods
 
@@ -87,6 +91,7 @@ namespace Zenith.Library
             if (health <= 0)
             {
                 destroy = true;
+                World.Instance.Score += worth;
                 onDeath?.Invoke();
                 return;
             }
@@ -134,7 +139,7 @@ namespace Zenith.Library
                 bodyDamage.ToString() + ',' + direction.ToString() + ',' + accuracy.ToString() + ',' +
                 laserDamage.ToString() + ',' + laserSpeed.ToString() + ',' + health.ToString() + ',' +
                 maxHealth.ToString() + ',' + shakeOffset.ToString() + ',' + shakeTime.ToString() + ',' +
-                shakeDuration.ToString() + ',' /*+ onDeath.ToString() + ','*/ + cannon.ToString();
+                shakeDuration.ToString() + ',' + cannon.ToString() + ',' + worth.ToString();
         }
 
         public override void Deserialize(string saveInfo)
@@ -164,7 +169,6 @@ namespace Zenith.Library
             shakeTime = Convert.ToInt32(shipSaveInfo[10]);
             shakeDuration = Convert.ToInt32(shipSaveInfo[11]);
 
-            //onDeath = shipSaveInfo[12];
 
             string[] cannonValues = shipSaveInfo[12].Split(':');
 
@@ -180,6 +184,7 @@ namespace Zenith.Library
             cannon.Damage = Convert.ToInt32(cannonValues[3]);
             cannon.Accuracy = Convert.ToDouble(cannonValues[4]);
             cannon.ProjectileSpeed = Convert.ToDouble(cannonValues[5]);
+            worth = Convert.ToInt32(shipSaveInfo[13]);
         }
 
     }

@@ -4,12 +4,18 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             BackgroundImageSource="HighScoreBG.png"
              x:Class="Zenith.View.HelpPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid HorizontalOptions="Center">
+            <StackLayout Margin="0,0,0,0.4">
+                <Label Text="How To Play" FontSize="40" FontFamily="Impact" TextColor="AliceBlue" HorizontalTextAlignment="Center" HeightRequest="55" Margin="300,40,300,0"/>
+            </StackLayout>
+            <StackLayout Margin="102,121,101.4,100.4" Orientation="Horizontal">
+                <Label x:Name="lbl_top1to5" FontSize="30" TextColor="DarkOrange" FontFamily="Impact" WidthRequest="380" Margin="15,1,54,-0.2" BackgroundColor="Transparent" Opacity="1" />
+                <Label x:Name="lbl_top6to10" FontSize="30" TextColor="DarkOrange" FontFamily="Impact" WidthRequest="380" BackgroundColor="Transparent" Opacity="1" />
+            </StackLayout>
+            <Button x:Name="btn_Back" Text="Back" FontSize="25" TextColor="AliceBlue" BackgroundColor="Transparent" HeightRequest="50" WidthRequest="60"  Margin="25,455,865,25" Clicked="btn_Back_Clicked"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

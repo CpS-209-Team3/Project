@@ -19,6 +19,7 @@ namespace Zenith.Library
         protected double swayRadius = 20;
         protected double swayStatus;
         protected int clock = 0;
+        
 
         public override void ShipLoop() { }
 
