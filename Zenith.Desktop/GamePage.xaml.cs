@@ -78,7 +78,7 @@ namespace Zenith.Desktop
             World.Instance.Update();
             Dispatcher.Invoke(() =>
             {
-                lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
+                lbl_Popup_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
                 for (int i = 0; i < sprites.Count; ++i)
                 {
                     sprites[i].Update();
@@ -134,7 +134,6 @@ namespace Zenith.Desktop
         private void Popup_Pause_Loaded(object sender, RoutedEventArgs e)
         {
             lbl_Popup_PlayerName.Text = lbl_PlayerName.Text;
-            lbl_Popup_CurrentScore.Text = lbl_CurrentScore.Text;
         }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)
