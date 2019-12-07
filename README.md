@@ -35,6 +35,7 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
 * Mobile - The game dimensions are not working correctly; the game will only correctly work in the lower right-hand corner.
 * The shop is currently empty and unusable.
 * Not all needed instance variables of objects are serialized.
+* If the user starts the game and returns to the main menu, and repeats that process, multiple tasks are ran on the World singleton class.
 
 # Recordings
 
