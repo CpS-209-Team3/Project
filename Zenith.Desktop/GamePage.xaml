@@ -16,7 +16,7 @@
         <StackPanel Orientation="Horizontal">
             <Button x:Name="btn_TestShop" Content="Test Shop View" FontSize="25" Height="auto" Width="auto" Click="btn_TestShop_Click"/>
             <TextBlock x:Name="lbl_PlayerName" Text="Schaubian" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="20,5,5,5" />
-            <TextBlock x:Name="lbl_CurrentScore" Text="5642" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,200,5"/>
+            <TextBlock x:Name="lbl_CurrentScore" Text="5642" FontFamily="Impact" FontSize="20" Foreground="Wheat" TextAlignment="Right" Width="80" Margin="50,5,130,5"/>
             <TextBlock Text="HP" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,15,5"/>
             <ProgressBar x:Name="progressbar_PlayerHealthBar" Maximum="1000" Margin="5,5,5,5" Value="400" Width="400" BorderThickness="2" Background="#FF3131FF" Foreground="Red"/>
         </StackPanel>
