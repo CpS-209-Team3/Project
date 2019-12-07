@@ -61,23 +61,43 @@ namespace Zenith.Library.Highscores
         //Returns a complete HighScores object based on the provided save file
         public static HighScores Load(string saveFile)
         {
-            using (StreamReader reader = new StreamReader(saveFile))
+            try
             {
-                HighScores h = new HighScores();
+                using (StreamReader reader = new StreamReader(saveFile))
+                {
+                    HighScores h = new HighScores();
+                    try
+                    {
+                        string line = reader.ReadLine(); 
+                        string[] data = line.Split(';');
+                        for (int i = 0; i < data.Length; ++i)
+                        {
+                            string[] couple = data[i].Split(',');
+                            h.AddHighScore(new HiScore(couple[0], Convert.ToInt32(couple[1])));
+                        }
+                        return h;
+                    }
+                    catch
+                    {
+                        return h;
+                    }
+                }
+            }
+            catch
+            {
+                //Make a new saveFile for this computer's copy
                 try
                 {
-                    string line = reader.ReadLine();
-                    string[] data = line.Split(';');
-                    for (int i = 0; i < data.Length; ++i)
+                    using (StreamWriter writer = new StreamWriter(saveFile))
                     {
-                        string[] couple = data[i].Split(',');
-                        h.AddHighScore(new HiScore(couple[0], Convert.ToInt32(couple[1])));
+
                     }
-                    return h;
+                    Load(saveFile);
+                    return new HighScores();
                 }
                 catch
                 {
-                    return h;
+                    return null;
                 }
             }
         }

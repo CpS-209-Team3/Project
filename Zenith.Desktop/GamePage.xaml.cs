@@ -27,10 +27,12 @@ namespace Zenith.Desktop
     {
         MainWindow main;
         DispatcherTimer timer;
-        public bool isCheating = false;
+        public bool isCheating = true;
         List<Button> ItemsOnSale;
         public string shipName;
         public int diffNum;
+        double wid;
+        double hi;
         public GamePage(MainWindow theMainOne)
         {
             ItemsOnSale = new List<Button>();
@@ -119,6 +121,11 @@ namespace Zenith.Desktop
 
             World.Instance.CreatePlayer();
             lbl_PlayerName.Text = World.Instance.PlayerName;
+
+            World.Instance.StartX = 20;
+            World.Instance.StartY = 60;
+            World.Instance.EndX = main.Width - 75;
+            World.Instance.EndY = main.Height - 75;
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);

@@ -70,7 +70,7 @@ namespace Zenith.Library
         private int difficulty = 1;
         private LevelManager levelManager;
 
-        private bool cheatsOn = true;
+        private bool cheatsOn = false;
 
         // Properties
 

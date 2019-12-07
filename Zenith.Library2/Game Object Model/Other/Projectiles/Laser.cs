@@ -37,9 +37,9 @@ namespace Zenith.Library
         public override void Loop()
         {
             if (position.X < World.Instance.StartX ||
-                position.Y < World.Instance.StartY ||
                 position.X > World.Instance.EndX ||
-                position.Y > World.Instance.EndY) Destroy = true;
+                (position.Y < World.Instance.StartY && !IsFromPlayer) ||
+                (position.Y > World.Instance.EndY && !IsFromPlayer)) Destroy = true;
         }
 
 
