@@ -20,15 +20,21 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
 * High score has been implemented...but not in the view
 * Mobile version is still a little bugged
 
-# Recording
+# Recordings
+
+## Alpha
 
 https://bju-my.sharepoint.com/:v:/r/personal/jgonz812_students_bju_edu/Documents/2019-11-22%2012-54-53.mkv?csf=1&e=Up3EfT
+
+## Beta
+
+
 
 # Expenses
 
 | Team Member | Total time invested | Total time Left | Team member's journal |
 | :------------- | :---------- | :----------- | :---------- |
-| James Gonzales | 16 hrs | 44 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/GonzalesJournal |
-| Caedmon Evans | 21 hrs | 39 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/EvansJournal |
-| Le Bao | 7 hrs 14 mins | 44 hrs 10 mins | https://github.com/CpS-209-Team3/Zenith/wiki/BaoLeJournal |
-| Steven Platt | 15 hrs 50 mins | 53 hours 46 mins |  https://github.com/CpS-209-Team3/Zenith/wiki/PlattJournal |
+| James Gonzales | 36 hrs | 24 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/GonzalesJournal |
+| Caedmon Evans | 38 hrs | 22 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/EvansJournal |
+| Le Bao | 27 hrs | 33 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/BaoLeJournal |
+| Steven Platt | 34 hrs | 26 hrs |  https://github.com/CpS-209-Team3/Zenith/wiki/PlattJournal |
