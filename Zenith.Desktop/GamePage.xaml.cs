@@ -145,10 +145,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Save_Click(object sender, RoutedEventArgs e)
         {
-            //----------------------------------------------------------------//
-            // I don't know how to make the game Save or Load...              //
-            // Please help me. Thank you very much.                           //
-            //----------------------------------------------------------------//
+            World.Instance.Save(World.Instance.PlayerName + ".txt");
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~

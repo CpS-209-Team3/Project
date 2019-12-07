@@ -134,12 +134,12 @@ namespace Zenith.Library
 
         public void Update()
         {
-            if (PlayerController.Save) Save("test.txt");
+            if (PlayerController.Save) Save(playerName + ".txt");
             
             if (PlayerController.Load)
             {
                 Reset();
-                Load("test.txt");
+                Load(playerName + ".txt");
             }
 
             if (!PlayerController.Pause)

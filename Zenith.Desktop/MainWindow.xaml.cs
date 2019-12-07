@@ -119,8 +119,17 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
-            GamePage game = new GamePage(this);
-            this.Content = game;
+            try
+            {
+                GamePage game = new GamePage(this);
+                this.Content = game;
+                World.Instance.Reset();
+                World.Instance.Load(World.Instance.PlayerName + ".txt");
+            }
+            catch
+            {
+                MessageBox.Show("There is no save file");
+            }
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
