@@ -28,7 +28,7 @@ namespace Zenith.Library
         private int shakeTime = 0;
         private int shakeDuration = 30;
 
-        private Action onDeath;
+        protected Action onDeath;
 
         protected Cannon cannon;
 

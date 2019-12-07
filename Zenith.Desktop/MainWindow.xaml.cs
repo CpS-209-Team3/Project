@@ -130,6 +130,9 @@ namespace Zenith.Desktop
             {
                 MessageBox.Show("There is no save file");
             }
+            // Disable button if no save file is available. 
+            GamePage game = new GamePage(this, "", 0, false);
+            this.Content = game;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
