@@ -627,45 +627,54 @@
     <None Include="Resources\drawable\Sprites\space_background_pack\space_background_pack\license.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\Aster1.png">
+    <AndroidResource Include="Resources\drawable\Aster1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\Aster2.png">
+    <AndroidResource Include="Resources\drawable\Aster2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\Aster3.png">
+    <AndroidResource Include="Resources\drawable\Aster3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\Aster4.png">
+    <AndroidResource Include="Resources\drawable\Aster4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\asteroid.png" />
+    <AndroidResource Include="Resources\drawable\asteroid.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\background.png" />
+    <AndroidResource Include="Resources\drawable\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\explosion.png" />
+    <AndroidResource Include="Resources\drawable\explosion.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\moon.png" />
+    <AndroidResource Include="Resources\drawable\moon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\previewx2_parallax_space_backgound.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Sprites\void.jpg" />
+    <AndroidResource Include="Resources\drawable\previewx2_parallax_space_backgound.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\HighScoreBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\projectile_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\projectile_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\projectile_orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\projectile_red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

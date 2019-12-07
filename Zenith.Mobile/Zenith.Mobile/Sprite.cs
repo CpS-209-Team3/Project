@@ -73,8 +73,33 @@ namespace Zenith.View
                 {
                     images[i] = new Image();
                     gameObject.ImageSources[i].Replace('-', '_');
-                    images[i].Source = gameObject.ImageSources[i];
-                    images[i].WidthRequest = gameObject.Size.X;
+                    
+                    if(Device.Idiom.ToString() == "Tablet")
+                    {
+                        int index = gameObject.ImageSources[i].IndexOf("\\Sprites\\");
+                        //string cleanPath = (index < 0)
+                        //    ? gameObject.ImageSources[i]
+                        //    : gameObject.ImageSources[i].Remove(index, );
+                        //if (index >= 0)
+                        //{
+                            if (gameObject.ImageSources[i].Contains("Pixel_Spaceships_for_SHMUP_1.4"))
+                            {
+                                images[i].Source = gameObject.ImageSources[i].Remove(index, index + 70);
+                            }
+                            else
+                            {
+                                images[i].Source = gameObject.ImageSources[i].Remove(index, index + 11);
+                            }
+                        //}
+
+                    }
+                    else if (Device.Idiom.ToString() == "Desktop")
+                    {
+                        images[i].Source = gameObject.ImageSources[i];
+                    }
+
+
+                        images[i].WidthRequest = gameObject.Size.X;
                     images[i].HeightRequest = gameObject.Size.Y;
                     images[i].Aspect = Aspect.AspectFit;
                     images[i].HorizontalOptions = LayoutOptions.Center;
