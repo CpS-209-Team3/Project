@@ -25,17 +25,14 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class GamePage : Page, ViewManager
     {
-        string shipName;
-        int difficulty;
         MainWindow main;
         DispatcherTimer timer;
-        bool isCheating = false;
+        public bool isCheating = false;
         List<Button> ItemsOnSale;
-        public GamePage(MainWindow theMainOne, String playerName, int diff, bool cht)
+        public string shipName;
+        public int diffNum;
+        public GamePage(MainWindow theMainOne)
         {
-            isCheating = cht;
-            shipName = playerName;
-            difficulty = diff;
             ItemsOnSale = new List<Button>();
             main = theMainOne;
             InitializeComponent();
@@ -116,9 +113,9 @@ namespace Zenith.Desktop
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
             World.Instance.Reset();
-            World.Instance.PlayerName = shipName;
-            World.Instance.Difficulty = difficulty;
             if (isCheating) World.Instance.EnableCheatMode();
+            World.Instance.PlayerName = shipName;
+            World.Instance.Difficulty = diffNum;
 
             World.Instance.CreatePlayer();
             lbl_PlayerName.Text = World.Instance.PlayerName;

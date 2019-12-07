@@ -36,8 +36,8 @@ namespace Zenith.Library
 
         public override void Loop()
         {
-            if (position.X < 0 ||
-                position.Y < 0 ||
+            if (position.X < World.Instance.StartX ||
+                position.Y < World.Instance.StartY ||
                 position.X > World.Instance.EndX ||
                 position.Y > World.Instance.EndY) Destroy = true;
         }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zenith.Library;
 
 namespace Zenith.Desktop
 {
@@ -29,7 +30,7 @@ namespace Zenith.Desktop
             main = theMainOne;
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Event Handler Zone ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        //~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Back Button Click ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
             //Make the main window content to the canView(Canvas name in MainWindow)
@@ -55,7 +56,10 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Start Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {
-            GamePage gamepg = new GamePage(main, Txt_shipName.Text, difficult_Dropdown.SelectedIndex + 1, cheat);
+            GamePage gamepg = new GamePage(main);
+            gamepg.shipName = Txt_shipName.Text;
+            gamepg.diffNum = difficult_Dropdown.SelectedIndex + 1;
+            gamepg.isCheating = cheat;
             main.Content = gamepg;
         }
 

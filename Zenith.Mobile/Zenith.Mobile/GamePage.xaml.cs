@@ -168,6 +168,10 @@ namespace Zenith.View
             if (isCheating) World.Instance.EnableCheatMode();
 
             World.Instance.SetScreenDimensions(-Width, -Height, Width, Height);
+            World.Instance.StartX = -950;
+            World.Instance.EndX = 950;
+            World.Instance.StartY = -350;
+            World.Instance.EndY = 500;
 
             // Source: https://stackoverflow.com/questions/29644200/how-get-mono-xamarin-android-app-path-folder
             World.Instance.Directory = System.Environment.CurrentDirectory;
