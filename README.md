@@ -54,6 +54,6 @@ Mobile: https://bju.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ab83ac72-b50
 | Team Member | Total time invested | Total time Left | Team member's journal |
 | :------------- | :---------- | :----------- | :---------- |
 | James Gonzales | 36 hrs | 24 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/GonzalesJournal |
-| Caedmon Evans | 38 hrs | 22 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/EvansJournal |
+| Caedmon Evans | 39 hrs | 21 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/EvansJournal |
 | Le Bao | 27 hrs | 33 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/BaoLeJournal |
 | Steven Platt | 34 hrs | 26 hrs |  https://github.com/CpS-209-Team3/Zenith/wiki/PlattJournal |
