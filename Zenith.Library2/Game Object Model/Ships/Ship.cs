@@ -120,6 +120,18 @@ namespace Zenith.Library
 
         public abstract void ShipLoop();
 
+        public void ApplyPowerUp(PowerUp power)
+        {
+            cannon.Damage += power.Damage;
+            if (power.Health) health = maxHealth;
+            for (int i = 0; i < cannon.FirePattern.Count; ++i)
+            {
+                if (cannon.FirePattern[i] > 0) cannon.FirePattern[i] -= 1;
+            }
+
+            size *= 1.20;
+        }
+
         public Ship(Vector position)
             : base(position)
         {
