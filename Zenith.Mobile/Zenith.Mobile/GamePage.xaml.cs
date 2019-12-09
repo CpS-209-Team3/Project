@@ -115,6 +115,11 @@ namespace Zenith.View
             });
         }
 
+        public void TriggerEndGame(bool isPlayerAlive)
+        {
+
+        }
+
         //~~~~~~~~~~~~~~~~~~~~Set Timer ~~~~~~~~~~~~~~~~~
         public void GameTimerStart()
         {

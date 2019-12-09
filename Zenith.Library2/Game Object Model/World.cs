@@ -18,6 +18,7 @@ namespace Zenith.Library
     {
         void AddSprite(GameObject gameObject);
         void RemoveSprite(GameObject gameObject);
+        void TriggerEndGame(bool isPlayerAlive);
     }
 
     interface ISerialize
@@ -177,7 +178,12 @@ namespace Zenith.Library
 
         public void OnPlayerDeath()
         {
+            ViewManager.TriggerEndGame(false);
+        }
 
+        public void OnGameFinish()
+        {
+            ViewManager.TriggerEndGame(true);
         }
 
         public void AddObject(GameObject gameObject)
