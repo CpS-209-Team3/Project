@@ -17,5 +17,10 @@ namespace Zenith.Library
             var s = World.Instance.Directory;
             return s + "\\Sprites\\" + path;
         }
+        public static string GetSoundFolderPath(string path)
+        {
+            var s = World.Instance.Directory;
+            return s + "\\Sounds\\" + path;
+        }
     }
 }

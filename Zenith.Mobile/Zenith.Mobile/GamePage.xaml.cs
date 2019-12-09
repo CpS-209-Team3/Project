@@ -115,6 +115,12 @@ namespace Zenith.View
             });
         }
 
+        //~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~
+        public void PlaySound()
+        {
+
+        }
+
         //~~~~~~~~~~~~~~~~~~~~Set Timer ~~~~~~~~~~~~~~~~~
         public void GameTimerStart()
         {
@@ -180,6 +186,8 @@ namespace Zenith.View
             // DisplayAlert("Alert", System.Environment.CurrentDirectory, "OK");
 
             GameTimerStart();
+
+            
         }
 
 

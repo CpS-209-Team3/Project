@@ -18,6 +18,7 @@ namespace Zenith.Library
     {
         void AddSprite(GameObject gameObject);
         void RemoveSprite(GameObject gameObject);
+        void PlaySound(string key);
     }
 
     interface ISerialize

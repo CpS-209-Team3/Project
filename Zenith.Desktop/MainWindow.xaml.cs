@@ -59,6 +59,12 @@ namespace Zenith.Desktop
             });
         }
 
+        // ~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~`
+        public void PlaySound(string key)
+        {
+
+        }
+
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
         public void GameLoop(object sender, EventArgs e)
         {
