@@ -33,8 +33,8 @@ namespace Zenith.Desktop
         public int diffNum;
         public Dictionary<string, SoundPlayer> gameSounds;
 
-        public bool loadingGame;
-        public string filename;
+        private bool loadingGame;
+        private string filename;
         public GamePage(MainWindow theMainOne, bool loadingGame, string filename)
         {
             this.loadingGame = loadingGame;
@@ -93,13 +93,6 @@ namespace Zenith.Desktop
             World.Instance.Update();
             Dispatcher.Invoke(() =>
             {
-                if (loadingGame)
-                {
-                    World.Instance.Load(filename);
-                    loadingGame = false;
-                }
-
-
                 lbl_Popup_Pause_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
                 for (int i = 0; i < sprites.Count; ++i)
                 {
@@ -147,6 +140,7 @@ namespace Zenith.Desktop
             World.Instance.ViewManager = this;
             World.Instance.Reset();
             if (isCheating) World.Instance.EnableCheatMode();
+        
             World.Instance.PlayerName = shipName;
             World.Instance.Difficulty = diffNum;
 
@@ -165,7 +159,11 @@ namespace Zenith.Desktop
             {
                 i.Value.Load();
             }
-
+            if (loadingGame)
+            {
+                World.Instance.Load(filename);
+                loadingGame = false;
+            }
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             timer.Tick += GameLoop;
@@ -195,8 +193,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Save_Click(object sender, RoutedEventArgs e)
         {
-            filename = World.Instance.PlayerName + ".txt";
-            World.Instance.Save(filename);
+            World.Instance.Save(World.Instance.PlayerName + ".txt");
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~

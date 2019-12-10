@@ -73,12 +73,10 @@ namespace Zenith.Library
         private LevelManager levelManager;
 
         private bool cheatsOn = false;
-
         private bool gameOver = false;
 
         private int currentWave = 1;
         private int enemiesLeftInWave = 0;
-
 
         // Properties
 
@@ -124,13 +122,15 @@ namespace Zenith.Library
 
         public int Collisions { get { return collisions; } set { collisions = value; } }
 
-        public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
-
-        public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
-
         public LevelManager LevelManager { get { return levelManager; } }
 
         public bool CheatsOn { get { return cheatsOn; } }
+
+        public bool GameOver { get { return gameOver; } set { gameOver = value; } }
+
+        public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
+
+        public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
 
         // Methods
 
@@ -271,9 +271,9 @@ namespace Zenith.Library
         // and add it to game objects.
         public void Load(string filename)
         {
-            Reset(); // need to delete current game state in order to start the new one
+            Reset();
 
-            if (File.Exists(filename)) // check if file exists before loading
+            if (File.Exists(filename))
             {
                 using (StreamReader reader = new StreamReader(filename, true))
                 {
@@ -283,6 +283,7 @@ namespace Zenith.Library
                     score = Convert.ToInt32(reader.ReadLine());
                     currentWave = Convert.ToInt32(reader.ReadLine());
                     enemiesLeftInWave = Convert.ToInt32(reader.ReadLine());
+
                     while (reader.Peek() != -1)
                     {
                         string saveInfo = reader.ReadLine();
@@ -293,20 +294,21 @@ namespace Zenith.Library
                         AddObject(obj);
                     }
                 }
-                foreach(GameObject obj in objects) // need to add them to the waves and set their death action
+                foreach (GameObject obj in objects)
                 {
                     if (obj.Type == GameObjectType.Ship)
                     {
-                        switch (obj.Type)
+                        switch(obj.Type)
                         {
+                            case GameObjectType.Enemy:
+                                enemiesLeftInWave++;
+                                Enemy e = obj as Enemy;
+                                e.OnDeath = LevelManager.CurrentWave.DeathAction;
+                                return;
                             case GameObjectType.Player:
                                 enemiesLeftInWave++;
                                 Player p = obj as Player;
                                 p.OnDeath = EndGame;
-                                return;
-                            case GameObjectType.Enemy:
-                                Enemy e = obj as Enemy;
-                                e.OnDeath = LevelManager.CurrentWave.DeathAction;
                                 return;
                             case GameObjectType.Boss5:
                                 enemiesLeftInWave++;
@@ -317,7 +319,7 @@ namespace Zenith.Library
                     }
                 }
             }
-            
+
         }
 
         // This function saves the game as a text file named [filename].txt
@@ -341,7 +343,7 @@ namespace Zenith.Library
                 writer.WriteLine(enemiesLeftInWave);
                 foreach (GameObject obj in this.objects)
                 {
-                    if (!(obj is HealthBar)) // Healthbars are created automatically when other game objects are created.
+                    if (!(obj is HealthBar))
                     {
                         writer.WriteLine(obj.Serialize());
                     }
