@@ -11,7 +11,7 @@
 
     <Canvas x:Name="canGame">
         <Canvas.Background>
-            <ImageBrush ImageSource="parallax-space-backgound.png"/>
+            <ImageBrush ImageSource="systemPurple.png"/>
         </Canvas.Background>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="btn_TestShop" Content="Test Shop View" FontSize="25" Height="auto" Width="auto" Click="btn_TestShop_Click"/>

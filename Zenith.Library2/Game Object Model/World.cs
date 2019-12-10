@@ -19,6 +19,7 @@ namespace Zenith.Library
         void AddSprite(GameObject gameObject);
         void RemoveSprite(GameObject gameObject);
         void PlaySound(string key);
+        void TriggerEndGame(bool isPlayerAlive);
     }
 
     interface ISerialize
@@ -237,7 +238,6 @@ namespace Zenith.Library
             Player = p;
             p.Velocity.Cap(0);
             p.OnDeath = OnPlayerDeath;
-            EnableCheatMode();
         }
 
         // This method resets the instance of world.
