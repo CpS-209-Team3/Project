@@ -100,11 +100,48 @@ namespace Zenith.Desktop
                 scores.AddHighScore(thisScore);
                 scores.Save("highScores.txt");
                 //Put the window that says that you have a new high score here
+                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
+                lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
             }
             else
             {
                 //Put the window that says just says the game is over, no high score
+                lbl_Popup_EndGame_Header.Text = "GAME OVER";
+                lbl_Popup_EndGame_NewHiScor.Text = null;
             }
+
+            //Just for fun here... No Offense!!!
+            if ((lbl_Popup_EndGame_Score.Text.Contains("2") && lbl_Popup_EndGame_Score.Text.Contains("0") && lbl_Popup_EndGame_Score.Text.Contains("9")) || lbl_PlayerName.Text.Contains("Schaub"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "All Hail Dr. Schaub!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("777"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "Woohoo!! Jackpot!!!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("864"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "Welcome to Greenville, SC";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("666"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "Number of the Beast!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("1337"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "There is LEET here!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text == "13373")
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "ELITE ASTRONAUT!!!";
+            }
+            else if (lbl_PlayerName.Text.ToLower() == "hakuna matata" || lbl_PlayerName.Text.ToLower() == "hakunamatata")
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "It means no worries";
+            }
+
+            lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
+            Popup_EndGame.IsOpen = true;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
@@ -113,7 +150,7 @@ namespace Zenith.Desktop
             World.Instance.Update();
             Dispatcher.Invoke(() =>
             {
-                lbl_Popup_Pause_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
+                lbl_Popup_EndGame_Score.Text = lbl_Popup_Pause_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
                 for (int i = 0; i < sprites.Count; ++i)
                 {
                     sprites[i].Update();
@@ -195,6 +232,7 @@ namespace Zenith.Desktop
         private void Popup_Pause_Loaded(object sender, RoutedEventArgs e)
         {
             lbl_Popup_Pause_PlayerName.Text = lbl_PlayerName.Text;
+            lbl_Distance.Text = "";
         }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)
@@ -230,14 +268,17 @@ namespace Zenith.Desktop
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_EndGame EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Popup: Close ~~~~~~~~~~~~~~~~~~~~
-        private void btn_EndGame_Close_Click(object sender, RoutedEventArgs e)
+        private void btn_EndGame_ToHighScore_Click(object sender, RoutedEventArgs e)
         {
+            HighScorePage hiscrPage = new HighScorePage(main);
+            main.Content = hiscrPage;
             if (Popup_EndGame.IsOpen == true)
                 Popup_EndGame.IsOpen = false;
+
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_SHOP EVENT HANDLING (In Development)~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_SHOP EVENT HANDLING (... Shop is gone... Farewell!!!)~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Buy Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_Shop_Buy_Click(object sender, RoutedEventArgs e)
         {
