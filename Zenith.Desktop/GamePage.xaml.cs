@@ -82,7 +82,7 @@ namespace Zenith.Desktop
             World.Instance.Update();
             Dispatcher.Invoke(() =>
             {
-                lbl_Popup_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
+                lbl_Popup_Pause_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
                 for (int i = 0; i < sprites.Count; ++i)
                 {
                     sprites[i].Update();
@@ -90,6 +90,14 @@ namespace Zenith.Desktop
 
                 // Health Bar
                 progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+
+                // Just for fun here, no offense....
+                if (lbl_CurrentScore.Text.Contains("2") && lbl_CurrentScore.Text.Contains("0") && lbl_CurrentScore.Text.Contains("9"))
+                {
+                    lbl_Popup_Shop.Text = "SCHAUB";
+                }
+                else
+                    lbl_Popup_Shop.Text = "SHOP";
 
                 // Input handling
                 World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
@@ -142,7 +150,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Pause Load ~~~~~~~~~~~~~~~~~~~~
         private void Popup_Pause_Loaded(object sender, RoutedEventArgs e)
         {
-            lbl_Popup_PlayerName.Text = lbl_PlayerName.Text;
+            lbl_Popup_Pause_PlayerName.Text = lbl_PlayerName.Text;
         }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)
@@ -185,12 +193,12 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_SHOP EVENT HANDLING (In Development)~~~~~~~~~~~~~~~~~~~~~~~~~
-        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Buy Button ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Buy Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_Shop_Buy_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Loaded ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Popup_Shop_Loaded(object sender, RoutedEventArgs e)
         {
             // Copy from the Good Old BattleShip
@@ -225,7 +233,7 @@ namespace Zenith.Desktop
             }
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Item Click ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Item Click ~~~~~~~~~~~~~~~~~~~~
         private void ShopItem_Click(object sender, RoutedEventArgs e)
         {
             Color bgcolor = Color.FromRgb(150, 111, 51);
@@ -249,14 +257,15 @@ namespace Zenith.Desktop
                 else
                     ++i;
             }
-
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Test Shop View Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_TestShop_Click(object sender, RoutedEventArgs e)
         {
             Popup_Shop.IsOpen = true;
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Close Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_Shop_Close_Click(object sender, RoutedEventArgs e)
         {
             Popup_Shop.IsOpen = false;
