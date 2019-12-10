@@ -82,7 +82,7 @@ namespace Zenith.Desktop
         }
 
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
-        public void TriggerEndGame(bool isPlayerAlive)
+        public void TriggerEndGame()
         {
             //timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");

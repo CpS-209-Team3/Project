@@ -123,7 +123,7 @@ namespace Zenith.View
 
         }
 
-        public void TriggerEndGame(bool playerWin)
+        public void TriggerEndGame()
         {
 
         }
