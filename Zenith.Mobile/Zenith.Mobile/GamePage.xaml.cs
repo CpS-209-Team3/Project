@@ -12,7 +12,9 @@ namespace Zenith.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage, ViewManager
     {
-        bool isCheating = false;
+        public string shipName;
+        public int diffNum;
+        public bool isCheating;
         bool left = false;
         bool right = false;
         bool up = false;
@@ -183,6 +185,15 @@ namespace Zenith.View
             World.Instance.EndX = 950;
             World.Instance.StartY = -350;
             World.Instance.EndY = 500;
+
+            if (isCheating)
+            {
+                World.Instance.EnableCheatMode();
+            }
+            else
+            {
+                World.Instance.DisableCheatMode();
+            }
 
             // Source: https://stackoverflow.com/questions/29644200/how-get-mono-xamarin-android-app-path-folder
             World.Instance.Directory = System.Environment.CurrentDirectory;
