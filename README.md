@@ -49,6 +49,10 @@ Desktop: https://bju.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=950c85f3-17
 
 Mobile: https://bju.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ab83ac72-b509-45b2-8afd-ab1c0028b0ca
 
+## Release Candidate
+
+Desktop: https://bju-my.sharepoint.com/:v:/r/personal/jgonz812_students_bju_edu/Documents/2019-12-09%2022-14-15.mkv?csf=1&e=PmalmS
+
 # Expenses
 
 | Team Member | Total time invested | Total time Left | Team member's journal |
