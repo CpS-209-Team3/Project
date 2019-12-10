@@ -14,7 +14,7 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <StackLayout HorizontalOptions="Center">
                     <Button x:Name="BtnStart" Text="START GAME" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnStart_Clicked" IsEnabled="False"/>
-                    <Picker Title="DIFFICULTY" TitleColor="White" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" SelectedIndexChanged="Picker_SelectedIndexChanged">
+                    <Picker x:Name="PickerDiff" Title="DIFFICULTY" TitleColor="White" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" SelectedIndexChanged="Picker_SelectedIndexChanged">
                         <Picker.Items>
                             <x:String>EASY</x:String>
                             <x:String>MEDIUM</x:String>

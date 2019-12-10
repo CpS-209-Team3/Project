@@ -15,7 +15,7 @@ namespace Zenith.Library
             position = host.Position; 
             imageIndex = index;
             ++index;
-            if (clock == 5)
+            if (clock == 4)
             {
                 destroy = true;
             }

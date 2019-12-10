@@ -22,7 +22,11 @@ namespace Zenith.View
         private void BtnStart_Clicked(object sender, EventArgs e)
         {
             //This function is still buggy
-            Application.Current.MainPage = new GamePage();
+            GamePage game = new GamePage();
+            game.shipName = "Schaubian";
+            game.diffNum = PickerDiff.SelectedIndex;
+            game.isCheating = cheat;
+            Application.Current.MainPage = game;
         }
 
 
