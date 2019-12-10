@@ -59,7 +59,11 @@ namespace Zenith.Desktop
             });
         }
 
-        public void TriggerEndGame(bool isPlayerAlive) { }
+        // ~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~`
+        public void PlaySound(string key)
+        {
+
+        }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
         public void GameLoop(object sender, EventArgs e)

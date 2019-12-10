@@ -31,8 +31,7 @@ namespace Zenith.Desktop
         List<Button> ItemsOnSale;
         public string shipName;
         public int diffNum;
-        double wid;
-        double hi;
+        public Dictionary<string, SoundPlayer> gameSounds;
         public GamePage(MainWindow theMainOne)
         {
             ItemsOnSale = new List<Button>();
@@ -71,9 +70,10 @@ namespace Zenith.Desktop
             });
         }
 
-        public void TriggerEndGame(bool isPlayerAlive)
+        //~~~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~~~
+        public void PlaySound(string key)
         {
-
+            gameSounds[key].Play();
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
@@ -139,6 +139,14 @@ namespace Zenith.Desktop
             World.Instance.StartY = 60;
             World.Instance.EndX = main.Width - 75;
             World.Instance.EndY = main.Height - 75;
+
+            gameSounds = new Dictionary<string, SoundPlayer>();
+            gameSounds.Add("Laser", new SoundPlayer(Util.GetSoundFolderPath("laser.wav")));
+            //gameSounds.Add("Explode", new SoundPlayer(""));
+            foreach (KeyValuePair<string, SoundPlayer> i in gameSounds)
+            {
+                i.Value.Load();
+            }
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);

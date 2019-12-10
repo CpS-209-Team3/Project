@@ -115,7 +115,8 @@ namespace Zenith.View
             });
         }
 
-        public void TriggerEndGame(bool isPlayerAlive)
+        //~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~
+        public void PlaySound()
         {
 
         }
@@ -185,6 +186,8 @@ namespace Zenith.View
             // DisplayAlert("Alert", System.Environment.CurrentDirectory, "OK");
 
             GameTimerStart();
+
+            
         }
 
 
