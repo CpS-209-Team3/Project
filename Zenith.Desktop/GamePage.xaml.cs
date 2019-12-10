@@ -32,8 +32,13 @@ namespace Zenith.Desktop
         public string shipName;
         public int diffNum;
         public Dictionary<string, SoundPlayer> gameSounds;
-        public GamePage(MainWindow theMainOne)
+
+        private bool loadingGame;
+        private string filename;
+        public GamePage(MainWindow theMainOne, bool loadingGame, string filename)
         {
+            this.loadingGame = loadingGame;
+            this.filename = filename;
             ItemsOnSale = new List<Button>();
             main = theMainOne;
             InitializeComponent();
@@ -147,6 +152,7 @@ namespace Zenith.Desktop
             World.Instance.ViewManager = this;
             World.Instance.Reset();
             if (isCheating) World.Instance.EnableCheatMode();
+        
             World.Instance.PlayerName = shipName;
             World.Instance.Difficulty = diffNum;
 
@@ -165,7 +171,11 @@ namespace Zenith.Desktop
             {
                 i.Value.Load();
             }
-
+            if (loadingGame)
+            {
+                World.Instance.Load(filename);
+                loadingGame = false;
+            }
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             timer.Tick += GameLoop;
@@ -201,6 +211,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_MainMenu_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             //Close popup then go back to Main Menu
             if (Popup_Pause.IsOpen == true)
                 Popup_Pause.IsOpen = false;
