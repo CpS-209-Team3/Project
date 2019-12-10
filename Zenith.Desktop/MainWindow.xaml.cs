@@ -65,6 +65,9 @@ namespace Zenith.Desktop
 
         }
 
+        //~~~~~~~~~~~~~~Trigger Endgame~~~~~~~~~~~~~~~~~~`
+        public void TriggerEndGame(bool isPlayerAlive) { }
+
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
         public void GameLoop(object sender, EventArgs e)
         {

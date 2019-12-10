@@ -116,7 +116,12 @@ namespace Zenith.View
         }
 
         //~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~
-        public void PlaySound()
+        public void PlaySound(string key)
+        {
+
+        }
+
+        public void TriggerEndGame(bool playerWin)
         {
 
         }

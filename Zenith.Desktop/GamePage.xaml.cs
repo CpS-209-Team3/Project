@@ -73,7 +73,13 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~~~
         public void PlaySound(string key)
         {
-            gameSounds[key].Play();
+            Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+        }
+
+        //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
+        public void TriggerEndGame(bool isPlayerAlive)
+        {
+            
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
@@ -134,7 +140,7 @@ namespace Zenith.Desktop
 
             gameSounds = new Dictionary<string, SoundPlayer>();
             gameSounds.Add("Laser", new SoundPlayer(Util.GetSoundFolderPath("laser.wav")));
-            //gameSounds.Add("Explode", new SoundPlayer(""));
+            gameSounds.Add("Explode", new SoundPlayer(Util.GetSoundFolderPath("smallExplode.wav")));
             foreach (KeyValuePair<string, SoundPlayer> i in gameSounds)
             {
                 i.Value.Load();

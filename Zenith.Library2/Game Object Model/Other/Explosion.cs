@@ -6,21 +6,25 @@ namespace Zenith.Library
 {
     class Explosion : GameObject
     {
+        int index = 6;
         int clock = 0;
+        Ship host;
 
         public override void Loop()
         {
-            imageIndex = 7;
-            if (imageIndex == 109)
+            position = host.Position; 
+            imageIndex = index;
+            ++index;
+            if (clock == 5)
             {
                 destroy = true;
             }
             ++clock;
         }
 
-        public Explosion(Vector position)
-            : base(position)
+        public Explosion(Ship host) : base(host.Position)
         {
+            this.host = host;
             imageSources = new List<string>
             {
                 Util.GetShipSpriteFolderPath("Explosion\\explosion-01.png"),

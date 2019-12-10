@@ -91,9 +91,10 @@ namespace Zenith.Library
             if (health <= 0)
             {
                 destroy = true;
+                World.Instance.ViewManager.PlaySound("Explode");
                 World.Instance.Score += worth;
                 if (type == GameObjectType.Boss5) World.Instance.Score += World.Instance.GameTick;
-                //World.Instance.AddObject(new Explosion(position));
+                World.Instance.AddObject(new Explosion(this));
                 onDeath?.Invoke();
                 return;
             }
