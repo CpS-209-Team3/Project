@@ -19,7 +19,7 @@ namespace Zenith.Library
         void AddSprite(GameObject gameObject);
         void RemoveSprite(GameObject gameObject);
         void PlaySound(string key);
-        void TriggerEndGame(bool isPlayerAlive);
+        void TriggerEndGame();
     }
 
     interface ISerialize
@@ -190,6 +190,7 @@ namespace Zenith.Library
         {
             score -= Convert.ToInt32(Math.Round((double)gameTick / 10, 1));
             gameOver = true;
+            ViewManager.TriggerEndGame();
         }
 
         public void AddObject(GameObject gameObject)

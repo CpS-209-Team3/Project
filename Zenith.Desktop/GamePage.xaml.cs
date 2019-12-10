@@ -90,23 +90,21 @@ namespace Zenith.Desktop
         }
 
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
-        public void TriggerEndGame(bool isPlayerAlive)
+        public void TriggerEndGame()
         {
-            // Check if player got a high score
-            //if (!HighScorePage)
-            //{
-            //    lbl_Popup_EndGame_NewHiScor.Text = "";
-            //    lbl_Popup_EndGame_Header.Text = "GAME OVER";
-            //}
-            //else
-            //{
-            //    lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
-            //    lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
-            //}
-            //lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
-            //lbl_Popup_EndGame_Score.Text = lbl_CurrentScore.Text;
-
-            //Popup_EndGame.IsOpen = true;
+            //timer.Stop();
+            HighScores scores = HighScores.Load("highScores.txt");
+            HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
+            if (scores.IsNewHighScore(thisScore))
+            {
+                scores.AddHighScore(thisScore);
+                scores.Save("highScores.txt");
+                //Put the window that says that you have a new high score here
+            }
+            else
+            {
+                //Put the window that says just says the game is over, no high score
+            }
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
