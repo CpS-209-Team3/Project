@@ -27,8 +27,8 @@
                 <TextBlock Text="Save" Height="30" Width="100" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="A: (...)" Height="30" Width="Auto" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
-                <TextBlock Text="B: (...)" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
+                <Image Source="Image_Button_L.png" Height="50" Width="50" Margin="10,20,10,20" />
+                <TextBlock Text="Load" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="5" />
                 <TextBlock Text="C: (...)" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
                 <TextBlock Text="D: (...)" Height="30" FontSize="20" TextAlignment="Center" Foreground="#FF6CFA4F" Margin="20" />
             </StackPanel>
