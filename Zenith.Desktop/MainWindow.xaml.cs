@@ -115,14 +115,13 @@ namespace Zenith.Desktop
             //World.Instance.EndX = Width;
             //World.Instance.EndY = Height;
 
-        //~~~~~~~~~~~~~~~~~~~~ Try to disable Load button if no save file found ~~~~~~~~~~~~~~~~~~~~
-            //if (File.Exists(World.Instance.PlayerName + ".txt") == true) { }
-            //else
-            //{
-            //    btn_Load.IsEnabled = false;
-            //    btn_Load.Foreground = Brushes.Black;
-            //    btn_Load.Opacity = 0.5;
-            //}
+            /*if (File.Exists(World.Instance.PlayerName + ".txt") == true) { }
+            else
+            {
+                btn_Load.IsEnabled = false;
+                btn_Load.Foreground = Brushes.Black;
+                btn_Load.Opacity = 0.5;
+            }*/
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
@@ -143,8 +142,13 @@ namespace Zenith.Desktop
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
             // Disable button if no save file is available.
-            GamePage game = new GamePage(this);
-            this.Content = game;
+            string filename = World.Instance.PlayerName + ".txt";
+            if (File.Exists(filename))
+            {
+                GamePage game = new GamePage(this, true, filename);
+                this.Content = game;
+            }
+            
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~

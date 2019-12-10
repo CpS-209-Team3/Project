@@ -73,6 +73,10 @@ namespace Zenith.Library
         private LevelManager levelManager;
 
         private bool cheatsOn = false;
+        private bool gameOver = false;
+
+        private int currentWave = 1;
+        private int enemiesLeftInWave = 0;
 
         // Properties
 
@@ -122,6 +126,12 @@ namespace Zenith.Library
 
         public bool CheatsOn { get { return cheatsOn; } }
 
+        public bool GameOver { get { return gameOver; } set { gameOver = value; } }
+
+        public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
+
+        public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
+
         // Methods
 
         public void PlaySound()
@@ -149,7 +159,6 @@ namespace Zenith.Library
             
             if (PlayerController.Load)
             {
-                Reset();
                 Load(playerName + ".txt");
             }
 
@@ -177,9 +186,10 @@ namespace Zenith.Library
             
         }
 
-        public void OnPlayerDeath()
+        public void EndGame()
         {
-
+            score -= Convert.ToInt32(Math.Round((double)gameTick / 10, 1));
+            gameOver = true;
         }
 
         public void AddObject(GameObject gameObject)
@@ -237,7 +247,7 @@ namespace Zenith.Library
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
-            p.OnDeath = OnPlayerDeath;
+            p.OnDeath = EndGame;
         }
 
         // This method resets the instance of world.
@@ -251,7 +261,6 @@ namespace Zenith.Library
             for (int i = objects.Count - 1; i > 0; i--)
             {
                 objects[i].Destroy = true;
-                //RemoveObject(objects[i]);
             }
 
         }
@@ -262,6 +271,8 @@ namespace Zenith.Library
         // and add it to game objects.
         public void Load(string filename)
         {
+            Reset();
+
             if (File.Exists(filename))
             {
                 using (StreamReader reader = new StreamReader(filename, true))
@@ -270,6 +281,9 @@ namespace Zenith.Library
                     gameTick = Convert.ToInt32(reader.ReadLine());
                     level = Convert.ToInt32(reader.ReadLine());
                     score = Convert.ToInt32(reader.ReadLine());
+                    currentWave = Convert.ToInt32(reader.ReadLine());
+                    enemiesLeftInWave = Convert.ToInt32(reader.ReadLine());
+
                     while (reader.Peek() != -1)
                     {
                         string saveInfo = reader.ReadLine();
@@ -279,7 +293,31 @@ namespace Zenith.Library
                         obj.Deserialize(objectInfo);
                         AddObject(obj);
                     }
-                }   
+                }
+                foreach (GameObject obj in objects)
+                {
+                    if (obj.Type == GameObjectType.Ship)
+                    {
+                        switch(obj.Type)
+                        {
+                            case GameObjectType.Enemy:
+                                enemiesLeftInWave++;
+                                Enemy e = obj as Enemy;
+                                e.OnDeath = LevelManager.CurrentWave.DeathAction;
+                                return;
+                            case GameObjectType.Player:
+                                enemiesLeftInWave++;
+                                Player p = obj as Player;
+                                p.OnDeath = EndGame;
+                                return;
+                            case GameObjectType.Boss5:
+                                enemiesLeftInWave++;
+                                Boss5 b = obj as Boss5;
+                                b.OnDeath = EndGame;
+                                return;
+                        }
+                    }
+                }
             }
 
         }
@@ -301,6 +339,8 @@ namespace Zenith.Library
                 writer.WriteLine(gameTick);
                 writer.WriteLine(level);
                 writer.WriteLine(score);
+                writer.WriteLine(currentWave);
+                writer.WriteLine(enemiesLeftInWave);
                 foreach (GameObject obj in this.objects)
                 {
                     if (!(obj is HealthBar))
