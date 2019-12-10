@@ -93,18 +93,20 @@ namespace Zenith.Desktop
         public void TriggerEndGame(bool isPlayerAlive)
         {
             // Check if player got a high score
-            if (!HighScorePage)
-            {
-                lbl_Popup_EndGame_NewHiScor.Text = "";
-                lbl_Popup_EndGame_Header.Text = "GAME OVER";
-            }
-            else
-            {
-                lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
-                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
-            }
-            lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
-            lbl_Popup_EndGame_Score.Text = lbl_CurrentScore.Text;
+            //if (!HighScorePage)
+            //{
+            //    lbl_Popup_EndGame_NewHiScor.Text = "";
+            //    lbl_Popup_EndGame_Header.Text = "GAME OVER";
+            //}
+            //else
+            //{
+            //    lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
+            //    lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
+            //}
+            //lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
+            //lbl_Popup_EndGame_Score.Text = lbl_CurrentScore.Text;
+
+            //Popup_EndGame.IsOpen = true;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
@@ -228,12 +230,12 @@ namespace Zenith.Desktop
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_EndGame EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Popup: Close ~~~~~~~~~~~~~~~~~~~~
-        private void btn_NewHighScore_Close_Click(object sender, RoutedEventArgs e)
+        private void btn_EndGame_Close_Click(object sender, RoutedEventArgs e)
         {
-            if (Popup_NewHighScore.IsOpen == true)
-                Popup_NewHighScore.IsOpen = false;
+            if (Popup_EndGame.IsOpen == true)
+                Popup_EndGame.IsOpen = false;
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
 
