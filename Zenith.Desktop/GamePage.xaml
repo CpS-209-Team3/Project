@@ -29,11 +29,18 @@
                     <SolidColorBrush Color="#FF966F33" Opacity="0.65"/>
                 </Border.Background>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <TextBlock Text="SHOP" Background="Silver" Foreground="Yellow" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_Shop" Text="SHOP" Foreground="Yellow" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" >
+                        <TextBlock.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="Silver" Offset="0"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                    </TextBlock>
                     <StackPanel x:Name="layout_Shop_Items" Orientation="Vertical">
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                        <TextBlock Text="[CurrencyName]: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
+                        <TextBlock Text="Zeni Thollars: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
                         <TextBlock x:Name="lbl_Currency" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -55,10 +62,10 @@
                 </Border.Background>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="PAUSE" Background="Brown" Foreground="White" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" />
-                    <TextBlock x:Name="lbl_Popup_PlayerName" Text="Schaubian" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_Pause_PlayerName" Text="Schaubian" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="☠Enemies Defeated☠: " Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_EnemyDefeated" Text="??" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_Pause_EnemyDefeated" Text="??" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="Distance Traveled:" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
@@ -66,7 +73,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="Score: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Popup_CurrentScore" Text="????" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_Pause_CurrentScore" Text="????" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <Button x:Name="btn_Continue" Content="Continue" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="DarkGreen" Width="120" Height="40" BorderBrush="Transparent" Margin="3" Click="btn_Pause_Continue_Click" />
                     <Button x:Name="btn_Save" Content="Save" Foreground="Yellow" FontSize="25" HorizontalAlignment="Center" Background="DarkGreen" Width="70" Height="40" BorderBrush="Transparent" Margin="3" Click="btn_Pause_Save_Click" />
@@ -74,7 +81,7 @@
                 </StackPanel>
             </Border>
         </Popup>
-    
+
         <!-- New Highscore Popup here -->
         <Popup x:Name="Popup_NewHighScore" PlacementTarget="{Binding ElementName=canGame}" Placement="Center" PopupAnimation="Scroll">
             <Border BorderBrush="Transparent"
@@ -83,17 +90,17 @@
                     <SolidColorBrush Color="Gray" Opacity="0.45"/>
                 </Border.Background>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="CONGRATULATIONS" TextDecorations="Underline" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="50" Margin="5" Width="auto" TextAlignment="Center" />
-                    <TextBlock Text="New High Score!" Background="Transparent" Foreground="Yellow" FontWeight="DemiBold" FontSize="40" Margin="5" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_EndGame_Text" Text="CONGRATULATIONS" TextDecorations="Underline" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="50" Margin="5" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_EndGame_NewHiScor" Text="New High Score!" Background="Transparent" Foreground="Yellow" FontWeight="DemiBold" FontSize="40" Margin="5" Width="auto" TextAlignment="Center" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                         <TextBlock Text="Score:  " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Score" Text="3000" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_EndGame_Score" Text="3000" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                         <TextBlock Text="Position: #" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Position" Text="3" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_EndGame_Position" Text="3" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
                     </StackPanel>
-                    <TextBox x:Name="txt_Popup_PromptPlayerName" Text="Enter Your Name..." FontSize="28" VerticalAlignment="Center" Width="450" Height="35" Foreground="GhostWhite" Background="Blue" Opacity="0.7"/>
+                    <TextBox x:Name="txt_Popup_EndGame_PromptPlayerName" Text="Enter Your Name..." FontSize="28" VerticalAlignment="Center" Width="450" Height="35" Foreground="GhostWhite" Background="Blue" Opacity="0.7"/>
                     <Button x:Name="btn_Close" Content="Close" FontSize="30" FontWeight="DemiBold" Foreground="Yellow" Background="Transparent" BorderBrush="Transparent" Margin="10" Width="100" Click="btn_NewHighScore_Close_Click"/>
                 </StackPanel>
             </Border>
