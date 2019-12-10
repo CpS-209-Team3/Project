@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zenith.Library.Highscores
+namespace Zenith.Library
 {
     public class HiScore
     {

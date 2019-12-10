@@ -179,7 +179,7 @@ namespace Zenith.Library
 
         public void OnPlayerDeath()
         {
-
+            ViewManager.TriggerEndGame(false);
         }
 
         public void AddObject(GameObject gameObject)
