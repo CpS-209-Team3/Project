@@ -25,6 +25,9 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class GamePage : Page, ViewManager
     {
+        bool chooseThis = false;
+        int ItemCost;
+        int ItemSelectPos;
         MainWindow main;
         DispatcherTimer timer;
         public bool isCheating = true;
@@ -204,7 +207,29 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Buy Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_Shop_Buy_Click(object sender, RoutedEventArgs e)
         {
-
+            int CurrentBalance = Convert.ToInt32(lbl_Popup_Shop_Currency.Text);
+            if (chooseThis)
+            {
+                if (ItemCost > CurrentBalance)
+                {
+                    lbl_Popup_Shop_Announce.Text = "Not enough money!";
+                    chooseThis = false;
+                }
+                else
+                {
+                    ItemsOnSale[ItemSelectPos].IsEnabled = false;
+                    ItemsOnSale[ItemSelectPos].Content = "SOLD";
+                    ItemsOnSale[ItemSelectPos].FontWeight = FontWeights.SemiBold;
+                    ItemsOnSale[ItemSelectPos].FontSize = 18;
+                    ItemsOnSale[ItemSelectPos].HorizontalAlignment = HorizontalAlignment.Center;
+                    ItemsOnSale[ItemSelectPos].VerticalAlignment = VerticalAlignment.Center;
+                    ItemsOnSale[ItemSelectPos].Opacity = 0.5;
+                    lbl_Popup_Shop_Announce.Text = "You bought " + lbl_Popup_Shop_ItemName.Text + "!";
+                    lbl_Popup_Shop_Currency.Text = Convert.ToString(CurrentBalance - ItemCost);
+                    chooseThis = false;
+                }
+            }
+            else { }
         }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Popup_Shop_Loaded(object sender, RoutedEventArgs e)
@@ -250,7 +275,7 @@ namespace Zenith.Desktop
             // then click buy to confirm to buy it.
             Button ItemChose = sender as Button;
             int i = 0;
-            bool chooseThis = false;
+            chooseThis = false;
             while (chooseThis != true)
             {
                 if (ItemsOnSale[i] == ItemChose)
@@ -261,6 +286,10 @@ namespace Zenith.Desktop
                     }
                     ItemsOnSale[i].Background = Brushes.LightBlue;
                     chooseThis = true;
+                    lbl_Popup_Shop_ItemName.Text = "Item " + Convert.ToString(i + 1);
+                    lbl_Popup_Shop_ItemPrice.Text = Convert.ToString((i + 1) * 100) + "ZT";
+                    ItemSelectPos = i;
+                    ItemCost = (i + 1) * 100;
                 }
                 else
                     ++i;

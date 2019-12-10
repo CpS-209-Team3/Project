@@ -39,14 +39,19 @@
                     </TextBlock>
                     <StackPanel x:Name="layout_Shop_Items" Orientation="Vertical">
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                         <TextBlock Text="Zeni Thollars: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Currency" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_Shop_Currency" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="btn_Shop_Buy" Content="BUY" Background="Brown" Foreground="Wheat" FontWeight="DemiBold" FontSize="30" Margin="5" Width="90" Click="btn_Shop_Buy_Click"/>
                         <Button x:Name="btn_Shop_Close" Content="CLOSE" Background="Brown" Foreground="Wheat" FontWeight="DemiBold" FontSize="30" Margin="5" Width="90" Click="btn_Shop_Close_Click"/>
                     </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0,-100,0,0">
+                        <TextBlock x:Name="lbl_Popup_Shop_ItemName" Text="" Foreground="Wheat" FontWeight="DemiBold" FontSize="20" Margin="2" Width="Auto" />
+                        <TextBlock x:Name="lbl_Popup_Shop_ItemPrice" Text=""  Foreground="Wheat" FontWeight="DemiBold" FontSize="20" Margin="2" Width="Auto" />
+                    </StackPanel>
+                    <TextBlock x:Name="lbl_Popup_Shop_Announce" Text="" Foreground="LightGoldenrodYellow" FontWeight="DemiBold" FontSize="20" Margin="-120,-40,120,5" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </StackPanel>
             </Border>
         </Popup>
