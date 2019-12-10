@@ -15,7 +15,8 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
     * Name
     * Difficulty
 * Sprites
-* Mobile Version
+* Sound Effects 
+* Mostly Working Mobile Version
 * Game model object (lasers, asteroids, ships, enemies...)
 * Game Model
   * Objects
@@ -28,12 +29,10 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
   
 
 # Known Issues
-* High score has been implemented...but not in the view.
-* Mobile version is still a little bugged.
+* End of game has been implemented, but is having merge issues.
 * The load and save functionality does not correctly work in the view nor in the buttons.
-* The Highscore page does not work (it will crash the program).
-* Mobile - The game dimensions are not working correctly; the game will only correctly work in the lower right-hand corner.
-* The shop is currently empty and unusable.
+* The Highscore page works from the save file, but needs the end of game to make a new high score
+* Mobile - The game is functional until the bosses. Android has sprite issues.
 * Not all needed instance variables of objects are serialized.
 * If the user starts the game and returns to the main menu, and repeats that process, multiple tasks are ran on the World singleton class.
 
@@ -59,5 +58,5 @@ Desktop: https://bju-my.sharepoint.com/:v:/r/personal/jgonz812_students_bju_edu/
 | :------------- | :---------- | :----------- | :---------- |
 | James Gonzales | 36 hrs | 24 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/GonzalesJournal |
 | Caedmon Evans | 39 hrs | 21 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/EvansJournal |
-| Le Bao | 27 hrs | 33 hrs | https://github.com/CpS-209-Team3/Zenith/wiki/BaoLeJournal |
-| Steven Platt | 34 hrs | 26 hrs |  https://github.com/CpS-209-Team3/Zenith/wiki/PlattJournal |
+| Le Bao | 29 hrs 14 mins | 30 hrs 46 mins | https://github.com/CpS-209-Team3/Zenith/wiki/BaoLeJournal |
+| Steven Platt | 45 hrs 50 mins | 14 hrs 10 mins |  https://github.com/CpS-209-Team3/Zenith/wiki/PlattJournal |
