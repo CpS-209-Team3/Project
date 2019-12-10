@@ -18,6 +18,11 @@ using System.Windows.Threading;
 using Zenith.Library;
 using System.Media;
 
+//-----------------------------------------------------------
+//File:   GamePage.xaml.cs
+//Desc:   Main view of playing Zenith game.
+//-----------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     /// <summary>
@@ -82,7 +87,19 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
         public void TriggerEndGame(bool isPlayerAlive)
         {
-            
+            // Check if player got a high score
+            if (!HighScorePage)
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "";
+                lbl_Popup_EndGame_Header.Text = "GAME OVER";
+            }
+            else
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
+                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
+            }
+            lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
+            lbl_Popup_EndGame_Score.Text = lbl_CurrentScore.Text;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~

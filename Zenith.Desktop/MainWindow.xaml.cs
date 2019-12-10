@@ -16,6 +16,11 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Zenith.Library;
 
+//-----------------------------------------------------------
+//File:   MainWindow.xaml.cs
+//Desc:   Main Menu Screen of Zenith game.
+//-----------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     public partial class MainWindow : Window, ViewManager

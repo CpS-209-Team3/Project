@@ -14,6 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zenith.Library;
 
+//----------------------------------------------------------------------------
+//File:   OptionPage.xaml.cs
+//Desc:   Page where player enter name, difficult, cheat, and start game.
+//----------------------------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     /// <summary>
