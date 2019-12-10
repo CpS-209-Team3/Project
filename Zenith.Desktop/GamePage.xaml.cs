@@ -32,8 +32,13 @@ namespace Zenith.Desktop
         public string shipName;
         public int diffNum;
         public Dictionary<string, SoundPlayer> gameSounds;
-        public GamePage(MainWindow theMainOne)
+
+        public bool loadingGame;
+        public string filename;
+        public GamePage(MainWindow theMainOne, bool loadingGame, string filename)
         {
+            this.loadingGame = loadingGame;
+            this.filename = filename;
             ItemsOnSale = new List<Button>();
             main = theMainOne;
             InitializeComponent();
@@ -88,6 +93,13 @@ namespace Zenith.Desktop
             World.Instance.Update();
             Dispatcher.Invoke(() =>
             {
+                if (loadingGame)
+                {
+                    World.Instance.Load(filename);
+                    loadingGame = false;
+                }
+
+
                 lbl_Popup_Pause_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
                 for (int i = 0; i < sprites.Count; ++i)
                 {
@@ -183,12 +195,14 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Save_Click(object sender, RoutedEventArgs e)
         {
-            World.Instance.Save(World.Instance.PlayerName + ".txt");
+            filename = World.Instance.PlayerName + ".txt";
+            World.Instance.Save(filename);
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_MainMenu_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             //Close popup then go back to Main Menu
             if (Popup_Pause.IsOpen == true)
                 Popup_Pause.IsOpen = false;

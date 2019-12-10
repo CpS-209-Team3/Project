@@ -39,7 +39,7 @@ namespace Zenith.Library
             cannon = new BasicCannon(this, 15);
             worth = 0;
 
-            onDeath = World.Instance.OnPlayerDeath;
+            onDeath = World.Instance.EndGame;
         }
     }
 }
