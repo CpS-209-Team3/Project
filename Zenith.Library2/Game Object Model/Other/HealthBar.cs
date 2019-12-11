@@ -39,6 +39,7 @@ namespace Zenith.Library
             canSerialize = false;
 
             this.host = host;
+            //~~~~~~~~~~~~~~~~~~~~ Health Bar Display ~~~~~~~~~~~~~~~~~~~~
             imageSources = new List<string> {
                 Util.GetSpriteFolderPath("Health_Bar\\healthbar_0.png"),
                 Util.GetSpriteFolderPath("Health_Bar\\healthbar_1.png"),
@@ -58,11 +59,13 @@ namespace Zenith.Library
             size *= 100;
         }
 
+        // ~~~~~~~~~~~~~~~~~~~~ Serialize ~~~~~~~~~~~~~~~~~~~~
         public override string Serialize()
         {
             return base.Serialize() + ',' + host.Position.ToString() + ',' + distance.ToString();
         }
 
+        // ~~~~~~~~~~~~~~~~~~~~ Deserialize ~~~~~~~~~~~~~~~~~~~~
         public override void Deserialize(string saveInfo)
         {
             int index = IndexOfNthOccurance(saveInfo, ",", 12);

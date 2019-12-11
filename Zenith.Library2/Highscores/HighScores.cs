@@ -1,4 +1,9 @@
-﻿using System;
+﻿//---------------------------------------------------------------
+//File:   HighScores.cs
+//Desc:   Manages the HiScores items in the LeaderList
+//---------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -7,6 +12,7 @@ namespace Zenith.Library
 {
     public class HighScores
     {
+        //Holds the HiScore items in a sorted list
         public List<HiScore> LeaderList { get; set; }
 
         public HighScores()

@@ -1,4 +1,9 @@
-﻿using System;
+﻿//--------------------------------------------------------------
+//File:   HighScorePage.xaml.cs
+//Desc:   Astronaut of the game ranking is here.
+//--------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zenith.Library;
+
 
 namespace Zenith.Desktop
 {
@@ -29,6 +35,8 @@ namespace Zenith.Desktop
             main = theMainOne;
 
         }
+
+        //~~~~~~~~~~~~~~~~~~~~ High Score Page Load ~~~~~~~~~~~~~~~~~~~~
         private void HighScorePage_Loaded(object sender, RoutedEventArgs e)
         {
             HighScores highScores = HighScores.Load("highScores.txt");
