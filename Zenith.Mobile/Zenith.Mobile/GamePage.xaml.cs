@@ -93,6 +93,7 @@ namespace Zenith.View
             lblGameOver.TextColor = hiScore ? Color.Gold : Color.DarkRed;
             lblGameOver.FontFamily = "Impact";
             lblGameOver.FontSize = 40;
+            lblGameOver.HorizontalTextAlignment = TextAlignment.Center;
             stkPause.Children.Add(lblGameOver);
 
             Label lblName = new Label();
@@ -100,6 +101,7 @@ namespace Zenith.View
             lblName.TextColor = Color.Black;
             lblName.FontFamily = "Impact";
             lblName.FontSize = 30;
+            lblName.HorizontalTextAlignment = TextAlignment.Center;
             stkPause.Children.Add(lblName);
 
             Label lblScore = new Label();
@@ -107,6 +109,7 @@ namespace Zenith.View
             lblScore.TextColor = Color.Black;
             lblScore.FontFamily = "Impact";
             lblScore.FontSize = 30;
+            lblScore.HorizontalTextAlignment = TextAlignment.Center;
             stkPause.Children.Add(lblScore);
 
             Button btnBack = new Button();

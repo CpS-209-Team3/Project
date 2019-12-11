@@ -13,7 +13,6 @@ namespace Zenith.Library
     public interface ViewManager
     {
         void AddSprite(GameObject gameObject);
-
         void RemoveSprite(GameObject gameObject);
         void PlaySound(string key);
         void TriggerEndGame();
@@ -54,6 +53,8 @@ namespace Zenith.Library
             collisionManager.Objects = objects;
 
             levelManager = new LevelManager(difficulty, level);
+
+            EndGame = () => ViewManager.TriggerEndGame();
         }
 
         // End of Singleton Code
@@ -103,6 +104,7 @@ namespace Zenith.Library
 
         private int currentWave = 1;
         private int enemiesLeftInWave = 0;
+        private Action endGame;
 
         // Properties
 
@@ -157,6 +159,7 @@ namespace Zenith.Library
         public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
         public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
+        public Action EndGame { get { return endGame; } set { endGame = value; } }
 
         // Methods
 
@@ -217,14 +220,14 @@ namespace Zenith.Library
         // This method is called when the player dies.
         public void OnPlayerDeath()
         {
-            ViewManager.TriggerEndGame(false);
+            ViewManager.TriggerEndGame();
         }
 
         // This method is called when Boss5 is defeated
         public void OnGameFinish()
         {
             World.Instance.Score += (54000 - World.Instance.GameTick);
-            ViewManager.TriggerEndGame(true);
+            ViewManager.TriggerEndGame();
         }
 
         // This method adds an object to the GameObject list
