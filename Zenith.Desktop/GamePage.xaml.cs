@@ -141,6 +141,10 @@ namespace Zenith.Desktop
             {
                 lbl_Popup_EndGame_NewHiScor.Text = "It means no worries";
             }
+            else if (lbl_PlayerName.Text.ToLower() == "zenith")
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "That Game's Name🤦‍";
+            }
 
             lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
             Popup_EndGame.IsOpen = true;

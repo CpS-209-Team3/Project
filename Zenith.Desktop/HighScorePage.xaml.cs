@@ -34,6 +34,8 @@ namespace Zenith.Desktop
             main = theMainOne;
 
         }
+
+        //~~~~~~~~~~~~~~~~~~~~ High Score Page Load ~~~~~~~~~~~~~~~~~~~~
         private void HighScorePage_Loaded(object sender, RoutedEventArgs e)
         {
             HighScores highScores = HighScores.Load("highScores.txt");
