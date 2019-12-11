@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   GamePage.xaml.cs
+//Desc:   Main view of playing Zenith game.
+//-----------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,10 +23,6 @@ using System.Windows.Threading;
 using Zenith.Library;
 using System.Media;
 
-//-----------------------------------------------------------
-//File:   GamePage.xaml.cs
-//Desc:   Main view of playing Zenith game.
-//-----------------------------------------------------------
 
 namespace Zenith.Desktop
 {
@@ -94,6 +95,8 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
         public void TriggerEndGame()
         {
+            // set Game Over = true when End Game.
+            World.Instance.GameOver = true;
             //timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
             HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
@@ -113,6 +116,7 @@ namespace Zenith.Desktop
             }
 
             //Just for fun here... No Offense!!!
+            //This will show a funny text when player who died in the game with a specific name or reach a specific score.
             if ((lbl_Popup_EndGame_Score.Text.Contains("2") && lbl_Popup_EndGame_Score.Text.Contains("0") && lbl_Popup_EndGame_Score.Text.Contains("9")) || lbl_PlayerName.Text.Contains("Schaub"))
             {
                 lbl_Popup_EndGame_NewHiScor.Text = "All Hail Dr. Schaub!";
@@ -127,7 +131,7 @@ namespace Zenith.Desktop
             }
             else if (lbl_Popup_EndGame_Score.Text.Contains("666"))
             {
-                lbl_Popup_EndGame_NewHiScor.Text = "Number of the Beast!";
+                lbl_Popup_EndGame_NewHiScor.Text = "Ooh! Number of the Beast!";
             }
             else if (lbl_Popup_EndGame_Score.Text.Contains("1337"))
             {
@@ -141,6 +145,11 @@ namespace Zenith.Desktop
             {
                 lbl_Popup_EndGame_NewHiScor.Text = "It means no worries";
             }
+            else if (lbl_PlayerName.Text.ToLower() == "zenith")
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "That Game's Name🤦‍";
+            }
+            // The fun end here...
 
             lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
             Popup_EndGame.IsOpen = true;
@@ -161,13 +170,11 @@ namespace Zenith.Desktop
                 // Health Bar
                 //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
-                // Just for fun here, no offense....
-                if (lbl_CurrentScore.Text.Contains("2") && lbl_CurrentScore.Text.Contains("0") && lbl_CurrentScore.Text.Contains("9"))
+                // No touch when died
+                if (World.Instance.GameOver)
                 {
-                    lbl_Popup_Shop.Text = "SCHAUB";
+                    return;
                 }
-                else
-                    lbl_Popup_Shop.Text = "SHOP";
 
                 // Input handling
                 World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
@@ -180,6 +187,7 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Save = Keyboard.IsKeyDown(Key.S);
                 World.Instance.PlayerController.Load = Keyboard.IsKeyDown(Key.L);
 
+                // When Pause = true show Pause Popup
                 if (World.Instance.PlayerController.Pause == true)
                     Popup_Pause.IsOpen = true;
                 else
@@ -195,6 +203,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Window_Loaded(object sender, RoutedEventArgs ev)
         {
+            World.Instance.GameOver = false;
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
@@ -228,11 +237,14 @@ namespace Zenith.Desktop
             {
                 i.Value.Load();
             }
+            if (timer == null)
+            {
+                timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
+                timer.Tick += GameLoop;
+                timer.Start();
+            }
             
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
-            timer.Tick += GameLoop;
-            timer.Start();
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -253,7 +265,6 @@ namespace Zenith.Desktop
             {
                 Popup_Pause.IsOpen = false;
             }
-
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~

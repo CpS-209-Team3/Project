@@ -39,7 +39,7 @@ namespace Zenith.Library
             : base(host)
         {
             firePattern = new List<int> { 15, 15, 100 };
-            damage = 200;
+            damage = 200 * World.Instance.Difficulty;
             ProjectileColor = ProjectileColor.Red;
         }
     }

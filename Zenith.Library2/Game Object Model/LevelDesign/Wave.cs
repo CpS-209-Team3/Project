@@ -1,9 +1,19 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Wave.cs
+//Desc:   This abstract class defines all the necessary methods
+//        and variables in order for the Waves to progress and
+//        Spawn enemies based on the level and difficulty.
+//----------------------------------------------------------- 
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // 
     public abstract class Wave
     {
         protected int difficulty;
@@ -14,13 +24,8 @@ namespace Zenith.Library
 
         public int WaveCount { get { return waveCount; } set { waveCount = value; } }
 
-        public List<Enemy> enemies;
-
-
-        public virtual void Spawn()
-        {
-
-        }
+        public virtual void Spawn() { }
+        
         public Wave()
         {
             this.difficulty = World.Instance.Difficulty;

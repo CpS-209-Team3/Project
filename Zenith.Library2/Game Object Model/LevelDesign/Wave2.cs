@@ -15,8 +15,10 @@ namespace Zenith.Library
          
                 Enemy1 e1 = new Enemy1(startingPos);
                 Asteroid a = new Asteroid(startingPos, size);
+                Enemy2 e2 = new Enemy2(startingPos);
                 AddEnemy(e1);
                 AddEnemy(a);
+                AddEnemy(e2);
             }
         }
 

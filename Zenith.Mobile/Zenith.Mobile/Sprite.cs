@@ -1,10 +1,7 @@
-﻿//This Sprite Class is for the Xamarin Files!!!
-//
-//
-//
-//
-//
-//
+﻿//---------------------------------------------------------------
+//File:   Sprite.cs
+//Desc:   Manages a single image/object link in the mobile version
+//---------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -18,15 +15,25 @@ using Zenith.Library;
 namespace Zenith.View
 {
     // Source: https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/layouts/contentview
+
+    // Controls the properties and view components to link an object to its corresponding view component
     class Sprite : ContentView
     {
+        //Holds the specific game object that the Sprite object links to
         private GameObject gameObject;
+
+        //Holds the current angle the object is facing
         private double currentAngle;
+
+        //Holds the list of images that correspond to this object 
         private Image[] images;
+
+        //Specifies which image should be shown from the images list
         private int currentIndex = 0;
 
         public GameObject GameObject { get { return gameObject; } }
 
+        //Updates the image of the sprite dependent on what is happening in the game
         public void Update()
         {
             if (currentIndex != gameObject.ImageIndex)

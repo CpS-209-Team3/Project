@@ -14,7 +14,10 @@ namespace Zenith.Library
 
                 startingPos = new Vector(World.Instance.Width, World.Instance.Random.Next(0, Convert.ToInt32(World.Instance.Height)), false);
                 size = World.Instance.Random.NextDouble() * 100 + 30;
+
+                Enemy1 e1 = new Enemy1(startingPos);
                 Asteroid a = new Asteroid(startingPos, size);
+                AddEnemy(e1);
                 AddEnemy(a);
             }
         }

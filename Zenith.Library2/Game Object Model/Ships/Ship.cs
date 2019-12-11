@@ -190,7 +190,7 @@ namespace Zenith.Library
             World.Instance.AddObject(h);
         }
 
-        // ??
+        // ~~~~~~~~~~~~~~~~~~~~ Serializing the Ship Data ~~~~~~~~~~~~~~~~~~~~
         public override string Serialize()
         {
             return base.Serialize() + ',' + reloadTime.ToString() + ',' + fireRate.ToString() + ',' +
@@ -199,7 +199,7 @@ namespace Zenith.Library
                 maxHealth.ToString() + ',' + shakeOffset.ToString() + ',' + shakeTime.ToString() + ',' +
                 shakeDuration.ToString() + ',' + cannon.ToString() + ',' + worth.ToString();
         }
-        // ??
+        // ~~~~~~~~~~~~~~~~~~~~ Deserializing the Ship Data ~~~~~~~~~~~~~~~~~~~~
         public override void Deserialize(string saveInfo)
         {
 

@@ -201,6 +201,7 @@ namespace Zenith.Library
             state = EnemyState.Sway;
 
             cannon = new Boss2Cannon(this);
+            cannon.Damage = 180 * World.Instance.Difficulty;
 
             sensor = new Sensor(this, OnSense, 200);
 

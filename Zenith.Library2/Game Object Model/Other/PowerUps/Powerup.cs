@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------
 //File:   PowerUp.cs
 //Desc:   Holds the abstract class used for all power ups.
+//Note:   This file is unused.
 //----------------------------------------------------------- 
 using System;
 using System.Collections.Generic;

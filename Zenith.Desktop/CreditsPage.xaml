@@ -18,26 +18,30 @@
             <TextBlock Text="Bao Le" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-        <StackPanel Margin="587,225,289,186.4" HorizontalAlignment="Center" Width="244">
+        <StackPanel Margin="587,238,289,272.4" HorizontalAlignment="Center" Width="244">
             <TextBlock Text="Sounds" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
-            <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
             <TextBlock Text="Steven Platt" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
         </StackPanel>
         <StackPanel Margin="316,44,603,405.4">
             <TextBlock Text="Graphics" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="200" Margin="5"/>
             <TextBlock Text="Steven Platt" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
-            <TextBlock Text="(...)" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
         <StackPanel Margin="316,225,589,143.4" HorizontalAlignment="Center">
             <TextBlock Text="Code Design" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
             <TextBlock Text="James Gonzales" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
             <TextBlock Text="Caedmon Evans" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
-            <TextBlock Text="(...)" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
         </StackPanel>
-        <StackPanel Margin="587,49,289,380.4" HorizontalAlignment="Center" Width="244">
+        <StackPanel Margin="587,49,289,460.4" HorizontalAlignment="Center" Width="244">
             <TextBlock Text="Special Thanks" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
-            <TextBlock Text="Dr. Stephen Schaub" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
-            <TextBlock Text="(...)" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="200" Margin="5"/>
+            <TextBlock Text="Dr. Stephen Schaub" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="50" Width="250" Margin="0,5,-6,0"/>
+        </StackPanel>
+        <StackPanel Margin="836,238,40,256.4" HorizontalAlignment="Center" Width="244">
+            <TextBlock Text="Mobile" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
+            <TextBlock Text="Steven Platt" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
+        </StackPanel>
+        <StackPanel Margin="836,96,40,405.4" HorizontalAlignment="Center" Width="244">
+            <TextBlock Text="Desktop View" FontSize="30" FontWeight="Heavy" TextDecorations="underline" TextAlignment="Center" Foreground="YellowGreen" Height="45" Width="215" Margin="0"/>
+            <TextBlock Text="Bao Le" FontStyle="Italic" FontSize="25" TextAlignment="Center" Foreground="Yellow" Height="40" Width="250" Margin="0,5,0,0"/>
         </StackPanel>
         <Button x:Name="btn_Back" Content="Back" Foreground="Yellow" FontWeight="Heavy" FontSize="30" Height="60" Width="100" Margin="30,380,670,9.6" BorderBrush="Transparent" Background="Transparent" Click="btn_Back_Click"/>
     </Grid>

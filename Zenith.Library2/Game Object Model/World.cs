@@ -101,6 +101,7 @@ namespace Zenith.Library
 
         // Specifies whether cheat mode is on
         private bool cheatsOn = false;
+        private bool gameOver = false;
 
         private int currentWave = 1;
         private int enemiesLeftInWave = 0;
@@ -153,6 +154,7 @@ namespace Zenith.Library
         public LevelManager LevelManager { get { return levelManager; } }
 
         public bool CheatsOn { get { return cheatsOn; } }
+        public bool GameOver { get { return gameOver; } set { gameOver = value; } }
 
         public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
@@ -186,11 +188,11 @@ namespace Zenith.Library
         // LevelManager is also called in this method.
         public void Update()
         {
-            if (PlayerController.Save) Save(playerName + ".txt");
+            if (PlayerController.Save) Save("Zenith.txt");
 
             if (PlayerController.Load)
             {
-                Load(playerName + ".txt");
+                Load("Zenith.txt");
             }
 
             if (!PlayerController.Pause)
@@ -230,6 +232,7 @@ namespace Zenith.Library
             ViewManager.TriggerEndGame();
         }
 
+        // This method allows the game to progress by keeping track of how many enemies are left in the wave.
         public void DeathAction()
         {
             LevelManager.CurrentWave.WaveCount--;
@@ -275,7 +278,7 @@ namespace Zenith.Library
             cheatsOn = false;
         }
 
-        // Spawns a boss with a valid ID. Mainly used for debugging purposes.
+        // Spawns a boss with a valid ID. Used by the final Wave class.
         public Ship SpawnBoss(int bossID)
         {
             Ship boss = null;
@@ -302,6 +305,7 @@ namespace Zenith.Library
             return boss;
         }
 
+        // This method creates the player and sets its initial properties
         public void CreatePlayer()
         {
             var p = new Player(new Library.Vector(90, EndY / 2));
@@ -311,7 +315,7 @@ namespace Zenith.Library
             p.OnDeath = EndGame;
         }
 
-        // This method resets the instance of World.
+        // This method resets the instance of World. 
         public void Reset()
         {
             playerName = "";
@@ -328,10 +332,10 @@ namespace Zenith.Library
             }
         }
 
-        // Reads a list of strings from the file specifed by filename and puts them into the list
-        // of game object strings, then depending on the type of the string given by the first comma
-        // seperated value, it will create a different object, deserialize the rest of the information
-        // and add it to game objects.
+        // Reads a list of strings from the file specifed by filename and uses each
+        // the comma seperated values in each line to populate the properties of each
+        // game object type specified by the first value in the line. In addition, it sets
+        // the non static death action for each game object according to its type.
         public void Load(string filename)
         {
             Reset();
@@ -382,11 +386,11 @@ namespace Zenith.Library
 
 
 
-        // This function saves the game as a text file named [filename].txt
+        // Saves the game as a text file named filename.
         // It does this by first deleting any text files under the same name,
-        // creating a new file under the name [filename], and then writing 
-        // the serialized version of all the game objects to the file and 
-        // closing it.
+        // creating a new file under filename, and then writing 
+        // the serialized version of all the necessary world variables and 
+        // game objects to the file and closing it.
         public void Save(string filename)
         {
             if (File.Exists(filename))
@@ -413,7 +417,8 @@ namespace Zenith.Library
             }
         }
 
-        // ???
+        // Used in the Load method in order to create instances of Game Objects, which can
+        // then have their properties updated by the rest of the comma seperated values.
         public GameObject CreateInstanceOf(string objectType)
         {
             Vector tempVector = new Vector(1, 1, false);
@@ -425,8 +430,6 @@ namespace Zenith.Library
                     return new Asteroid(tempVector, 0);
                 case "Laser":
                     return new Laser(tempVector, tempVector, 0, true);
-                case "BackgroundElement":
-                    return new BackgroundElement(tempVector, 0);
                 case "Enemy1":
                     return new Enemy1(tempVector);
                 case "Enemy2":

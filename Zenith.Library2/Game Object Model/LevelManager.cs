@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------
-//File:   .cs
-//Desc:   
+//File:   LevelManager.cs
+//Desc:   This class keeps track of the Waves of enemies
+//        that the player has to face as the game progresses.
 //----------------------------------------------------------- 
 using System;
 using System.Collections.Generic;
@@ -23,36 +24,30 @@ namespace Zenith.Library
     public class LevelManager
     {
         // instance variables
-        private int level;
 
-        // ???
-        private int difficulty;
 
-        // ???
+
+        // Controls the time between waves.
         private int spawnRate;
 
-        // ???
+        // Keeps track of the time until the next wave.
         private int timeUntilNextWave;
 
-        // ???
+        // Hold's the currentWave the player is facing.
         private Wave currentWave;
 
-        // ???
-        private static int waveNum;
-
+        // Used to start the Wave "Engine".
         private bool startingGame;
 
         // properties
 
-        public int Level { get { return level; } set { level = value; } }
-        public int Difficulty { get { return difficulty; } set { difficulty = value; } }
-        public static int WaveNum { get { return waveNum; } set { waveNum = value; } }
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
-
         public bool StartingGame { set { startingGame = value; } }
+
+        // Update makes sure that the right wave is spawning units at the right time.
         public void Update()
         {
-            if (World.Instance.CurrentWave == 1 && startingGame)
+            if (startingGame)
             {
                 currentWave = CreateWave(World.Instance.CurrentWave);
                 startingGame = false;
@@ -75,7 +70,7 @@ namespace Zenith.Library
             
         }
 
-
+        // Constructor for LevelManager. On First Load it assumes starting Game is true.
         public LevelManager()
         {
             startingGame = true;
@@ -83,6 +78,7 @@ namespace Zenith.Library
             timeUntilNextWave = spawnRate;
         }
 
+        // Used like a dictionary to create a wave corresponding to the int parameter.
         public Wave CreateWave(int nextWave)
         {
             switch(nextWave)

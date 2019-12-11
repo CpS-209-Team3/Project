@@ -14,7 +14,7 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <StackLayout HorizontalOptions="Center">
                     <Button x:Name="BtnStart" Text="NEW GAME" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnNew_Clicked"/>
-                    <Button x:Name="BtnLoad" Text="LOAD GAME" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnLoad_Clicked"/>
+                    <Button x:Name="BtnLoad" Text="LOAD GAME" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnLoad_Clicked" IsEnabled="False"/>
                     <Button x:Name="BtnScores" Text="HIGH SCORES" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnScores_Clicked"/>
                     <Button x:Name="BtnHelp" Text="HELP" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnHelp_Clicked"/>
                     <Button x:Name="BtnCredits" Text="ABOUT" FontFamily="Impact" FontSize="25" TextColor="White" Margin="20,0,20,10" Clicked="BtnCredits_Clicked"/>

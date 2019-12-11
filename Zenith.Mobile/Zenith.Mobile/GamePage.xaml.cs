@@ -1,4 +1,9 @@
-﻿using System;
+﻿//---------------------------------------------------------------
+//File:   GameWindow.xaml.cs
+//Desc:   Manages View Components of Mobile Gameplay in Xamarin
+//---------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,37 +15,61 @@ using Xamarin.Forms.Xaml;
 namespace Zenith.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
+    // Manages the entire mobile gameplay view
     public partial class GamePage : ContentPage, ViewManager
     {
-        HighScores scores;
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~ Instance Variables ~~~~~~~~~~~~~~~~~~~~~~~
+        //Holds ship name before it is placed in World.Instance.PlayerName
         public string shipName;
+
+        //Holds game difficulty before it is placed in World.Instance.Difficulty
         public int diffNum;
+
+        //Holds cheat boolean before it is placed in World
         public bool isCheating;
+
+        //Is left button on?
         bool left = false;
+
+        //Is right button on?
         bool right = false;
+
+        //Is up button on?
         bool up = false;
+
+        //Is down button on?
         bool down = false;
+
+        //Is fire button on?
         bool fire = false;
+
+        //Is pause menu on?
         bool pause = false;
-        StackLayout stkPause;
+
+        //Manages new stackpanel menus (pause and gameOver)
+        StackLayout stkWindow;
 
         public GamePage()
         {
             InitializeComponent();
         }
 
+        //Holds the current sprites on the screen
         List<Sprite> sprites;
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~ Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+        //Creates the Mobile pause menu
         public void LoadPause()
         {
-            stkPause = new StackLayout();
-            stkPause.HorizontalOptions = LayoutOptions.Center;
-            stkPause.Margin = new Thickness(200, 100);
-            stkPause.BackgroundColor = Color.DarkCyan;
-            stkPause.Spacing = 10;
-            stkPause.Padding = 30;
+            stkWindow = new StackLayout();
+            stkWindow.HorizontalOptions = LayoutOptions.Center;
+            stkWindow.Margin = new Thickness(200, 100);
+            stkWindow.BackgroundColor = Color.DarkCyan;
+            stkWindow.Spacing = 10;
+            stkWindow.Padding = 30;
 
             Button btnContinue = new Button();
             btnContinue.Text = "CONTINUE";
@@ -50,7 +79,7 @@ namespace Zenith.View
             btnContinue.Clicked += btnContinue_Clicked;
             btnContinue.SetBinding(Button.CommandProperty, new Binding("ViewModelProperty"));
             btnContinue.BindingContext = controlGrid;
-            stkPause.Children.Add(btnContinue);
+            stkWindow.Children.Add(btnContinue);
 
             Button btnLoad = new Button();
             btnLoad.Text = "LOAD GAME";
@@ -58,7 +87,8 @@ namespace Zenith.View
             btnLoad.FontFamily = "Impact";
             btnLoad.FontSize = 30;
             btnLoad.Clicked += btnLoad_Clicked;
-            stkPause.Children.Add(btnLoad);
+            btnLoad.IsEnabled = false;
+            stkWindow.Children.Add(btnLoad);
 
             Button btnSave = new Button();
             btnSave.Text = "SAVE GAME";
@@ -66,7 +96,8 @@ namespace Zenith.View
             btnSave.FontFamily = "Impact";
             btnSave.FontSize = 30;
             btnSave.Clicked += btnSave_Clicked;
-            stkPause.Children.Add(btnSave);
+            btnSave.IsEnabled = false;
+            stkWindow.Children.Add(btnSave);
 
             Button btnBack = new Button();
             btnBack.Text = "BACK TO MENU";
@@ -74,19 +105,20 @@ namespace Zenith.View
             btnBack.FontFamily = "Impact";
             btnBack.FontSize = 30;
             btnBack.Clicked += btnBack_Clicked;
-            stkPause.Children.Add(btnBack);
+            stkWindow.Children.Add(btnBack);
 
-            controlGrid.Children.Add(stkPause);
+            controlGrid.Children.Add(stkWindow);
         }
 
+        //Creates the mobile Game Over menu
         public void LoadEndScreen(bool hiScore)
         {
-            stkPause = new StackLayout();
-            stkPause.HorizontalOptions = LayoutOptions.Center;
-            stkPause.Margin = new Thickness(200, 100);
-            stkPause.BackgroundColor = Color.DarkCyan;
-            stkPause.Spacing = 10;
-            stkPause.Padding = 30;
+            stkWindow = new StackLayout();
+            stkWindow.HorizontalOptions = LayoutOptions.Center;
+            stkWindow.Margin = new Thickness(200, 100);
+            stkWindow.BackgroundColor = Color.DarkCyan;
+            stkWindow.Spacing = 10;
+            stkWindow.Padding = 30;
 
             Label lblGameOver = new Label();
             lblGameOver.Text = hiScore ? "NEW HIGH SCORE!" : "GAME OVER";
@@ -94,7 +126,7 @@ namespace Zenith.View
             lblGameOver.FontFamily = "Impact";
             lblGameOver.FontSize = 40;
             lblGameOver.HorizontalTextAlignment = TextAlignment.Center;
-            stkPause.Children.Add(lblGameOver);
+            stkWindow.Children.Add(lblGameOver);
 
             Label lblName = new Label();
             lblName.Text = World.Instance.PlayerName.ToUpper();
@@ -102,7 +134,7 @@ namespace Zenith.View
             lblName.FontFamily = "Impact";
             lblName.FontSize = 30;
             lblName.HorizontalTextAlignment = TextAlignment.Center;
-            stkPause.Children.Add(lblName);
+            stkWindow.Children.Add(lblName);
 
             Label lblScore = new Label();
             lblScore.Text = Convert.ToString(World.Instance.Score);
@@ -110,7 +142,7 @@ namespace Zenith.View
             lblScore.FontFamily = "Impact";
             lblScore.FontSize = 30;
             lblScore.HorizontalTextAlignment = TextAlignment.Center;
-            stkPause.Children.Add(lblScore);
+            stkWindow.Children.Add(lblScore);
 
             Button btnBack = new Button();
             btnBack.Text = "MAIN MENU";
@@ -118,16 +150,17 @@ namespace Zenith.View
             btnBack.FontFamily = "Impact";
             btnBack.FontSize = 30;
             btnBack.Clicked += btnBack_Clicked;
-            stkPause.Children.Add(btnBack);
+            stkWindow.Children.Add(btnBack);
 
-            controlGrid.Children.Add(stkPause);
+            controlGrid.Children.Add(stkWindow);
         }
 
+        //Closes the pause menu and continues the game
         public void ClosePause()
         {
             try
             {
-                controlGrid.Children.Remove(stkPause);
+                controlGrid.Children.Remove(stkWindow);
                 GameTimerStart();
                 pause = false;
             }
@@ -135,6 +168,7 @@ namespace Zenith.View
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Add Sprite ~~~~~~~~~~~~~~~~~~~~
+        //Adds the corresponding sprite to the view
         public void AddSprite(GameObject obj)
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -146,6 +180,7 @@ namespace Zenith.View
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Remove Sprite ~~~~~~~~~~~~~~~~~~~~
+        //Removes the corresponding sprite from the view
         public void RemoveSprite(GameObject obj)
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -163,40 +198,22 @@ namespace Zenith.View
         }
 
         //~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~
+        //Placeholder method for the ViewManager Interface
+        //Unable to implement sounds for Xamarin
         public void PlaySound(string key)
         {
 
         }
 
         //~~~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~
+        //Loads the end of game screen
         public void TriggerEndGame()
         {
-            LoadEndScreen(true);
-            
-            //~~~~~~~~~~~~~~~~~~~~~~ Attempt to make high scores work on mobile, but the way the high score objects are set up make this difficult.
-
-            //if (Application.Current.Properties.ContainsKey("hScores"))
-            //{
-            //    scores = HighScores.Load(Application.Current.Properties["hScores"] as string);
-            //}
-            //else
-            //{
-            //    scores = HighScores.Load("");
-            //}
-            //HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
-            //if (scores.IsNewHighScore(thisScore))
-            //{
-            //    scores.AddHighScore(thisScore);
-            //    scores.Save("highScores.txt");
-            //    LoadEndScreen(true);
-            //}
-            //else
-            //{
-            //    LoadEndScreen(false);
-            //}
+            LoadEndScreen(false);
         }
 
         //~~~~~~~~~~~~~~~~~~~~Set Timer ~~~~~~~~~~~~~~~~~
+        //Manages the game timer and calls the GameLoop() on the tick
         public void GameTimerStart()
         {
             TimeSpan time = new TimeSpan(0, 0, 0, 0, 1000 / 60);
@@ -213,6 +230,7 @@ namespace Zenith.View
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
+        //Called each game tick and manages each frame of the game
         public void GameLoop()
         {
             World.Instance.Update();
@@ -242,9 +260,9 @@ namespace Zenith.View
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~ Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
+        //Sets initial variables and values for the game page
         private void ContentPage_Appearing(object sender, EventArgs ev)
         {
-            //World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
             World.Instance.Reset();
@@ -283,60 +301,69 @@ namespace Zenith.View
         //~~~~~~~~~~~~~~~~~~~Control Management Zone~~~~~~~~~~~~~~~~~~~~~
 
         //~~~~~~~~~~~~~~~~~~~Pressed~~~~~~~~~~~~~~~~~~~~~~~~~
+        //The left button is pressed; begin going left
         private void btnLeft_Pressed(object sender, EventArgs e)
         {
             left = true;
         }
 
+        //The right button is pressed; begin going right
         private void btnRight_Pressed(object sender, EventArgs e)
         {
             right = true;
         }
 
+        //The up button is pressed; begin going up
         private void btnUp_Pressed(object sender, EventArgs e)
         {
             up = true;
         }
 
+        //The down button is pressed; begin going down
         private void btnDown_Pressed(object sender, EventArgs e)
         {
             down = true;
         }
 
-
+        //The fire button is pressed; begin firing
         private void btnFire_Pressed(object sender, EventArgs e)
         {
             fire = true;
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~Released~~~~~~~~~~~~~~~~~~~~~~~~~
+        //The left button is released; stop accelerating left
         private void btnLeft_Released(object sender, EventArgs e)
         {
             left = false;
         }
 
-
+        //The right button is released; stop accelerating right
         private void btnRight_Released(object sender, EventArgs e)
         {
             right = false;
         }
 
+        //The up button is released; stop accelerating up
         private void btnUp_Released(object sender, EventArgs e)
         {
             up = false;
         }
 
+        //The down button is released; stop accelerating down
         private void btnDown_Released(object sender, EventArgs e)
         {
             down = false;
         }
 
+        //The fire button is released; stop firing
         private void btnFire_Released(object sender, EventArgs e)
         {
             fire = false;
         }
 
         //~~~~~~~~~~~~~~~~~~~Pause Menu Buttons~~~~~~~~~~~~~~~~~~~~~~~~~
+        //Toggles the pause menu
         private void btnPause_Clicked(object sender, EventArgs e)
         {
             if (pause)
@@ -348,24 +375,30 @@ namespace Zenith.View
             {
                 pause = true;
             }
-
-            
         }
+
+        //Continues the game
         private void btnContinue_Clicked(object sender, EventArgs ev)
         {
+            pause = false;
             ClosePause();
         }
 
+        //Would have triggered the loading logic
+        //Ran into issues involving StreamReader with Xamarin
         private void btnLoad_Clicked(object sender, EventArgs ev)
         {
-            //Jame's Loading Here
+            //Loading Here
         }
 
+        //Would have triggered the save logic
+        //Ran into issues involving StreamWriter with Xamarin
         private void btnSave_Clicked(object sender, EventArgs ev)
         {
-            //Jame's SaveState Here
+            //SaveState Here
         }
 
+        //Reloads the main menu and closes the gamepage
         private void btnBack_Clicked(object sender, EventArgs ev)
         {
             Application.Current.MainPage = new MainPage();

@@ -1,157 +1,263 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Zenith.Library.GameObject">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAIAAEAgAAhAIAAIAAAAABBAAAAIQQAAAAAAAA=</HashCode>
+      <HashCode>AIQAACAIAAAggQQgAMGAIEBAgCBBIAgAIWRAAADUQAE=</HashCode>
       <FileName>Game Object Model\GameObject.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Zenith.Library.Vector">
-    <Position X="0.5" Y="1.25" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAYAEAAAAAAAAAAAAAAQBgAABAYAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAAAAEYAUAAAAAAABAAAAAAUBgAAFCYAA=</HashCode>
       <FileName>Game Object Model\Vector.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zenith.Library.Ship">
-    <Position X="4.25" Y="2.5" Width="1.5" />
+    <Position X="4" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAIAAAABAgAAAIAAAAAAAAAACIAIQAAAAAAAIg=</HashCode>
+      <HashCode>AAABiAAIAEIAKAiAAAIAAIAAACDJAAIIISAAgAAAAYg=</HashCode>
       <FileName>Game Object Model\Ships\Ship.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zenith.Library.Enemy">
-    <Position X="6" Y="2.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAgAAAAAAAAAAAAAIAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Enemy.cs</FileName>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAAACAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.Enemy1">
+  <Class Name="Zenith.Library.Enemy1" Collapsed="true">
+    <Position X="6" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Enemy1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Enemy2" Collapsed="true">
+    <Position X="7.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Enemy2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Enemy3" Collapsed="true">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Enemy3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Boss1" Collapsed="true">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Bosses\Boss1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Boss2" Collapsed="true">
     <Position X="7.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Enemy1.cs</FileName>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Bosses\Boss2.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.Enemy2">
+  <Class Name="Zenith.Library.Boss3" Collapsed="true">
     <Position X="9.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Enemy2.cs</FileName>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Bosses\Boss3.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.Enemy3">
-    <Position X="11.25" Y="4" Width="1.5" />
+  <Class Name="Zenith.Library.Boss4" Collapsed="true">
+    <Position X="6" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Enemy3.cs</FileName>
+      <HashCode>AAAAAAEAAEAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Bosses\Boss4.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.Boss1">
-    <Position X="7.75" Y="5.75" Width="1.5" />
+  <Class Name="Zenith.Library.Boss5" Collapsed="true">
+    <Position X="7.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Boss1.cs</FileName>
+      <HashCode>IAABAAEAAEAAAAAAAAAAAAkACCBAABAAIAAAAAAAAAQ=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Bosses\Boss5.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.Boss2">
-    <Position X="9.5" Y="5.75" Width="1.5" />
+  <Class Name="Zenith.Library.Asteroid" Collapsed="true">
+    <Position X="9.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Boss2.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Zenith.Library.Boss3">
-    <Position X="11.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Boss3.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Zenith.Library.Boss4">
-    <Position X="13" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Boss4.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Zenith.Library.Boss5">
-    <Position X="14.75" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Boss5.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Zenith.Library.Asteroid">
-    <Position X="7.75" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Game Object Model\Other\Asteroid.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.Game_Object_Model.BackgroundElement">
-    <Position X="4.25" Y="10" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Other\BackgroundElement.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Zenith.Library.Laser">
-    <Position X="4.25" Y="6.75" Width="1.5" />
+    <Position X="0.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACIAAAAgAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Other\Laser.cs</FileName>
+      <HashCode>AAAAAACIAACAgAAAgAAAAAAAACBAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Other\Projectiles\Laser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zenith.Library.GameController">
-    <Position X="21.75" Y="0.5" Width="1.5" />
+    <Position X="20" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAACAAAAAAAAAAAAAAAIAACkCQCApgEAgAI=</HashCode>
+      <HashCode>AAAggIIAAICCAAAAAAAAAAAAAAAMAAAADACAAgAAoAI=</HashCode>
       <FileName>Game Object Model\GameController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.Game_Object_Model.SpawnManager">
-    <Position X="23.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\SpawnManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Zenith.Library.World">
-    <Position X="18.25" Y="0.5" Width="1.5" />
+    <Position X="22" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAACAABAAAgAQAQAAAAEAABQBADAABQAQAAQAAAAA=</HashCode>
+      <HashCode>AAUAgLEzhyGShVgBAAEZAEAEPQFADAEBYB0AAQAQAIA=</HashCode>
       <FileName>Game Object Model\World.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Zenith.Library.CollisionManager">
-    <Position X="20" Y="0.5" Width="1.5" />
+  <Class Name="Zenith.Library.Cannon">
+    <Position X="11.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAoAAAARAAAAAQAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\CollisionManager.cs</FileName>
+      <HashCode>BAQABASAEAQAjBoEAAwIQAAAAEAECAKAAAgAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Cannons\Cannon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.BasicCannon" Collapsed="true">
+    <Position X="13.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Cannons\BasicCannon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Boss1Cannon" Collapsed="true">
+    <Position X="13.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Cannons\Boss1Cannon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Boss2Cannon" Collapsed="true">
+    <Position X="13.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Cannons\Boss2Cannon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Boss3Cannon" Collapsed="true">
+    <Position X="13.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Cannons\Boss3Cannon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Sensor" Collapsed="true">
+    <Position X="2.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAACAAAAAAAAAAAAAAAIAgAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Other\Sensor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Wave">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAEABAAAAAAAAAIEAAAAAAAEAAAIBQAACAAAAAAA=</HashCode>
+      <FileName>Game Object Model\LevelDesign\Wave.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Wave1" Collapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\LevelDesign\Wave1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Wave2" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\LevelDesign\Wave2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Wave3" Collapsed="true">
+    <Position X="17.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\LevelDesign\Wave3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Wave4" Collapsed="true">
+    <Position X="17.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\LevelDesign\Wave4.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Wave5" Collapsed="true">
+    <Position X="17.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\LevelDesign\Wave5.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.HealthBar" Collapsed="true">
+    <Position X="4" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAGBAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Other\HealthBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.Player" Collapsed="true">
+    <Position X="6" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.CollisionQuad">
+    <Position X="7.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAEAAAAAIAAgAAAARAIAAEQAAACAAAAAIA=</HashCode>
+      <FileName>Game Object Model\CollisionQuad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zenith.Library.LevelManager">
+    <Position X="9.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAIARAACAGQAAAgAAAAAAAAEAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\LevelManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Zenith.Library.ViewManager">
-    <Position X="25.25" Y="0.5" Width="1.5" />
+    <Position X="20" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAgAAAAAAQAAAAAAgAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Game Object Model\World.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="Zenith.Library.GameObjectType">
-    <Position X="4.25" Y="0.5" Width="1.5" />
+  <Interface Name="Zenith.Library.ISoundPlayer" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAEAACAAAAFAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Cannons\Cannon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Zenith.Library.GameObjectType" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgQEAAAAAAAAAAACAAAEAACAAAAFAJAAAQAAABg=</HashCode>
       <FileName>Game Object Model\GameObject.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Zenith.Library.EnemyState">
-    <Position X="7.75" Y="2.5" Width="1.5" />
+    <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACAAAAAAAAAAgAAAAAgAAAAAAAAAAAAA=</HashCode>
-      <FileName>Game Object Model\Ships\Enemy.cs</FileName>
+      <HashCode>AAAgAAAAAAAACAAAAAAAAAAgAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Object Model\Ships\Enemies\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Zenith.Library.ProjectileColor" Collapsed="true">
+    <Position X="13.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Game Object Model\Cannons\Cannon.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
