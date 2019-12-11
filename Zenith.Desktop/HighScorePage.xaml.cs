@@ -14,6 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zenith.Library;
 
+//--------------------------------------------------------------
+//File:   HighScorePage.xaml.cs
+//Desc:   Astronaut of the game ranking is here.
+//--------------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     /// <summary>

@@ -245,7 +245,6 @@ namespace Zenith.Desktop
             {
                 Popup_Pause.IsOpen = false;
             }
-
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
