@@ -1,13 +1,36 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Boss4.cs
+//Desc:   This file holds the class responsible for controlling
+//        Boss4.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class controls Boss4. It also controls the specialized
+    // movement for the object as well as the internal state of Boss4.
     public class Boss4 : Enemy
     {
+        // The goal position to ram once the boss is in its
+        // ramming state. This is set immediately before the
+        // boss starts ramming the player.
         Vector goal;
 
+        // This method is split up into three different states:
+        // Sway, Pause, and Ram.
+        // Sway:   
+        //      this state will make the boss move vertically
+        //      up and down for at least 400 game ticks.
+        // Pause:   
+        //      this state will move the boss to the right side
+        //      of the screen vertically in the middle. This state
+        //      has a duration of approximately 1.5 seconds.
+        // Ram:
+        //      this state will accelerate the boss in the locked
+        //      position of the player received at the moment the
+        //      Pause state ended
         public override void ShipLoop()
         {
             switch (state)
@@ -25,7 +48,6 @@ namespace Zenith.Library
                     double goalY = (Math.Cos((double)clock / 100) + 1) / 2 * World.Instance.EndY;
                     double goalX = World.Instance.EndX * 0.75;
 
-                    //AddForce(new Vector(goalX, goalY) * 200);
                     MoveTo(new Vector(goalX, goalY), 200);
 
                     angle = (World.Instance.Player.Position - position).Angle;
@@ -53,6 +75,7 @@ namespace Zenith.Library
             }
         }
 
+        // Constructor
         public Boss4(Vector position)
             : base(position)
         {
@@ -60,9 +83,7 @@ namespace Zenith.Library
             cannon = new Boss1Cannon(this);
             cannon.Damage = 200;
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("large_red_01.png") };
-
             bodyDamage = 40;
-
             size = new Vector(256, 256);
             health = 4000;
             maxHealth = 4000;
@@ -70,11 +91,13 @@ namespace Zenith.Library
             worth = 400;
         }
 
+        // ???
         public override string Serialize()
         {
             return base.Serialize() + ',' + goal.ToString();
         }
 
+        // ???
         public override void Deserialize(string saveInfo)
         {
             int index = IndexOfNthOccurance(saveInfo, ",", 24);

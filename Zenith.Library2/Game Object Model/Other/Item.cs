@@ -1,4 +1,8 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   .cs
+//Desc:   
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,8 +11,9 @@ namespace Zenith.Library
     class Item : GameObject
     {
         public enum shopItems
-        { 
-            Selling, 
+        {
+            IsSelected,
+            Selling,
             Sold
         }
         public override void Loop() { }

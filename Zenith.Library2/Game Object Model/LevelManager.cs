@@ -1,4 +1,8 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   .cs
+//Desc:   
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,11 +22,22 @@ namespace Zenith.Library
 
     public class LevelManager
     {
+        // ???
         private int level;
+
+        // ???
         private int difficulty;
+
+        // ???
         private int spawnRate;
+
+        // ???
         private int timeUntilNextSpawn;
+
+        // ???
         private Wave currentWave;
+
+        // ???
         private static int waveNum;
 
         
@@ -33,13 +48,8 @@ namespace Zenith.Library
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
 
-
         public void Update()
         {
-            // this is our chance. By this point everywave should already have been created. 
-            // first thing to do, check if enemiesLeft = 0. If so, then increment the wave, ELSE set the wave count up. 
-            // Spawn the next one, using the timer and a randomizer to go through a list of objects,
-            // and will randomly spawn a few.
             if (currentWave == null) currentWave = CreateWave(World.Instance.CurrentWave);
             if (World.Instance.EnemiesLeftInWave > 0) // doesnt work need it to active once
             {
@@ -59,7 +69,9 @@ namespace Zenith.Library
             
         }
 
+
         public LevelManager()
+
         {
             spawnRate = 100; // time in between waves
             timeUntilNextSpawn = spawnRate;

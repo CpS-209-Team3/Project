@@ -1,22 +1,41 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   CollisionQuad.cs
+//Desc:   Holds the class than handles all collisions in Zenith
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class controls all collisions in Zenith
+    // using quadtree optimizations.
     class CollisionQuad
     {
         // Constants
+
+        // Marks the maximum depth a quadtree can grow
         const int maxTier = 4;
-        const int maxObjectCount = 10;
+
+        // Marks the minimum amount of objects required to
+        // allow growing the quadtree.
+        const int minObjectCount = 10;
 
         // Instance Variables
 
+        // The upper-left corner of the area to cover
         private Vector origin;
+
+        // The size of the area to cover
         private Vector size;
 
+        // The list of objects to check for collisions
         private List<GameObject> objects;
+
+        // The nested quads
         private CollisionQuad[] quads;
+
+        // The tier of the current quad
         private int tier;
 
         // Properties
@@ -25,6 +44,7 @@ namespace Zenith.Library
 
         // Methods
 
+        // Creates 4 nested quadtree branches
         private void Split()
         {
             var newSize = size / 2;
@@ -35,6 +55,9 @@ namespace Zenith.Library
             quads[3] = new CollisionQuad(origin + newSize, newSize, tier + 1);
         }
 
+        // Divides the objects into the 4 nested quadtree branches. If an object
+        // happens to lie on the border of two or more quadtree branches, then
+        // its reference is passed onto all branches it lies in.
         private void DivideObjects()
         {
             for (int i = 0; i < objects.Count; ++i)
@@ -59,13 +82,18 @@ namespace Zenith.Library
             }
         }
 
+        // Performs collisions checks on the objects it has in its List.
+        // If minObjectCount is exceeded and the current tier is less
+        // than maxTier, then the current quadtree is split and collisions
+        // are checked with the child branches. Otherwise, collisions are
+        // checked with the current quadtree.
         public void CheckForCollisions()
         {
             size = new Vector(World.Instance.Width, World.Instance.Height);
 
             int objectCount = objects.Count;
 
-            if (objectCount > maxObjectCount && tier < maxTier)
+            if (objectCount > minObjectCount && tier < maxTier)
             {
                 Split();
                 DivideObjects();
@@ -82,7 +110,6 @@ namespace Zenith.Library
                     for (int j = i + 1; j < objectCount; ++j)
                     {
                         if (!objects[j].Collidable) continue;
-                        // todo: implement the collision checks here
                         if (objects[i].Position.X - objects[i].Size.X / 2 <= objects[j].Position.X + objects[j].Size.X / 2 &&
                             objects[i].Position.Y - objects[i].Size.Y / 2 <= objects[j].Position.Y + objects[j].Size.Y / 2 &&
                             objects[i].Position.X + objects[i].Size.X / 2 >= objects[j].Position.X - objects[j].Size.X / 2 &&
@@ -97,6 +124,7 @@ namespace Zenith.Library
             }
         }
 
+        // Constructor
         public CollisionQuad(Vector origin, Vector size, int tier)
         {
             this.tier = tier;

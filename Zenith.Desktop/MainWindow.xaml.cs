@@ -16,6 +16,11 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Zenith.Library;
 
+//-----------------------------------------------------------
+//File:   MainWindow.xaml.cs
+//Desc:   Main Menu Screen of Zenith game.
+//-----------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     public partial class MainWindow : Window, ViewManager
@@ -66,7 +71,7 @@ namespace Zenith.Desktop
         }
 
         //~~~~~~~~~~~~~~Trigger Endgame~~~~~~~~~~~~~~~~~~`
-        public void TriggerEndGame(bool isPlayerAlive) { }
+        public void TriggerEndGame() { }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
         public void GameLoop(object sender, EventArgs e)

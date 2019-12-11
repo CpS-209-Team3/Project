@@ -1,14 +1,22 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Boss1.cs
+//Desc:   This file holds the class responsible for controlling
+//        Boss1.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class controls Boss1. It also initializes the specialized cannon for Boss1
+    // and controls the movement for the object as well.
     public class Boss1 : Enemy
     {
-        // Source: https://stackoverflow.com/questions/5142349/declare-a-const-array/5142378
-        
-
+        // Fires the cannon as fast as possible (no laser will be fired if
+        // the internal state of the cannon is not ready for a laser to be
+        // fired). It also updates the movement of Boss1 to allow it to
+        // sway back and forth.
         public override void ShipLoop()
         {
             cannon.Fire();
@@ -21,6 +29,7 @@ namespace Zenith.Library
             angle = (World.Instance.Player.Position - position).Angle;
         }
 
+        // Constructor
         public Boss1(Vector position)
             : base(position)
         {

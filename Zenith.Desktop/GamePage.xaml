@@ -8,48 +8,18 @@
       d:DesignHeight="630" d:DesignWidth="1120"
       Loaded="Window_Loaded"
       Title="GamePage">
-
     <Canvas x:Name="canGame">
         <Canvas.Background>
             <ImageBrush ImageSource="systemPurple.png"/>
         </Canvas.Background>
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="btn_TestShop" Content="Test Shop View" FontSize="25" Height="auto" Width="auto" Click="btn_TestShop_Click"/>
-            <TextBlock x:Name="lbl_PlayerName" Text="Schaubian" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="20,5,5,5" />
+        <StackPanel Orientation="Horizontal" Width="auto" HorizontalAlignment="Center">
+            <!--<Button x:Name="btn_TestShop" Content="Test Shop View" FontSize="25" Height="auto" Width="auto" Click="btn_TestShop_Click"/>-->
+            <TextBlock x:Name="lbl_PlayerName" Text="Schaubian" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,5,5" />
             <TextBlock x:Name="lbl_CurrentScore" Text="5642" FontFamily="Impact" FontSize="20" Foreground="Wheat" TextAlignment="Right" Width="80" Margin="50,5,130,5"/>
-            <TextBlock Text="HP" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="50,5,15,5"/>
+            <TextBlock Text="HP" FontFamily="Impact" FontSize="20" Foreground="Wheat" Margin="150,5,15,5"/>
             <ProgressBar x:Name="progressbar_PlayerHealthBar" Maximum="1000" Margin="5,5,5,5" Value="400" Width="400" BorderThickness="2" Background="#FF3131FF" Foreground="Red"/>
         </StackPanel>
 
-        <!-- Shop Popup here (In Progress) -->
-        <Popup x:Name="Popup_Shop" PlacementTarget="{Binding ElementName=canGame}" Placement="Center" PopupAnimation="Scroll" Loaded="Popup_Shop_Loaded">
-            <Border BorderBrush="#C04000"
-                BorderThickness="6" Width="550" Height="400">
-                <Border.Background>
-                    <SolidColorBrush Color="#FF966F33" Opacity="0.65"/>
-                </Border.Background>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <TextBlock x:Name="lbl_Popup_Shop" Text="SHOP" Foreground="Yellow" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" >
-                        <TextBlock.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="1"/>
-                                <GradientStop Color="Silver" Offset="0"/>
-                            </LinearGradientBrush>
-                        </TextBlock.Background>
-                    </TextBlock>
-                    <StackPanel x:Name="layout_Shop_Items" Orientation="Vertical">
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                        <TextBlock Text="Zeni Thollars: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Currency" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button x:Name="btn_Shop_Buy" Content="BUY" Background="Brown" Foreground="Wheat" FontWeight="DemiBold" FontSize="30" Margin="5" Width="90" Click="btn_Shop_Buy_Click"/>
-                        <Button x:Name="btn_Shop_Close" Content="CLOSE" Background="Brown" Foreground="Wheat" FontWeight="DemiBold" FontSize="30" Margin="5" Width="90" Click="btn_Shop_Close_Click"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-        </Popup>
 
         <!-- Trying to make the popup appear when press Pause here-->
         <!-- PlacementTarget choose the screen for Popup to show in-->
@@ -82,26 +52,58 @@
             </Border>
         </Popup>
 
-        <!-- New Highscore Popup here -->
-        <Popup x:Name="Popup_NewHighScore" PlacementTarget="{Binding ElementName=canGame}" Placement="Center" PopupAnimation="Scroll">
+        <!-- End Game Popup here -->
+        <Popup x:Name="Popup_EndGame" PlacementTarget="{Binding ElementName=canGame}" Placement="Center" PopupAnimation="Scroll">
             <Border BorderBrush="Transparent"
                 BorderThickness="2" Width="560" Height="315">
                 <Border.Background>
                     <SolidColorBrush Color="Gray" Opacity="0.45"/>
                 </Border.Background>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock x:Name="lbl_Popup_EndGame_Text" Text="CONGRATULATIONS" TextDecorations="Underline" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="50" Margin="5" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_EndGame_Header" Text="CONGRATULATIONS" TextDecorations="Underline" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="50" Margin="5" Width="auto" TextAlignment="Center" />
+                    <TextBlock x:Name="lbl_Popup_EndGame_PlayerName" Text="Schaubian" FontSize="35" FontWeight="DemiBold" VerticalAlignment="Center" Width="auto" Height="50" Foreground="Orange" Background="Transparent" HorizontalAlignment="Center" Margin="5"/>
                     <TextBlock x:Name="lbl_Popup_EndGame_NewHiScor" Text="New High Score!" Background="Transparent" Foreground="Yellow" FontWeight="DemiBold" FontSize="40" Margin="5" Width="auto" TextAlignment="Center" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                         <TextBlock Text="Score:  " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
                         <TextBlock x:Name="lbl_Popup_EndGame_Score" Text="3000" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                        <TextBlock Text="Position: #" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Popup_EndGame_Position" Text="3" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="30" Width="auto" TextAlignment="Center" />
+                    <Button x:Name="btn_Close" Content="High Score" FontSize="30" FontWeight="DemiBold" Foreground="DarkBlue" Background="Gainsboro" BorderBrush="Transparent" Margin="10" Width="170" Click="btn_EndGame_ToHighScore_Click"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+        
+        <!-- ~~~~~~~ Ignore this, this is gone...... ~~~~~~~ -->
+        <!-- Shop Popup here (Gone! Farewell...) -->
+        <Popup x:Name="Popup_Shop" PlacementTarget="{Binding ElementName=canGame}" Placement="Center" PopupAnimation="Scroll" Loaded="Popup_Shop_Loaded">
+            <Border BorderBrush="#C04000"
+                BorderThickness="6" Width="550" Height="400">
+                <Border.Background>
+                    <SolidColorBrush Color="#FF966F33" Opacity="0.65"/>
+                </Border.Background>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock x:Name="lbl_Popup_Shop" Text="SHOP" Foreground="Yellow" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" >
+                        <TextBlock.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="Silver" Offset="0"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                    </TextBlock>
+                    <StackPanel x:Name="layout_Shop_Items" Orientation="Vertical">
                     </StackPanel>
-                    <TextBox x:Name="txt_Popup_EndGame_PromptPlayerName" Text="Enter Your Name..." FontSize="28" VerticalAlignment="Center" Width="450" Height="35" Foreground="GhostWhite" Background="Blue" Opacity="0.7"/>
-                    <Button x:Name="btn_Close" Content="Close" FontSize="30" FontWeight="DemiBold" Foreground="Yellow" Background="Transparent" BorderBrush="Transparent" Margin="10" Width="100" Click="btn_NewHighScore_Close_Click"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <TextBlock Text="Zeni Thollars: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
+                        <TextBlock x:Name="lbl_Popup_Shop_Currency" Text="9001" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="5" Width="auto" TextAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="btn_Shop_Buy" Content="BUY" Background="Brown" Foreground="Wheat" FontWeight="DemiBold" FontSize="30" Margin="5" Width="90" Click="btn_Shop_Buy_Click"/>
+                        <Button x:Name="btn_Shop_Close" Content="CLOSE" Background="Brown" Foreground="Wheat" FontWeight="DemiBold" FontSize="30" Margin="5" Width="90" Click="btn_Shop_Close_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0,-100,0,0">
+                        <TextBlock x:Name="lbl_Popup_Shop_ItemName" Text="" Foreground="Wheat" FontWeight="DemiBold" FontSize="20" Margin="2" Width="Auto" />
+                        <TextBlock x:Name="lbl_Popup_Shop_ItemPrice" Text=""  Foreground="Wheat" FontWeight="DemiBold" FontSize="20" Margin="2" Width="Auto" />
+                    </StackPanel>
+                    <TextBlock x:Name="lbl_Popup_Shop_Announce" Text="" Foreground="LightGoldenrodYellow" FontWeight="DemiBold" FontSize="20" Margin="-120,-40,120,5" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </StackPanel>
             </Border>
         </Popup>

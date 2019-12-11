@@ -148,6 +148,22 @@
     <Content Include="orange_05.png" />
     <Content Include="parallaxBackground.png" />
     <Content Include="pause.png" />
+    <Content Include="projectile_blue.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="projectile_green.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="projectile_orange.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="projectile_red.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="redLaser.png" />
     <Content Include="Sprites\Health_Bar\healthbar_0.png">
@@ -431,6 +447,7 @@
     <Content Include="Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4\Explosion\explosion-09.png" />
     <Content Include="Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4\Explosion\explosion-10.png" />
     <Content Include="Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4\Explosion\explosion-11.png" />
+    <Content Include="systemGreen.png" />
     <Content Include="tankbase_01.png" />
     <Content Include="red_06.png" />
     <Content Include="purple_01.png" />

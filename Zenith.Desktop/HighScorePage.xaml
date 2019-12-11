@@ -8,7 +8,7 @@
       d:DesignHeight="630" d:DesignWidth="1120"
       Title="HighScorePage"
       Loaded="HighScorePage_Loaded">
-    <Grid HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Center" Width="auto">
         <Grid.Background>
             <ImageBrush ImageSource="HighScoreBG.png"/>
         </Grid.Background>
