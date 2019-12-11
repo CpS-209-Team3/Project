@@ -25,7 +25,7 @@ namespace Zenith.Library
             {
                 firePattern.Add(0);
             }
-            damage = 60;
+            damage = 60 * World.Instance.Difficulty;
             ProjectileColor = ProjectileColor.Red;
         }
     }
