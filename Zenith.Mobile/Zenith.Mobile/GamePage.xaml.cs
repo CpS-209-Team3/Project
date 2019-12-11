@@ -12,6 +12,7 @@ namespace Zenith.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage, ViewManager
     {
+        HighScores scores;
         public string shipName;
         public int diffNum;
         public bool isCheating;
@@ -92,20 +93,23 @@ namespace Zenith.View
             lblGameOver.TextColor = hiScore ? Color.Gold : Color.DarkRed;
             lblGameOver.FontFamily = "Impact";
             lblGameOver.FontSize = 40;
+            lblGameOver.HorizontalTextAlignment = TextAlignment.Center;
             stkPause.Children.Add(lblGameOver);
 
             Label lblName = new Label();
             lblName.Text = World.Instance.PlayerName.ToUpper();
-            lblName.TextColor = Color.DarkCyan;
+            lblName.TextColor = Color.Black;
             lblName.FontFamily = "Impact";
             lblName.FontSize = 30;
+            lblName.HorizontalTextAlignment = TextAlignment.Center;
             stkPause.Children.Add(lblName);
 
             Label lblScore = new Label();
             lblScore.Text = Convert.ToString(World.Instance.Score);
-            lblScore.TextColor = Color.DarkCyan;
+            lblScore.TextColor = Color.Black;
             lblScore.FontFamily = "Impact";
             lblScore.FontSize = 30;
+            lblScore.HorizontalTextAlignment = TextAlignment.Center;
             stkPause.Children.Add(lblScore);
 
             Button btnBack = new Button();
@@ -167,7 +171,29 @@ namespace Zenith.View
         //~~~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~
         public void TriggerEndGame()
         {
+            LoadEndScreen(true);
+            
+            //~~~~~~~~~~~~~~~~~~~~~~ Attempt to make high scores work on mobile, but the way the high score objects are set up make this difficult.
 
+            //if (Application.Current.Properties.ContainsKey("hScores"))
+            //{
+            //    scores = HighScores.Load(Application.Current.Properties["hScores"] as string);
+            //}
+            //else
+            //{
+            //    scores = HighScores.Load("");
+            //}
+            //HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
+            //if (scores.IsNewHighScore(thisScore))
+            //{
+            //    scores.AddHighScore(thisScore);
+            //    scores.Save("highScores.txt");
+            //    LoadEndScreen(true);
+            //}
+            //else
+            //{
+            //    LoadEndScreen(false);
+            //}
         }
 
         //~~~~~~~~~~~~~~~~~~~~Set Timer ~~~~~~~~~~~~~~~~~
@@ -190,7 +216,7 @@ namespace Zenith.View
         public void GameLoop()
         {
             World.Instance.Update();
-
+            
             Device.BeginInvokeOnMainThread(() =>
             {
                 for (int i = 0; i < sprites.Count; ++i)
@@ -242,7 +268,9 @@ namespace Zenith.View
             // Source: https://stackoverflow.com/questions/29644200/how-get-mono-xamarin-android-app-path-folder
             World.Instance.Directory = System.Environment.CurrentDirectory;
             World.Instance.CreatePlayer();
-            lblName.Text = World.Instance.PlayerName;
+            World.Instance.Difficulty = diffNum;
+            World.Instance.PlayerName = shipName;
+            lblName.Text = shipName;
 
             // DisplayAlert("Alert", System.Environment.CurrentDirectory, "OK");
 
@@ -258,64 +286,54 @@ namespace Zenith.View
         private void btnLeft_Pressed(object sender, EventArgs e)
         {
             left = true;
-            lblScore.Text = "left";
         }
 
         private void btnRight_Pressed(object sender, EventArgs e)
         {
             right = true;
-            lblScore.Text = "right";
         }
 
         private void btnUp_Pressed(object sender, EventArgs e)
         {
             up = true;
-            lblScore.Text = "up";
         }
 
         private void btnDown_Pressed(object sender, EventArgs e)
         {
             down = true;
-            lblScore.Text = "down";
         }
 
 
         private void btnFire_Pressed(object sender, EventArgs e)
         {
             fire = true;
-            lblName.Text = "fire";
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~Released~~~~~~~~~~~~~~~~~~~~~~~~~
         private void btnLeft_Released(object sender, EventArgs e)
         {
             left = false;
-            lblScore.Text = "000000000";
         }
 
 
         private void btnRight_Released(object sender, EventArgs e)
         {
             right = false;
-            lblScore.Text = "000000000";
         }
 
         private void btnUp_Released(object sender, EventArgs e)
         {
             up = false;
-            lblScore.Text = "000000000";
         }
 
         private void btnDown_Released(object sender, EventArgs e)
         {
             down = false;
-            lblScore.Text = "000000000";
         }
 
         private void btnFire_Released(object sender, EventArgs e)
         {
             fire = false;
-            lblName.Text = "Splattian";
         }
 
         //~~~~~~~~~~~~~~~~~~~Pause Menu Buttons~~~~~~~~~~~~~~~~~~~~~~~~~

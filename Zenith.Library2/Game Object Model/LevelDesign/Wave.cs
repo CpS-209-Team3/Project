@@ -6,10 +6,15 @@ namespace Zenith.Library
 {
     public abstract class Wave
     {
+        protected int difficulty;
+        protected int level;
         protected int waveCount = 0;
         protected Vector startingPos;
         protected double size; 
+
         public int WaveCount { get { return waveCount; } set { waveCount = value; } }
+
+        public List<Enemy> enemies;
 
         public void DeathAction()
         {
@@ -18,16 +23,25 @@ namespace Zenith.Library
             {
                 if (LevelManager.WaveNum < 5)
                 {
-                    LevelManager.WaveNum++;
+                    World.Instance.CurrentWave++;
                 }
                 else
                 {
-                    World.Instance.LevelManager.Level++;
                     World.Instance.Level++;
                     LevelManager.WaveNum = 1; 
                 }
             }
                 
+        }
+
+        public virtual void Spawn()
+        {
+
+        }
+        public Wave()
+        {
+            this.difficulty = World.Instance.Difficulty;
+            this.level = World.Instance.Level;
         }
 
         public void AddEnemy(Ship type)

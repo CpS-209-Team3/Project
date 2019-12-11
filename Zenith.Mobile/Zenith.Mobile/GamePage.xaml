@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Zenith.View.GamePage"
-             BackgroundImageSource="parallaxBackground.png"
+             BackgroundImageSource="systemGreen.png"
              Appearing="ContentPage_Appearing"
              >
     <ContentPage.Content>
@@ -20,8 +20,8 @@
             <Button x:Name="btnFire" Margin="512,52,0,0" Opacity="0" Pressed="btnFire_Pressed"  Released="btnFire_Released" />
 
             <StackLayout x:Name="stkHeadsup" Orientation="Horizontal" Margin="0,0,0,480" BackgroundColor="Black">
-                <Label x:Name="lblName" Text="Splattian" FontFamily="Impact" FontSize="20" TextColor="White" Margin="10"/>
-                <Label x:Name="lblScore" Text="00023423" FontFamily="Impact" FontSize="20" TextColor="White" Margin="10"/>
+                <Label x:Name="lblName" FontFamily="Impact" FontSize="20" TextColor="White" Margin="10"/>
+                <Label x:Name="lblScore" FontFamily="Impact" FontSize="20" TextColor="White" Margin="10"/>
                 <ImageButton x:Name="btnPause" Source="pause.png" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" Clicked="btnPause_Clicked"/>
             </StackLayout> 
         </Grid>

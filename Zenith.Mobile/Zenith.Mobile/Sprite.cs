@@ -117,7 +117,7 @@ namespace Zenith.View
                 // MessageBox.Show("Error retrieving image for " + gameObject.Type.ToString());
             }
 
-            Content = images[0];
+            if (images.Length > 0)  Content = images[0];
         }
     }
 }

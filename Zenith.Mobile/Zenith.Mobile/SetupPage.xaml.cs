@@ -23,8 +23,8 @@ namespace Zenith.View
         {
             //This function is still buggy
             GamePage game = new GamePage();
-            game.shipName = "Schaubian";
-            game.diffNum = PickerDiff.SelectedIndex;
+            game.shipName = EntName.Text;
+            game.diffNum = PickerDiff.SelectedIndex + 1;
             game.isCheating = cheat;
             Application.Current.MainPage = game;
         }

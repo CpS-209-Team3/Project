@@ -180,7 +180,8 @@ namespace Zenith.Desktop
 
                 if (World.Instance.PlayerController.Pause == true)
                     Popup_Pause.IsOpen = true;
-
+                else
+                    Popup_Pause.IsOpen = false;
                 int potentialCollisions = World.Instance.Objects.Count;
                 potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
                 //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
@@ -195,14 +196,22 @@ namespace Zenith.Desktop
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
-            World.Instance.Reset();
-            if (isCheating) World.Instance.EnableCheatMode();
-        
-            World.Instance.PlayerName = shipName;
-            World.Instance.Difficulty = diffNum;
+            if (loadingGame)
+            {
+                World.Instance.Load(filename);
+                loadingGame = false;
+            }
+            else
+            {
+                World.Instance.Reset();
+                if (isCheating) World.Instance.EnableCheatMode();
 
-            World.Instance.CreatePlayer();
-            lbl_PlayerName.Text = World.Instance.PlayerName;
+                World.Instance.PlayerName = shipName;
+                World.Instance.Difficulty = diffNum;
+
+                World.Instance.CreatePlayer();
+                lbl_PlayerName.Text = World.Instance.PlayerName;
+            }
 
             World.Instance.StartX = 20;
             World.Instance.StartY = 60;
@@ -216,11 +225,7 @@ namespace Zenith.Desktop
             {
                 i.Value.Load();
             }
-            if (loadingGame)
-            {
-                World.Instance.Load(filename);
-                loadingGame = false;
-            }
+            
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             timer.Tick += GameLoop;

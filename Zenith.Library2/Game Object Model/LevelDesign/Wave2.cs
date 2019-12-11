@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     class Wave2 : Wave
     {
-        public Wave2(int difficulty, int level)
+        public override void Spawn()
         {
             for (int i = 0; i < difficulty + level; i++)
             {
@@ -18,5 +18,7 @@ namespace Zenith.Library
                 AddEnemy(a);
             }
         }
+
+       
     }
 }
