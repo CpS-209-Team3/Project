@@ -8,7 +8,9 @@ namespace Zenith.Library
     {
         public Wave5(int difficulty, int level)
         {
-            AddEnemy(World.Instance.SpawnBoss(level));
+            var boss = World.Instance.SpawnBoss(level);
+            if (level == 5) boss.OnDeath = World.Instance.OnGameFinish;
+            AddEnemy(boss);
         }
     }
 }

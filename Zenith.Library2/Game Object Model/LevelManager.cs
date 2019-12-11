@@ -1,4 +1,8 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   .cs
+//Desc:   
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -31,13 +35,26 @@ namespace Zenith.Library
         Wave4,
         Wave5
     }
+
+    // ???
     public class LevelManager
     {
+        // ???
         private int level;
+
+        // ???
         private int difficulty;
+
+        // ???
         private int spawnRate;
+
+        // ???
         private int timeUntilNextSpawn;
+
+        // ???
         private Wave currentWave;
+
+        // ???
         private static int waveNum;
 
         public int Level { get { return level; } set { level = value; } }
@@ -46,11 +63,13 @@ namespace Zenith.Library
 
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
+        // ???
         public void Spawn()
         {
             currentWave = SpawnWave(WaveNum);
         }
 
+        // ???
         public void Update()
         {
             if (currentWave == null) Spawn();
@@ -66,6 +85,7 @@ namespace Zenith.Library
             
         }
 
+        // Constructor
         public LevelManager(int difficulty, int level)
         {
             this.difficulty = difficulty;
@@ -75,6 +95,7 @@ namespace Zenith.Library
             timeUntilNextSpawn = spawnRate;
         }
 
+        // ???
         public Wave SpawnWave(int nextWave)
         {
             switch(nextWave)

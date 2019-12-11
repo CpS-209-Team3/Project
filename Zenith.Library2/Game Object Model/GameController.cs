@@ -1,11 +1,19 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   GameController.cs
+//Desc:   Holds the class needed to handle user input.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class handles all input from the user
+    // and acts like a bridge between the View
+    // and the Game Model.
     public class GameController
     {
+        // Instance variables for all the states of the buttons.
         bool up, down, left, right, fire, pause, save, load;
 
         public bool Up { get { return up; } set { up = value; } }

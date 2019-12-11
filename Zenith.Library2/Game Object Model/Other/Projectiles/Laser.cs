@@ -1,14 +1,26 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Laser.cs
+//Desc:   Holds the class responsible for lasers in Zenith.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class is responsible for handling laser collisions
+    // and destruction upon collision with a Ship object.
     class Laser : GameObject
     {
+        // The amount of health the laser will remove from the Ship it
+        // collides with.
         private int damage;
+
+        // Boolean marking if the laser was launched from the player or not.
         private bool isFromPlayer;
+
+        // Properties
 
         public bool IsFromPlayer
         {
@@ -20,6 +32,10 @@ namespace Zenith.Library
             get { return damage; }
         }
 
+        // Methods
+
+        // Checks if the object it collided with is a ship. If it has,
+        // then it will destroy itself.
         public override void OnCollision(GameObject gameObject)
         {
             // only does damage to the opponenet
@@ -34,6 +50,8 @@ namespace Zenith.Library
             }
         }
 
+        // Checks if the laser is not within the outer bounds of the world.
+        // If it is, then the laser will destroy itself.
         public override void Loop()
         {
             if (position.X < World.Instance.StartX ||
@@ -42,7 +60,10 @@ namespace Zenith.Library
                 (position.Y > World.Instance.EndY && !IsFromPlayer)) Destroy = true;
         }
 
-
+        // Constructor
+        // Initializes the laser class by setting the required variables.
+        // It also limits the size of the laser by forcing 100 to be the
+        // max width and height.
         public Laser(Vector position, Vector velocity, int damage, bool isFromPlayer)
             : base(position)
         {
@@ -50,7 +71,6 @@ namespace Zenith.Library
             this.velocity = velocity;
             this.damage = damage;
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("Projectiles\\projectile-blue.png") };
-
 
             imageRotation = 0;
 
@@ -64,11 +84,13 @@ namespace Zenith.Library
             World.Instance.ViewManager.PlaySound("Laser");
         }
 
+        // ???
         public override string Serialize()
         {
             return base.Serialize() + ',' + damage.ToString() + ',' + isFromPlayer.ToString();
         }
 
+        // ???
         public override void Deserialize(string saveInfo)
         {
             int index = IndexOfNthOccurance(saveInfo, ",", 11);

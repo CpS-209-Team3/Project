@@ -1,14 +1,27 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   HealthBar.cs
+//Desc:   Holds the class responsible for displays all Ship
+//        health bars.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class is responsible for handling the display
+    // of health bars for each ship object on the screen.
     class HealthBar : GameObject
     {
+        // The ship that is going to have its health displayed.
         Ship host;
+
+        // The vertical offset from the to be displayed at.
         double distance;
 
+        // Updates the location of the health bar relative to the
+        // host ship's postion. It will also update the health bar
+        // index to reflect the ship's current health.
         public override void Loop()
         {
             distance = Math.Max(host.Size.X, host.Size.Y);
@@ -19,6 +32,7 @@ namespace Zenith.Library
             if (imageIndex < 0) imageIndex = 0;
         }
 
+        // Constructor
         public HealthBar(Ship host)
             : base(host.Position)
         {

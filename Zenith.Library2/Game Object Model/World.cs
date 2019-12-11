@@ -1,4 +1,8 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   World.cs
+//Desc:   Contrains the class that controls all of Zenith.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -6,17 +10,10 @@ using Zenith.Library.Game_Object_Model;
 
 namespace Zenith.Library
 {
-    public enum WorldState
-    {
-        Stage,      // When the player is moving forwards, fighting small enemies and asteroids
-        Boss,       // When the player is fighting a boss
-        Shop,       // When the player is in a shop
-        Pause,      // When the game is paused
-    }
-
     public interface ViewManager
     {
         void AddSprite(GameObject gameObject);
+
         void RemoveSprite(GameObject gameObject);
         void PlaySound(string key);
         void TriggerEndGame();
@@ -29,13 +26,18 @@ namespace Zenith.Library
         void Deserialize(string saveInfo);
     }
 
+    // This class is responsible for controlling and managing all of the Game Model
+    // logic.
     public class World
-
     {
         // Singleton Code
+
+        // A singletone instance of World
         private static World instance = new World();
+
         public static World Instance { get { return instance; } }
 
+        // Constructor
         private World()
         {
             gameTick = 0;
@@ -58,20 +60,44 @@ namespace Zenith.Library
 
         // Instance variables
 
+        // A list of GameObjects that are active in Zenith
         private List<GameObject> objects;
+
+        // Random object for all code in Zenith to use
         public Random random;
+
+        // The amount of times Update() was called
         private int gameTick;
+
+        // The base quadtree branch that handles collision
         private CollisionQuad collisionManager;
+
+        // The name of the player
         private string playerName;
+
+        // The current level the player is on
         private int level;
+
+        // The score the player has currently
         private int score;
+
+        // The precalculated time that will pass between each call to Update()
         private double deltaTime = 1.0 / 60.0;
+
+        // The director of the executable (this is used to located images for sprites)
         private string directory = null;
+
+        // This is a debugging variables that is used to count the number of collisions
+        // that took place
         private int collisions = 0;
 
+        // The difficulty of the game
         private int difficulty = 1;
+
+        // The instance that is handling the different levels of the game
         private LevelManager levelManager;
 
+        // Specifies whether cheat mode is on
         private bool cheatsOn = false;
         private bool gameOver = false;
 
@@ -134,11 +160,7 @@ namespace Zenith.Library
 
         // Methods
 
-        public void PlaySound()
-        {
-
-        }
-
+        // Sets the screen dimensions to the values given
         public void SetScreenDimensions(double startX, double startY, double endX, double endY)
         {
             StartX = startX;
@@ -148,15 +170,21 @@ namespace Zenith.Library
             // collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(Width, Height), 0);
         }
 
+        // Maps the absolute position on a physical screen to the virtual position
+        // according to World's dimensions.
         public Vector GetScreenPosition(double x, double y)
         {
             return new Vector((EndX - StartX) * x, (EndY - StartY) * y);
         }
 
+        // Called every 1.60 of a second. It reacts to a player's call
+        // to save and load. When the game is not paused, all GameObjects
+        // will be updates and collision checks will take place. The
+        // LevelManager is also called in this method.
         public void Update()
         {
             if (PlayerController.Save) Save(playerName + ".txt");
-            
+
             if (PlayerController.Load)
             {
                 Load(playerName + ".txt");
@@ -183,33 +211,45 @@ namespace Zenith.Library
 
                 ++gameTick;
             }
-            
+
         }
 
-        public void EndGame()
+        // This method is called when the player dies.
+        public void OnPlayerDeath()
         {
-            score -= Convert.ToInt32(Math.Round((double)gameTick / 10, 1));
-            gameOver = true;
-            ViewManager.TriggerEndGame();
+            ViewManager.TriggerEndGame(false);
         }
 
+        // This method is called when Boss5 is defeated
+        public void OnGameFinish()
+        {
+            World.Instance.Score += (54000 - World.Instance.GameTick);
+            ViewManager.TriggerEndGame(true);
+        }
+
+        // This method adds an object to the GameObject list
+        // and adds an accompanying Sprite.
         public void AddObject(GameObject gameObject)
         {
             objects.Add(gameObject);
             ViewManager.AddSprite(gameObject);
         }
 
+        // Removes an object from the GameObject list
+        // and removes an accompanying Sprite.
         public void RemoveObject(GameObject gameObject)
         {
             objects.Remove(gameObject);
             ViewManager.RemoveSprite(gameObject);
         }
 
+        // Turns cheat mode on.
         public void EnableCheatMode()
         {
             cheatsOn = true;
         }
 
+        // Turns cheat mode off.
         public void DisableCheatMode()
         {
             cheatsOn = false;
@@ -251,7 +291,7 @@ namespace Zenith.Library
             p.OnDeath = EndGame;
         }
 
-        // This method resets the instance of world.
+        // This method resets the instance of World.
         public void Reset()
         {
             playerName = "";
@@ -263,7 +303,6 @@ namespace Zenith.Library
             {
                 objects[i].Destroy = true;
             }
-
         }
 
         // Reads a list of strings from the file specifed by filename and puts them into the list
@@ -348,11 +387,12 @@ namespace Zenith.Library
                     {
                         writer.WriteLine(obj.Serialize());
                     }
-                    
+
                 }
             }
         }
 
+        // ???
         public GameObject CreateInstanceOf(string objectType)
         {
             Vector tempVector = new Vector(1, 1, false);

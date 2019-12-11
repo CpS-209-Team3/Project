@@ -1,20 +1,48 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Boss5.cs
+//Desc:   This file holds the class responsible for controlling
+//        Boss5.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class controls Boss5. It also controls the specialized
+    // movement for the object as well as the internal state of Boss5.
     class Boss5 : Enemy
     {
+        // The amount, in radians, at which to increment the boss' angle
+        // every time Update is called.
         private double spinSpeed = 0.5;
 
-        private Sensor sensor; // don't serialize
+        // The sensor for Boss5. This allows the boss to avoid the player's
+        // lasers.
+        private Sensor sensor;
+
+        // This is a force to be added to velocity as a result of "sensed"
+        // lasers.
         private Vector avoid = new Vector(0, 0);
+
+        // This is a checkpoint to mark when to start the next phase of Boss5's
+        // cycle. This value is a multiple of 1000, and is calculated given
+        // this formula: nextDamageMarker = ((health / 1000) - 1) * 1000;
+        // Whenever the boss' health reaches or goes below this value, the
+        // current state is set to Ram and the formula is used to get the
+        // next value of nextDamageMarker.
         private int nextDamageMarker;
 
+        // This vector marks where Boss5 should stand when it is in Flee mode.
         private Vector goal = new Vector(0, 0);
+
+        // Represents the amount of smaller enemy ships left on the screen to
+        // destroy before the boss will return to its Sway state.
         private int minionsLeft = 0;
 
+        // If the object is a laser from the player and the boss' state
+        // is not Sway, then the laser will appear to bounce off the ship
+        // by creating a new Enemy laser to replace the player's.
         public override void OnCollision(GameObject gameObject)
         {
             if (state != EnemyState.Sway && gameObject is Laser)
@@ -36,6 +64,9 @@ namespace Zenith.Library
             }
         }
 
+        // This is the callback method for whenever one of the boss' spawned
+        // ships is destroyed. When minionsLeft == 0, then the boss will resume
+        // its Sway state.
         public void OnMinionDeath()
         {
             --minionsLeft;
@@ -46,6 +77,26 @@ namespace Zenith.Library
             }
         }
 
+        // This method is split up into 4 different states:
+        // Sway:
+        //      Like all other bosses, this state will make the boss
+        //      sway vertically up and down. This is the only state
+        //      that the boss is not invincible. Here is when the
+        //      boss will periodically fire at the player.
+        // Ram:
+        //      In this state, the boss will constantly move towards
+        //      towards the player for about 10 seconds.
+        // Flee:
+        //      Here, the boss will move towards the goal Vector.
+        // Pause:
+        //      Once at the goal, the boss will spawn 10 enemies for
+        //      the player to defeat before resuming to the Sway
+        //      state.
+        
+        // Note:
+        //      When the boss is invincible, then it will spin and
+        //      deflect all of the lasers from the player, not
+        //      taking any damage.
         public override void ShipLoop()
         {
             switch (state)
@@ -104,6 +155,12 @@ namespace Zenith.Library
 
         }
 
+        // This method is called whenever the sensor receives a GameObject
+        // in a "collision." This is used to detect lasers that were fired
+        // from the player, so that the boss can avoid the lasers from
+        // the player. Also, when the boss is in the top or bottom 50 units
+        // from the edge of screen, it will receive a shove towards the
+        // middle so that it does not get stuck in the corner.
         public void OnSense(GameObject gameObject)
         {
             if (gameObject is Laser)
@@ -129,6 +186,7 @@ namespace Zenith.Library
             }
         }
 
+        // Constructor
         public Boss5(Vector position)
             : base(position)
         {
@@ -149,20 +207,14 @@ namespace Zenith.Library
             worth = 500;
         }
 
-        /*private const double spinSpeed = 0.5;
-
-        private Sensor sensor; // don't serialize
-        private Vector avoid = new Vector(0, 0);
-        private int nextDamageMarker;
-
-        private Vector goal = new Vector(0, 0);
-        private int minionsLeft = 0;*/
+        // ???
         public override string Serialize()
         {
             return base.Serialize() + ',' + spinSpeed.ToString() + ',' + avoid.ToString() + ',' +
                 nextDamageMarker.ToString() + ',' + goal.ToString() + ',' + minionsLeft.ToString();
         }
 
+        // ???
         public override void Deserialize(string saveInfo)
         {
             int index = IndexOfNthOccurance(saveInfo, ",", 24);
