@@ -159,7 +159,7 @@ namespace Zenith.Desktop
                 }
 
                 // Health Bar
-                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
                 // Just for fun here, no offense....
                 if (lbl_CurrentScore.Text.Contains("2") && lbl_CurrentScore.Text.Contains("0") && lbl_CurrentScore.Text.Contains("9"))
@@ -201,7 +201,7 @@ namespace Zenith.Desktop
             if (loadingGame)
             {
                 World.Instance.Load(filename);
-                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
                 loadingGame = false;
             }
             else
@@ -259,7 +259,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Save_Click(object sender, RoutedEventArgs e)
         {
-            World.Instance.Save(World.Instance.PlayerName + ".txt");
+            World.Instance.Save("Zenith.txt");
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~

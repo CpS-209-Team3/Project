@@ -101,7 +101,6 @@ namespace Zenith.Library
 
         // Specifies whether cheat mode is on
         private bool cheatsOn = false;
-        private bool newgame = false;
 
         private int currentWave = 1;
         private int enemiesLeftInWave = 0;
@@ -155,7 +154,6 @@ namespace Zenith.Library
 
         public bool CheatsOn { get { return cheatsOn; } }
 
-        public bool Newgame { get { return newgame; } set { newgame = value; } }
         public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
         public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
@@ -232,6 +230,23 @@ namespace Zenith.Library
             ViewManager.TriggerEndGame();
         }
 
+        public void DeathAction()
+        {
+            LevelManager.CurrentWave.WaveCount--;
+            if (LevelManager.CurrentWave.WaveCount == 0)
+            {
+                if (World.Instance.CurrentWave < 5)
+                {
+                    World.Instance.CurrentWave++;
+                }
+                else
+                {
+                    World.Instance.Level++;
+                    World.Instance.CurrentWave = 1;
+                }
+            }
+
+        }
         // This method adds an object to the GameObject list
         // and adds an accompanying Sprite.
         public void AddObject(GameObject gameObject)
@@ -352,11 +367,12 @@ namespace Zenith.Library
                     else if (obj is Enemy)
                     {
                         Enemy e = obj as Enemy;
-                        e.OnDeath = LevelManager.CurrentWave.DeathAction;
+                        e.OnDeath = DeathAction;
                     }
                     else if (obj is Player)
                     {
                         Player p = obj as Player;
+                        Player = p;
                         p.OnDeath = OnPlayerDeath;
                     }
 

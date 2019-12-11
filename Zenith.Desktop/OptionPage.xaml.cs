@@ -61,7 +61,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Start Button Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {
-            GamePage gamepg = new GamePage(main, false, Txt_shipName.Text);
+            GamePage gamepg = new GamePage(main, false, "Zenith.txt");
             gamepg.shipName = Txt_shipName.Text;
             gamepg.diffNum = difficult_Dropdown.SelectedIndex + 1;
             gamepg.isCheating = cheat;

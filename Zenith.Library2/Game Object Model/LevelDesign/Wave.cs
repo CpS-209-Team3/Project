@@ -16,23 +16,6 @@ namespace Zenith.Library
 
         public List<Enemy> enemies;
 
-        public void DeathAction()
-        {
-            waveCount--;
-            if (waveCount == 0)
-            {
-                if (World.Instance.CurrentWave < 5)
-                {
-                    World.Instance.CurrentWave++;
-                }
-                else
-                {
-                    World.Instance.Level++;
-                    World.Instance.CurrentWave = 1; 
-                }
-            }
-                
-        }
 
         public virtual void Spawn()
         {
@@ -46,7 +29,7 @@ namespace Zenith.Library
 
         public void AddEnemy(Ship type)
         {
-            type.OnDeath = DeathAction;
+            type.OnDeath = World.Instance.DeathAction;
             waveCount++;
             World.Instance.AddObject(type);
         }
