@@ -35,7 +35,6 @@ namespace Zenith.Library
             type = GameObjectType.Boss3;
             cannon = new Boss3Cannon(this);
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("large_grey_02.png") };
-
             size = new Vector(256, 256);
             health = 4000;
             maxHealth = 4000;

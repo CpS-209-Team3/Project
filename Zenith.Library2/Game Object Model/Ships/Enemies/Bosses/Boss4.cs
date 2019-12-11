@@ -81,7 +81,7 @@ namespace Zenith.Library
         {
             type = GameObjectType.Boss4;
             cannon = new Boss1Cannon(this);
-            cannon.Damage = 200;
+            cannon.Damage = 160 * World.Instance.Difficulty;
             imageSources = new List<string> { Util.GetShipSpriteFolderPath("large_red_01.png") };
             bodyDamage = 40;
             size = new Vector(256, 256);
