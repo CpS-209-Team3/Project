@@ -227,7 +227,7 @@ namespace Zenith.Library
         // This method is called when Boss5 is defeated
         public void OnGameFinish()
         {
-            World.Instance.Score += (54000 - World.Instance.GameTick);
+            World.Instance.Score += (54000 - gameTick);
             ViewManager.TriggerEndGame();
         }
 
@@ -401,13 +401,13 @@ namespace Zenith.Library
             switch (objectType)
             {
                 case "Item":
-                    return new Item(tempVector);
+                    //return new Item(tempVector);
                 case "Asteroid":
                     return new Asteroid(tempVector, 0);
                 case "Laser":
                     return new Laser(tempVector, tempVector, 0, true);
                 case "BackgroundElement":
-                    return new BackgroundElement(tempVector, 0);
+                    // return new BackgroundElement(tempVector, 0);
                 case "Enemy1":
                     return new Enemy1(tempVector);
                 case "Enemy2":

@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------
 //File:   DamagePowerUp.cs
 //Desc:   Increases a ship's damage when collided with.
+//Note:   This file is unused.
 //----------------------------------------------------------- 
 using System;
 using System.Collections.Generic;
