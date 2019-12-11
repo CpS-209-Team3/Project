@@ -101,6 +101,8 @@ namespace Zenith.Library
 
         // Specifies whether cheat mode is on
         private bool cheatsOn = false;
+
+        // Specify whether game over
         private bool gameOver = false;
 
         private int currentWave = 1;
@@ -161,7 +163,6 @@ namespace Zenith.Library
 
         public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
         public Action EndGame { get { return endGame; } set { endGame = value; } }
-
         // Methods
 
         // Sets the screen dimensions to the values given

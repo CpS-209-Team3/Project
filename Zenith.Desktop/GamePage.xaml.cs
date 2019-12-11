@@ -92,6 +92,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
         public void TriggerEndGame()
         {
+            World.Instance.GameOver = true;
             //timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
             HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
@@ -111,6 +112,7 @@ namespace Zenith.Desktop
             }
 
             //Just for fun here... No Offense!!!
+            //This will show a funny text when player who died in the game with a specific name or reach a specific score.
             if ((lbl_Popup_EndGame_Score.Text.Contains("2") && lbl_Popup_EndGame_Score.Text.Contains("0") && lbl_Popup_EndGame_Score.Text.Contains("9")) || lbl_PlayerName.Text.Contains("Schaub"))
             {
                 lbl_Popup_EndGame_NewHiScor.Text = "All Hail Dr. Schaub!";
@@ -125,7 +127,7 @@ namespace Zenith.Desktop
             }
             else if (lbl_Popup_EndGame_Score.Text.Contains("666"))
             {
-                lbl_Popup_EndGame_NewHiScor.Text = "Number of the Beast!";
+                lbl_Popup_EndGame_NewHiScor.Text = "Ooh! Number of the Beast!";
             }
             else if (lbl_Popup_EndGame_Score.Text.Contains("1337"))
             {
@@ -159,13 +161,11 @@ namespace Zenith.Desktop
                 // Health Bar
                 progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
-                // Just for fun here, no offense....
-                if (lbl_CurrentScore.Text.Contains("2") && lbl_CurrentScore.Text.Contains("0") && lbl_CurrentScore.Text.Contains("9"))
+                // No touch when died
+                if (World.Instance.GameOver)
                 {
-                    lbl_Popup_Shop.Text = "SCHAUB";
+                    return;
                 }
-                else
-                    lbl_Popup_Shop.Text = "SHOP";
 
                 // Input handling
                 World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
@@ -193,6 +193,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Window_Loaded(object sender, RoutedEventArgs ev)
         {
+            World.Instance.GameOver = false;
             World.Instance.Directory = Directory.GetCurrentDirectory();
             sprites = new List<Sprite>();
             World.Instance.ViewManager = this;
