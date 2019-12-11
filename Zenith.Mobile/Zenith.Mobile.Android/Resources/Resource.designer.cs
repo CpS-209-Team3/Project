@@ -5929,19 +5929,22 @@ namespace Zenith.Mobile.Droid
 			public const int red_06 = 2131165345;
 			
 			// aapt resource value: 0x7F0700A3
-			public const int tankbase_01 = 2131165347;
+			public const int systemGreen = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int tooltip_frame_dark = 2131165348;
+			public const int tankbase_01 = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int tooltip_frame_light = 2131165349;
+			public const int tooltip_frame_dark = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int universe = 2131165350;
+			public const int tooltip_frame_light = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int zenithLogo = 2131165351;
+			public const int universe = 2131165351;
+			
+			// aapt resource value: 0x7F0700A8
+			public const int zenithLogo = 2131165352;
 			
 			static Drawable()
 			{
