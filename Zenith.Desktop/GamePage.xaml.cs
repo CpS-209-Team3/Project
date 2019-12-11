@@ -92,7 +92,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
         public void TriggerEndGame()
         {
-            //timer.Stop();
+            timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
             HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
             if (scores.IsNewHighScore(thisScore))

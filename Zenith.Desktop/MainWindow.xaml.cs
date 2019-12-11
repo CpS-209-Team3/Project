@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,105 +25,19 @@ using Zenith.Library;
 
 namespace Zenith.Desktop
 {
-    public partial class MainWindow : Window, ViewManager
+    public partial class MainWindow : Window
     {
-        DispatcherTimer timer;
-        bool isCheating = false;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        List<Sprite> sprites;
-
-        //~~~~~~~~~~~~~~~~~~~~~~~~~ Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
-        //~~~~~~~~~~~~~~~~~~~~ Add Sprite ~~~~~~~~~~~~~~~~~~~~
-        public void AddSprite(GameObject obj)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                var s = new Sprite(obj);
-                sprites.Add(s);
-                canView.Children.Add(s);
-            });
-        }
-
-        //~~~~~~~~~~~~~~~~~~~~ Remove Sprite ~~~~~~~~~~~~~~~~~~~~
-        public void RemoveSprite(GameObject obj)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                foreach (var s in sprites)
-                {
-                    if (s.GameObject == obj)
-                    {
-                        sprites.Remove(s);
-                        canView.Children.Remove(s);
-                        break;
-                    }
-                }
-            });
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~`
-        public void PlaySound(string key)
-        {
-
-        }
-
-        //~~~~~~~~~~~~~~Trigger Endgame~~~~~~~~~~~~~~~~~~`
-        public void TriggerEndGame() { }
-
-        //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
-        public void GameLoop(object sender, EventArgs e)
-        {
-            World.Instance.Update();
-
-            Dispatcher.Invoke(() =>
-            {
-                for (int i = 0; i < sprites.Count; ++i)
-                {
-                    sprites[i].Update();
-                }
-
-                // Input handling
-                World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
-                World.Instance.PlayerController.Down = Keyboard.IsKeyDown(Key.Down);
-                World.Instance.PlayerController.Left = Keyboard.IsKeyDown(Key.Left);
-                World.Instance.PlayerController.Right = Keyboard.IsKeyDown(Key.Right);
-                World.Instance.PlayerController.Fire = Keyboard.IsKeyDown(Key.Space);
-                World.Instance.PlayerController.Pause = Keyboard.IsKeyToggled(Key.P);
-                World.Instance.PlayerController.Save = Keyboard.IsKeyDown(Key.S);
-                World.Instance.PlayerController.Load = Keyboard.IsKeyDown(Key.L);
-
-                int potentialCollisions = World.Instance.Objects.Count;
-                potentialCollisions = (potentialCollisions * potentialCollisions - potentialCollisions) / 2;
-                //txtTest.Text = World.Instance.Collisions.ToString() + '/' + potentialCollisions;
-            });
-        }
-        //~~~~~~~~~~~~~~~~~~~~~~~~~ End Method Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
-
         //~~~~~~~~~~~~~~~~~~~~~~~~~ Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Window Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Window_Loaded(object sender, RoutedEventArgs ev)
         {
-            World.Instance.Directory = Directory.GetCurrentDirectory();
-            sprites = new List<Sprite>();
-            World.Instance.ViewManager = this;
-            if (isCheating) World.Instance.EnableCheatMode();
 
-            World.Instance.SetScreenDimensions(0, 0, Width, Height);
-            //World.Instance.EndX = Width;
-            //World.Instance.EndY = Height;
-
-            /*if (File.Exists(World.Instance.PlayerName + ".txt") == true) { }
-            else
-            {
-                btn_Load.IsEnabled = false;
-                btn_Load.Foreground = Brushes.Black;
-                btn_Load.Opacity = 0.5;
-            }*/
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
