@@ -72,26 +72,33 @@ namespace Zenith.View
                 for (int i = 0; i < gameObject.ImageSources.Count; ++i)
                 {
                     images[i] = new Image();
-                    gameObject.ImageSources[i].Replace('-', '_');
-                    
+
                     if(Device.Idiom.ToString() == "Tablet")
                     {
-                        int index = gameObject.ImageSources[i].IndexOf("\\Sprites\\");
-                        //string cleanPath = (index < 0)
-                        //    ? gameObject.ImageSources[i]
-                        //    : gameObject.ImageSources[i].Remove(index, );
-                        //if (index >= 0)
-                        //{
-                            if (gameObject.ImageSources[i].Contains("Pixel_Spaceships_for_SHMUP_1.4"))
-                            {
-                                images[i].Source = gameObject.ImageSources[i].Remove(index, index + 70);
-                            }
-                            else
-                            {
-                                images[i].Source = gameObject.ImageSources[i].Remove(index, index + 11);
-                            }
-                        //}
+                        //Replace did not work. Doing manual replacement to get rid of '-'
+                        while (gameObject.ImageSources[i].Contains("-"))
+                        {
+                            int id = gameObject.ImageSources[i].IndexOf("-");
+                            gameObject.ImageSources[i] = gameObject.ImageSources[i].Substring(0, id) + "_" + gameObject.ImageSources[i].Substring(id + 1);
+                        }
 
+                        int index = gameObject.ImageSources[i].IndexOf("\\Sprites\\");
+                        if (gameObject.ImageSources[i].Contains("Projectiles"))
+                        {
+                             images[i].Source = gameObject.ImageSources[i].Remove(index, index + 82);
+                        }
+                        else if (gameObject.ImageSources[i].Contains("Pixel_Spaceships_for_SHMUP_1.4"))
+                        {
+                            images[i].Source = gameObject.ImageSources[i].Remove(index, index + 70);
+                        }
+                        else if (gameObject.ImageSources[i].Contains("Health_Bar"))
+                        {
+                            images[i].Source = gameObject.ImageSources[i].Remove(index, index + 19);
+                        }
+                        else
+                        {
+                            images[i].Source = gameObject.ImageSources[i].Remove(index, index + 8);
+                        }
                     }
                     else if (Device.Idiom.ToString() == "Desktop")
                     {
@@ -99,13 +106,13 @@ namespace Zenith.View
                     }
 
 
-                        images[i].WidthRequest = gameObject.Size.X;
+                    images[i].WidthRequest = gameObject.Size.X;
                     images[i].HeightRequest = gameObject.Size.Y;
                     images[i].Aspect = Aspect.AspectFit;
                     images[i].HorizontalOptions = LayoutOptions.Center;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // MessageBox.Show("Error retrieving image for " + gameObject.Type.ToString());
             }
