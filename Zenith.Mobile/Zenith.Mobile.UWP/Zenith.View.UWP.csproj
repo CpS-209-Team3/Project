@@ -148,6 +148,22 @@
     <Content Include="orange_05.png" />
     <Content Include="parallaxBackground.png" />
     <Content Include="pause.png" />
+    <Content Include="projectile_blue.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="projectile_green.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="projectile_orange.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="projectile_red.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="redLaser.png" />
     <Content Include="Sprites\Health_Bar\healthbar_0.png">

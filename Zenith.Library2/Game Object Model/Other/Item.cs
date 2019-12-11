@@ -10,7 +10,12 @@ namespace Zenith.Library
 {
     class Item : GameObject
     {
-
+        public enum shopItems
+        {
+            IsSelected,
+            Selling,
+            Sold
+        }
         public override void Loop() { }
 
         public Item(Vector position)
@@ -18,5 +23,7 @@ namespace Zenith.Library
         {
 
         }
+
+        protected int startMoney = 0;
     }
 }

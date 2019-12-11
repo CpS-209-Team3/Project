@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+//-----------------------------------------------------------
+//File:   CreditsPage.xaml.cs
+//Desc:   Page that shows credits.
+//-----------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     /// <summary>

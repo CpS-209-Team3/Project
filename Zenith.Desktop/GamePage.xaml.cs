@@ -18,6 +18,11 @@ using System.Windows.Threading;
 using Zenith.Library;
 using System.Media;
 
+//-----------------------------------------------------------
+//File:   GamePage.xaml.cs
+//Desc:   Main view of playing Zenith game.
+//-----------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     /// <summary>
@@ -25,16 +30,23 @@ namespace Zenith.Desktop
     /// </summary>
     public partial class GamePage : Page, ViewManager
     {
+        bool chooseThis = false;
+        int ItemCost;
+        int ItemSelectPos;
         MainWindow main;
         DispatcherTimer timer;
         public bool isCheating = true;
         List<Button> ItemsOnSale;
         public string shipName;
         public int diffNum;
-        double wid;
-        double hi;
-        public GamePage(MainWindow theMainOne)
+        public Dictionary<string, SoundPlayer> gameSounds;
+
+        private bool loadingGame;
+        private string filename;
+        public GamePage(MainWindow theMainOne, bool loadingGame, string filename)
         {
+            this.loadingGame = loadingGame;
+            this.filename = filename;
             ItemsOnSale = new List<Button>();
             main = theMainOne;
             InitializeComponent();
@@ -71,9 +83,65 @@ namespace Zenith.Desktop
             });
         }
 
-        public void TriggerEndGame(bool isPlayerAlive)
+        //~~~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~~~
+        public void PlaySound(string key)
         {
+            Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+        }
 
+        //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
+        public void TriggerEndGame()
+        {
+            //timer.Stop();
+            HighScores scores = HighScores.Load("highScores.txt");
+            HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
+            if (scores.IsNewHighScore(thisScore))
+            {
+                scores.AddHighScore(thisScore);
+                scores.Save("highScores.txt");
+                //Put the window that says that you have a new high score here
+                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
+                lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
+            }
+            else
+            {
+                //Put the window that says just says the game is over, no high score
+                lbl_Popup_EndGame_Header.Text = "GAME OVER";
+                lbl_Popup_EndGame_NewHiScor.Text = null;
+            }
+
+            //Just for fun here... No Offense!!!
+            if ((lbl_Popup_EndGame_Score.Text.Contains("2") && lbl_Popup_EndGame_Score.Text.Contains("0") && lbl_Popup_EndGame_Score.Text.Contains("9")) || lbl_PlayerName.Text.Contains("Schaub"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "All Hail Dr. Schaub!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("777"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "Woohoo!! Jackpot!!!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("864"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "Welcome to Greenville, SC";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("666"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "Number of the Beast!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text.Contains("1337"))
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "There is LEET here!";
+            }
+            else if (lbl_Popup_EndGame_Score.Text == "13373")
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "ELITE ASTRONAUT!!!";
+            }
+            else if (lbl_PlayerName.Text.ToLower() == "hakuna matata" || lbl_PlayerName.Text.ToLower() == "hakunamatata")
+            {
+                lbl_Popup_EndGame_NewHiScor.Text = "It means no worries";
+            }
+
+            lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
+            Popup_EndGame.IsOpen = true;
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
@@ -82,7 +150,7 @@ namespace Zenith.Desktop
             World.Instance.Update();
             Dispatcher.Invoke(() =>
             {
-                lbl_Popup_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
+                lbl_Popup_EndGame_Score.Text = lbl_Popup_Pause_CurrentScore.Text = lbl_CurrentScore.Text = Convert.ToString(World.Instance.Score);
                 for (int i = 0; i < sprites.Count; ++i)
                 {
                     sprites[i].Update();
@@ -90,6 +158,14 @@ namespace Zenith.Desktop
 
                 // Health Bar
                 progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+
+                // Just for fun here, no offense....
+                if (lbl_CurrentScore.Text.Contains("2") && lbl_CurrentScore.Text.Contains("0") && lbl_CurrentScore.Text.Contains("9"))
+                {
+                    lbl_Popup_Shop.Text = "SCHAUB";
+                }
+                else
+                    lbl_Popup_Shop.Text = "SHOP";
 
                 // Input handling
                 World.Instance.PlayerController.Up = Keyboard.IsKeyDown(Key.Up);
@@ -121,6 +197,7 @@ namespace Zenith.Desktop
             World.Instance.ViewManager = this;
             World.Instance.Reset();
             if (isCheating) World.Instance.EnableCheatMode();
+        
             World.Instance.PlayerName = shipName;
             World.Instance.Difficulty = diffNum;
 
@@ -132,6 +209,18 @@ namespace Zenith.Desktop
             World.Instance.EndX = main.Width - 75;
             World.Instance.EndY = main.Height - 75;
 
+            gameSounds = new Dictionary<string, SoundPlayer>();
+            gameSounds.Add("Laser", new SoundPlayer(Util.GetSoundFolderPath("laser.wav")));
+            gameSounds.Add("Explode", new SoundPlayer(Util.GetSoundFolderPath("smallExplode.wav")));
+            foreach (KeyValuePair<string, SoundPlayer> i in gameSounds)
+            {
+                i.Value.Load();
+            }
+            if (loadingGame)
+            {
+                World.Instance.Load(filename);
+                loadingGame = false;
+            }
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
             timer.Tick += GameLoop;
@@ -142,7 +231,8 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Pause Load ~~~~~~~~~~~~~~~~~~~~
         private void Popup_Pause_Loaded(object sender, RoutedEventArgs e)
         {
-            lbl_Popup_PlayerName.Text = lbl_PlayerName.Text;
+            lbl_Popup_Pause_PlayerName.Text = lbl_PlayerName.Text;
+            lbl_Distance.Text = "";
         }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)
@@ -167,6 +257,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_MainMenu_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             //Close popup then go back to Main Menu
             if (Popup_Pause.IsOpen == true)
                 Popup_Pause.IsOpen = false;
@@ -175,22 +266,47 @@ namespace Zenith.Desktop
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_EndGame EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~ Popup: Close ~~~~~~~~~~~~~~~~~~~~
-        private void btn_NewHighScore_Close_Click(object sender, RoutedEventArgs e)
+        private void btn_EndGame_ToHighScore_Click(object sender, RoutedEventArgs e)
         {
-            if (Popup_NewHighScore.IsOpen == true)
-                Popup_NewHighScore.IsOpen = false;
+            HighScorePage hiscrPage = new HighScorePage(main);
+            main.Content = hiscrPage;
+            if (Popup_EndGame.IsOpen == true)
+                Popup_EndGame.IsOpen = false;
+
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_NewHighScore EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_SHOP EVENT HANDLING (In Development)~~~~~~~~~~~~~~~~~~~~~~~~~
-        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Buy Button ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_SHOP EVENT HANDLING (... Shop is gone... Farewell!!!)~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Buy Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_Shop_Buy_Click(object sender, RoutedEventArgs e)
         {
-
+            int CurrentBalance = Convert.ToInt32(lbl_Popup_Shop_Currency.Text);
+            if (chooseThis)
+            {
+                if (ItemCost > CurrentBalance)
+                {
+                    lbl_Popup_Shop_Announce.Text = "Not enough money!";
+                    chooseThis = false;
+                }
+                else
+                {
+                    ItemsOnSale[ItemSelectPos].IsEnabled = false;
+                    ItemsOnSale[ItemSelectPos].Content = "SOLD";
+                    ItemsOnSale[ItemSelectPos].FontWeight = FontWeights.SemiBold;
+                    ItemsOnSale[ItemSelectPos].FontSize = 18;
+                    ItemsOnSale[ItemSelectPos].HorizontalAlignment = HorizontalAlignment.Center;
+                    ItemsOnSale[ItemSelectPos].VerticalAlignment = VerticalAlignment.Center;
+                    ItemsOnSale[ItemSelectPos].Opacity = 0.5;
+                    lbl_Popup_Shop_Announce.Text = "You bought " + lbl_Popup_Shop_ItemName.Text + "!";
+                    lbl_Popup_Shop_Currency.Text = Convert.ToString(CurrentBalance - ItemCost);
+                    chooseThis = false;
+                }
+            }
+            else { }
         }
-        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Loaded ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Loaded ~~~~~~~~~~~~~~~~~~~~
         private void Popup_Shop_Loaded(object sender, RoutedEventArgs e)
         {
             // Copy from the Good Old BattleShip
@@ -225,7 +341,7 @@ namespace Zenith.Desktop
             }
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Popup Shop Item Click ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Item Click ~~~~~~~~~~~~~~~~~~~~
         private void ShopItem_Click(object sender, RoutedEventArgs e)
         {
             Color bgcolor = Color.FromRgb(150, 111, 51);
@@ -234,7 +350,7 @@ namespace Zenith.Desktop
             // then click buy to confirm to buy it.
             Button ItemChose = sender as Button;
             int i = 0;
-            bool chooseThis = false;
+            chooseThis = false;
             while (chooseThis != true)
             {
                 if (ItemsOnSale[i] == ItemChose)
@@ -245,23 +361,28 @@ namespace Zenith.Desktop
                     }
                     ItemsOnSale[i].Background = Brushes.LightBlue;
                     chooseThis = true;
+                    lbl_Popup_Shop_ItemName.Text = "Item " + Convert.ToString(i + 1);
+                    lbl_Popup_Shop_ItemPrice.Text = Convert.ToString((i + 1) * 100) + "ZT";
+                    ItemSelectPos = i;
+                    ItemCost = (i + 1) * 100;
                 }
                 else
                     ++i;
             }
-
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Test Shop View Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_TestShop_Click(object sender, RoutedEventArgs e)
         {
             Popup_Shop.IsOpen = true;
         }
 
+        //~~~~~~~~~~~~~~~~~~~~ Popup: Shop Close Button ~~~~~~~~~~~~~~~~~~~~
         private void btn_Shop_Close_Click(object sender, RoutedEventArgs e)
         {
             Popup_Shop.IsOpen = false;
         }
-        //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_SHOP EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~~~~~~END POPUP_SHOP EVENT HANDLING (yes... that's the End of SHOP :'( )~~~~~~~~~~~~~~~~~~~~~~~~~
         //~~~~~~~~~~~~~~~~~~~~~~~~~ End Event Handling Zone ~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }

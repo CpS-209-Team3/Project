@@ -80,6 +80,8 @@ namespace Zenith.Library
 
             type = GameObjectType.Laser;
             tag = GameTag.Projectile;
+
+            World.Instance.ViewManager.PlaySound("Laser");
         }
 
         // ???

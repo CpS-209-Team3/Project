@@ -68,6 +68,9 @@
     <Compile Include="HighScorePage.xaml.cs">
       <DependentUpon>HighScorePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoadPage.xaml.cs">
+      <DependentUpon>LoadPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OptionPage.xaml.cs">
       <DependentUpon>OptionPage.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HighScorePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,6 +188,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HighScoreBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image_Button_L.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="systemPurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image_Button_SpaceBar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

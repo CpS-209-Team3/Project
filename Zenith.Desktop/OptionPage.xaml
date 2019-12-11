@@ -38,9 +38,5 @@
             </StackPanel>
             <Button x:Name="btn_Back" Content="Back" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="150" Margin="0,0,2,0" Click="btn_Back_Click"/>
         </StackPanel>
-        <TextBox x:Name="txtTest"/>
-        <!--
-        <Image Source="C:\Users\Caedmon\Desktop\Zenith\Zenith.Desktop\bin\Debug\Sprites\Pixel_Spaceships_for_SHMUP_1.4\Pixel_Spaceships_for_SHMUP_1.4/blue_01.png"></Image>
-        -->
     </Canvas>
 </Page>

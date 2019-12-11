@@ -16,6 +16,11 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Zenith.Library;
 
+//-----------------------------------------------------------
+//File:   MainWindow.xaml.cs
+//Desc:   Main Menu Screen of Zenith game.
+//-----------------------------------------------------------
+
 namespace Zenith.Desktop
 {
     public partial class MainWindow : Window, ViewManager
@@ -59,7 +64,14 @@ namespace Zenith.Desktop
             });
         }
 
-        public void TriggerEndGame(bool isPlayerAlive) { }
+        // ~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~`
+        public void PlaySound(string key)
+        {
+
+        }
+
+        //~~~~~~~~~~~~~~Trigger Endgame~~~~~~~~~~~~~~~~~~`
+        public void TriggerEndGame() { }
 
         //~~~~~~~~~~~~~~~~~~~~ Game Loop ~~~~~~~~~~~~~~~~~~~~
         public void GameLoop(object sender, EventArgs e)
@@ -102,6 +114,14 @@ namespace Zenith.Desktop
             World.Instance.SetScreenDimensions(0, 0, Width, Height);
             //World.Instance.EndX = Width;
             //World.Instance.EndY = Height;
+
+            /*if (File.Exists(World.Instance.PlayerName + ".txt") == true) { }
+            else
+            {
+                btn_Load.IsEnabled = false;
+                btn_Load.Foreground = Brushes.Black;
+                btn_Load.Opacity = 0.5;
+            }*/
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
@@ -121,9 +141,14 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
-            // Disable button if no save file is available. 
-            GamePage game = new GamePage(this);
-            this.Content = game;
+            // Disable button if no save file is available.
+            string filename = World.Instance.PlayerName + ".txt";
+            if (File.Exists(filename))
+            {
+                GamePage game = new GamePage(this, true, filename);
+                this.Content = game;
+            }
+            
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~

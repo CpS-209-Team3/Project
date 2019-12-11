@@ -14,7 +14,7 @@
         <Grid x:Name="grid_MainMenu" Canvas.Left="194" Canvas.Top="57" Height="476" Width="720">
             <Image Source="zenithLogo.png" Margin="88,30,58,295"/>
             <Button x:Name="btn_Play" Content="Play Game" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Click="btn_Play_Click" Margin="272,201,272,225"/>
-            <Button x:Name="btn_Load" Content="Load Game" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Click="btn_Load_Click" Margin="272,255,272,171"/>
+            <Button x:Name="btn_Load" Content="Load Game" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Click="btn_Load_Click" Margin="272,255,272,171" />
             <Button x:Name="btn_HighScore" Content="High Scores" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Click="btn_HighScore_Click" Margin="272,310,272,116"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="213,364,203,63">
                 <Button x:Name="btn_Help" Content="Help" FontSize="30" FontWeight="DemiBold" Foreground="AliceBlue" BorderBrush="Transparent" Background="Transparent" Height="50" Width="150" Margin="0,0,2,0" Click="btn_Help_Click"/>
