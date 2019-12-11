@@ -6,7 +6,7 @@ namespace Zenith.Library
 {
     class Wave5 : Wave
     {
-        public Wave5(int difficulty, int level)
+        public override void Spawn()
         {
             AddEnemy(World.Instance.SpawnBoss(level));
         }

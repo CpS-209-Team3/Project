@@ -40,6 +40,7 @@ namespace Zenith.Library
         {
             gameTick = 0;
             level = 1;
+            difficulty = 1;
             random = new Random();
             PlayerController = new GameController();
             EndX = 500;
@@ -51,7 +52,7 @@ namespace Zenith.Library
             collisionManager = new CollisionQuad(new Vector(StartX, StartY), new Vector(Width, Height), 0);
             collisionManager.Objects = objects;
 
-            levelManager = new LevelManager(difficulty, level);
+            levelManager = new LevelManager();
         }
 
         // End of Singleton Code
@@ -156,7 +157,7 @@ namespace Zenith.Library
         public void Update()
         {
             if (PlayerController.Save) Save(playerName + ".txt");
-            
+
             if (PlayerController.Load)
             {
                 Load(playerName + ".txt");
@@ -183,7 +184,7 @@ namespace Zenith.Library
 
                 ++gameTick;
             }
-            
+
         }
 
         public void EndGame()
@@ -257,6 +258,8 @@ namespace Zenith.Library
             level = 1;
             score = 0;
             gameTick = 0;
+            currentWave = 1;
+            enemiesLeftInWave = 0;
 
             for (int i = objects.Count - 1; i > 0; i--)
             {
@@ -296,31 +299,27 @@ namespace Zenith.Library
                 }
                 foreach (GameObject obj in objects)
                 {
-                    if (obj.Type == GameObjectType.Ship)
+                    if (obj is Boss5)
                     {
-                        switch(obj.Type)
-                        {
-                            case GameObjectType.Enemy:
-                                enemiesLeftInWave++;
-                                Enemy e = obj as Enemy;
-                                e.OnDeath = LevelManager.CurrentWave.DeathAction;
-                                return;
-                            case GameObjectType.Player:
-                                enemiesLeftInWave++;
-                                Player p = obj as Player;
-                                p.OnDeath = EndGame;
-                                return;
-                            case GameObjectType.Boss5:
-                                enemiesLeftInWave++;
-                                Boss5 b = obj as Boss5;
-                                b.OnDeath = EndGame;
-                                return;
-                        }
+                        Boss5 b = obj as Boss5;
+                        b.OnDeath = EndGame;
                     }
+                    else if (obj is Enemy)
+                    {
+                        Enemy e = obj as Enemy;
+                        e.OnDeath = LevelManager.CurrentWave.DeathAction;
+                    }
+                    else if (obj is Player)
+                    {
+                        Player p = obj as Player;
+                        p.OnDeath = EndGame;
+                    }
+
                 }
             }
-
         }
+
+
 
         // This function saves the game as a text file named [filename].txt
         // It does this by first deleting any text files under the same name,
@@ -340,14 +339,14 @@ namespace Zenith.Library
                 writer.WriteLine(level);
                 writer.WriteLine(score);
                 writer.WriteLine(currentWave);
-                writer.WriteLine(enemiesLeftInWave);
+                writer.WriteLine(LevelManager.CurrentWave.WaveCount);
                 foreach (GameObject obj in this.objects)
                 {
                     if (!(obj is HealthBar))
                     {
                         writer.WriteLine(obj.Serialize());
                     }
-                    
+
                 }
             }
         }
@@ -388,6 +387,5 @@ namespace Zenith.Library
             }
             return null;
         }
-
     }
 }
