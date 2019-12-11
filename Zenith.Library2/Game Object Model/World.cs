@@ -101,7 +101,7 @@ namespace Zenith.Library
 
         // Specifies whether cheat mode is on
         private bool cheatsOn = false;
-        private bool gameOver = false;
+        private bool newgame = false;
 
         private int currentWave = 1;
         private int enemiesLeftInWave = 0;
@@ -155,12 +155,13 @@ namespace Zenith.Library
 
         public bool CheatsOn { get { return cheatsOn; } }
 
-        public bool GameOver { get { return gameOver; } set { gameOver = value; } }
-
+        public bool Newgame { get { return newgame; } set { newgame = value; } }
         public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
         public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
         public Action EndGame { get { return endGame; } set { endGame = value; } }
+
+        
 
         // Methods
 
@@ -304,6 +305,7 @@ namespace Zenith.Library
             gameTick = 0;
             currentWave = 1;
             enemiesLeftInWave = 0;
+            cheatsOn = false;
 
             for (int i = objects.Count - 1; i > 0; i--)
             {
@@ -329,7 +331,7 @@ namespace Zenith.Library
                     score = Convert.ToInt32(reader.ReadLine());
                     currentWave = Convert.ToInt32(reader.ReadLine());
                     enemiesLeftInWave = Convert.ToInt32(reader.ReadLine());
-
+                    cheatsOn = Convert.ToBoolean(reader.ReadLine());
                     while (reader.Peek() != -1)
                     {
                         string saveInfo = reader.ReadLine();
@@ -345,7 +347,7 @@ namespace Zenith.Library
                     if (obj is Boss5)
                     {
                         Boss5 b = obj as Boss5;
-                        b.OnDeath = EndGame;
+                        b.OnDeath = OnGameFinish;
                     }
                     else if (obj is Enemy)
                     {
@@ -355,7 +357,7 @@ namespace Zenith.Library
                     else if (obj is Player)
                     {
                         Player p = obj as Player;
-                        p.OnDeath = EndGame;
+                        p.OnDeath = OnPlayerDeath;
                     }
 
                 }
@@ -383,6 +385,7 @@ namespace Zenith.Library
                 writer.WriteLine(score);
                 writer.WriteLine(currentWave);
                 writer.WriteLine(LevelManager.CurrentWave.WaveCount);
+                writer.WriteLine(cheatsOn);
                 foreach (GameObject obj in this.objects)
                 {
                     if (!(obj is HealthBar))

@@ -22,7 +22,7 @@ namespace Zenith.Library
 
     public class LevelManager
     {
-        // ???
+        // instance variables
         private int level;
 
         // ???
@@ -32,7 +32,7 @@ namespace Zenith.Library
         private int spawnRate;
 
         // ???
-        private int timeUntilNextSpawn;
+        private int timeUntilNextWave;
 
         // ???
         private Wave currentWave;
@@ -40,17 +40,23 @@ namespace Zenith.Library
         // ???
         private static int waveNum;
 
-        
+        private bool startingGame;
+
+        // properties
+
         public int Level { get { return level; } set { level = value; } }
         public int Difficulty { get { return difficulty; } set { difficulty = value; } }
         public static int WaveNum { get { return waveNum; } set { waveNum = value; } }
-
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
-
+        public bool StartingGame { set { startingGame = value; } }
         public void Update()
         {
-            if (currentWave == null) currentWave = CreateWave(World.Instance.CurrentWave);
+            if (World.Instance.CurrentWave == 1 && startingGame)
+            {
+                currentWave = CreateWave(World.Instance.CurrentWave);
+                startingGame = false;
+            }
             if (World.Instance.EnemiesLeftInWave > 0) // doesnt work need it to active once
             {
                 currentWave.WaveCount = World.Instance.EnemiesLeftInWave;
@@ -58,12 +64,12 @@ namespace Zenith.Library
             }
             if (currentWave.WaveCount == 0)
             {
-                if (timeUntilNextSpawn > 0) --timeUntilNextSpawn;
+                if (timeUntilNextWave > 0) --timeUntilNextWave;
                 else
                 {
                     currentWave = CreateWave(World.Instance.CurrentWave);
                     CurrentWave.Spawn();
-                    timeUntilNextSpawn = spawnRate;
+                    timeUntilNextWave = spawnRate;
                 }
             }
             
@@ -71,10 +77,10 @@ namespace Zenith.Library
 
 
         public LevelManager()
-
         {
-            spawnRate = 100; // time in between waves
-            timeUntilNextSpawn = spawnRate;
+            startingGame = true;
+            spawnRate = 100; 
+            timeUntilNextWave = spawnRate;
         }
 
         public Wave CreateWave(int nextWave)

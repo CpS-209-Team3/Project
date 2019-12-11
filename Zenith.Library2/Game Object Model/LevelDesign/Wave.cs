@@ -10,7 +10,7 @@ namespace Zenith.Library
         protected int level;
         protected int waveCount = 0;
         protected Vector startingPos;
-        protected double size; 
+        protected double size;
 
         public int WaveCount { get { return waveCount; } set { waveCount = value; } }
 
@@ -21,14 +21,14 @@ namespace Zenith.Library
             waveCount--;
             if (waveCount == 0)
             {
-                if (LevelManager.WaveNum < 5)
+                if (World.Instance.CurrentWave < 5)
                 {
                     World.Instance.CurrentWave++;
                 }
                 else
                 {
                     World.Instance.Level++;
-                    LevelManager.WaveNum = 1; 
+                    World.Instance.CurrentWave = 1; 
                 }
             }
                 

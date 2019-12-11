@@ -65,6 +65,7 @@ namespace Zenith.Desktop
             gamepg.shipName = Txt_shipName.Text;
             gamepg.diffNum = difficult_Dropdown.SelectedIndex + 1;
             gamepg.isCheating = cheat;
+            gamepg.newgame = true;
             main.Content = gamepg;
         }
 

@@ -43,6 +43,8 @@ namespace Zenith.Desktop
 
         private bool loadingGame;
         private string filename;
+
+        public bool newgame = false;
         public GamePage(MainWindow theMainOne, bool loadingGame, string filename)
         {
             this.loadingGame = loadingGame;
@@ -199,13 +201,14 @@ namespace Zenith.Desktop
             if (loadingGame)
             {
                 World.Instance.Load(filename);
+                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
                 loadingGame = false;
             }
             else
             {
                 World.Instance.Reset();
                 if (isCheating) World.Instance.EnableCheatMode();
-
+                World.Instance.LevelManager.StartingGame = newgame;
                 World.Instance.PlayerName = shipName;
                 World.Instance.Difficulty = diffNum;
 
