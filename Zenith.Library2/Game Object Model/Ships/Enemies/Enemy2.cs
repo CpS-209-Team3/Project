@@ -1,21 +1,28 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Enemy2.cs
+//Desc:   Holds the class that controls the enemy with
+//        medium difficulty.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-
-// needs a different sprite. 
-// needs its own movemment pattern put in ship loop.
-// 
-
-
-
-
 namespace Zenith.Library
 {
+    // This enemy is the mid-difficulty type. It acts like a guard
+    // by initially choosing a position to guard at. If the player
+    // comes to close, then the ship will back away.
     class Enemy2 : Enemy
     {
-        Vector goal;
+        // The preferred position to take a stance as when the
+        // player is not within 500 units.
+        Vector guardPosition;
 
+        // This fires at the player as fast as possible.
+        // If the player comes within a 500 unit radius of the ship,
+        // then the enemy will flee the player. Once the player is out
+        // of that range, then the enemy ship will resume its
+        // guarding position.
         public override void ShipLoop()
         {
             cannon.Fire();
@@ -29,10 +36,11 @@ namespace Zenith.Library
             }
             else
             {
-                MoveTo(goal, 10);
+                MoveTo(guardPosition, 10);
             }
         }
 
+        // Constructor
         public Enemy2(Vector position)
            : base(position)
         {
@@ -40,7 +48,7 @@ namespace Zenith.Library
             type = GameObjectType.Enemy2;
             double x = (World.Instance.Random.NextDouble() * World.Instance.EndX / 2) + World.Instance.EndX / 2;
             double y = World.Instance.Random.NextDouble() * World.Instance.EndY;
-            goal = new Vector(x, y);
+            guardPosition = new Vector(x, y);
             cannon = new BasicCannon(this, 200);
             cannon.ProjectileColor = ProjectileColor.Red;
             worth = 40;
