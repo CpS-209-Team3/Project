@@ -1,4 +1,9 @@
-﻿using System;
+﻿//----------------------------------------------------------------------------
+//File:   OptionPage.xaml.cs
+//Desc:   Page where player enter name, difficult, cheat, and start game.
+//----------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +19,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zenith.Library;
 
-//----------------------------------------------------------------------------
-//File:   OptionPage.xaml.cs
-//Desc:   Page where player enter name, difficult, cheat, and start game.
-//----------------------------------------------------------------------------
 
 namespace Zenith.Desktop
 {

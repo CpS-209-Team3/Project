@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------
-//File:   .cs
-//Desc:   
+//File:   Explosion.cs (Cancelled)
+//Desc:   Manage the explosion object.
 //----------------------------------------------------------- 
 using System;
 using System.Collections.Generic;

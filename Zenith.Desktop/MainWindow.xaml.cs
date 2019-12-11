@@ -1,4 +1,7 @@
-﻿
+﻿//-----------------------------------------------------------
+//File:   MainWindow.xaml.cs
+//Desc:   Main Menu Screen of Zenith game.
+//-----------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -17,11 +20,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Zenith.Library;
-
-//-----------------------------------------------------------
-//File:   MainWindow.xaml.cs
-//Desc:   Main Menu Screen of Zenith game.
-//-----------------------------------------------------------
 
 namespace Zenith.Desktop
 {
@@ -64,7 +62,7 @@ namespace Zenith.Desktop
                 GamePage game = new GamePage(this, true, filename);
                 this.Content = game;
             }
-            
+
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~

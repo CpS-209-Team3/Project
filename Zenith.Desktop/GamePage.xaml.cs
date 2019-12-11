@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   GamePage.xaml.cs
+//Desc:   Main view of playing Zenith game.
+//-----------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,10 +23,6 @@ using System.Windows.Threading;
 using Zenith.Library;
 using System.Media;
 
-//-----------------------------------------------------------
-//File:   GamePage.xaml.cs
-//Desc:   Main view of playing Zenith game.
-//-----------------------------------------------------------
 
 namespace Zenith.Desktop
 {
@@ -92,6 +93,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
         public void TriggerEndGame()
         {
+            // set Game Over = true when End Game.
             World.Instance.GameOver = true;
             //timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
@@ -145,6 +147,7 @@ namespace Zenith.Desktop
             {
                 lbl_Popup_EndGame_NewHiScor.Text = "That Game's Name🤦‍";
             }
+            // The fun end here...
 
             lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
             Popup_EndGame.IsOpen = true;
@@ -182,6 +185,7 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Save = Keyboard.IsKeyDown(Key.S);
                 World.Instance.PlayerController.Load = Keyboard.IsKeyDown(Key.L);
 
+                // When Pause = true show Pause Popup
                 if (World.Instance.PlayerController.Pause == true)
                     Popup_Pause.IsOpen = true;
                 else
