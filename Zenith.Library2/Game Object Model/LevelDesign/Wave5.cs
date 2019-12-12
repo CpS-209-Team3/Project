@@ -8,9 +8,8 @@ namespace Zenith.Library
     {
         public override void Spawn()
         {
-            var boss = World.Instance.CreateBoss(level);
+            var boss = World.Instance.SpawnBoss(level);
             if (level == 5) boss.OnDeath = World.Instance.OnGameFinish;
-            AddEnemy(boss);
         }
     }
 }

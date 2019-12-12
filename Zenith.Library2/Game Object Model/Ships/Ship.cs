@@ -144,7 +144,12 @@ namespace Zenith.Library
             {
                 destroy = true;
                 World.Instance.ViewManager.PlaySound("Explode");
-                World.Instance.Score += worth;
+
+                if (World.Instance.Player.Health > 0)
+                {
+                    World.Instance.Score += worth;
+                }
+                
                 onDeath?.Invoke();
                 return;
             }

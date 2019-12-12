@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------
-//File:   .cs
-//Desc:   
+//File:   LevelManager.cs
+//Desc:   This class keeps track of the Waves of enemies
+//        that the player has to face as the game progresses.
 //----------------------------------------------------------- 
 using System;
 using System.Collections.Generic;
@@ -19,38 +20,38 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    // ???
+
     public class LevelManager
     {
-        // ???
-        private int level;
+        // instance variables
 
-        // ???
-        private int difficulty;
 
-        // ???
+
+        // Controls the time between waves.
         private int spawnRate;
 
-        // ???
-        private int timeUntilNextSpawn;
+        // Keeps track of the time until the next wave.
+        private int timeUntilNextWave;
 
-        // ???
+        // Hold's the currentWave the player is facing.
         private Wave currentWave;
 
-        // ???
-        private static int waveNum;
+        // Used to start the Wave "Engine".
+        private bool startingGame;
 
-
-        public int Level { get { return level; } set { level = value; } }
-        public int Difficulty { get { return difficulty; } set { difficulty = value; } }
-        public static int WaveNum { get { return waveNum; } set { waveNum = value; } }
+        // properties
 
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
+        public bool StartingGame { set { startingGame = value; } }
 
-        // ???
+        // Update makes sure that the right wave is spawning units at the right time.
         public void Update()
         {
-            if (currentWave == null) currentWave = CreateWave(World.Instance.CurrentWave);
+            if (startingGame)
+            {
+                currentWave = CreateWave(World.Instance.CurrentWave);
+                startingGame = false;
+            }
             if (World.Instance.EnemiesLeftInWave > 0) // doesnt work need it to active once
             {
                 currentWave.WaveCount = World.Instance.EnemiesLeftInWave;
@@ -58,28 +59,29 @@ namespace Zenith.Library
             }
             if (currentWave.WaveCount == 0)
             {
-                if (timeUntilNextSpawn > 0) --timeUntilNextSpawn;
+                if (timeUntilNextWave > 0) --timeUntilNextWave;
                 else
                 {
                     currentWave = CreateWave(World.Instance.CurrentWave);
                     CurrentWave.Spawn();
-                    timeUntilNextSpawn = spawnRate;
+                    timeUntilNextWave = spawnRate;
                 }
             }
-
+            
         }
 
-        // ???
+        // Constructor for LevelManager. On First Load it assumes starting Game is true.
         public LevelManager()
         {
-            spawnRate = 100; // time in between waves
-            timeUntilNextSpawn = spawnRate;
+            startingGame = true;
+            spawnRate = 100; 
+            timeUntilNextWave = spawnRate;
         }
 
-        // ???
+        // Used like a dictionary to create a wave corresponding to the int parameter.
         public Wave CreateWave(int nextWave)
         {
-            switch (nextWave)
+            switch(nextWave)
             {
                 case 1:
                     return new Wave1();
@@ -94,6 +96,6 @@ namespace Zenith.Library
             }
             return null;
         }
-
+        
     }
 }

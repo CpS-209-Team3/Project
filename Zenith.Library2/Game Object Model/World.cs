@@ -163,7 +163,6 @@ namespace Zenith.Library
         public LevelManager LevelManager { get { return levelManager; } }
 
         public bool CheatsOn { get { return cheatsOn; } }
-
         public bool GameOver { get { return gameOver; } set { gameOver = value; } }
 
         public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
@@ -197,11 +196,11 @@ namespace Zenith.Library
         // LevelManager is also called in this method.
         public void Update()
         {
-            if (PlayerController.Save) Save(playerName + ".txt");
+            if (PlayerController.Save) Save("Zenith.txt");
 
             if (PlayerController.Load)
             {
-                Load(playerName + ".txt");
+                Load("Zenith.txt");
             }
 
             if (!PlayerController.Pause)
@@ -231,10 +230,28 @@ namespace Zenith.Library
         // This method is called when Boss5 is defeated
         public void OnGameFinish()
         {
-            World.Instance.Score += (54000 - gameTick);
+            World.Instance.Score += (54000 - World.Instance.GameTick);
             ViewManager.TriggerEndGame();
         }
 
+        // This method allows the game to progress by keeping track of how many enemies are left in the wave.
+        public void DeathAction()
+        {
+            LevelManager.CurrentWave.WaveCount--;
+            if (LevelManager.CurrentWave.WaveCount == 0)
+            {
+                if (World.Instance.CurrentWave < 5)
+                {
+                    World.Instance.CurrentWave++;
+                }
+                else
+                {
+                    World.Instance.Level++;
+                    World.Instance.CurrentWave = 1;
+                }
+            }
+
+        }
         // This method adds an object to the GameObject list
         // and adds an accompanying Sprite.
         public void AddObject(GameObject gameObject)
@@ -263,8 +280,8 @@ namespace Zenith.Library
             cheatsOn = false;
         }
 
-        // Creates a boss with a valid ID. Mainly used for debugging purposes.
-        public Ship CreateBoss(int bossID)
+        // Spawns a boss with a valid ID. Used by the final Wave class.
+        public Ship SpawnBoss(int bossID)
         {
             Ship boss = null;
             var startingPosition = new Vector(EndX, EndY / 2);
@@ -290,16 +307,17 @@ namespace Zenith.Library
             return boss;
         }
 
+        // This method creates the player and sets its initial properties
         public void CreatePlayer()
         {
             var p = new Player(new Library.Vector(90, EndY / 2));
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
-            p.OnDeath = EndGame;
+            p.OnDeath = OnPlayerDeath;
         }
 
-        // This method resets the instance of World.
+        // This method resets the instance of World. 
         public void Reset()
         {
             playerName = "";
@@ -308,6 +326,7 @@ namespace Zenith.Library
             gameTick = 0;
             currentWave = 1;
             enemiesLeftInWave = 0;
+            cheatsOn = false;
 
             for (int i = objects.Count - 1; i > 0; i--)
             {
@@ -315,10 +334,10 @@ namespace Zenith.Library
             }
         }
 
-        // Reads a list of strings from the file specifed by filename and puts them into the list
-        // of game object strings, then depending on the type of the string given by the first comma
-        // seperated value, it will create a different object, deserialize the rest of the information
-        // and add it to game objects.
+        // Reads a list of strings from the file specifed by filename and uses each
+        // the comma seperated values in each line to populate the properties of each
+        // game object type specified by the first value in the line. In addition, it sets
+        // the non static death action for each game object according to its type.
         public void Load(string filename)
         {
             Reset();
@@ -333,7 +352,7 @@ namespace Zenith.Library
                     score = Convert.ToInt32(reader.ReadLine());
                     currentWave = Convert.ToInt32(reader.ReadLine());
                     enemiesLeftInWave = Convert.ToInt32(reader.ReadLine());
-
+                    cheatsOn = Convert.ToBoolean(reader.ReadLine());
                     while (reader.Peek() != -1)
                     {
                         string saveInfo = reader.ReadLine();
@@ -349,17 +368,18 @@ namespace Zenith.Library
                     if (obj is Boss5)
                     {
                         Boss5 b = obj as Boss5;
-                        b.OnDeath = EndGame;
+                        b.OnDeath = OnGameFinish;
                     }
                     else if (obj is Enemy)
                     {
                         Enemy e = obj as Enemy;
-                        e.OnDeath = LevelManager.CurrentWave.DeathAction;
+                        e.OnDeath = DeathAction;
                     }
                     else if (obj is Player)
                     {
                         Player p = obj as Player;
-                        p.OnDeath = EndGame;
+                        Player = p;
+                        p.OnDeath = OnPlayerDeath;
                     }
 
                 }
@@ -368,11 +388,11 @@ namespace Zenith.Library
 
 
 
-        // This function saves the game as a text file named [filename].txt
+        // Saves the game as a text file named filename.
         // It does this by first deleting any text files under the same name,
-        // creating a new file under the name [filename], and then writing 
-        // the serialized version of all the game objects to the file and 
-        // closing it.
+        // creating a new file under filename, and then writing 
+        // the serialized version of all the necessary world variables and 
+        // game objects to the file and closing it.
         public void Save(string filename)
         {
             if (File.Exists(filename))
@@ -387,6 +407,7 @@ namespace Zenith.Library
                 writer.WriteLine(score);
                 writer.WriteLine(currentWave);
                 writer.WriteLine(LevelManager.CurrentWave.WaveCount);
+                writer.WriteLine(cheatsOn);
                 foreach (GameObject obj in this.objects)
                 {
                     if (!(obj is HealthBar))
@@ -398,20 +419,19 @@ namespace Zenith.Library
             }
         }
 
-        // ???
+        // Used in the Load method in order to create instances of Game Objects, which can
+        // then have their properties updated by the rest of the comma seperated values.
         public GameObject CreateInstanceOf(string objectType)
         {
             Vector tempVector = new Vector(1, 1, false);
             switch (objectType)
             {
                 case "Item":
-                    //return new Item(tempVector);
+                    return new Item(tempVector);
                 case "Asteroid":
                     return new Asteroid(tempVector, 0);
                 case "Laser":
                     return new Laser(tempVector, tempVector, 0, true);
-                case "BackgroundElement":
-                    // return new BackgroundElement(tempVector, 0);
                 case "Enemy1":
                     return new Enemy1(tempVector);
                 case "Enemy2":
