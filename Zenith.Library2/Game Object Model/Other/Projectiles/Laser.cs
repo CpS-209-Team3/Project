@@ -84,13 +84,13 @@ namespace Zenith.Library
             World.Instance.ViewManager.PlaySound("Laser");
         }
 
-        // ???
+        // This method turns all the necessary variables of Laser into strings in order to save them.
         public override string Serialize()
         {
-            return base.Serialize() + ',' + damage.ToString() + ',' + isFromPlayer.ToString();
+            return base.Serialize() + ',' + damage.ToString() + ',' + isFromPlayer.ToString() + ',' + imageSources[0];
         }
 
-        // ???
+        // This method takes a list of comma seperated values and sets the properties of laser accordingly.
         public override void Deserialize(string saveInfo)
         {
             int index = IndexOfNthOccurance(saveInfo, ",", 11);
@@ -101,6 +101,7 @@ namespace Zenith.Library
             string[] laserSaveInfo = saveInfo.Substring(index + 1, saveInfo.Length - index - 1).Split(',');
             damage = Convert.ToInt32(laserSaveInfo[0]);
             isFromPlayer = Convert.ToBoolean(laserSaveInfo[1]);
+            imageSources[0] = laserSaveInfo[2];
         }
     }
 }
