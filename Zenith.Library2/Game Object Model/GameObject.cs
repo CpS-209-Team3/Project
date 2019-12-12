@@ -63,7 +63,7 @@ namespace Zenith.Library
 
         // The value to be multiplied with velocity to create a friction effect
         // Unused
-        protected double deacceleration = 1;
+        protected double deceleration = 1;
 
         // The angle of the GameObject, in radians
         protected double angle = 0;
@@ -195,7 +195,7 @@ namespace Zenith.Library
             }*/
             return type.ToString() + ',' + collidable.ToString() + ',' + Destroy.ToString() + 
                 ',' + position.ToString() + ',' + velocity.ToString() + ',' + size.ToString() + 
-                ',' + deacceleration.ToString() + ',' + angle.ToString() /* + ',' + serializedImageSources*/ + 
+                ',' + deceleration.ToString() + ',' + angle.ToString() /* + ',' + serializedImageSources*/ + 
                 ',' + imageRotation.ToString() + ',' + ImageIndex.ToString() + ',' + mass.ToString() + ',' + tag.ToString();         
         }
 
@@ -217,7 +217,7 @@ namespace Zenith.Library
             size = new Vector(Convert.ToDouble(xNy3[0]), Convert.ToDouble(xNy3[1]), false);
 
             // deacceleartion, and angle
-            deacceleration = Convert.ToDouble(savedValues[5]);
+            deceleration = Convert.ToDouble(savedValues[5]);
             angle = Convert.ToDouble(savedValues[6]);
 
             // imagesources, rotation, and index

@@ -173,7 +173,7 @@ namespace Zenith.Desktop
                 
 
                 // Health Bar
-                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
                 // No touch when died
                 // This disabled keyboard keys input when Game is Over.
