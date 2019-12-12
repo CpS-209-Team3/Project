@@ -1,9 +1,15 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Wave1.cs
+//Desc:   This class defines the enemies that will spawn in the first wave.
+//----------------------------------------------------------- 
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Zenith.Library
 {
+    // This class spawns enemies according the level and difficulty of the game
     public class Wave1 : Wave
     {
 

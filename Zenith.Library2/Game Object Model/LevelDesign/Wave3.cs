@@ -15,11 +15,12 @@ namespace Zenith.Library
                 size = World.Instance.Random.NextDouble() * 100 + 30;
                 
                 Enemy1 e1 = new Enemy1(startingPos);
-                Asteroid a = new Asteroid(startingPos, size);
                 Enemy2 e2 = new Enemy2(startingPos);
+                Enemy3 e3 = new Enemy3(startingPos);
                 AddEnemy(e1);
                 AddEnemy(e2);
-                AddEnemy(a);
+                AddEnemy(e3);
+                
             }
         }
 

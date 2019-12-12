@@ -97,7 +97,7 @@ namespace Zenith.Desktop
         {
             // set Game Over = true when End Game.
             World.Instance.GameOver = true;
-            //timer.Stop();
+            timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
             HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
             if (scores.IsNewHighScore(thisScore))

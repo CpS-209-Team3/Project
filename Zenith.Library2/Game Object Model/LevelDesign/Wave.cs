@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-    // 
+    // This class provides shared methods that 
     public abstract class Wave
     {
         protected int difficulty;

@@ -312,7 +312,7 @@ namespace Zenith.Library
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
-            p.OnDeath = EndGame;
+            p.OnDeath = OnPlayerDeath;
         }
 
         // This method resets the instance of World. 
