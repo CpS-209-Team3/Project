@@ -11,12 +11,12 @@ namespace Zenith.Library
 {
     public interface ISoundPlayer
     {
-        void StartSoundEffect( String soundFilePath);
+        void StartSoundEffect(String soundFilePath);
     }
 
     public enum ProjectileColor
     {
-        Blue, Green, Orange, Red 
+        Blue, Green, Orange, Red
     }
 
     // This class serves as the base class for all cannons
@@ -124,8 +124,5 @@ namespace Zenith.Library
             return reloadTime.ToString() + ':' + firePatterns + ':' +
                 fireSequence.ToString() + ':' + damage.ToString() + ':' + accuracy.ToString() + ':' + projectileSpeed.ToString();
         }
-
     }
-
-
 }

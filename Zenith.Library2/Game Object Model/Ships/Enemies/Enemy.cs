@@ -39,11 +39,5 @@ namespace Zenith.Library
             type = GameObjectType.Enemy;
             state = EnemyState.Sway;
         }
-
-        
-
-
-        
-
     }
 }
