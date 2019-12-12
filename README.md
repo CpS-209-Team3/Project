@@ -29,12 +29,7 @@ Begin the game by starting a new game, and choosing a difficulty level (easy, me
   
 
 # Known Issues
-* End of game has been implemented, but is having merge issues.
-* The load and save functionality does not correctly work in the view nor in the buttons.
-* The Highscore page works from the save file, but needs the end of game to make a new high score
 * Mobile - The game is functional until the bosses. Android has sprite issues.
-* Not all needed instance variables of objects are serialized.
-* If the user starts the game and returns to the main menu, and repeats that process, multiple tasks are ran on the World singleton class.
 
 # Recordings
 
