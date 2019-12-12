@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Wave3.cs
+//Desc:   This class defines the enemies that will spawn in the third wave.
+//----------------------------------------------------------- 
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 

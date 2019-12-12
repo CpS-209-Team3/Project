@@ -119,7 +119,7 @@ namespace Zenith.Library
             }
         }
 
-        // ??
+        // this method allows the values of vectors to be saved.
         public override string ToString()
         {
             return x.ToString() + ":" + y.ToString();

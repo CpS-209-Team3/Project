@@ -185,7 +185,8 @@ namespace Zenith.Library
             imageRotation = 90;
         }
 
-        // ???
+        // This method turns all the necessary variables relating to a Game Object to strings so that the Game Object
+        // can be saved.
         public virtual string Serialize()
         {
             /*string serializedImageSources = "";
@@ -199,7 +200,8 @@ namespace Zenith.Library
                 ',' + imageRotation.ToString() + ',' + ImageIndex.ToString() + ',' + mass.ToString() + ',' + tag.ToString();         
         }
 
-        // ???
+        // Deserialze takes a string of comma seperated values (with a few nested colon seperated values) and loads their values
+        // into the Game Object properties.
         public virtual void Deserialize(string saveInfo)
         {
             // saveInfo includes everything but the gameObjectType

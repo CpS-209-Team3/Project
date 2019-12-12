@@ -117,7 +117,8 @@ namespace Zenith.Library
             this.host = host;
         }
 
-        // ???
+        // Takes all the values of a cannon and turns them to strings which can then be deserialzed
+        // later in order to load their previous state.
         public override string ToString()
         {
             string firePatterns = "";
