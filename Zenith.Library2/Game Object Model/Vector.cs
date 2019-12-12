@@ -119,7 +119,7 @@ namespace Zenith.Library
             }
         }
 
-        // ??
+        //~~~~~~~~~~~~~~~~~~~~ Change ToString method to serialize/deserialize magnitude ~~~~~~~~~~~~~~~~~~~~
         public override string ToString()
         {
             return x.ToString() + ":" + y.ToString();

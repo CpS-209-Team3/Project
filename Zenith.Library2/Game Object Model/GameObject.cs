@@ -185,7 +185,7 @@ namespace Zenith.Library
             imageRotation = 90;
         }
 
-        // ???
+        // ~~~~~~~~~~~~~~~~~~~~ Serialize Data ~~~~~~~~~~~~~~~~~~~~
         public virtual string Serialize()
         {
             /*string serializedImageSources = "";
@@ -199,7 +199,7 @@ namespace Zenith.Library
                 ',' + imageRotation.ToString() + ',' + ImageIndex.ToString() + ',' + mass.ToString() + ',' + tag.ToString();         
         }
 
-        // ???
+        // ~~~~~~~~~~~~~~~~~~~~ Deserialize Data ~~~~~~~~~~~~~~~~~~~~
         public virtual void Deserialize(string saveInfo)
         {
             // saveInfo includes everything but the gameObjectType

@@ -33,14 +33,6 @@
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="PAUSE" Background="Brown" Foreground="White" FontWeight="DemiBold" FontSize="50" Margin="10" Width="auto" TextAlignment="Center" />
                     <TextBlock x:Name="lbl_Popup_Pause_PlayerName" Text="Schaubian" Background="Transparent" Foreground="Orange" FontWeight="DemiBold" FontSize="35" Margin="10" Width="auto" TextAlignment="Center" />
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="☠Enemies Defeated☠: " Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Popup_Pause_EnemyDefeated" Text="??" Background="Transparent" Foreground="Red" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Distance Traveled:" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="25" Margin="5" Width="auto" TextAlignment="Center" />
-                        <TextBlock x:Name="lbl_Distance" Text="???" Background="Transparent" Foreground="SkyBlue" FontWeight="DemiBold" FontSize="27" Margin="5" Width="auto" TextAlignment="Center" />
-                    </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="Score: " Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />
                         <TextBlock x:Name="lbl_Popup_Pause_CurrentScore" Text="????" Background="Transparent" Foreground="White" FontWeight="DemiBold" FontSize="30" Margin="10" Width="auto" TextAlignment="Center" />

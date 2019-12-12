@@ -117,7 +117,7 @@ namespace Zenith.Library
             this.host = host;
         }
 
-        // ???
+        // ~~~~~~~~~~~~~~~~~~~~ Change the default ToString method for serialize/deserialize ~~~~~~~~~~~~~~~~~~~~
         public override string ToString()
         {
             string firePatterns = "";
