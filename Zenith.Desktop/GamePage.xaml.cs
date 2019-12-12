@@ -86,14 +86,17 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~~~
         public void PlaySound(string key)
         {
-            Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+            if (!World.Instance.GameOver)
+            {
+                Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+            }
         }
 
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
         public void TriggerEndGame()
         {
             World.Instance.GameOver = true;
-            //timer.Stop();
+            timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
             HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
             if (scores.IsNewHighScore(thisScore))
@@ -101,7 +104,7 @@ namespace Zenith.Desktop
                 scores.AddHighScore(thisScore);
                 scores.Save("highScores.txt");
                 //Put the window that says that you have a new high score here
-                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
+                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS"; 
                 lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
             }
             else

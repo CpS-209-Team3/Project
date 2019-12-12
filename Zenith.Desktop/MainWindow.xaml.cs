@@ -1,4 +1,7 @@
-﻿
+﻿//-----------------------------------------------------------
+//File:   MainWindow.xaml.cs
+//Desc:   Main Menu Screen of Zenith game.
+//-----------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -18,10 +21,6 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Zenith.Library;
 
-//-----------------------------------------------------------
-//File:   MainWindow.xaml.cs
-//Desc:   Main Menu Screen of Zenith game.
-//-----------------------------------------------------------
 
 namespace Zenith.Desktop
 {
@@ -40,21 +39,21 @@ namespace Zenith.Desktop
 
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Displays Help Screen ~~~~~~~~~~~~~~~~~~~~
         private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
             HelpScreen help = new HelpScreen(this);
             this.Content = help;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ High Score Page ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Displays High Score Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_HighScore_Click(object sender, RoutedEventArgs e)
         {
             HighScorePage highscore = new HighScorePage(this);
             this.Content = highscore;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Displays Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
             // Disable button if no save file is available.
@@ -67,14 +66,14 @@ namespace Zenith.Desktop
             
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Play Game (Opens the option page) ~~~~~~~~~~~~~~~~~~~~
         private void btn_Play_Click(object sender, RoutedEventArgs e)
         {
             OptionPage option = new OptionPage(this);
             this.Content = option;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Credits Page ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Displays Credits Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_Credits_Click(object sender, RoutedEventArgs e)
         {
             CreditsPage credits = new CreditsPage(this);
