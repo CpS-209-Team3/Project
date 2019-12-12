@@ -1,4 +1,9 @@
-﻿using System;
+﻿//--------------------------------------------------------------
+//File:   HelpScreen.xaml.cs
+//Desc:   Help page that let player know which button to play.
+//--------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +19,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-//--------------------------------------------------------------
-//File:   HelpScreen.xaml.cs
-//Desc:   Help page that let player know which button to play.
-//--------------------------------------------------------------
 
 namespace Zenith.Desktop
 {

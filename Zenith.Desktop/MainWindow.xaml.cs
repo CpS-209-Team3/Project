@@ -21,7 +21,6 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Zenith.Library;
 
-
 namespace Zenith.Desktop
 {
     public partial class MainWindow : Window
@@ -39,41 +38,41 @@ namespace Zenith.Desktop
 
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Displays Help Screen ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Help Screen ~~~~~~~~~~~~~~~~~~~~
         private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
             HelpScreen help = new HelpScreen(this);
             this.Content = help;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Displays High Score Page ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ High Score Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_HighScore_Click(object sender, RoutedEventArgs e)
         {
             HighScorePage highscore = new HighScorePage(this);
             this.Content = highscore;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Displays Load Game ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Load Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
             // Disable button if no save file is available.
-            string filename = World.Instance.PlayerName + ".txt";
+            string filename = "Zenith.txt";
             if (File.Exists(filename))
             {
                 GamePage game = new GamePage(this, true, filename);
                 this.Content = game;
             }
-            
+
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Play Game (Opens the option page) ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~
         private void btn_Play_Click(object sender, RoutedEventArgs e)
         {
             OptionPage option = new OptionPage(this);
             this.Content = option;
         }
 
-        //~~~~~~~~~~~~~~~~~~~~ Displays Credits Page ~~~~~~~~~~~~~~~~~~~~
+        //~~~~~~~~~~~~~~~~~~~~ Credits Page ~~~~~~~~~~~~~~~~~~~~
         private void btn_Credits_Click(object sender, RoutedEventArgs e)
         {
             CreditsPage credits = new CreditsPage(this);

@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   GamePage.xaml.cs
+//Desc:   Main view of playing Zenith game.
+//-----------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,10 +23,6 @@ using System.Windows.Threading;
 using Zenith.Library;
 using System.Media;
 
-//-----------------------------------------------------------
-//File:   GamePage.xaml.cs
-//Desc:   Main view of playing Zenith game.
-//-----------------------------------------------------------
 
 namespace Zenith.Desktop
 {
@@ -43,6 +44,8 @@ namespace Zenith.Desktop
 
         private bool loadingGame;
         private string filename;
+
+        public bool newgame = false;
         public GamePage(MainWindow theMainOne, bool loadingGame, string filename)
         {
             this.loadingGame = loadingGame;
@@ -95,6 +98,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
         public void TriggerEndGame()
         {
+            // set Game Over = true when End Game.
             World.Instance.GameOver = true;
             timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
@@ -148,6 +152,7 @@ namespace Zenith.Desktop
             {
                 lbl_Popup_EndGame_NewHiScor.Text = "That Game's Name🤦‍";
             }
+            // The fun end here...
 
             lbl_Popup_EndGame_PlayerName.Text = lbl_PlayerName.Text;
             Popup_EndGame.IsOpen = true;
@@ -166,7 +171,7 @@ namespace Zenith.Desktop
                 }
 
                 // Health Bar
-                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
                 // No touch when died
                 if (World.Instance.GameOver)
@@ -185,6 +190,7 @@ namespace Zenith.Desktop
                 World.Instance.PlayerController.Save = Keyboard.IsKeyDown(Key.S);
                 World.Instance.PlayerController.Load = Keyboard.IsKeyDown(Key.L);
 
+                // When Pause = true show Pause Popup
                 if (World.Instance.PlayerController.Pause == true)
                     Popup_Pause.IsOpen = true;
                 else
@@ -207,13 +213,14 @@ namespace Zenith.Desktop
             if (loadingGame)
             {
                 World.Instance.Load(filename);
+                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
                 loadingGame = false;
             }
             else
             {
                 World.Instance.Reset();
                 if (isCheating) World.Instance.EnableCheatMode();
-
+                World.Instance.LevelManager.StartingGame = newgame;
                 World.Instance.PlayerName = shipName;
                 World.Instance.Difficulty = diffNum;
 
@@ -233,11 +240,14 @@ namespace Zenith.Desktop
             {
                 i.Value.Load();
             }
+            if (timer == null)
+            {
+                timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
+                timer.Tick += GameLoop;
+                timer.Start();
+            }
             
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
-            timer.Tick += GameLoop;
-            timer.Start();
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -263,7 +273,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Save_Click(object sender, RoutedEventArgs e)
         {
-            World.Instance.Save(World.Instance.PlayerName + ".txt");
+            World.Instance.Save("Zenith.txt");
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~
