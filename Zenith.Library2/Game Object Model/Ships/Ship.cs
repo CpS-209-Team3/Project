@@ -18,14 +18,26 @@ namespace Zenith.Library
 
         // instance variables
 
-
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected int reloadTime = 0;
+
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected int fireRate = 15;
+
+        // The amount of health to remove from other ships that collide
+        // with this one.
         protected int bodyDamage = 100;
 
+        // kept here to conserve serialization
         protected double direction = 0;
+
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected double accuracy = 0.05;
+
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected int laserDamage = 40;
+
+        // kept here to conserve serialization
         protected double laserSpeed = 400;
 
         // The current amount of health the ship

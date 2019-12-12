@@ -40,7 +40,7 @@ namespace Zenith.Library
         // ???
         private static int waveNum;
 
-        
+
         public int Level { get { return level; } set { level = value; } }
         public int Difficulty { get { return difficulty; } set { difficulty = value; } }
         public static int WaveNum { get { return waveNum; } set { waveNum = value; } }
@@ -66,12 +66,11 @@ namespace Zenith.Library
                     timeUntilNextSpawn = spawnRate;
                 }
             }
-            
+
         }
 
         // ???
         public LevelManager()
-
         {
             spawnRate = 100; // time in between waves
             timeUntilNextSpawn = spawnRate;
@@ -80,7 +79,7 @@ namespace Zenith.Library
         // ???
         public Wave CreateWave(int nextWave)
         {
-            switch(nextWave)
+            switch (nextWave)
             {
                 case 1:
                     return new Wave1();
@@ -95,6 +94,6 @@ namespace Zenith.Library
             }
             return null;
         }
-        
+
     }
 }

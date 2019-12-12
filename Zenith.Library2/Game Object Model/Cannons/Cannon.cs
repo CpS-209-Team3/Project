@@ -63,11 +63,7 @@ namespace Zenith.Library
         // The color at which to set initialized lasers.
         protected string projectileColor = colors[0];
 
-        // ???
-        protected string soundEffectLocation;
-
         //  properties
-        public ISoundPlayer SoundPlayer { get { return soundPlayer; } set { soundPlayer = value; } }
         public Ship Host { get { return host; } set { host = value; } }
         public int ReloadTime { get { return reloadTime; } set { reloadTime = value; } }
         public List<int> FirePattern { get { return firePattern; } }
@@ -76,7 +72,6 @@ namespace Zenith.Library
         public double Accuracy { get { return accuracy; } set { accuracy = value; } }
         public double ProjectileSpeed { get { return projectileSpeed; } set { projectileSpeed = value; } }
         public ProjectileColor ProjectileColor { set { projectileColor = colors[(int)value]; } }
-        public String SoundEffectLocation { get { return soundEffectLocation; } set { soundEffectLocation = value; } }
 
         // Methods
 
