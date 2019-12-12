@@ -102,11 +102,18 @@ namespace Zenith.Library
         // Specifies whether cheat mode is on
         private bool cheatsOn = false;
 
-        // Specify whether game over
+        // Specifies whether the game is over
         private bool gameOver = false;
 
+        // The wave the player is currently in
         private int currentWave = 1;
+
+        // The amount of enemies required to destroy
+        // before he can progress to the next wave
         private int enemiesLeftInWave = 0;
+
+        // The method called when the player dies or
+        // Boss5 is defeated
         private Action endGame;
 
         // Properties
@@ -162,7 +169,9 @@ namespace Zenith.Library
         public int CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
         public int EnemiesLeftInWave { get { return enemiesLeftInWave; } set { enemiesLeftInWave = value; } }
+       
         public Action EndGame { get { return endGame; } set { endGame = value; } }
+        
         // Methods
 
         // Sets the screen dimensions to the values given
@@ -219,12 +228,6 @@ namespace Zenith.Library
 
         }
 
-        // This method is called when the player dies.
-        public void OnPlayerDeath()
-        {
-            ViewManager.TriggerEndGame();
-        }
-
         // This method is called when Boss5 is defeated
         public void OnGameFinish()
         {
@@ -260,8 +263,8 @@ namespace Zenith.Library
             cheatsOn = false;
         }
 
-        // Spawns a boss with a valid ID. Mainly used for debugging purposes.
-        public Ship SpawnBoss(int bossID)
+        // Creates a boss with a valid ID. Mainly used for debugging purposes.
+        public Ship CreateBoss(int bossID)
         {
             Ship boss = null;
             var startingPosition = new Vector(EndX, EndY / 2);

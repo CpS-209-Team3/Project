@@ -19,7 +19,7 @@ using System.Text;
 
 namespace Zenith.Library
 {
-
+    // ???
     public class LevelManager
     {
         // ???
@@ -47,7 +47,7 @@ namespace Zenith.Library
 
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
 
-
+        // ???
         public void Update()
         {
             if (currentWave == null) currentWave = CreateWave(World.Instance.CurrentWave);
@@ -69,7 +69,7 @@ namespace Zenith.Library
             
         }
 
-
+        // ???
         public LevelManager()
 
         {
@@ -77,6 +77,7 @@ namespace Zenith.Library
             timeUntilNextSpawn = spawnRate;
         }
 
+        // ???
         public Wave CreateWave(int nextWave)
         {
             switch(nextWave)
