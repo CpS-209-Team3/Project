@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <Grid HorizontalOptions="Center">
             <StackLayout Margin="0,0,0,0.4">
-                <Label Text="Astronauts of the Game" FontSize="40" FontFamily="Impact" TextColor="AliceBlue" HorizontalTextAlignment="Center" HeightRequest="55" Margin="300,40,300,0"/>
+                <Label Text="Astronauts of the Game" FontSize="40" FontFamily="Impact" TextColor="AliceBlue" HorizontalTextAlignment="Center" HeightRequest="55" Margin="250,40,250,0"/>
             </StackLayout>
             <StackLayout Margin="102,121,101.4,100.4" Orientation="Horizontal">
                 <Label x:Name="lbl_top1to5" FontSize="30" TextColor="DarkOrange" FontFamily="Impact" WidthRequest="380" Margin="15,1,54,-0.2" BackgroundColor="Transparent" Opacity="1" />

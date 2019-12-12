@@ -91,7 +91,14 @@ namespace Zenith.Desktop
         {
             if (!World.Instance.GameOver)
             {
-                Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+                try
+                {
+                    Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+                }
+                catch (NullReferenceException)
+                {
+                    //Don't play the sound with an error (Triggered on loading save file)
+                }
             }
         }
 
