@@ -44,6 +44,8 @@ namespace Zenith.Desktop
 
         private bool loadingGame;
         private string filename;
+
+        public bool newgame = false;
         public GamePage(MainWindow theMainOne, bool loadingGame, string filename)
         {
             this.loadingGame = loadingGame;
@@ -87,7 +89,10 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~~~~ Play Sound ~~~~~~~~~~~~~~~~~~~
         public void PlaySound(string key)
         {
-            Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+            if (!World.Instance.GameOver)
+            {
+                Dispatcher.Invoke(() => { gameSounds[key].Play(); });
+            }
         }
 
         //~~~~~~~~~~~~~~~~ Trigger Endgame ~~~~~~~~~~~~~~~~~~~~
@@ -95,7 +100,7 @@ namespace Zenith.Desktop
         {
             // set Game Over = true when End Game.
             World.Instance.GameOver = true;
-            //timer.Stop();
+            timer.Stop();
             HighScores scores = HighScores.Load("highScores.txt");
             HiScore thisScore = new HiScore(World.Instance.PlayerName, World.Instance.Score);
             if (scores.IsNewHighScore(thisScore))
@@ -103,7 +108,7 @@ namespace Zenith.Desktop
                 scores.AddHighScore(thisScore);
                 scores.Save("highScores.txt");
                 //Put the window that says that you have a new high score here
-                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS";
+                lbl_Popup_EndGame_Header.Text = "CONGRATULATIONS"; 
                 lbl_Popup_EndGame_NewHiScor.Text = "New High Score!";
             }
             else
@@ -166,7 +171,7 @@ namespace Zenith.Desktop
                 }
 
                 // Health Bar
-                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
                 // No touch when died
                 if (World.Instance.GameOver)
@@ -208,13 +213,14 @@ namespace Zenith.Desktop
             if (loadingGame)
             {
                 World.Instance.Load(filename);
+                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
                 loadingGame = false;
             }
             else
             {
                 World.Instance.Reset();
                 if (isCheating) World.Instance.EnableCheatMode();
-
+                World.Instance.LevelManager.StartingGame = newgame;
                 World.Instance.PlayerName = shipName;
                 World.Instance.Difficulty = diffNum;
 
@@ -234,11 +240,14 @@ namespace Zenith.Desktop
             {
                 i.Value.Load();
             }
+            if (timer == null)
+            {
+                timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
+                timer.Tick += GameLoop;
+                timer.Start();
+            }
             
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);
-            timer.Tick += GameLoop;
-            timer.Start();
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -264,7 +273,7 @@ namespace Zenith.Desktop
         //~~~~~~~~~~~~~~~~~~~~ Popup: Save Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Save_Click(object sender, RoutedEventArgs e)
         {
-            World.Instance.Save(World.Instance.PlayerName + ".txt");
+            World.Instance.Save("Zenith.txt");
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Popup: Main Menu Click ~~~~~~~~~~~~~~~~~~~~

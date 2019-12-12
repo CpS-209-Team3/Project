@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Sprite.cs
+//Desc:   This file holds the class responsible for rendering
+//        Zenith objects.
+//----------------------------------------------------------- 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

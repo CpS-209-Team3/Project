@@ -56,7 +56,7 @@ namespace Zenith.Desktop
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
             // Disable button if no save file is available.
-            string filename = World.Instance.PlayerName + ".txt";
+            string filename = "Zenith.txt";
             if (File.Exists(filename))
             {
                 GamePage game = new GamePage(this, true, filename);
