@@ -230,7 +230,7 @@ namespace Zenith.Library
         // This method is called when Boss5 is defeated
         public void OnGameFinish()
         {
-            World.Instance.Score += (54000 - World.Instance.GameTick);
+            if (Player.Health > 0) World.Instance.Score += (54000 - World.Instance.GameTick);
             ViewManager.TriggerEndGame();
         }
 
@@ -314,7 +314,7 @@ namespace Zenith.Library
             AddObject(p);
             Player = p;
             p.Velocity.Cap(0);
-            p.OnDeath = OnPlayerDeath;
+            p.OnDeath = OnGameFinish;
         }
 
         // This method resets the instance of World. 
@@ -379,7 +379,7 @@ namespace Zenith.Library
                     {
                         Player p = obj as Player;
                         Player = p;
-                        p.OnDeath = OnPlayerDeath;
+                        p.OnDeath = OnGameFinish;
                     }
 
                 }
