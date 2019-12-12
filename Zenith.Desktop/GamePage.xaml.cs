@@ -255,7 +255,7 @@ namespace Zenith.Desktop
         private void Popup_Pause_Loaded(object sender, RoutedEventArgs e)
         {
             lbl_Popup_Pause_PlayerName.Text = lbl_PlayerName.Text;
-            lbl_Distance.Text = "";
+            // lbl_Distance.Text = "";
         }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)
