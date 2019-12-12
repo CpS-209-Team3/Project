@@ -62,7 +62,6 @@ namespace Zenith.Desktop
                 GamePage game = new GamePage(this, true, filename);
                 this.Content = game;
             }
-
         }
 
         //~~~~~~~~~~~~~~~~~~~~ Play Game ~~~~~~~~~~~~~~~~~~~~

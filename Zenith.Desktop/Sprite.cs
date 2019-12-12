@@ -25,6 +25,7 @@ namespace Zenith.Desktop
 
         public GameObject GameObject { get { return gameObject; } }
 
+        //~~~~~~~~~~~~~~~~~~~~ Update Sprites ~~~~~~~~~~~~~~~~~~~~ 
         public void Update()
         {
             if (currentIndex != gameObject.ImageIndex)
