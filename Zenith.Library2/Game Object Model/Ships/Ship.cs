@@ -18,14 +18,26 @@ namespace Zenith.Library
 
         // instance variables
 
-
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected int reloadTime = 0;
+
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected int fireRate = 15;
+
+        // The amount of health to remove from other ships that collide
+        // with this one.
         protected int bodyDamage = 100;
 
+        // kept here to conserve serialization
         protected double direction = 0;
+
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected double accuracy = 0.05;
+
+        // moved to Cannon.cs (kept here to conserve serialization)
         protected int laserDamage = 40;
+
+        // kept here to conserve serialization
         protected double laserSpeed = 400;
 
         // The current amount of health the ship
@@ -132,7 +144,12 @@ namespace Zenith.Library
             {
                 destroy = true;
                 World.Instance.ViewManager.PlaySound("Explode");
-                World.Instance.Score += worth;
+
+                if (World.Instance.Player.Health > 0)
+                {
+                    World.Instance.Score += worth;
+                }
+                
                 onDeath?.Invoke();
                 return;
             }
@@ -190,7 +207,8 @@ namespace Zenith.Library
             World.Instance.AddObject(h);
         }
 
-        // ~~~~~~~~~~~~~~~~~~~~ Serializing the Ship Data ~~~~~~~~~~~~~~~~~~~~
+        // This method turns all the necessary Ship variables into strings and turns them into a line of
+        // comma seperated values so that they can be loaded in later.
         public override string Serialize()
         {
             return base.Serialize() + ',' + reloadTime.ToString() + ',' + fireRate.ToString() + ',' +
@@ -199,7 +217,7 @@ namespace Zenith.Library
                 maxHealth.ToString() + ',' + shakeOffset.ToString() + ',' + shakeTime.ToString() + ',' +
                 shakeDuration.ToString() + ',' + cannon.ToString() + ',' + worth.ToString();
         }
-        // ~~~~~~~~~~~~~~~~~~~~ Deserializing the Ship Data ~~~~~~~~~~~~~~~~~~~~
+        // This method loads in all the necessary variables for a ship from a line of comma seperated values.
         public override void Deserialize(string saveInfo)
         {
 

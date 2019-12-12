@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Wave2.cs
+//Desc:   This class defines the enemies that will spawn in the second wave.
+//----------------------------------------------------------- 
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 

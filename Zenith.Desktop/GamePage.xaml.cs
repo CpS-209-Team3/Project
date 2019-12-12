@@ -177,10 +177,13 @@ namespace Zenith.Desktop
                     sprites[i].Update();
                 }
 
+                
+
                 // Health Bar
-                //progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
+                progressbar_PlayerHealthBar.Value = (double)World.Instance.Player.Health * 1000 / World.Instance.Player.MaxHealth;
 
                 // No touch when died
+                // This disabled keyboard keys input when Game is Over.
                 if (World.Instance.GameOver)
                 {
                     return;
@@ -254,7 +257,6 @@ namespace Zenith.Desktop
                 timer.Tick += GameLoop;
                 timer.Start();
             }
-            
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~POPUP_PAUSE EVENT HANDLING~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -262,7 +264,7 @@ namespace Zenith.Desktop
         private void Popup_Pause_Loaded(object sender, RoutedEventArgs e)
         {
             lbl_Popup_Pause_PlayerName.Text = lbl_PlayerName.Text;
-            lbl_Distance.Text = "";
+            // lbl_Distance.Text = "";
         }
         //~~~~~~~~~~~~~~~~~~~~ Popup: Continue Click ~~~~~~~~~~~~~~~~~~~~
         private void btn_Pause_Continue_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------
+//File:   Wave1.cs
+//Desc:   This class defines the enemies that will spawn in the first wave.
+//----------------------------------------------------------- 
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,9 +21,7 @@ namespace Zenith.Library
                 size = World.Instance.Random.NextDouble() * 100 + 30;
 
                 Enemy1 e1 = new Enemy1(startingPos);
-                Asteroid a = new Asteroid(startingPos, size);
                 AddEnemy(e1);
-                AddEnemy(a);
             }
         }
 

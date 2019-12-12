@@ -23,9 +23,7 @@ namespace Zenith.Library
 
     public class LevelManager
     {
-        // instance variables
-
-
+        // Instance variables
 
         // Controls the time between waves.
         private int spawnRate;
@@ -39,7 +37,7 @@ namespace Zenith.Library
         // Used to start the Wave "Engine".
         private bool startingGame;
 
-        // properties
+        // Properties
 
         public Wave CurrentWave { get { return currentWave; } set { currentWave = value; } }
         public bool StartingGame { set { startingGame = value; } }
@@ -52,7 +50,7 @@ namespace Zenith.Library
                 currentWave = CreateWave(World.Instance.CurrentWave);
                 startingGame = false;
             }
-            if (World.Instance.EnemiesLeftInWave > 0) // doesnt work need it to active once
+            if (World.Instance.EnemiesLeftInWave > 0)
             {
                 currentWave.WaveCount = World.Instance.EnemiesLeftInWave;
                 World.Instance.EnemiesLeftInWave = 0;
